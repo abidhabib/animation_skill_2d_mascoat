@@ -13,6 +13,9 @@ crowds, weather, talking close-ups and voice-over phrase timing.
 | `STYLE_RULES.md` | Measured style rules (cuts, camera, light, colour, characters) |
 | `LIBRARY.md`, `LIBRARY_CATALOG.png` | Cheat sheet and picture catalog of every asset |
 | `docs/` | Mascot model sheet, expressions, montage storyboard |
+| `START_HERE.md` | Briefing for a new Claude session (workflow, library map, voices, gotchas, to-do) |
+| `VOICES.md` | Fish Audio voice ids, API cheat sheet, emotion-tag map (nothing generated) |
+| `PROJECT_CLAUDE.md` | Copy of the project `CLAUDE.md`; place it as `CLAUDE.md` in the video project root |
 | `skill/cartoon-explainer-clip/SKILL.md` | The Claude Code skill (copy of the live one) |
 | `specs/` | Scene specs of finished clips (examples to copy) |
 

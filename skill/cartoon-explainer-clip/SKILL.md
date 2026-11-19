@@ -5,6 +5,13 @@ description: Make the next numbered clip of the user's 2D cartoon explainer vide
 
 # Cartoon explainer clip
 
+## START HERE (new session checklist)
+1. Read `Animation/START_HERE.md` (project briefing, workflow, library map, voices, gotchas) and, if you will draw anything, `Animation/STYLE_RULES.md` + `Animation/LIBRARY.md` (cheat sheet; pictures in `LIBRARY_CATALOG.png`). The project `CLAUDE.md` in the `First Video` folder holds the user's working rules.
+2. Hero = `style:"mascot"` (yellow hoodie, curl). Build clips from a short JSON spec with `scene.py`; reuse the library; add new assets to `_kit` once.
+3. Narration = the user's own voice-over. Character voices = Fish Audio (`Animation/VOICES.md`); NEVER generate audio or ask for an API key without the user's go-ahead.
+4. Token-light: no screenshot review unless asked; send finished clips with SendUserFile; ask before pushing to GitHub (repo https://github.com/abidhabib/animation_skill_2d_mascoat, root = `Animation/`; sync this skill into `Animation/skill/` before committing).
+5. Sections below are the detailed reference. Where an older section disagrees with `STYLE_RULES.md`/`LIBRARY.md`, the newer files win (the old "flat/vibrant" look rules were replaced).
+
 The user makes a ~32-clip YouTube explainer, one clip per voice-over chunk. Each clip is its own HyperFrames
 project rendered to `Animation/renders/Clip N.mp4`. Clip 1 (`Animation/clip-01`) is the reference build: copy its
 patterns, not its scenes.
