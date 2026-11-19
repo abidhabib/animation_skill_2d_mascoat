@@ -5,7 +5,7 @@ Measure in YouTube Studio: click-through rate (title + thumbnail) and average vi
 
 ## The genre (works without the words "What If")
 Hypothetical premise + a rule that repeats and grows ("every day") + a catch/cost + step-by-step escalation (Day 1 -> Day 30) + the viewer is "you".
-Titles: ~70% without "What If", ~30% with it (people search "what if ..."). Keep one consistent series look so the channel is recognisable.
+Titles: start roughly 50/50 with and without "What If" (reference data in set 4 favours "What If" for core premise videos), then follow the channel's own CTR. Keep one consistent series look so the channel is recognisable.
 
 ## Title formulas (under ~60 characters; title says the rule, thumbnail shows the result)
 number + rule - you are the character - day count - the catch - forbidden/secret - contrast - question without "what if" - bold claim then proof - timeline.
@@ -67,3 +67,15 @@ Packaging triad: title, thumbnail and first 30 s must make the same promise; del
 ## User's retention rules + pre-record checklist (added 2026-11-19; judged sound, wording about "triggering the algorithm" is not verifiable)
 Rules: (1) "Therefore / But" chain - connect beats with consequence or complication, never "and then". (2) Re-hook every ~90 s (card, audio shift, location change, teaser line). (3) Universal stakes - tie every twist to time, money, family, love, survival or status (test others too). (4) Silence before impact - drop music 1-2 s before the biggest line. (5) Kill filler with branching tests - add a test, a person affected or a harder consequence instead of slow narration.
 Checklist before recording (aim 5/5; it improves odds, it does not guarantee views): [ ] one-second clarity (a 12-year-old and a 50-year-old can state the premise from title + first 15 s) [ ] an open loop active at every minute mark [ ] at least two distinct emotions (e.g. excitement -> dread -> warmth) [ ] one share-worthy line/moment [ ] an ending question with no single right answer.
+
+## Reference set 4: title analysis of two "What If" channels (user's lists, 2026-11-19; ~50 videos, views 8.7K to 4.7M)
+Sample caveats: videos are 2 days to 1 month old (new ones have had less time), the channels already have audiences, and "What If" titles are the series everyone knows. Read as patterns to test.
+1. Almost every title starts "What If You ..."; the few exceptions are first-person or statement titles ("Everyone Has a Power Level. Mine Is 1." 137K, "Day 1: 6 MPH. Day 28: Faster Than Light." 92K, "I Found a Door on the Moon. Someone Knocked Back." 13K, "I Have 100% Luck... But It's Not Mine." 19K, "If You Could Read Minds... Would You Sit at This Table?" 33K). They landed at 13K-137K, mostly below the best "What If" titles. Not proof that "What If" causes views, but a reason NOT to drop it for the core premise videos: start roughly 50/50 and follow the channel's own CTR.
+2. Biggest winners are one clear premise about something viewers care about: speed/time (Reaction time 10x 4.7M, One second felt like ten 702K), intelligence (500 IQ 1.4M), "see" a hidden number about people (Everyone's IQ 2.6M, future wealth 2.2M, future height 1.2M, who finds you attractive 840K, how many have a crush 683K). Stakes = status, money, love, time, family.
+3. Repeatable template wins: "What If You Could See [Everyone's / how many / who] [attribute]?" Pick attributes people want to compare themselves on.
+4. Sequels decay: 500 IQ 1.4M -> "to Disappear" 559K -> "to Save Your Sister" 251K. Re-wording the same premise did worse ("Imagine If You Could See Everyone's IQ" 82K vs 2.6M). Novel premise > repeats.
+5. "(FULL MOVIE)" compilations flop (35K and 68K vs 4.7M for the short original). Do not repackage the same story.
+6. Length is not the limiter: top videos run 6:47-10:48 and 13-18 min both appear in the top ten. The user's 11-13 min target is fine.
+7. Numbers help ("10x", "500 IQ", "10 Seconds", "Day 1 / Day 28") but the premise matters more than the number.
+8. Sensitive premises ("days people have left", "Antichrist", dating/partner counts) may limit advertisers; check before using.
+New premise ideas in the winning pattern (not copied): "What If You Could See How Much Everyone Trusts You?", "...See Who Will Betray You?", "...See How Long Each Friendship Will Last?", "What If Every Lie You Told Showed as a Number?", "Every Day You Age 1 Year. Day 26 Broke Me" (user's own).
