@@ -18,7 +18,7 @@ Then send `Animation/renders/Clip N.mp4` with SendUserFile. `new-clip.sh` copies
 Needs: Node (npx hyperframes), Python 3 (`python3` works in Git Bash), ffmpeg.
 
 ## 3. The library (`_kit/`)
-- **Hero**: `style:"mascot"` - cream head with a curl, glossy eyes, yellow hoodie. Views `front|q3|side|back`, `dir:"left|right|away|toward"`, walking `walk:[t0,t1,dx]`. `age` option (grey hair, wrinkles, glasses, stoop, cane; docs/MASCOT_AGES.png) for Day-N aging, 12 expressions via `say` (`happy joy love crying sad nervous scared angry dizzy mindblown shocked smug sleepy scream explain`). Pear characters (`style:"pear"`) = supporting cast (hats, moustache, glasses).
+- **Hero**: `style:"mascot"` - cream head with a curl, glossy eyes, yellow hoodie. Views `front|q3|side|back`, `dir:"left|right|away|toward"`, walking `walk:[t0,t1,dx]`. `vol:true` (semi-3D shading, off by default), `turns` (smooth head turn), `age` option (grey hair, wrinkles, glasses, stoop, cane; docs/MASCOT_AGES.png) for Day-N aging, 12 expressions via `say` (`happy joy love crying sad nervous scared angry dizzy mindblown shocked smug sleepy scream explain`). Pear characters (`style:"pear"`) = supporting cast (hats, moustache, glasses).
 - **Talking close-ups**: `say:[{char,emotion,at:"spoken phrase"}]` -> face, brows, arms, mouth flaps, camera close-up with blurred+darkened background.
 - **Environments (`bg`)**: street (day/dusk/night), railway, harbor, dayCloud, buildSite, neonNight, officeNight, office1925, serverHall, bedroom, kitchen, classroom, hospital, livingRoom (day/night), factory, lab, stadium.
 - **Props**: car bus truck train plane bike boat (wheels spin), factoryLine robotArm serverRack labBench controlPanel.

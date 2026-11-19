@@ -50,6 +50,7 @@
   function mascotChar(o) {
     const id = o.id, PI = '#2a1f3d', skin = o.skin || '#fff6ea', hood = o.shirt || '#ffc933', hoodDark = o.hoodDark || '#e09a00', pants = o.pants || '#2f2d5a';
     const view = o.view || 'front';
+    const V = !!o.vol; // semi-3D: form shading, specular highlights, rim lights, ambient occlusion, soft contact shadow
     // ---- age: 0 = young; ~15 first lines, 30 glasses + grey tufts, 50 grey brows, 60+ white hair + cane + stoop ----
     const age = o.age || 0, AT = Math.min(1, age / 70);
     const canePath = `<path d="M0,-4 L0,92" stroke="${PI}" stroke-width="11" stroke-linecap="round"/><path d="M0,-4 L0,92" stroke="#b4783a" stroke-width="6" stroke-linecap="round"/><path d="M-15,-6 Q-15,-24 0,-24 Q15,-24 15,-8" fill="none" stroke="${PI}" stroke-width="11" stroke-linecap="round"/><path d="M-15,-6 Q-15,-24 0,-24 Q15,-24 15,-8" fill="none" stroke="#b4783a" stroke-width="6" stroke-linecap="round"/>`;
@@ -63,11 +64,11 @@
     const stoop = view === 'side' ? 12 * AT : view === 'q3' ? 5 * AT : 0;
     const face = o.face == null ? 0.3 : o.face, fx = 12 * face, st = (w) => `stroke="${PI}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`;
     const leg = (side) => { const x = side === 'l' ? -20 : 20, dir = side === 'l' ? -1 : 1;
-      return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}"><path d="M${x},-76 L${x},-16" fill="none" stroke="${PI}" stroke-width="20" stroke-linecap="round"/><path d="M${x},-76 L${x},-16" fill="none" stroke="${pants}" stroke-width="13" stroke-linecap="round"/>
+      return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}"><path d="M${x},-76 L${x},-16" fill="none" stroke="${PI}" stroke-width="20" stroke-linecap="round"/><path d="M${x},-76 L${x},-16" fill="none" stroke="${pants}" stroke-width="13" stroke-linecap="round"/>${V ? `<path d="M${x - 3.5},-72 L${x - 3.5},-22" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="3.5" stroke-linecap="round"/>` : ''}
         <path ${st(4)} fill="#fff" d="M${x - 18},-4 C${x - 18},-24 ${x + 14},-26 ${x + 20},-12 L${x + 22},0 L${x - 18},0Z" transform="${side === 'r' ? '' : ''}"/><path d="M${x - 18},-4 L${x + 22},-4" stroke="${hood}" stroke-width="7" stroke-linecap="round"/><path d="M${x - 6},-20 l6,5 M${x + 4},-22 l6,5" stroke="${PI}" stroke-width="3" stroke-linecap="round"/></g>`; };
     const arm = (side) => { const x = side === 'l' ? -48 : 48, k = side === 'l' ? -6 : 6;
       return `<g id="${id}-a${side}" data-sx="${x}" data-sy="-190">
-        <path d="M${x},-190 Q${x + k},-142 ${x},-100" fill="none" stroke="${PI}" stroke-width="26" stroke-linecap="round"/><path d="M${x},-190 Q${x + k},-142 ${x},-100" fill="none" stroke="${hood}" stroke-width="18" stroke-linecap="round"/>
+        <path d="M${x},-190 Q${x + k},-142 ${x},-100" fill="none" stroke="${PI}" stroke-width="26" stroke-linecap="round"/><path d="M${x},-190 Q${x + k},-142 ${x},-100" fill="none" stroke="${hood}" stroke-width="18" stroke-linecap="round"/>${V ? `<path d="M${x - 5},-186 Q${x + k - 5},-142 ${x - 5},-106" fill="none" stroke="#fff" stroke-opacity="0.32" stroke-width="4" stroke-linecap="round"/><path d="M${x + 6},-186 Q${x + k + 6},-142 ${x + 6},-106" fill="none" stroke="#3a1a00" stroke-opacity="0.2" stroke-width="4" stroke-linecap="round"/>` : ''}
         <path d="M${x - 11},-104 L${x + 11},-104" stroke="${hoodDark}" stroke-width="7" stroke-linecap="round"/><circle ${st(4)} fill="${skin}" cx="${x}" cy="-90" r="13"/>
         ${o.prop && o.prop.side === side ? `<g id="${id}-prop" transform="translate(${x},-90)">${o.prop.svg}</g>` : ''}</g>`; };
     const torsoD = 'M-52,-206 C-62,-140 -64,-98 -48,-68 L48,-68 C64,-98 62,-140 52,-206 C36,-224 -36,-224 -52,-206Z';
@@ -119,11 +120,11 @@
 
     // side view: shoes point forward (+x), both arms hang from the shoulder line, one drawstring, pocket on the front
     const sideLeg = (side) => { const x = side === 'l' ? -14 : 14;
-      return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}"><path d="M${x},-76 L${x},-16" fill="none" stroke="${PI}" stroke-width="20" stroke-linecap="round"/><path d="M${x},-76 L${x},-16" fill="none" stroke="${pants}" stroke-width="13" stroke-linecap="round"/>
+      return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}"><path d="M${x},-76 L${x},-16" fill="none" stroke="${PI}" stroke-width="20" stroke-linecap="round"/><path d="M${x},-76 L${x},-16" fill="none" stroke="${pants}" stroke-width="13" stroke-linecap="round"/>${V ? `<path d="M${x - 3.5},-72 L${x - 3.5},-22" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="3.5" stroke-linecap="round"/>` : ''}
         <path ${st(4)} fill="#fff" d="M${x - 10},-4 C${x - 10},-26 ${x + 22},-26 ${x + 34},-12 L${x + 38},0 L${x - 10},0Z"/><path d="M${x - 10},-4 L${x + 38},-4" stroke="${hood}" stroke-width="7" stroke-linecap="round"/><path d="M${x + 2},-21 l5,5 M${x + 11},-22 l5,5" stroke="${PI}" stroke-width="3" stroke-linecap="round"/></g>`; };
     const sideArm = (side) => { const x = side === 'l' ? -3 : 3, col = side === 'l' ? hoodDark : hood;
       return `<g id="${id}-a${side}" data-sx="${x}" data-sy="-190">
-        <path d="M${x},-190 Q${x + 5},-142 ${x},-100" fill="none" stroke="${PI}" stroke-width="26" stroke-linecap="round"/><path d="M${x},-190 Q${x + 5},-142 ${x},-100" fill="none" stroke="${col}" stroke-width="18" stroke-linecap="round"/>
+        <path d="M${x},-190 Q${x + 5},-142 ${x},-100" fill="none" stroke="${PI}" stroke-width="26" stroke-linecap="round"/><path d="M${x},-190 Q${x + 5},-142 ${x},-100" fill="none" stroke="${col}" stroke-width="18" stroke-linecap="round"/>${V ? `<path d="M${x - 5},-186 Q${x},-142 ${x - 5},-106" fill="none" stroke="#fff" stroke-opacity="0.28" stroke-width="4" stroke-linecap="round"/>` : ''}
         <path d="M${x - 11},-104 L${x + 11},-104" stroke="${hoodDark}" stroke-width="7" stroke-linecap="round"/><circle ${st(4)} fill="${skin}" cx="${x}" cy="-90" r="13"/>
         ${o.prop && o.prop.side === side ? `<g id="${id}-prop" transform="translate(${x},-90)">${o.prop.svg}</g>` : ''}</g>`; };
     const grad = `<defs><linearGradient id="${id}-tg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0.28"/><stop offset="0.5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#3a1a00" stop-opacity="0.3"/></linearGradient></defs>`;
@@ -135,26 +136,32 @@
       <path ${st(5)} fill="${hoodDark}" d="M-58,-216 C-40,-254 40,-254 58,-216 C38,-168 -38,-168 -58,-216Z"/><path d="M0,-210 L0,-182 M0,-150 L0,-76" stroke="${PI}" stroke-width="4" stroke-linecap="round"/><path d="M52,-196 C62,-150 64,-110 50,-76" fill="none" stroke="#8be9ff" stroke-width="4" stroke-linecap="round" opacity="0.7"/>`;
     const legsV = view === 'side' ? sideLeg('l') + sideLeg('r') : leg('l') + leg('r');
     const armsV = view === 'side' ? [sideArm('l'), sideArm('r')] : [arm('l'), arm('r')];
-    const torsoV = view === 'side' ? sideTorso : view === 'back' ? backTorso : torso;
-    const faceT = view === 'side' ? 'translate(30,0) scale(0.62,1)' : view === 'q3' ? 'translate(13,0) scale(0.86,1)' : '';
-    const nose = view === 'side' ? `<ellipse ${st(4)} fill="${skin}" cx="71" cy="6" rx="8" ry="6.5"/>` : view === 'q3' ? `<ellipse ${st(4)} fill="${skin}" cx="${fx + 38}" cy="8" rx="6" ry="5"/>` : '';
+    const TD = view === 'side' ? SD : torsoD, SPD = view === 'side' ? 0.6 : 1;
+    const torsoVol = V ? `<defs><linearGradient id="${id}-ao" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.2"/><stop offset="0.55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#2a1000" stop-opacity="0.34"/></linearGradient></defs><path d="${TD}" fill="url(#${id}-ao)"/>
+      <path d="M${-30 * SPD},-190 C${-36 * SPD},-160 ${-36 * SPD},-130 ${-30 * SPD},-110" fill="none" stroke="#fff" stroke-opacity="0.16" stroke-width="6" stroke-linecap="round"/><path d="M${-26 * SPD},-228 Q0,-238 ${24 * SPD},-228" fill="none" stroke="#fff" stroke-opacity="0.5" stroke-width="5" stroke-linecap="round"/>
+      <path d="M${54 * SPD},-196 C${64 * SPD},-150 ${66 * SPD},-110 ${52 * SPD},-76" fill="none" stroke="#8be9ff" stroke-width="8" stroke-linecap="round" opacity="0.8"/><path d="M${-54 * SPD},-196 C${-64 * SPD},-150 ${-66 * SPD},-110 ${-52 * SPD},-76" fill="none" stroke="#ffd29a" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+      <ellipse cx="0" cy="-204" rx="${44 * SPD}" ry="14" fill="#2a1000" opacity="0.3"/>` : '';
+    const torsoV = (view === 'side' ? sideTorso : view === 'back' ? backTorso : torso) + torsoVol;
+    const yaw0 = view === 'side' ? 1 : view === 'q3' ? 0.45 : 0, a0 = 1 - 0.38 * Math.abs(yaw0), b0 = 30 * yaw0;
+    const faceT = yaw0 ? `translate(${b0},0) scale(${a0},1)` : '';
+    const nose = `<g transform="translate(${yaw0 * 71},0)"><g id="${id}-nose" data-y0="${yaw0}" opacity="${yaw0 ? 1 : 0}"><ellipse ${st(4)} fill="${skin}" cx="0" cy="6" rx="8" ry="6.5"/></g></g>`;
     const ears = view === 'side' ? `<ellipse ${st(4)} fill="${skin}" cx="-30" cy="12" rx="9" ry="13"/>` : view === 'back' ? `<ellipse ${st(4)} fill="${skin}" cx="-68" cy="6" rx="9" ry="13"/><ellipse ${st(4)} fill="${skin}" cx="68" cy="6" rx="9" ry="13"/>` : '';
     const head = `<g transform="translate(0,-282) scale(1.22)"><g id="${id}-head">
         <defs><radialGradient id="${id}-hg" cx="0.38" cy="0.3" r="0.85"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="0.6" stop-color="${skin}" stop-opacity="0"/><stop offset="1" stop-color="#7a5fb0" stop-opacity="0.35"/></radialGradient></defs>
         ${curl}
         ${tufts}
-        <ellipse ${st(5)} fill="${skin}" cx="0" cy="0" rx="68" ry="62"/><ellipse cx="0" cy="0" rx="68" ry="62" fill="url(#${id}-hg)"/>${ageSkin}
-        <path d="M52,-34 A68,62 0 0 1 56,34" fill="none" stroke="#8be9ff" stroke-width="5" stroke-linecap="round" opacity="0.75"/>
+        <ellipse ${st(5)} fill="${skin}" cx="0" cy="0" rx="68" ry="62"/><ellipse cx="0" cy="0" rx="68" ry="62" fill="url(#${id}-hg)"/>${ageSkin}${V ? `<defs><radialGradient id="${id}-hv" cx="0.72" cy="0.86" r="0.62"><stop offset="0" stop-color="#2a1000" stop-opacity="0.32"/><stop offset="1" stop-color="#2a1000" stop-opacity="0"/></radialGradient></defs><ellipse cx="0" cy="0" rx="68" ry="62" fill="url(#${id}-hv)"/><ellipse cx="-30" cy="-34" rx="17" ry="9" transform="rotate(-28 -30 -34)" fill="#fff" opacity="0.62"/><circle cx="-10" cy="-50" r="4" fill="#fff" opacity="0.7"/>` : ''}
+        <path d="M52,-34 A68,62 0 0 1 56,34" fill="none" stroke="#8be9ff" stroke-width="${V ? 8 : 5}" stroke-linecap="round" opacity="${V ? 0.95 : 0.75}"/>${V ? '<path d="M-52,-34 A68,62 0 0 0 -56,30" fill="none" stroke="#ffd29a" stroke-width="5" stroke-linecap="round" opacity="0.5"/>' : ''}
         ${ears}
-        <g id="${id}-face" transform="${faceT}" opacity="${view === 'back' ? 0 : 1}">
+        <g id="${id}-face" transform="${faceT}" opacity="${view === 'back' ? 0 : 1}"><g id="${id}-yaw" data-a0="${a0}" data-b0="${b0}">
         <ellipse cx="${fx - 42}" cy="22" rx="12" ry="7.5" fill="#ff8fb0" opacity="0.55"/><ellipse cx="${fx + 42}" cy="22" rx="12" ry="7.5" fill="#ff8fb0" opacity="0.55"/>
         <g id="${id}-eyes" transform="translate(${fx},-6)">${eye(-22)}${eye(22)}<g id="${id}-pupils">${pupil(-22)}${pupil(22)}</g></g>
         <g id="${id}-brows" stroke="${browCol}" stroke-width="${(6 + AT * 3).toFixed(1)}" stroke-linecap="round" stroke-linejoin="round" fill="none"><path id="${id}-bl" d="M${fx - 38},-34 L${fx - 8},-38"/><path id="${id}-br" d="M${fx + 8},-38 L${fx + 38},-34"/></g>
-        ${altEyes}${mouthSvg}${glasses}${ageFace}</g>${nose}${fxSvg}
+        ${altEyes}${mouthSvg}${glasses}${ageFace}</g></g>${nose}${fxSvg}
       </g></g>`;
     const sc = o.scale || 1;
     return `<g id="${id}-pos"><g id="${id}" transform="translate(${o.x || 0},${o.y || 0}) scale(${(o.flip ? -1 : 1) * sc},${sc})">
-      <ellipse fill="#000" opacity="0.22" cx="0" cy="3" rx="78" ry="13"/>
+      ${V ? '<ellipse fill="#000" opacity="0.14" cx="0" cy="3" rx="96" ry="17"/><ellipse fill="#000" opacity="0.32" cx="0" cy="3" rx="56" ry="9"/>' : '<ellipse fill="#000" opacity="0.22" cx="0" cy="3" rx="78" ry="13"/>'}
       ${legsV}
       <g transform="rotate(${stoop.toFixed(1)} 0 -70)"><g id="${id}-body">${armsV[0]}${torsoV}${armsV[1]}</g>
       ${head}</g>
@@ -450,6 +457,17 @@
     };
   }
 
+
+  // turn the head: yaw -1 (looks left) .. 0 (front) .. 1 (looks right); features slide and squeeze, the nose appears in profile
+  function turn(tl, id, t, dur, to, from) {
+    const y = q(`#${id}-yaw`); if (!y) return; const a0 = Number(y.dataset.a0), b0 = Number(y.dataset.b0), n = q(`#${id}-nose`), y0 = Number(n.dataset.y0);
+    const A = (f) => 1 - 0.38 * Math.abs(f), P = (f) => ({ scaleX: A(f) / a0, x: (30 * f - b0) / a0, svgOrigin: '0 0' });
+    const f = from == null ? y0 : from;
+    tl.fromTo(`#${id}-yaw`, P(f), Object.assign(P(to), { duration: d(dur), ease: 'power2.inOut', immediateRender: false }), t);
+    tl.fromTo(`#${id}-nose`, { x: (f - y0) * 71, opacity: Math.abs(f) > 0.45 ? 1 : 0 }, { x: (to - y0) * 71, opacity: Math.abs(to) > 0.45 ? 1 : 0, duration: d(dur), ease: 'power2.inOut', immediateRender: false }, t);
+    look(tl, id, t, to * 8, 0);
+  }
+
   // ---------- expressions for the mascot: eyes + mouth + brows + effects in one call ----------
   const EXPR = {
     neutral: { mouth: 'flat', brows: 'calm' },
@@ -488,5 +506,5 @@
     if (has('rings')) tl.fromTo(`#${id}-fx-rings`, { scale: 0.92, transformOrigin: '50% 50%' }, { scale: 1.1, duration: 0.18, yoyo: true, repeat: rep(0.18) }, t);
   }
 
-  window.T = { EXPR, expr, SLOW, d, cam, INK, SW, rng, S, char, armTo, armSet, mood, brows, blink, look, talk, idle, walk, map, pt, slug, flagSG, flagCN, flagUS, calendar, nameplate, stamp, bubble, badge, chip };
+  window.T = { turn, EXPR, expr, SLOW, d, cam, INK, SW, rng, S, char, armTo, armSet, mood, brows, blink, look, talk, idle, walk, map, pt, slug, flagSG, flagCN, flagUS, calendar, nameplate, stamp, bubble, badge, chip };
 })();

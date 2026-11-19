@@ -74,6 +74,7 @@
       T.blink(tl, id, [0.9 + i * 0.4, 3.1 + i * 0.3, 5.6 + i * 0.2, 8.2].filter((x) => x < dur));
       if (c.walk) { T.walk(tl, id, c.walk[0], c.walk[1], c.walk[2], 0); const n = Math.round((c.walk[1] - c.walk[0]) / 0.3); for (let k = 0; k < n; k++) { const a = k % 2 ? 26 : -26; T.armTo(tl, id, "l", a, c.walk[0] + k * 0.3, 0.28, "sine.inOut"); T.armTo(tl, id, "r", -a, c.walk[0] + k * 0.3, 0.28, "sine.inOut"); } }
       if (c.dir === "away" || c.dir === "toward") { const w = c.walk || [0.1, dur - 0.1, 0], aw = c.dir === "away", org = `${c.x || 0} ${c.y || 0}`; if (!c.walk) T.walk(tl, id, w[0], w[1], 0, 0); tl.fromTo(`#${id}-pos`, aw ? { scale: 1, y: 0, svgOrigin: org } : { scale: c.farScale || 0.5, y: -(c.depth || 80), svgOrigin: org }, { scale: aw ? (c.farScale || 0.5) : 1, y: aw ? -(c.depth || 80) : 0, svgOrigin: org, duration: w[1] - w[0], ease: "none", immediateRender: false }, w[0]); }
+      (c.turns || []).forEach(([tt, dur2, to, from]) => T.turn(tl, id, tt, dur2, to, from));
       (c.moods || []).forEach(([t, m]) => T.mood(tl, id, t, m));
       (c.browsAt || []).forEach(([t, k]) => T.brows(tl, id, t, k));
       (c.arms || []).forEach(([t, side, deg]) => T.armTo(tl, id, side, deg, t, 0.3));
