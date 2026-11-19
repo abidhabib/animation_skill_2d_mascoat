@@ -1,0 +1,10 @@
+[
+ {"name":"s1-trust","start":0,"dur":4.4,"type":"dropList","bg":"teal","in":{"kind":"whip","dir":-1},"title":"CAN THEY RELY ON IT?","items":[{"text":"CUSTOMERS","t":1.9,"mark":"?"},{"text":"GOVERNMENTS","t":2.55,"mark":"?"},{"text":"INVESTORS","t":3.35,"mark":"?"}],
+  "chars":[{"x":270,"y":1040,"scale":1.6,"face":0.7,"shirt":"#d23a2e","hair":"short","hairCol":"#2a1d18","skin":"#d6a074","moods":[[1.0,"open"]],"browsAt":[[1.0,"worried"]],"looks":[[0.6,1,0]]}]},
+ {"name":"s2-chain","start":4.3,"dur":5.4,"type":"mapTo","in":{"kind":"iris","at":[960,540]},"from":"santaclara","city":"singapore","k":2.4,"label":"SUPPLY CHAIN","highlight":{"Singapore":"#d8433b","Taiwan":"#d8433b","United States of America":"#7cc242"},"t":{"fly":1.6,"land":3.6}},
+ {"name":"s3-weighing","start":9.6,"dur":6.6,"type":"reactRow","bg":"night","seed":12,"in":{"kind":"vwhip","dir":-1},"sign":"WHICH RISK?","mood":"frown","brows":"worried","t":{"sign":0.8,"react":2.4}},
+ {"name":"s4-pe","start":16.1,"dur":7.3,"type":"lineChart","bg":"yellow","in":{"kind":"wipe"},"title":"NVIDIA FORWARD P/E · REPORTED","col":"#d8433b","pts":[[0,0.55],[0.12,0.75],[0.25,0.6],[0.38,0.85],[0.5,0.7],[0.62,0.8],[0.75,0.45],[0.88,0.35],[1,0.12]],"label":"~12× · 13-YR LOW","labelDx":-330,"labelDy":-130,"t":{"draw":0.3,"end":3.2,"label":3.5}},
+ {"name":"s5-witness","start":23.1,"dur":3.4,"type":"deskPlate","bg":"red","in":{"kind":"flood","at":[960,700]},"plate":"WITNESS","q":"?","chair":"#3d6fd1","t":{"in":0.5,"q":2.4}},
+ {"name":"s6-shipment","start":26.4,"dur":3.7,"type":"docStamp","bg":"purple","in":{"kind":"zoom","at":[1080,560]},"title":"SHIPMENT","col":"#b8443b","lines":["Route: ?","Buyer: ?","Arrived: ?"],"stamp":"UNKNOWN","stampCol":"#3d6fd1","t":{"in":0.2,"stamp":2.2},
+  "chars":[{"x":300,"y":1040,"scale":1.6,"face":0.6,"shirt":"#2fb3a0","hair":"bun","hairCol":"#5a3a22","skin":"#f1c8a0","moods":[[2.3,"frown"]],"browsAt":[[2.3,"worried"]],"arms":[[2.3,"l",60],[2.3,"r",-60]]}]}
+]

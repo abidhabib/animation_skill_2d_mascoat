@@ -1,0 +1,18 @@
+[
+ {"name":"s1-chip","start":0,"dur":1.6,"type":"pop","bg":"yellow","extra":"<g transform='translate(960,540)'><g id='s1-chip'></g></g>",
+  "js":"document.querySelector('#s1-chip').innerHTML=T.chip(460,'s1-c'); S.popIn(tl,'#s1-chip',0.1); tl.to('#s1-chip',{rotation:6,transformOrigin:'50% 50%',duration:0.8,yoyo:true,repeat:1,ease:'sine.inOut'},0.5);"},
+ {"name":"s2-bill","start":1.5,"dur":2.2,"type":"docStamp","bg":"teal","in":{"kind":"whip"},"title":"INVOICE","col":"#b8332b","lines":["Bill to: Company A","Item: chips",""],"stamp":"BILLED HERE","stampCol":"#3d6fd1","t":{"in":0.05,"stamp":1.5}},
+ {"name":"s3-hq","start":3.6,"dur":2.4,"type":"building","bg":"sky","in":{"kind":"vwhip"},"sign":"COMPANY B · HQ","col":"#fbe2a0","t":{"sign":1.4,"lights":0.3}},
+ {"name":"s4-facts","start":5.9,"dur":1.5,"type":"pop","bg":"purple","in":{"kind":"iris","at":[960,540]},
+  "items":[{"text":"BILL ✓","x":620,"y":420,"fs":110,"t":0.1},{"text":"HQ ✓","x":1300,"y":420,"fs":110,"t":0.25},{"text":"REAL FACTS","x":960,"y":760,"fs":110,"style":"stamp","col":"#f2c14e","rot":-5,"t":0.6}]},
+ {"name":"s5-machine","start":7.3,"dur":2.8,"type":"pop","bg":"night","in":{"kind":"wipe"},"extra":"<g id='s5-racks'></g>",
+  "items":[{"text":"WHO TURNED IT ON?","x":960,"y":180,"fs":90,"style":"bubble","t":1.2}],
+  "js":"var s='';for(var i=0;i<6;i++){var x=330+i*220;s+='<rect x=\"'+x+'\" y=\"330\" width=\"180\" height=\"560\" fill=\"#2f3a33\" stroke=\"#2b2622\" stroke-width=\"7\"/>';for(var j=0;j<7;j++)s+='<rect x=\"'+(x+18)+'\" y=\"'+(350+j*72)+'\" width=\"144\" height=\"50\" fill=\"#3b4a86\" stroke=\"#2b2622\" stroke-width=\"4\"/><circle class=\"s5-led\" cx=\"'+(x+140)+'\" cy=\"'+(375+j*72)+'\" r=\"9\" fill=\"#3a3a3a\"/>';}document.querySelector('#s5-racks').innerHTML=s; tl.to('.s5-led',{fill:'#7cc242',duration:0.05,stagger:{each:0.02,from:'random'}},0.4);"},
+ {"name":"s6-box","start":10.0,"dur":6.5,"type":"pop","bg":"red","in":{"kind":"flood","at":[960,600]},
+  "extra":"<g transform='translate(960,700)'><g id='s6-box'><path d='M-380,-200 L380,-200 L380,260 L-380,260Z' fill='#c98b4a' stroke='#2b2622' stroke-width='9'/><path d='M-380,-200 L-470,-330 L280,-330 L380,-200' fill='#e0a865' stroke='#2b2622' stroke-width='9'/><path d='M-300,-150 L300,-150 L300,200 L-300,200Z' fill='#6e4429' stroke='#2b2622' stroke-width='6'/><text y='130' font-size='70' text-anchor='middle' fill='#fbe2a0'>WHO USED IT?</text></g></g>",
+  "items":[{"text":"STILL EMPTY","x":960,"y":200,"fs":100,"t":2.9},{"text":"≠ PROOF OF A COVER-UP","x":1340,"y":420,"fs":66,"card":"#f2c14e","rot":6,"t":4.9}],
+  "js":"tl.fromTo('#s6-box',{y:900},{y:0,duration:T.d(0.6),ease:'back.out(1.3)'},0.4);"},
+ {"name":"s7-doesnt","start":16.4,"dur":1.7,"type":"pop","bg":"teal","in":{"kind":"whip","dir":-1},
+  "items":[{"text":"IT DOESN'T.","x":1200,"y":420,"fs":130,"t":0.1}],
+  "chars":[{"x":450,"y":1040,"scale":1.8,"face":0.6,"shirt":"#e07b39","hair":"short","hairCol":"#2a1d18","skin":"#d6a074","mood":"flat","moods":[[0.1,"flat"]],"looks":[[0.2,-1,0],[0.5,1,0],[0.8,-1,0],[1.1,0,0]]}]}
+]

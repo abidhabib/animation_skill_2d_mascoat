@@ -1,0 +1,9 @@
+[
+ {"name":"s1-racks","start":0,"dur":4.9,"type":"pop","bg":"blue","extra":"<g id='s1-racks'></g>",
+  "items":[{"text":"EVERY DATA CENTER?","x":1260,"y":170,"fs":80,"t":1.6},{"text":"CHECK SERIALS","x":1260,"y":980,"fs":64,"card":"#f2c14e","t":3.3}],
+  "js":"var s='';for(var i=0;i<5;i++){var x=780+i*230;s+='<rect x=\"'+x+'\" y=\"280\" width=\"190\" height=\"600\" fill=\"#2f3a33\" stroke=\"#2b2622\" stroke-width=\"7\"/>';for(var j=0;j<8;j++)s+='<rect x=\"'+(x+20)+'\" y=\"'+(300+j*70)+'\" width=\"150\" height=\"50\" fill=\"#3b4a86\" stroke=\"#2b2622\" stroke-width=\"4\"/><circle cx=\"'+(x+150)+'\" cy=\"'+(325+j*70)+'\" r=\"8\" fill=\"'+((i+j)%3?'#7cc242':'#f2c14e')+'\"/>';}document.querySelector('#s1-racks').innerHTML=s; tl.fromTo('#s1-racks',{x:900},{x:0,duration:T.d(0.8),ease:'expo.out'},0.2);",
+  "chars":[{"x":380,"y":1040,"scale":1.7,"face":0.8,"shirt":"#2fb3a0","hair":"bun","hairCol":"#5a3a22","skin":"#f1c8a0","glasses":true,"moods":[[1.7,"open"],[3.4,"frown"]],"browsAt":[[1.7,"up"],[3.4,"worried"]],"looks":[[0.5,1,0]],"arms":[[3.3,"r",-70]]}]},
+ {"name":"s2-another","start":4.8,"dur":4.3,"type":"pop","bg":"sunset","in":{"kind":"whip"},
+  "items":[{"text":"FIND ANOTHER JENSEN?","x":1200,"y":330,"fs":80,"style":"bubble","t":1.95},{"text":"NOT THE ANSWER","x":1200,"y":680,"fs":90,"col":"#b8332b","rot":-8,"t":3.0}],
+  "chars":[{"x":400,"y":1040,"scale":1.7,"face":0.7,"suit":"#2f3e5c","tie":"#b8443b","hair":"side","hairCol":"#1d1d1d","skin":"#a8714a","moods":[[2.0,"smile"],[3.1,"frown"]],"browsAt":[[3.1,"worried"]],"arms":[[2.0,"r",-110],[3.1,"r",-10]]}]}
+]

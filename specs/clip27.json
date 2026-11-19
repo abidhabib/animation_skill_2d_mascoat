@@ -1,0 +1,18 @@
+[
+ {"name":"s1-face","start":0,"dur":3.1,"type":"deskPlate","bg":"purple","plate":"JENSEN HUANG","q":"EARNINGS CALL","chair":"#2f3e5c","t":{"in":0.3,"q":1.8}},
+ {"name":"s2-cuda","start":2.9,"dur":4.6,"type":"pop","bg":"blue","in":{"kind":"whip"},
+  "extra":"<g transform='translate(1200,560)'><rect x='-420' y='-260' width='840' height='500' rx='24' fill='#1f2a5c' stroke='#2b2622' stroke-width='9'/><rect x='-480' y='240' width='960' height='50' rx='14' fill='#c9d1d6' stroke='#2b2622' stroke-width='8'/><g stroke-width='14' stroke-linecap='round'><path d='M-340,-170 L-120,-170' stroke='#7cc242'/><path d='M-300,-110 L60,-110' stroke='#f2c14e'/><path d='M-300,-50 L-20,-50' stroke='#7ec8f0'/><path d='M-340,10 L-180,10' stroke='#7cc242'/></g></g>",
+  "items":[{"text":"CUDA","x":1260,"y":630,"fs":150,"card":"#7cc242","t":0.5},{"text":"SOFTWARE PLATFORM","x":1200,"y":180,"fs":70,"t":1.4},{"text":"2006","x":1580,"y":360,"fs":100,"style":"stamp","rot":-10,"t":3.6}],
+  "chars":[{"x":330,"y":1040,"scale":1.6,"face":0.6,"shirt":"#e07b39","hair":"short","hairCol":"#2a1d18","skin":"#d6a074","moods":[[0.6,"grin"]],"browsAt":[[0.6,"up"]],"arms":[[0.6,"r",-110]]}]},
+ {"name":"s3-ecosystem","start":7.4,"dur":5.7,"type":"barTo","bg":"sunset","in":{"kind":"vwhip","dir":-1},"title":"YEARS OF INVESTMENT → ECOSYSTEM","bars":[{"label":"EARLY","val":1,"t":0.4,"text":""},{"label":"","val":2,"t":0.9,"text":""},{"label":"","val":3.5,"t":1.5,"text":""},{"label":"","val":6,"t":2.2,"text":""},{"label":"AI BOOM","val":10,"col":"#7cc242","t":4.6,"text":"BOOM!"}]},
+ {"name":"s4-interim","start":13.0,"dur":4.0,"type":"pop","bg":"teal","in":{"kind":"flood","at":[600,540]},"extra":"<g transform='translate(600,580) scale(1.7)'><g id='s4-badge'></g></g>",
+  "items":[{"text":"RUNNING THE COMPANY","x":1320,"y":300,"fs":70,"t":1.3},{"text":"BOARD: SEARCHING…","x":1320,"y":700,"fs":76,"style":"bubble","t":2.6}],
+  "js":"document.querySelector('#s4-badge').innerHTML=T.badge('COLETTE KRESS','NVIDIA','#4a9e4f'); S.popIn(tl,'#s4-badge',0.3);"},
+ {"name":"s5-suggest","start":16.9,"dur":5.1,"type":"pop","bg":"red","in":{"kind":"zoom","at":[960,540]},
+  "extra":"<g transform='translate(480,580) scale(1.5)'><g id='s5-b1'></g></g><g transform='translate(1440,580) scale(1.5)'><g id='s5-b2'></g></g><path id='s5-ar' d='M720,560 L1180,560' stroke='#fbfaf5' stroke-width='14' stroke-dasharray='34 22'/>",
+  "items":[{"text":"SUGGESTED PUBLICLY","x":960,"y":170,"fs":76,"t":1.5},{"text":"TIM COOK?","x":1440,"y":950,"fs":70,"card":"#f2c14e","t":4.1}],
+  "js":"document.querySelector('#s5-b1').innerHTML=T.badge('DONALD TRUMP','PRESIDENT','#3c3b6e'); document.querySelector('#s5-b2').innerHTML=T.badge('TIM COOK','EX-APPLE CEO','#6b6658'); S.popIn(tl,'#s5-b1',0.3); S.show(tl,'#s5-ar',1.5); S.popIn(tl,'#s5-b2',2.9);"},
+ {"name":"s6-pick","start":21.9,"dur":2.5,"type":"deskPlate","bg":"yellow","in":{"kind":"iris","at":[960,560]},"plate":"NEXT CEO","q":"?","chair":"#d23a2e","t":{"in":0.2,"q":1.2}},
+ {"name":"s7-report","start":24.3,"dur":4.1,"type":"docStamp","bg":"sky","in":{"kind":"wipe"},"title":"EARNINGS REPORT","col":"#2f7a3a","lines":["Revenue: …","Outlook: …","Signed: NEW CEO"],"stamp":"SIGNED","stampCol":"#3d6fd1","t":{"in":0.2,"stamp":1.4},
+  "chars":[{"x":300,"y":1040,"scale":1.6,"face":0.6,"suit":"#2f3e5c","tie":"#b8443b","hair":"grey","skin":"#f1c8a0","moods":[[1.5,"smile"]],"arms":[[1.3,"r",-90]]}]}
+]

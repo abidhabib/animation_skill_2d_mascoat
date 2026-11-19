@@ -1,0 +1,6 @@
+[
+ {"name":"s1-disclose","start":0,"dur":4.2,"type":"docStamp","bg":"sunset","title":"WHAT NVIDIA DISCLOSES","col":"#2f3e5c","lines":["Controls","Governance",""],"stamp":"MATTERS","stampCol":"#2f7a3a","t":{"in":0.1,"stamp":3.7},
+  "chars":[{"x":290,"y":1040,"scale":1.6,"face":0.6,"shirt":"#e07b39","hair":"short","hairCol":"#2a1d18","skin":"#d6a074","moods":[[3.8,"grin"]],"arms":[[2.3,"r",-90]],"browsAt":[[3.8,"up"]]}]},
+ {"name":"s2-rumors","start":4.1,"dur":3.7,"type":"reactRow","bg":"night","seed":31,"in":{"kind":"whip"},"sign":"RUMORS: WHO?","mood":"open","brows":"up","t":{"sign":0.7,"react":0.9},
+  "extra":"<g transform='translate(1500,520) rotate(8)'><g id='s2-less'><rect x='-230' y='-70' width='460' height='140' rx='18' fill='#f2c14e' stroke='#2b2622' stroke-width='8'/><text y='30' font-size='76' text-anchor='middle' fill='#2b2622'>MATTER LESS</text></g></g>","js":"S.slamIn(tl,'#s2-less',1.6,C);"}
+]

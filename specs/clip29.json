@@ -1,0 +1,14 @@
+[
+ {"name":"s1-tuesday","start":0,"dur":4.4,"type":"calFlip","bg":"teal","pages":[["NOV · TUE","17",0.2],["RESULTS","Q3",3.0]],
+  "chars":[{"x":520,"y":1040,"scale":1.6,"face":0.5,"shirt":"#e07b39","hair":"short","hairCol":"#2a1d18","skin":"#d6a074","moods":[[0.4,"smile"],[3.1,"grin"]],"arms":[[0.4,"r",-110]],"browsAt":[[3.1,"up"]]}]},
+ {"name":"s2-watch","start":4.3,"dur":5.4,"type":"dropList","bg":"purple","in":{"kind":"whip"},"title":"WATCH:","items":[{"text":"GUIDANCE","t":0.6},{"text":"CHINA","t":1.9},{"text":"COMPLIANCE","t":3.8},{"text":"CUSTOMERS","t":4.6}],
+  "chars":[{"x":290,"y":1040,"scale":1.6,"face":0.6,"shirt":"#2fb3a0","hair":"bun","hairCol":"#5a3a22","skin":"#f1c8a0","glasses":true,"looks":[[0.5,1,0]],"moods":[[0.6,"smile"]]}]},
+ {"name":"s3-earnings","start":9.6,"dur":5.6,"type":"docStamp","bg":"sky","in":{"kind":"iris","at":[1080,560]},"title":"EARNINGS","col":"#2f3e5c","lines":["Business exposure ✓","Where every chip runs:","   —"],"stamp":"NOT DISCLOSED","t":{"in":0.2,"stamp":3.1},
+  "chars":[{"x":290,"y":1040,"scale":1.6,"face":0.6,"suit":"#2f3e5c","tie":"#b8443b","hair":"grey","skin":"#f1c8a0","moods":[[1.0,"smile"],[3.2,"flat"]],"browsAt":[[3.2,"worried"]]}]},
+ {"name":"s4-evidence","start":15.1,"dur":6.5,"type":"pop","bg":"red","in":{"kind":"vwhip"},
+  "items":[{"text":"TESTIMONY","x":1100,"y":220,"fs":80,"rot":-3,"t":1.3},{"text":"REGULATORY DECISION","x":1200,"y":430,"fs":76,"card":"#fbe2a0","rot":2,"t":2.2},{"text":"INVESTIGATIVE FINDING","x":1150,"y":640,"fs":76,"card":"#dff3ff","rot":-2,"t":3.7},{"text":"ALLEGED NETWORK","x":1250,"y":880,"fs":80,"card":"#f2c14e","rot":-6,"t":5.3}],
+  "chars":[{"x":300,"y":1040,"scale":1.6,"face":0.7,"shirt":"#e07b39","hair":"short","hairCol":"#2a1d18","skin":"#d6a074","moods":[[1.3,"open"],[5.4,"flat"]],"browsAt":[[5.4,"worried"]],"arms":[[1.3,"r",-100]]}]},
+ {"name":"s5-table","start":21.5,"dur":3.7,"type":"compare","bg":"yellow","in":{"kind":"wipe"},"left":{"title":"REVENUE TABLE","value":"$ ROWS","mark":"✗"},"right":{"title":"EVIDENCE","value":"WHO + WHERE","mark":"✓","head":"#2f7a3a"},"t":{"l":0.2,"r":0.5,"rm":0.9,"lm":2.2}},
+ {"name":"s6-board","start":25.1,"dur":4.6,"type":"deskPlate","bg":"blue","in":{"kind":"zoom","at":[960,600]},"plate":"CEO","q":"SEARCHING…","chair":"#d23a2e","t":{"in":0.3,"q":2.9},
+  "extra":"<g transform='translate(400,330) rotate(-5)'><g id='s6-bi'><rect x='-300' y='-80' width='600' height='160' rx='20' fill='#fbfaf5' stroke='#2b2622' stroke-width='8'/><text y='-8' font-size='56' text-anchor='middle' fill='#2b2622'>BOARD</text><text y='52' font-size='56' text-anchor='middle' fill='#2b2622'>INVESTIGATION</text></g></g>","js":"S.popIn(tl,'#s6-bi',1.0);"}
+]

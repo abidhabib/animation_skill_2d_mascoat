@@ -1,0 +1,10 @@
+[
+ {"name":"s1-borders","start":0,"dur":3.0,"type":"mapTo","from":"taipei","city":"dubai","k":2.4,"label":"CROSSES BORDERS","t":{"fly":0.3,"land":2.0}},
+ {"name":"s2-gap","start":2.9,"dur":4.5,"type":"compare","bg":"teal","in":{"kind":"iris","at":[960,540]},"left":{"title":"ON PAPER","value":"CUSTOMER"},"right":{"title":"IN REALITY","value":"USER ?"},"mark":"≠","t":{"l":1.5,"r":3.0,"mark":3.6}},
+ {"name":"s3-less","start":7.3,"dur":5.0,"type":"pop","bg":"sunset","in":{"kind":"vwhip"},
+  "items":[{"text":"HEADLINE","x":560,"y":300,"fs":96,"rot":-4,"t":1.1},{"text":"STOCK PRICE","x":1380,"y":360,"fs":96,"card":"#fbe2a0","rot":3,"t":2.3},{"text":"CEO'S DOOR","x":960,"y":620,"fs":96,"card":"#dff3ff","t":3.8},{"text":"THE GAP MATTERS MORE","x":960,"y":900,"fs":76,"card":"#f2c14e","t":4.3}]},
+ {"name":"s4-ledger","start":12.2,"dur":2.9,"type":"docStamp","bg":"blue","in":{"kind":"wipe"},"title":"SALES LEDGER","col":"#2f3e5c","lines":["Sale booked: ✓","Country: listed",""],"stamp":"BOOKED","stampCol":"#2f7a3a","t":{"in":0.1,"stamp":2.0}},
+ {"name":"s5-power","start":15.0,"dur":4.0,"type":"pop","bg":"night","in":{"kind":"zoom","at":[960,560]},"extra":"<g transform='translate(960,600)'><g id='s5-glow'><circle r='330' fill='#7cc242' opacity='0.25'/></g><g id='s5-chip'></g></g>",
+  "items":[{"text":"WHERE DID THE POWER GO?","x":960,"y":170,"fs":84,"style":"bubble","t":2.2}],
+  "js":"document.querySelector('#s5-chip').innerHTML=T.chip(380,'s5-c'); S.popIn(tl,'#s5-chip',0.2); tl.fromTo('#s5-glow',{scale:0.6,transformOrigin:'50% 50%'},{scale:1.25,opacity:0.6,duration:0.7,yoyo:true,repeat:4,ease:'sine.inOut'},0.4);"}
+]

@@ -1,0 +1,17 @@
+[
+ {"name":"s1-bubble","start":0,"dur":2.7,"type":"reactRow","bg":"sunset","seed":3,"mood":"shock","arms":true,"t":{"react":1.95},
+  "extra":"<g transform='translate(960,360)'><g id='s1-bub'><circle r='250' fill='#9fe3ff' fill-opacity='0.75' stroke='#2b2622' stroke-width='8'/><path d='M-150,-120 A190,190 0 0,1 -40,-200' fill='none' stroke='#fbfaf5' stroke-width='18' stroke-linecap='round'/><text y='40' font-size='150' text-anchor='middle' fill='#2b2622'>AI</text></g><g id='s1-pow'><text y='50' font-size='190' text-anchor='middle' fill='#d8433b' stroke='#2b2622' stroke-width='6'>POP?</text></g></g>",
+  "js":"tl.fromTo('#s1-bub',{scale:0.3,transformOrigin:'50% 50%'},{scale:1.08,duration:1.6,ease:'sine.out'},0.1); tl.to('#s1-bub',{scale:1.5,opacity:0,duration:0.12},1.92); S.popIn(tl,'#s1-pow',1.95); C.shake(1.95,10);"},
+ {"name":"s2-tworisks","start":2.4,"dur":2.6,"type":"compare","bg":"yellow","in":{"kind":"whip"},"left":{"title":"RISK 1","value":"DEMAND"},"right":{"title":"RISK 2","value":"TRUST"},"mark":"≠","t":{"l":0.3,"r":1.0,"mark":1.7}},
+ {"name":"s3-demand","start":4.7,"dur":3.3,"type":"reactRow","bg":"red","seed":6,"in":{"kind":"iris","at":[960,600]},"sign":"STILL WANT CHIPS?","mood":"open","brows":"worried","t":{"sign":0.6,"react":2.1}},
+ {"name":"s4-revenue","start":7.7,"dur":6.1,"type":"counter","bg":"purple","in":{"kind":"vwhip"},"x":1160,"title":"NVIDIA REVENUE · FY2026","prefix":"$","suffix":"B","to":216,"label":"about $216 billion","tag":"REPORTED","tagCol":"#4a9e4f","t":{"in":0.2,"count":1.2,"end":3.2,"tag":4.0},
+  "chars":[{"x":270,"y":1040,"scale":1.6,"face":0.7,"shirt":"#e07b39","hair":"short","hairCol":"#2a1d18","skin":"#d6a074","moods":[[3.3,"grin"]],"browsAt":[[3.3,"up"]],"arms":[[3.3,"r",-120]]}]},
+ {"name":"s5-consensus","start":13.6,"dur":7.8,"type":"counter","bg":"blue","in":{"kind":"wipe"},"x":1160,"title":"CONSENSUS · Q3 FY2027","prefix":"$","suffix":"B","to":109,"label":"Visible Alpha, via S&P Global","card":"#fbe2a0","head":"#d23a2e","tag":"EXPECTED","tagCol":"#3d6fd1","t":{"in":0.3,"count":4.2,"end":5.6,"tag":6.6},
+  "chars":[{"x":270,"y":1040,"scale":1.6,"face":0.7,"shirt":"#2fb3a0","hair":"bun","hairCol":"#5a3a22","skin":"#f1c8a0","glasses":true,"moods":[[1.0,"smile"],[5.6,"open"]],"looks":[[0.5,1,0]]}]},
+ {"name":"s6-tuesday","start":21.1,"dur":4.5,"type":"calFlip","bg":"teal","in":{"kind":"zoom","at":[1180,520]},"pages":[["FY2027","Q3",0.2],["REPORTS","TUE",1.7]],
+  "extra":"<g transform='translate(520,330) rotate(-8)'><g id='s6-huge'><rect x='-250' y='-95' width='500' height='190' rx='24' fill='#f2c14e' stroke='#2b2622' stroke-width='8'/><text y='45' font-size='130' text-anchor='middle' fill='#2b2622'>HUGE!</text></g></g>",
+  "js":"S.slamIn(tl,'#s6-huge',3.75,C);",
+  "chars":[{"x":560,"y":1040,"scale":1.6,"face":0.5,"shirt":"#d23a2e","hair":"side","hairCol":"#1d1d1d","skin":"#a8714a","moods":[[3.8,"shock"]],"browsAt":[[3.8,"up"]],"arms":[[3.8,"l",130],[3.8,"r",-130]]}]},
+ {"name":"s7-forecast","start":25.3,"dur":4.1,"type":"docStamp","bg":"sunset","in":{"kind":"flood","at":[960,540]},"title":"FORECAST","col":"#6a4fc2","lines":["Q3 FY2027: ~$109B","Source: consensus","Result: Tuesday"],"stamp":"NOT A RESULT","t":{"in":0.2,"stamp":2.7},
+  "chars":[{"x":300,"y":1040,"scale":1.6,"face":0.6,"shirt":"#3d6fd1","hair":"short","hairCol":"#b5651d","skin":"#f5d6b8","moods":[[2.8,"flat"]],"browsAt":[[2.8,"worried"]],"arms":[[1.0,"r",-70]]}]}
+]
