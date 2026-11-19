@@ -1,5 +1,7 @@
 # NEXT LEVEL: honest weaknesses and upgrade brief (written 2026-11-19 for a stronger model, e.g. Opus 5.5)
 
+**SCOPE (user, 2026-11-19): do NOT fix Short 1 or any single clip. This is a one-time upgrade of the reusable KIT + SKILL for ALL upcoming videos: (a) 2.5D character touches (layered depth, parallax inside the character, volume shading, turn/rotation illusion, ground contact, rim light), (b) a better, more varied supporting cast, (c) richer, deeper environments, (d) vertical safe-zone defaults. Prove it with a short test sheet/clip, then save everything into the kit, docs and skill. Short 1 is only a reference of what was weak.**
+
 Goal: animation that looks like a professional 2D explainer / Short, not a slideshow. The user's own words about earlier versions: "feels like presentation switching images", "generic", "old 2010", "character on the very bottom of the screen looks weird". Judge every result against that.
 
 ## Read first
