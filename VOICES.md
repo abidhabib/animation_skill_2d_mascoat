@@ -1,4 +1,11 @@
-# Voices (Fish Audio) - notes only, nothing generated yet
+# Voices (Fish Audio)
+
+## HARD RULES for the main character / narrator (Elliot), user review of Short 1 (2026-11-19)
+- **Emotion tags: ONLY these four are allowed**: `[curious]`, `[intrigued]`, `[nervous]`, `[serious, slow]`. Never use any other tag on the main character.
+- **Banned (they made the voice bad)**: `[low, ominous]`, `[whispering]`, `[warm, quick]` (it made the line far too fast). Also do not invent new tags such as `[building tension]` or `[quiet, hurt]`: if a line needs a mood, pick one of the four or use no tag.
+- **Speed 1.2x is set during generation in Fish** (Text to Speech: Speed 1.2x; in Voice Acting use the role/line speed if offered, otherwise generate Elliot's lines in Text to Speech at 1.2x). `fishvo.py`'s ffmpeg speed-up is only the fallback when Fish could not do it.
+- Call-to-action lines ("Full story on my channel", subscribe, comment) are generated at 1.0x and never sped up.
+- Other characters keep normal speed; their tags are free (e.g. `[nervous]` worked for Sam).
 
 Read 2026-11-19 from docs.fish.audio. Voice ids are the `reference_id` for the API.
 
