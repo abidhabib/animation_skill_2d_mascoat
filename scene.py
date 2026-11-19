@@ -40,6 +40,30 @@ for s_ in specs:
         for k_ in ("from", "to"):
             if isinstance(sy.get(k_), str):
                 a_, b_ = find(sy[k_], s_["start"]); sy[k_] = round((a_ if k_ == "from" else b_) - s_["start"], 2)
+# --- portrait flag + lip sync envelope (assets/vo.env.json from lipsync.py) -> say[].env at 15 fps ---
+_ef = os.path.join(clip, "assets", "vo.env.json")
+ENV = json.load(open(_ef, encoding="utf-8")) if os.path.exists(_ef) else None
+def _warn(m): print("SAFE-ZONE:", m)
+for s_ in specs:
+    if PORTRAIT: s_.setdefault("portrait", True)
+    if ENV:
+        fps = ENV["fps"]; step = max(1, fps // 15)
+        for sy in s_.get("say", []):
+            if isinstance(sy.get("from"), (int, float)) and isinstance(sy.get("to"), (int, float)) and "env" not in sy:
+                a0 = int((s_["start"] + sy["from"]) * fps); b0 = int((s_["start"] + sy["to"]) * fps)
+                sy["env"] = ENV["v"][a0:b0:step]; sy["envFps"] = fps / step
+    # 9:16 safe zone (YouTube/Reels UI covers the bottom 20%, top 12%, right 15%); the camera is lifted 160 px in portrait
+    if PORTRAIT and s_.get("type") in ("stage", "thumb") and not s_.get("shots") and not s_.get("shot"):
+        cam = {"fx": 960, "fy": 540, "k": 1.04}; cam.update(s_.get("cam", {})); lift = s_.get("lift", 160)
+        for c in s_.get("chars", []):
+            sc, y, x = c.get("scale", 1), c.get("y", 0), c.get("x", 0)
+            feet = (y - cam["fy"]) * cam["k"] + 540 - lift; head = (y - 340 * sc - cam["fy"]) * cam["k"] + 540 - lift; off = (x - cam["fx"]) * cam["k"]
+            if feet > 880: _warn(f'{s_["name"]}: "{c.get("name")}" feet at {feet / 10.8:.0f}% of the height (keep above 80%: raise cam fy or the character)')
+            if head < 130: _warn(f'{s_["name"]}: "{c.get("name")}" head at {head / 10.8:.0f}% (top 12% is covered)')
+            if abs(off) > 250 and not c.get("walk"): _warn(f'{s_["name"]}: "{c.get("name")}" is {off:+.0f} px from the centre (portrait shows about +-300; right 15% has the buttons)')
+    if PORTRAIT:
+        for it in s_.get("items", []):
+            if it.get("y", 540) > 880 or it.get("y", 540) < 130 or abs(it.get("x", 960) - 960) > 240: _warn(f'{s_["name"]}: text "{it.get("text")}" sits outside the safe box')
 HEAD = '''<template>
   <style>
     @font-face { font-family: "Kalam"; src: url("assets/fonts/kalam-700.woff2") format("woff2"); font-weight: 700; }

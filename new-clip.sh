@@ -91,3 +91,5 @@ if [ -n "$SILENT" ]; then echo "== silent clip, $SILENT s (no voice-over). Scene
 echo "== voice: $(basename "$VO")  ($DUR s, root $ROOT s)"
 echo "== words (word@seconds):"
 (cd "$P/assets" && "$PY" "$KIT/words.py" vo.mp3 script.txt) | grep -v '^wrote'
+python3 "$ANIM/lipsync.py" "$P" || echo "(lip sync envelope skipped)"
+[ "$SHORT" = 1 ] && echo "== portrait: camera is lifted for the 9:16 safe zone; scene.py prints SAFE-ZONE warnings" || true

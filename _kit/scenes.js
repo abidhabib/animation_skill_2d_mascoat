@@ -51,14 +51,64 @@
 
   // ---------- characters from opts ----------
   // direction-aware characters: walk dx sets side view + mirror; dir 'away' = back view shrinking, 'toward' = front view growing
-  function prepChars(o) {
+  // ---------- cast roles: "role":"dad" expands to a full look; any key you give yourself wins ----------
+  const ROLES = {
+    dad: { style: "mascot", skin: "#f1c8a0", age: 50, hair: "short", hairCol: "#8d8a96", outfit: "cardigan", shirt: "#6b7f5a", hoodDark: "#46573a", stache: true, glasses: true, curl: false },
+    mom: { style: "mascot", skin: "#f5d6b8", age: 32, hair: "bun", hairCol: "#5a3825", outfit: "cardigan", shirt: "#c96f8a", hoodDark: "#8d4a60", skirt: "#4a3f6e", glasses: false, curl: false },
+    grandpa: { style: "mascot", skin: "#e8c4a0", age: 72, outfit: "cardigan", shirt: "#8a7a5a", hoodDark: "#5e533c", stache: true, curl: false },
+    grandma: { style: "mascot", skin: "#f1d9c4", age: 72, hair: "bun", hairCol: "#ecebf2", outfit: "cardigan", shirt: "#9b7bb8", hoodDark: "#6b5288", skirt: "#5a4a7a", cane: false, curl: false },
+    boss: { style: "mascot", skin: "#e8b98f", age: 46, hair: "side", hairCol: "#3a2a20", outfit: "suit", shirt: "#2b3350", hoodDark: "#1b2038", pants: "#22263a", tie: "#c0392b", glasses: false, curl: false },
+    kid: { style: "mascot", skin: "#f5d6b8", build: "kid", hair: "spiky", hairCol: "#3b2a20", outfit: "tee", shirt: "#3fa7f5", hoodDark: "#2a78b8", backpack: "#e0562f", curl: false },
+    student: { style: "mascot", skin: "#d6a074", hair: "side", hairCol: "#2a1d18", outfit: "hoodie", shirt: "#7a5cff", hoodDark: "#5236c4", backpack: "#2d2f4a", curl: false },
+    cashier: { style: "mascot", hair: "ponytail", hairCol: "#2a1d18", skin: "#d6a074", outfit: "apron", shirt: "#e8e2d0", hoodDark: "#c8c0a8", apron: "#2f8a57", hat: "cap", hatCol: "#2f8a57", curl: false },
+    doctor: { style: "mascot", age: 38, hair: "short", hairCol: "#2a1d18", skin: "#a8714a", outfit: "coat", inner: "#8fc7e0", shirt: "#f4f6fa", hoodDark: "#d7dce6", pants: "#3d6f8a", glasses: true, curl: false },
+    teacher: { style: "mascot", skin: "#f1c8a0", age: 34, hair: "long", hairCol: "#7a4a2a", outfit: "cardigan", shirt: "#d98a3a", hoodDark: "#a8641f", skirt: "#3a4a6a", glasses: true, curl: false },
+    worker: { style: "mascot", skin: "#c68a5b", hair: "short", hairCol: "#4a3020", hat: "hardhat", outfit: "vest", shirt: "#5a6f8a", hoodDark: "#3e4f66", beard: true, curl: false },
+    chef: { style: "mascot", skin: "#f5d6b8", hat: "chef", outfit: "apron", shirt: "#f4f6fa", hoodDark: "#d7dce6", apron: "#f4f6fa", stache: true, hairCol: "#2a1d18", curl: false },
+    police: { style: "mascot", skin: "#a8714a", hair: "short", hat: "cop", outfit: "uniform", shirt: "#2c3e6b", hoodDark: "#1c2a4f", pants: "#1c2a4f", curl: false },
+    friend: { style: "mascot", hair: "curly", hairCol: "#1d1410", skin: "#b9825a", outfit: "tee", shirt: "#4fb286", hoodDark: "#2f7a5a", curl: false },
+    roommate: { style: "mascot", skin: "#f0c8a0", hair: "side", hairCol: "#4a2e1c", hat: "beanie", hatCol: "#e0562f", outfit: "hoodie", shirt: "#3aa7a0", hoodDark: "#24706b", curl: false },
+  };
+  // body turn: "spin":[[t,"right"],[t2,"front"]] (front|right|left|q3r|q3l|back). Built as view copies that swap
+  // with a three-quarter in-between frame, so a turn reads as a rotation, not a cut.
+  const VMAP = { front: { view: "front", flip: false }, back: { view: "back", flip: false }, right: { view: "side", flip: false }, left: { view: "side", flip: true }, q3r: { view: "q3", flip: false }, q3l: { view: "q3", flip: true } };
+  function expandSpins(o) {
+    const add = [];
     (o.chars || []).forEach((c) => {
+      if (!c.spin || c._spun) return; c._spun = 1;
+      const cur = c.dir === "left" ? "left" : c.dir === "right" ? "right" : c.view === "side" ? (c.flip ? "left" : "right") : c.view === "back" ? "back" : c.view === "q3" ? (c.flip ? "q3l" : "q3r") : "front";
+      const seq = [[0, cur]]; let last = cur;
+      c.spin.forEach(([t, to]) => {
+        const mid = last === "front" && (to === "right" || to === "left") ? (to === "right" ? "q3r" : "q3l") : (last === "right" || last === "left") && to === "front" ? (last === "right" ? "q3r" : "q3l") : (last === "back" && (to === "right" || to === "left")) || ((last === "right" || last === "left") && to === "back") ? null : null;
+        if (mid) { seq.push([t, mid]); seq.push([t + 0.09, to]); } else seq.push([t, to]); last = to;
+      });
+      [...new Set(seq.map((x) => x[1]))].forEach((sn, k) => {
+        const cc = k === 0 ? c : Object.assign({}, c, { name: c.name + "~" + sn, _copy: 1 });
+        Object.assign(cc, VMAP[sn]); delete cc.dir; cc._vis = []; let on = null;
+        seq.forEach(([t, s2]) => { if (s2 === sn && on === null) on = t; else if (s2 !== sn && on !== null) { cc._vis.push([on, t]); on = null; } });
+        if (on !== null) cc._vis.push([on, 1e9]);
+        if (k) add.push(cc);
+      });
+    });
+    o.chars = (o.chars || []).concat(add);
+  }
+  // depth: characters further up the ground (smaller y) are drawn smaller; alley/rooftop do it automatically
+  const RICH_DEPTH = { alley: [800, 1060, 0.42], rooftop: [850, 1060, 0.62], street: [800, 1060, 0.55] }, DEPTH_AUTO = { alley: 1, rooftop: 1 };
+  function prepChars(o) {
+    (o.chars || []).forEach((c) => { if (c.role && ROLES[c.role]) { const R = ROLES[c.role]; Object.keys(R).forEach((k) => { if (c[k] === undefined) c[k] = R[k]; }); } });
+    expandSpins(o);
+    const DEP = Array.isArray(o.depth) ? o.depth : o.depth === true || (o.depth !== false && DEPTH_AUTO[o.bg]) ? RICH_DEPTH[o.bg] || [800, 1060, 0.5] : null;
+    (o.chars || []).forEach((c) => {
+      if (DEP && !c._dep) { const u = Math.max(0, Math.min(1, ((c.y || 0) - DEP[0]) / (DEP[1] - DEP[0]))); c.scale = (c.scale || 1) * (DEP[2] + (1 - DEP[2]) * u); c._dep = 1; }
       if (c.style !== "mascot") return;
-      if (o.type === "thumb" && c.vol == null) c.vol = true;
+      if (c.build === "kid" && !c._k) { c.scale = (c.scale || 1) * 0.74; c._k = 1; }
+      if (c.vol == null) c.vol = true;   // 2.5D shading on by default (vol:false for flat)
       if (c.pose && POSES[c.pose] && POSES[c.pose].side && !c.dir && !c.view) c.dir = "right";
       if (c.walk && !c.dir && !c.view) c.dir = c.walk[2] >= 0 ? "right" : "left";
       if (c.dir === "left") { c.view = "side"; c.flip = true; } else if (c.dir === "right") { c.view = "side"; c.flip = false; } else if (c.dir === "away") c.view = "back"; else if (c.dir === "toward") c.view = "front";
+      if (o.light) { if (!c.rim) c.rim = o.light.rim; if (!c.fill) c.fill = o.light.fill; if (!c.lightSide) c.lightSide = ((o.light.side === "left") !== !!c.flip) ? "left" : "right"; }
     });
+    if (o.depthSort !== false && (o.chars || []).length > 1) o.chars.sort((a, b) => (a.y || 0) - (b.y || 0));
   }
   function expandGroup(o) {
     if (o.group) expandGroup2(o); expandCrowd(o); prepChars(o);
@@ -114,6 +164,8 @@
   function animChars(tl, o, sid, dur) {
     (o.chars || []).forEach((c, i) => {
       const id = `${sid}-c${i}`;
+      if (c._vis) { tl.set(`#${id}-pos`, { opacity: 0 }, 0); c._vis.forEach(([a, b]) => { tl.set(`#${id}-pos`, { opacity: 1 }, a); if (b < 1e8) tl.set(`#${id}-pos`, { opacity: 0 }, b); }); }
+      if (c.style === "mascot" && T.secondary) { const w = c.walk; T.secondary(tl, id, 0.1, w ? w[0] : dur, 1); if (w) { T.secondary(tl, id, w[0], w[1], 2); if (w[1] < dur - 0.4) T.secondary(tl, id, w[1], dur, 1); } }
       T.armSet(tl, id, "l", c.armL == null ? 10 : c.armL); T.armSet(tl, id, "r", c.armR == null ? -10 : c.armR);
       T.idle(tl, id, 0.2 + i * 0.13, dur, 1);
       T.blink(tl, id, [0.9 + i * 0.4, 3.1 + i * 0.3, 5.6 + i * 0.2, 8.2].filter((x) => x < dur));
@@ -410,11 +462,59 @@
     const cross = Array.from({ length: 8 }, (_, i) => `<rect x="${760 + i * 56}" y="842" width="34" height="238" fill="#f4f1e0" opacity="0.92"/>`).join("");
     return {
       far: FULL(sky) + (night ? `<circle cx="1500" cy="170" r="60" fill="#fbf3c8"/><circle cx="1500" cy="170" r="140" fill="#cfe0ff" opacity="0.14"/>` : `<circle cx="1500" cy="250" r="640" fill="url(#rb-glow)" opacity="${dusk ? 1 : 0.8}"/>`) + far + (!night ? softCloud(200, 180, 0.8, dusk ? "#f7c98a" : "#cbe5f6") + softCloud(1100, 120, 0.7, dusk ? "#f7c98a" : "#cbe5f6") : "") + fac,
-      mid: `<rect x="-400" y="760" width="2720" height="90" fill="${sideC}" stroke="${INK}" stroke-width="5"/><path d="M-400,800 L2320,800" stroke="#00000033" stroke-width="3"/>` + `<rect x="-400" y="850" width="2720" height="400" fill="${"url(#rb-road)"}"/>` + `<g class="rb-scroll" data-scroll="440">${dashes}</g>` + cross + lamp(320) + lamp(1020) + lamp(1720),
+      mid: `<rect x="-400" y="760" width="2720" height="90" fill="${sideC}" stroke="${INK}" stroke-width="5"/><path d="M-400,800 L2320,800" stroke="#00000033" stroke-width="3"/>` + `<rect x="-400" y="850" width="2720" height="900" fill="${"url(#rb-road)"}"/>` + `<g class="rb-scroll" data-scroll="440">${dashes}</g>` + cross + lamp(320) + lamp(1020) + lamp(1720),
       defs: `<linearGradient id="rb-road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${roadA}"/><stop offset="1" stop-color="${roadB}"/></linearGradient>`,
     };
   };
 
+
+  // ALLEY (composed for 9:16 too): one-point perspective toward a lit street; windows, fire escape, string lights, neon sign, puddles, bins.
+  // Ground runs from y 790 (far end) to 1300 (camera); characters there are scaled by depth automatically.
+  RICH.alley = (seed, o) => {
+    const time = (o && o.time) || "night", night = time === "night", dusk = time === "dusk", lit = night || dusk, r = T.rng(seed || 4);
+    const VX0 = 830, VX1 = 1090, VY0 = 380, VY1 = 790;
+    const wallL = night ? "#2e2546" : dusk ? "#7a4f62" : "#b98b6c", wallR = night ? "#251e3b" : dusk ? "#6a4458" : "#a77a5d", floor = night ? "#17141f" : dusk ? "#4a3a48" : "#6a6670";
+    const lerp = (a, b, u) => a + (b - a) * u, f0 = (n) => n.toFixed(0);
+    const L = (u, v) => [lerp(-420, VX0, u), lerp(lerp(-320, VY0, u), lerp(1300, VY1, u), v)];
+    const R = (u, v) => [lerp(2340, VX1, u), lerp(lerp(-320, VY0, u), lerp(1300, VY1, u), v)];
+    const quad = (F, u1, u2, v1, v2, fill, sw) => { const a = F(u1, v1), b = F(u2, v1), c = F(u2, v2), d = F(u1, v2); return `<path d="M${f0(a[0])},${f0(a[1])} L${f0(b[0])},${f0(b[1])} L${f0(c[0])},${f0(c[1])} L${f0(d[0])},${f0(d[1])}Z" fill="${fill}" stroke="${INK}" stroke-width="${sw || 4}" stroke-linejoin="round"/>`; };
+    const winCol = () => night ? (r() > 0.35 ? "#ffd36b" : "#3a3358") : dusk ? (r() > 0.6 ? "#ffc27a" : "#9a87a8") : "#bcd4e6";
+    let wins = ""; const US = [0.04, 0.2, 0.34, 0.46, 0.56, 0.65, 0.73, 0.8, 0.86];
+    US.forEach((u, i) => { if (!US[i + 1]) return; const u2 = u + (US[i + 1] - u) * 0.55; [[0.08, 0.2], [0.3, 0.42], [0.52, 0.62]].forEach(([v1, v2]) => { const c1 = winCol(), c2 = winCol(); wins += quad(L, u, u2, v1, v2, c1, 3) + quad(R, u, u2, v1, v2, c2, 3); [[L, c1], [R, c2]].forEach(([F, c]) => { if (c === "#ffd36b" || c === "#ffc27a") { const p = F((u + u2) / 2, (v1 + v2) / 2); wins += `<circle cx="${f0(p[0])}" cy="${f0(p[1])}" r="${f0(110 * (1 - u * 0.8))}" fill="url(#rb-glow)" opacity="0.3"/>`; } }); }); });
+    let fe = ""; [0.24, 0.44].forEach((v) => { const a = L(0.08, v), b = L(0.5, v); fe += `<path d="M${f0(a[0])},${f0(a[1])} L${f0(b[0])},${f0(b[1])}" stroke="${INK}" stroke-width="10"/>`; }); { const a = L(0.1, 0.24), b = L(0.42, 0.44); fe += `<path d="M${f0(a[0])},${f0(a[1])} L${f0(b[0])},${f0(b[1])}" stroke="${INK}" stroke-width="6" stroke-dasharray="14 10"/>`; }
+    let lights = ""; [0.3, 0.55, 0.74].forEach((u, k) => { const a = L(u, 0.12), b = R(u, 0.12), sag = 70 * (1 - u * 0.7), mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2 + sag * 2;
+      lights += `<path d="M${f0(a[0])},${f0(a[1])} Q${f0(mx)},${f0(my)} ${f0(b[0])},${f0(b[1])}" fill="none" stroke="${INK}" stroke-width="${(4 * (1 - u * 0.5)).toFixed(1)}"/>`;
+      for (let i = 1; i < 12; i++) { const sx = i / 12, x = (1 - sx) * (1 - sx) * a[0] + 2 * sx * (1 - sx) * mx + sx * sx * b[0], y = (1 - sx) * (1 - sx) * a[1] + 2 * sx * (1 - sx) * my + sx * sx * b[1], rr = 9 * (1 - u * 0.6), col = ["#ffd36b", "#ff7ac8", "#7ae0ff"][(i + k) % 3];
+        lights += `${lit ? `<circle cx="${f0(x)}" cy="${f0(y)}" r="${f0(rr * 4)}" fill="${col}" opacity="0.18"/>` : ""}<circle cx="${f0(x)}" cy="${f0(y)}" r="${rr.toFixed(1)}" fill="${lit ? col : "#f4f1e0"}" stroke="${INK}" stroke-width="2"/>`; } });
+    const end = `<rect x="${VX0}" y="${VY0}" width="${VX1 - VX0}" height="${VY1 - VY0}" fill="${night ? "#3b2f6e" : dusk ? "#e59a7a" : "#cfe6f5"}"/><circle cx="960" cy="560" r="260" fill="url(#rb-glow)" opacity="${night ? 0.9 : 0.6}"/>`
+      + Array.from({ length: 4 }, (_, i) => `<rect x="${VX0 + 10 + i * 62}" y="${VY0 + 60 + (i % 2) * 40}" width="50" height="${VY1 - VY0}" fill="${night ? "#241c4a" : dusk ? "#a8647a" : "#9cc4e8"}"/>`).join("") + `<rect x="${VX0}" y="${VY1 - 40}" width="${VX1 - VX0}" height="40" fill="${night ? "#2a2238" : "#8a8690"}"/>`;
+    const sp = R(0.44, 0.3), sign = `<g transform="translate(${f0(sp[0])},${f0(sp[1])})"><path d="M0,0 L-60,0" stroke="${INK}" stroke-width="6"/><rect x="-120" y="-10" width="64" height="150" rx="10" fill="${night ? "#1a1030" : "#3a2a50"}" stroke="${INK}" stroke-width="5"/>${[0, 1, 2].map((i) => `<rect x="-106" y="${8 + i * 44}" width="36" height="28" rx="6" fill="none" stroke="${lit ? "#ff5fd2" : "#c86fa8"}" stroke-width="6"/>`).join("")}${lit ? `<circle cx="-88" cy="64" r="170" fill="#ff5fd2" opacity="0.16"/>` : ""}</g>`;
+    let fl = `<path d="M${VX0},${VY1} L${VX1},${VY1} L2340,1300 L-420,1300Z" fill="${floor}"/><rect x="-420" y="1290" width="2760" height="600" fill="${floor}"/><path d="M960,${VY1} L960,1300" stroke="#00000055" stroke-width="10"/>`;
+    [0.2, 0.42, 0.66].forEach((v) => { const y = VY1 + (1300 - VY1) * v * v, xl = lerp(VX0, -420, v * v), xr = lerp(VX1, 2340, v * v); fl += `<path d="M${f0(xl)},${f0(y)} L${f0(xr)},${f0(y)}" stroke="#00000040" stroke-width="4"/>`; });
+    [[880, 900, 120], [1080, 1010, 170], [760, 1100, 200]].forEach(([x, y, w]) => { fl += `<ellipse cx="${x}" cy="${y}" rx="${w}" ry="${(w * 0.16).toFixed(0)}" fill="${night ? "#3a3266" : "#8fa6c0"}" opacity="0.7"/><ellipse cx="${(x - w * 0.2).toFixed(0)}" cy="${y}" rx="${(w * 0.3).toFixed(0)}" ry="${(w * 0.05).toFixed(1)}" fill="${night ? "#ff7ac8" : "#ffffff"}" opacity="0.45"/>`; });
+    const bin = (x, y, sc, col) => `<g transform="translate(${x},${y}) scale(${sc})"><rect x="-60" y="-130" width="120" height="130" rx="10" fill="${col}" stroke="${INK}" stroke-width="6"/><rect x="-68" y="-150" width="136" height="26" rx="8" fill="${col}" stroke="${INK}" stroke-width="6"/><path d="M-30,-110 L-30,-20 M0,-110 L0,-20 M30,-110 L30,-20" stroke="#00000033" stroke-width="6"/></g>`;
+    const props = bin(712, 880, 0.7, night ? "#2f5a4a" : "#4a8a6a") + `<rect x="1150" y="806" width="70" height="60" fill="${night ? "#5a4630" : "#b8925a"}" stroke="${INK}" stroke-width="5"/>` + bin(1250, 960, 0.9, night ? "#3a3a5a" : "#5a6a8a");
+    return {
+      far: `<rect x="-400" y="-400" width="2720" height="1880" fill="${night ? "#120c24" : dusk ? "#c27a7a" : "#9cc4e8"}"/>` + end,
+      mid: quad(L, 0, 1, 0, 1, wallL, 5) + quad(R, 0, 1, 0, 1, wallR, 5) + wins + fe + fl + props + sign + lights,
+    };
+  };
+
+  // ROOFTOP (composed for 9:16 too): city skyline below, parapet, water tower, AC unit, string lights; day / dusk / night
+  RICH.rooftop = (seed, o) => {
+    const time = (o && o.time) || "night", night = time === "night", dusk = time === "dusk", lit = night || dusk, r = T.rng(seed || 6), f0 = (n) => n.toFixed(0);
+    const skyTop = night ? "#0d0a2a" : dusk ? "#5a3a7a" : "#5aa0e0", skyBot = night ? "#3a2a6e" : dusk ? "#f29a6a" : "#cfe6f5";
+    let city = "", x = -400; while (x < 2320) { const w = 70 + r() * 130, h = 120 + r() * 340; city += `<rect x="${f0(x)}" y="${f0(820 - h)}" width="${f0(w)}" height="${f0(h + 60)}" fill="${night ? "#1c1640" : dusk ? "#6a4a78" : "#8fb2d4"}"/>`; for (let wy = 820 - h + 20; wy < 800; wy += 34) for (let wx = x + 10; wx < x + w - 14; wx += 26) if (r() > (night ? 0.55 : 0.8)) city += `<rect x="${f0(wx)}" y="${f0(wy)}" width="12" height="16" fill="${night ? (r() > 0.5 ? "#ffd36b" : "#ffb35a") : "#e8f2fa"}" opacity="0.9"/>`; x += w + 6; }
+    const stars = night ? Array.from({ length: 40 }, () => `<circle cx="${f0(r() * 2300 - 200)}" cy="${f0(r() * 420)}" r="${(1.5 + r() * 2.5).toFixed(1)}" fill="#fff" opacity="${(0.5 + r() * 0.5).toFixed(2)}"/>`).join("") : "";
+    const tower = `<g transform="translate(720,860)"><path d="M-60,0 L-40,-160 M60,0 L40,-160 M-50,-80 L50,-80" stroke="${INK}" stroke-width="8"/><rect x="-80" y="-330" width="160" height="180" rx="14" fill="${night ? "#5a3a2a" : "#8a5a3a"}" stroke="${INK}" stroke-width="6"/><path d="M-90,-330 L0,-400 L90,-330Z" fill="${night ? "#3a2a24" : "#6a4430"}" stroke="${INK}" stroke-width="6"/>${[-300, -260, -220, -180].map((y) => `<path d="M-80,${y} L80,${y}" stroke="#00000044" stroke-width="5"/>`).join("")}</g>`;
+    const ac = (ax, ay) => `<g transform="translate(${ax},${ay})"><rect x="-70" y="-90" width="140" height="90" rx="8" fill="#9aa3b5" stroke="${INK}" stroke-width="5"/><circle cx="0" cy="-45" r="30" fill="#6a7385" stroke="${INK}" stroke-width="4"/><path d="M-22,-45 L22,-45 M0,-67 L0,-23" stroke="${INK}" stroke-width="4"/></g>`;
+    let bulbs = ""; for (let i = 1; i < 14; i++) { const sx = i / 14, xx = 640 + 660 * sx, yy = 520 - 50 * sx + Math.sin(sx * Math.PI) * 60; bulbs += `${lit ? `<circle cx="${f0(xx)}" cy="${f0(yy)}" r="30" fill="#ffd36b" opacity="0.2"/>` : ""}<circle cx="${f0(xx)}" cy="${f0(yy)}" r="8" fill="${lit ? "#ffe08a" : "#f4f1e0"}" stroke="${INK}" stroke-width="2"/>`; }
+    return {
+      defs: `<linearGradient id="rb-roof-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${skyTop}"/><stop offset="1" stop-color="${skyBot}"/></linearGradient>`,
+      far: FULL("url(#rb-roof-sky)") + stars + (night ? `<circle cx="1180" cy="200" r="54" fill="#fbf3c8"/><circle cx="1180" cy="200" r="150" fill="#cfe0ff" opacity="0.14"/>` : `<circle cx="1180" cy="300" r="420" fill="url(#rb-glow)" opacity="0.7"/>`) + city,
+      mid: `<rect x="-400" y="820" width="2720" height="1000" fill="${night ? "#2a2536" : "#7a7480"}"/><rect x="-400" y="780" width="2720" height="56" fill="${night ? "#3a3448" : "#9a94a0"}" stroke="${INK}" stroke-width="5"/>` + tower + ac(1230, 900) + `<path d="M640,520 L640,860 M1300,470 L1300,880" stroke="${INK}" stroke-width="8"/>` + bulbs + `<path d="M-400,1000 L2320,1000" stroke="#00000030" stroke-width="4"/>`,
+    };
+  };
 
   // neon night city: purple-pink gradient, blurred bokeh lights, lit skyline, wet street with neon streaks
   RICH.neonNight = (seed) => {
@@ -461,7 +561,7 @@
       if (X) T.expr(tl, id, s.from, s.emotion, s.to - s.from + 0.6); else { T.mood(tl, id, s.from, E.mood); T.brows(tl, id, s.from, E.brows); }
       E.arms.forEach(([side, deg]) => T.armTo(tl, id, side, deg, s.from + 0.05, 0.3));
       if (E.arms.length) { T.armTo(tl, id, "l", c.armL == null ? 10 : c.armL, s.to + 0.15, 0.4); T.armTo(tl, id, "r", c.armR == null ? -10 : c.armR, s.to + 0.15, 0.4); }
-      if (!(X && X.silent)) T.talk(tl, id, s.from + 0.1, s.to, X ? (X.mouth === "open" ? "smile" : X.mouth) : (E.mood === "open" ? "smile" : E.mood));
+      if (!(X && X.silent)) { const rest = X ? (X.mouth === "open" ? "smile" : X.mouth) : (E.mood === "open" ? "smile" : E.mood); if (s.env && s.env.length && T.lips) T.lips(tl, id, s.from, s.env, s.envFps || 15, rest); else T.talk(tl, id, s.from + 0.1, s.to, rest); }
       if (E.shake) C.shake(s.from + 0.05, E.shake);
       if (s.zoom !== false && o.bg && RICH[o.bg]) { const bl = s.blur == null ? 14 : s.blur; ["far", "mid"].forEach((k) => { tl.set(`#${sid}-${k}`, { filter: "blur(0px) brightness(1)" }, 0); tl.to(`#${sid}-${k}`, { filter: `blur(${bl}px) brightness(0.72)`, duration: 0.45 }, s.from - 0.15); tl.to(`#${sid}-${k}`, { filter: "blur(0px) brightness(1)", duration: 0.5 }, s.to + 0.1); }); }
       if (s.zoom !== false) { C.to(s.from - 0.2, 0.55, { k: s.k || 1.9, fx: (c.x || 960), fy: (c.y || 1000) - 240 * sc }, "power2.inOut"); C.to(s.to + 0.1, 0.6, { k: 1.06, fx: 960, fy: 540 }, "power2.inOut"); }
@@ -583,6 +683,9 @@
     if (!o.crowd) return; const g = o.crowd, r = T.rng(g.seed || 31), n = Math.min(g.n || 12, 28), COLS = ["#e0402f", "#4285f4", "#34a853", "#8a5cff", "#ff6fb5", "#4fe8ff", "#f08a2a", "#2d2f4a", "#7a5a3a"];
     const items = Array.from({ length: n }, (_, i) => { const x = g.x0 + r() * (g.x1 - g.x0), dep = r(), col = COLS[Math.floor(r() * COLS.length)], t0 = (g.walk ? g.walk[0] : 0) + r() * 0.4, dx = (r() > (g.mix == null ? 0.5 : g.mix) ? 1 : -1) * (180 + r() * 340);
       return { name: "k" + i, style: "mascot", x, y: g.y + dep * 70, scale: (g.scale || 0.8) * (0.8 + dep * 0.35), shirt: col, hoodDark: "#00000040", skin: SKINS[Math.floor(r() * 5)], curl: r() > 0.8, glasses: r() > 0.78, face: 0.2, walk: g.still ? undefined : [t0, g.walk ? g.walk[1] : 2.5, dx], moods: [[0.1, ["smile", "flat", "grin", "open"][Math.floor(r() * 4)]]] }; }).sort((a, b) => a.y - b.y);
+    const HAIRS = [undefined, "short", "side", "curly", "long", "bun", "spiky", "ponytail"], OUTS = ["hoodie", "tee", "shirt", "cardigan", "hoodie", "tee", "suit", "apron"], HATS = ["cap", "beanie", "bowler"];
+    items.forEach((c) => { c.curl = false; c.hair = HAIRS[Math.floor(r() * HAIRS.length)]; c.hairCol = ["#2a1d18", "#4a2e1c", "#8a5a2a", "#c9a24a", "#1d1410", "#a7a3b5"][Math.floor(r() * 6)]; c.outfit = OUTS[Math.floor(r() * OUTS.length)];
+      if (r() > 0.78) c.hat = HATS[Math.floor(r() * 3)]; if (r() > 0.82) c.backpack = ["#2d2f4a", "#e0562f", "#2f8a57"][Math.floor(r() * 3)]; if (r() > 0.8) c.skirt = "#3a4a6a"; const b = r(); c.build = b > 0.88 ? "wide" : b > 0.76 ? "slim" : undefined; c.age = r() > 0.8 ? 40 + Math.floor(r() * 30) : 0; if (c.age < 55) c.cane = false; });
     o.chars = (o.chars || []).concat(items);
   }
 
@@ -628,19 +731,85 @@
       return out; },
   };
 
+  // ---------- cinematic helpers: foreground, street life, wet reflections, shot presets, exits, safe guide ----------
+  // fg:true|"street"|"room": dark blurred silhouettes in front of everything that pass faster than the camera (parallax 1.7)
+  function fgSvg(o) {
+    const kind = o.fg === true ? (/street|alley|rooftop|railway|harbor/.test(o.bg || "") ? "street" : "room") : o.fg, r = T.rng((o.seed || 1) * 7 + 3); let g = "";
+    for (let x = -300 + r() * 300; x < 2400; x += 560 + r() * 420) {
+      if (kind === "street") g += r() > 0.45 ? `<rect x="${x.toFixed(0)}" y="-300" width="44" height="1600" rx="10" fill="#0d0a1c"/><rect x="${(x - 16).toFixed(0)}" y="1010" width="76" height="60" rx="8" fill="#0d0a1c"/>` : `<g fill="#0e1a12"><circle cx="${x.toFixed(0)}" cy="1150" r="130"/><circle cx="${(x + 120).toFixed(0)}" cy="1180" r="110"/><circle cx="${(x - 100).toFixed(0)}" cy="1190" r="100"/></g>`;
+      else g += r() > 0.5 ? `<g fill="#120d1e"><path d="M${x.toFixed(0)},1300 L${(x + 30).toFixed(0)},930 L${(x + 70).toFixed(0)},1300Z"/><ellipse cx="${(x + 34).toFixed(0)}" cy="930" rx="120" ry="150"/></g>` : `<rect x="${x.toFixed(0)}" y="1000" width="280" height="320" rx="30" fill="#120d1e"/>`;
+    }
+    return `<g style="filter:blur(${o.fgBlur == null ? 6 : o.fgBlur}px)" opacity="0.94">${g}</g>`;
+  }
+  // life:{n:9,cars:true}: small far pedestrians drifting along the back, cars crossing the road (street-type scenes)
+  function lifeSvg(o, sid) {
+    if (!o.life) return ""; const L = o.life === true ? {} : o.life, r = T.rng((o.seed || 1) * 13 + 5), night = o.time === "night", gy = L.y || (o.bg === "alley" ? 800 : o.bg === "rooftop" ? 0 : 790);
+    let out = ""; if (gy) for (let i = 0; i < (L.n || 9); i++) { const x = r() * 2200 - 140, sc = 0.3 + r() * 0.08, col = ["#e0402f", "#4285f4", "#34a853", "#8a5cff", "#ff6fb5", "#f08a2a", "#2d2f4a"][Math.floor(r() * 7)];
+      out += `<g class="${sid}-ped" data-dx="${((r() > 0.5 ? 1 : -1) * (120 + r() * 220)).toFixed(0)}"><g transform="translate(${x.toFixed(0)},${(gy + r() * 12).toFixed(0)}) scale(${sc.toFixed(2)})"${night ? ' style="filter:brightness(0.55)"' : ""}><ellipse cx="0" cy="0" rx="40" ry="8" fill="#000" opacity=".25"/><rect x="-14" y="-80" width="11" height="80" rx="5" fill="#2f2d5a"/><rect x="4" y="-80" width="11" height="80" rx="5" fill="#2f2d5a"/><rect x="-36" y="-200" width="72" height="130" rx="30" fill="${col}" stroke="${INK}" stroke-width="5"/><circle cx="0" cy="-240" r="42" fill="#f3e3d0" stroke="${INK}" stroke-width="5"/></g></g>`; }
+    if (L.cars !== false && /street/.test(o.bg || "")) for (let i = 0; i < 2; i++) out += `<g class="${sid}-car" data-dx="${i ? -2900 : 2900}"><g transform="translate(${i ? 2400 : -480},${i ? 910 : 975}) scale(${i ? 0.66 : 0.82})">${PROPS.car({ col: i ? "#4285f4" : "#e0402f", beam: night })}</g></g>`;
+    return out;
+  }
+  function lifeAnim(tl, sid, dur) {
+    document.querySelectorAll(`#${sid}-svg .${sid}-ped`).forEach((el) => tl.fromTo(el, { x: 0 }, { x: Number(el.dataset.dx), duration: dur, ease: "none" }, 0));
+    document.querySelectorAll(`#${sid}-svg .${sid}-car`).forEach((el, i) => tl.fromTo(el, { x: 0 }, { x: Number(el.dataset.dx), duration: 3.4, ease: "power1.inOut" }, Math.min(Math.max(0, dur - 3.6), 0.5 + i * 2.6)));
+  }
+  // reflect:true (automatic with rain): mirrored, blurred copies of the characters on the wet ground
+  function reflHtml(o, sid) {
+    const wet = o.reflect || (o.reflect !== false && (o.weather === "rain" || (o.weather && o.weather.type === "rain"))); if (!wet) return "";
+    const gy = Math.max(...(o.chars || []).map((c) => c.y || 0), 900);
+    return `<defs><linearGradient id="${sid}-rmg" gradientUnits="userSpaceOnUse" x1="0" y1="${gy - 160}" x2="0" y2="${gy + 220}"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><mask id="${sid}-rm" maskUnits="userSpaceOnUse" x="-600" y="-600" width="3200" height="3000"><rect x="-600" y="-600" width="3200" height="3000" fill="url(#${sid}-rmg)"/></mask></defs>`
+      + `<g id="${sid}-refl" mask="url(#${sid}-rm)" style="filter:blur(3px)">` + (o.chars || []).map((c, i) => `<use href="#${sid}-c${i}-pos" transform="matrix(1,0,0,-1,0,${2 * (c.y || 0)})" opacity="0.17"/>`).join("") + `</g>`;
+  }
+  // shots:[{type:"track"|"push"|"reveal"|"orbit"|"punch", on:"name", t, dur, k, lead, dx, dy}] -> camera moves (one-line cinematic camera)
+  function shotsToCam(o, dur) {
+    const L = o.shots || (o.shot ? [o.shot] : []); if (!L.length) return; o.camMoves = o.camMoves || []; o.drift = false;
+    const find = (n) => (o.chars || []).find((c) => c.name === n) || (o.chars || []).find((c) => !c._copy);
+    const headY = (c) => (c.y || 1000) - (c.style === "mascot" ? (c.build === "kid" ? 268 : 282) : 250) * (c.scale || 1);
+    L.forEach((s, i) => {
+      const t = s.t || 0, d2 = s.dur || dur - t, c = s.on ? find(s.on) : find(), k = s.k;
+      if (s.type === "track" && c) { const w = c.walk || [t, t + d2, 0], lead = s.lead == null ? 70 * Math.sign(w[2] || 1) : s.lead, fy = s.fy || (c.y || 1000) - (324 + (o.portrait ? (o.lift == null ? 160 : o.lift) : 0)) / (k || 1);   // feet land at 80% of the frame
+        if (i === 0) o.cam = Object.assign({ fx: (c.x || 960) + lead, fy, k: k || 1 }, o.cam || {});
+        o.camMoves.push({ t: w[0], dur: w[1] - w[0], fx: (c.x || 960) + w[2] + lead, ease: "none" }); }
+      else if ((s.type === "push" || s.type === "reveal") && c) o.camMoves.push({ t, dur: d2, fx: (c.x || 960) + (c.walk ? c.walk[2] : 0) + (s.dx || 0), fy: headY(c) + (s.dy == null ? 60 : s.dy) * (c.scale || 1), k: k || (s.type === "push" ? 1.8 : 1.3), ease: s.ease || (s.type === "push" ? "sine.inOut" : "power3.inOut") });
+      else if (s.type === "orbit") o.camMoves.push({ t, dur: d2, fx: ((o.cam && o.cam.fx) || 960) + (s.amp || 150), k: k || 1.1, ease: "sine.inOut" });
+      else if (s.type === "punch") { o.camMoves.push({ t, dur: 0.16, k: k || 1.3, ease: "power3.out" }); }
+    });
+  }
+  // out:{kind:"whip"|"zoom"|"fade", dir:1}: the exit move at the end of a scene (pairs with the next scene's in)
+  function outro(tl, sid, o, dur) {
+    if (!o) return; const el = `#${sid}-svg`, dd = o.dur || 0.28, t = Math.max(0, dur - dd);
+    if (o.kind === "whip") tl.to(el, { x: -(o.dir || 1) * 760, filter: "blur(18px)", duration: dd, ease: "power3.in" }, t);
+    else if (o.kind === "zoom") tl.to(el, { scale: 2.6, transformOrigin: o.origin || "50% 40%", filter: "blur(10px)", duration: dd, ease: "power3.in" }, t);
+    else if (o.kind === "fade") tl.to(el, { opacity: 0, duration: dd }, t);
+  }
+  // safeGuide:true in a portrait scene draws the 9:16 safe box (preview only)
+  const SAFE_GUIDE = `<rect x="686" y="130" width="486" height="734" fill="none" stroke="#ff3b6b" stroke-width="4" stroke-dasharray="18 12"/>`;
+
   // ---------- mount: build a whole scene into #sid-svg ----------
   function mount(sid, o) {
-    expandGroup(o);
+    expandGroup(o); shotsToCam(o, o.dur || 5); if (o.type === "stage" && o.handheld == null) o.handheld = 2.5;
     const M = S[o.type]; if (!M) throw new Error("unknown scene type " + o.type);
     const id = (n) => `${sid}-${n}`, ctx = { sid, o, id, t: o.t || {} }, dur = o.dur || 5;
     const svg = q(`#${sid}-svg`);
     const WXk = o.weather && (typeof o.weather === "string" ? o.weather : o.weather.type), WX = WXk && WEATHER[WXk] ? WEATHER[WXk](sid, dur) : null;
     const RB = RICH[o.bg] ? RICH[o.bg](o.seed, o) : null;
-    const back = RB ? DEFS + (RB.defs ? `<defs>${RB.defs}</defs>` : "") + `<g id="${sid}-far">${RB.far}</g><g id="${sid}-mid">${RB.mid}</g>${o.exposure ? `<rect x="-400" y="-400" width="2720" height="1880" fill="#2a1030" opacity="${o.exposure}"/>` : ""}${(o.lights || []).map((L) => `<circle cx="${L[0]}" cy="${L[1]}" r="${L[2]}" fill="url(#rb-glow)" opacity="${L[3] == null ? 0.7 : L[3]}"/>`).join("")}` : (o.bg === false ? "" : bg(o.bg || "teal", o.seed)) + (o.theme && THEMES[o.theme] ? THEMES[o.theme]() : "");
-    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : chars(o, sid)}${propsHtml(sid, o, true)}${tagsSvg(o, sid)}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? WX.svg : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}${o.overlay || ""}`;
+    const RB2 = RB && o.timeShift ? RICH[o.bg](o.seed, Object.assign({}, o, { time: o.timeShift.to })) : null, LF = lifeSvg(o, sid), DOF = o.dof ? ` style="filter:blur(${o.dof}px)"` : "";
+    const back = RB ? DEFS + (RB.defs ? `<defs>${RB.defs}</defs>` : "") + `<g id="${sid}-pfar"><g${DOF}><g id="${sid}-far">${RB.far}</g>${RB2 ? `<g id="${sid}-far2" opacity="0">${RB2.far}</g>` : ""}</g></g><g id="${sid}-pmid"><g id="${sid}-mid">${RB.mid}</g>${RB2 ? `<g id="${sid}-mid2" opacity="0">${RB2.mid}</g>` : ""}${LF}</g>${o.exposure ? `<rect x="-400" y="-400" width="2720" height="1880" fill="#2a1030" opacity="${o.exposure}"/>` : ""}${(o.lights || []).map((L) => `<circle cx="${L[0]}" cy="${L[1]}" r="${L[2]}" fill="url(#rb-glow)" opacity="${L[3] == null ? 0.7 : L[3]}"/>`).join("")}` : (o.bg === false ? "" : bg(o.bg || "teal", o.seed)) + (o.theme && THEMES[o.theme] ? THEMES[o.theme]() : "");
+    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : reflHtml(o, sid) + chars(o, sid)}${propsHtml(sid, o, true)}${tagsSvg(o, sid)}${o.fg ? `<g id="${sid}-pfg">${fgSvg(o)}</g>` : ""}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? `<g id="${sid}-wxw">${WX.svg}</g>` : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}${o.overlay || ""}${o.safeGuide && o.portrait ? SAFE_GUIDE : ""}`;
     const tl = gsap.timeline({ paused: true });
-    const C = T.cam(tl, `#${sid}-cam`, Object.assign({ fx: 960, fy: 540, k: 1.04 }, o.cam || {}));
+    // camera: parallax per layer (far 0.35, mid 0.78, foreground 1.7) incl. zoom depth; heads lead the body a little (2.5D)
+    const P0 = Object.assign({ fx: 960, fy: 540, k: 1.04 }, o.cam || {}), PX = o.parallax || [];
+    const PL = [["pfar", PX[0] == null ? 0.35 : PX[0]], ["pmid", PX[1] == null ? 0.78 : PX[1]], ["pfg", 1.7]].map(([n, f]) => [q(`#${sid}-${n}`), f]).filter((a) => a[0]);
+    const HP = (o.chars || []).map((c, i) => [q(`#${sid}-c${i}-hp`), (c.flip ? -1 : 1) / (c.scale || 1)]).filter((a) => a[0]);
+    const onApply = (st) => {
+      PL.forEach(([el, f]) => { const s = (P0.k + (st.k - P0.k) * f) / st.k, ox = (st.fx - P0.fx) * (1 - f), oy = (st.fy - P0.fy) * (1 - f) * 0.6; el.setAttribute("transform", `translate(${st.fx.toFixed(1)},${st.fy.toFixed(1)}) scale(${s.toFixed(4)}) translate(${(ox - st.fx).toFixed(1)},${(oy - st.fy).toFixed(1)})`); });
+      const hx = Math.max(-12, Math.min(12, -(st.fx - P0.fx) * 0.03)); HP.forEach(([el, m]) => el.setAttribute("transform", `translate(${(hx * m).toFixed(2)},0)`));
+    };
+    const C = T.cam(tl, `#${sid}-cam`, Object.assign({ oy: o.portrait ? -(o.lift == null ? 160 : o.lift) : 0, onApply }, P0));
     if (RB) { tl.fromTo(`#${sid}-far`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); }
+    if (RB2) { tl.fromTo(`#${sid}-far2`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid2`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); tl.to([`#${sid}-far2`, `#${sid}-mid2`], { opacity: 1, duration: o.timeShift.dur || 2.5, ease: "sine.inOut" }, o.timeShift.t || 0); }
+    if (WX && o.weatherAt != null) { tl.fromTo(`#${sid}-wxw`, { opacity: 0 }, { opacity: 1, duration: 1.4, ease: "sine.in" }, o.weatherAt); if (q(`#${sid}-refl`)) tl.fromTo(`#${sid}-refl`, { opacity: 0 }, { opacity: 1, duration: 1.8, ease: "sine.in", immediateRender: false }, o.weatherAt + 0.4); }
+    lifeAnim(tl, sid, dur); outro(tl, sid, o.out, dur);
     document.querySelectorAll(`#${sid}-svg .rb-scroll`).forEach((el) => tl.fromTo(el, { x: 0 }, { x: -Number(el.dataset.scroll || 300), duration: dur, ease: "none" }, 0));
     (o.camMoves || []).forEach((m) => { const pr = {}; ["fx", "fy", "k", "r", "dx", "dy"].forEach((key) => { if (m[key] != null) pr[key] = m[key]; }); C.to(m.t, m.dur, pr, m.ease); });
     if (o.handheld) { const hr = T.rng(o.seed || 7), a = o.handheld === true ? 5 : o.handheld; for (let tt = 0; tt < dur; tt += 0.5) C.to(tt, 0.5, { dx: (hr() - 0.5) * 2 * a, dy: (hr() - 0.5) * 1.4 * a, r: (hr() - 0.5) * 0.08 * a }, "sine.inOut"); }

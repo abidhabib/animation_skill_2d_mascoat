@@ -31,3 +31,7 @@ Render, then build contact sheets with ffmpeg (16 frames across the clip, plus 3
 
 ## Definition of done for the next Short
 No element in the bottom 20%; at least 5 distinct camera behaviours; parallax foreground in every shot; synced mouth to audio (when the voice-over exists); sound design list written; the user says it no longer feels like slides.
+
+## STATUS after the KIT V2 upgrade (2026-11-19, Opus 5.5)
+Done (details in LIBRARY.md "KIT V2"): 2.5D mascot (default volume, far-limb shading, head parallax, curl/strings secondary motion, weight shift, anticipation/overshoot, scene-reactive rim light), body turn via view copies with a 3/4 in-between, audio lip sync (lipsync.py), 15 cast roles + hair/hat/outfit/build/accessory options, y-sorted depth + distance scaling, real camera parallax (also on zoom), foreground silhouettes, depth blur, street life, time-of-day change inside a shot, rain fade-in + wet reflections, new alley + rooftop backgrounds, camera shot presets, whip/zoom/fade exits, 9:16 safe-zone lift + warnings. Proof: renders/Kit v2 test.mp4.
+Still weak (next): the body turn is a quick swap through a 3/4 frame, not a true morph; speech only works in a character's first view; pear characters got none of the v2 features; no true portrait-native street/room yet (only alley + rooftop); match cuts (an object carried across a cut) are not automatic; sound design is not in the pipeline; walking extras can still overlap if placed on the same line; lip sync is loudness only (no visemes).

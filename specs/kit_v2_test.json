@@ -1,0 +1,21 @@
+[
+ {"name":"s1-street","start":0,"dur":6.6,"type":"stage","bg":"street","time":"dusk","seed":5,
+  "timeShift":{"t":2.4,"dur":2.4,"to":"night"},"weather":"rain","weatherAt":3.2,"life":{"n":10},"fg":true,"dof":1.5,"depth":true,
+  "shots":[{"type":"track","on":"hero"}],
+  "chars":[
+   {"name":"hero","style":"mascot","x":700,"y":1040,"scale":1.6,"spin":[[0.45,"right"]],"walk":[0.9,6.4,780]},
+   {"name":"doc","role":"doctor","x":1150,"y":930,"scale":1.6,"arms":[[2.6,"r",-120],[3.6,"r",-10]]},
+   {"name":"cash","role":"cashier","x":1480,"y":1000,"scale":1.6,"arms":[[3.9,"l",140],[4.8,"l",10]]},
+   {"name":"kid","role":"kid","x":1900,"y":1060,"scale":1.6,"walk":[1.6,6.4,-520]}
+  ],
+  "out":{"kind":"whip","dir":1}},
+ {"name":"s2-alley","start":6.4,"dur":5.6,"type":"stage","bg":"alley","time":"night","seed":4,"in":{"kind":"whip","dir":1},
+  "light":{"rim":"#ff5fd2","fill":"#7ae0ff","side":"right"},"weather":"rain","fg":true,
+  "shots":[{"type":"push","on":"hero","t":0.5,"dur":4.6,"k":1.85}],
+  "chars":[
+   {"name":"pal","role":"friend","x":1070,"y":880,"scale":1.6,"arms":[[1.4,"r",-150],[2.4,"r",-10]]},
+   {"name":"hero","style":"mascot","x":950,"y":1010,"scale":1.7,"view":"back","spin":[[0.8,"front"]]}
+  ],
+  "say":[{"char":"hero","emotion":"shocked","from":2.2,"to":3.6,"zoom":false}],
+  "out":{"kind":"fade","dur":0.4}}
+]

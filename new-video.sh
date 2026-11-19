@@ -16,7 +16,7 @@ ORIGIN="$(git -C "$ANIM" remote get-url origin 2>/dev/null || true)"
 [ -n "$ORIGIN" ] && git -C "$DEST/Animation" remote set-url origin "$ORIGIN"
 # a clone only has committed files: carry over uncommitted kit edits too
 mkdir -p "$DEST/Animation/_base"
-for f in _kit/toon.js _kit/scenes.js _kit/world.js scene.py mount.py new-clip.sh render-clip.sh _base/package.json _base/hyperframes.json; do cp "$ANIM/$f" "$DEST/Animation/$f"; done
+for f in _kit/toon.js _kit/scenes.js _kit/world.js scene.py mount.py lipsync.py new-clip.sh render-clip.sh _base/package.json _base/hyperframes.json; do cp "$ANIM/$f" "$DEST/Animation/$f"; done
 cp "$ANIM/PROJECT_CLAUDE.md" "$DEST/CLAUDE.md"
 echo "Created: $DEST"
 echo "Next: put narration in 'Voice-overs Chunks', scripts in 'Transcript Chunks', open Claude in that folder, ask for clip 1."
