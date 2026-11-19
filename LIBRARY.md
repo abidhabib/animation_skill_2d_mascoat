@@ -15,6 +15,7 @@ Hero + cast: `chars:[{name,style:"mascot",x,y,scale,view,dir,walk:[t0,t1,dx],shi
 Crowd: `"crowd":{"n":22,"x0":0,"x1":1900,"y":820,"scale":0.8,"walk":[0,2],"seed":9,"still":false}` (varied mascots, mixed directions, never yellow).
 Group: `"group":{"n":5,"x":110,"dx":135,"y":1015,"hats":["bowler"],"walk":[0,2,500]}`.
 Talking: `"say":[{"char":"hero","emotion":"crying","at":"spoken phrase"}]`.
+Aging: `"age":0..70` on a mascot (15 first lines, 30 glasses + grey tufts, 50 grey brows + spots, 55+ cane, 60+ white hair, side/three-quarter views stoop). `cane:true/false` overrides. See docs/MASCOT_AGES.png.
 
 ## Look and light
 `"weather":"rain|snow|fog|sunrise|stars"`, `"exposure":0.3`, `"lights":[[x,y,r,opacity]]`, `"camMoves":[{t,dur,fx,fy,k}]`, `"theme":"google"`.

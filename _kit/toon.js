@@ -50,6 +50,17 @@
   function mascotChar(o) {
     const id = o.id, PI = '#2a1f3d', skin = o.skin || '#fff6ea', hood = o.shirt || '#ffc933', hoodDark = o.hoodDark || '#e09a00', pants = o.pants || '#2f2d5a';
     const view = o.view || 'front';
+    // ---- age: 0 = young; ~15 first lines, 30 glasses + grey tufts, 50 grey brows, 60+ white hair + cane + stoop ----
+    const age = o.age || 0, AT = Math.min(1, age / 70);
+    const canePath = `<path d="M0,-4 L0,92" stroke="${PI}" stroke-width="11" stroke-linecap="round"/><path d="M0,-4 L0,92" stroke="#b4783a" stroke-width="6" stroke-linecap="round"/><path d="M-15,-6 Q-15,-24 0,-24 Q15,-24 15,-8" fill="none" stroke="${PI}" stroke-width="11" stroke-linecap="round"/><path d="M-15,-6 Q-15,-24 0,-24 Q15,-24 15,-8" fill="none" stroke="#b4783a" stroke-width="6" stroke-linecap="round"/>`;
+    if ((o.cane || age >= 55) && o.cane !== false && !o.prop) o = Object.assign({}, o, { prop: { side: 'r', svg: canePath } });
+    const hairC = age >= 60 ? '#f2f0fa' : age >= 40 ? '#cfccdc' : '#a8a3bd', curlCol = age >= 20 ? hairC : PI, browCol = age >= 40 ? '#a29cbc' : PI;
+    const tuft = (x, s) => `<ellipse stroke="${PI}" stroke-width="4" stroke-linejoin="round" fill="${hairC}" cx="${x}" cy="-6" rx="17" ry="${(24 + AT * 6).toFixed(1)}" transform="rotate(${s * 14} ${x} -6)"/>`;
+    const tufts = age < 25 ? '' : view === 'side' ? tuft(-60, -1) : tuft(-62, -1) + tuft(62, 1);
+    const ageSkin = age >= 15 ? `<ellipse cx="0" cy="0" rx="68" ry="62" fill="#9a7a58" opacity="${(0.04 + 0.2 * AT).toFixed(2)}"/>${age >= 50 ? `<circle cx="-40" cy="-26" r="3.5" fill="#8a6540" opacity="0.7"/><circle cx="46" cy="-12" r="3" fill="#8a6540" opacity="0.7"/><circle cx="-22" cy="-44" r="2.5" fill="#8a6540" opacity="0.7"/>` : ''}` : '';
+    const wo = (0.18 + 0.6 * AT).toFixed(2), ww = (2.2 + 1.8 * AT).toFixed(1);
+    const ageFace = age >= 10 ? `<g fill="none" stroke="#5a4636" stroke-width="${ww}" stroke-linecap="round" opacity="${wo}"><path d="M-30,-48 Q-16,-54 -4,-48 M4,-48 Q16,-54 30,-48"/>${age >= 25 ? '<path d="M-44,-8 l-12,-5 M-44,-1 l-13,0 M-44,6 l-12,5 M44,-8 l12,-5 M44,-1 l13,0 M44,6 l12,5"/>' : ''}${age >= 35 ? '<path d="M-38,26 Q-22,36 -6,26 M6,26 Q22,36 38,26"/><path d="M-34,12 Q-44,28 -32,44 M34,12 Q44,28 32,44"/>' : ''}${age >= 55 ? '<path d="M-24,-58 Q0,-66 24,-58"/>' : ''}</g>` : '';
+    const stoop = view === 'side' ? 12 * AT : view === 'q3' ? 5 * AT : 0;
     const face = o.face == null ? 0.3 : o.face, fx = 12 * face, st = (w) => `stroke="${PI}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`;
     const leg = (side) => { const x = side === 'l' ? -20 : 20, dir = side === 'l' ? -1 : 1;
       return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}"><path d="M${x},-76 L${x},-16" fill="none" stroke="${PI}" stroke-width="20" stroke-linecap="round"/><path d="M${x},-76 L${x},-16" fill="none" stroke="${pants}" stroke-width="13" stroke-linecap="round"/>
@@ -82,8 +93,8 @@
     const mouthSvg = ['flat', 'smile', 'grin', 'open', 'frown', 'shock', 'wail', 'gritted', 'wave', 'smirk'].map((k) => `<g id="${id}-m-${k}" opacity="${k === mood ? 1 : 0}">${M(k)}</g>`).join('');
     const eye = (cx) => `<ellipse fill="#fff" stroke="${PI}" stroke-width="4" cx="${cx}" cy="0" rx="15" ry="19"/><path d="M${cx - 16},-6 Q${cx},-27 ${cx + 16},-6" fill="none" stroke="${PI}" stroke-width="6" stroke-linecap="round"/><path d="M${cx + (cx < 0 ? -16 : 16)},-6 l${cx < 0 ? -6 : 6},-5" stroke="${PI}" stroke-width="4.5" stroke-linecap="round"/>`;
     const pupil = (cx) => `<ellipse fill="${PI}" cx="${cx}" cy="2" rx="9" ry="12.5"/><circle fill="#fff" cx="${cx - 3.5}" cy="-4" r="4.2"/><circle fill="#fff" cx="${cx + 3.5}" cy="6" r="2"/>`;
-    const glasses = o.glasses ? `<g ${st(3.5)} fill="rgba(255,255,255,0.18)"><circle cx="${fx - 20}" cy="-2" r="20"/><circle cx="${fx + 20}" cy="-2" r="20"/><path fill="none" d="M${fx},-2 L${fx},-2"/></g>` : '';
-    const curl = o.curl === false ? '' : `<path ${st(5.5)} fill="none" d="M0,-58 C-4,-84 22,-98 30,-80 C36,-66 16,-62 18,-74"/>`;
+    const glasses = (o.glasses || (age >= 30 && o.glasses !== false)) ? `<g ${st(3.5)} fill="rgba(255,255,255,0.18)"><circle cx="${fx - 20}" cy="-2" r="20"/><circle cx="${fx + 20}" cy="-2" r="20"/><path fill="none" d="M${fx},-2 L${fx},-2"/></g>` : '';
+    const curl = o.curl === false ? '' : `<path stroke="${curlCol}" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M0,-58 C-4,-84 22,-98 30,-80 C36,-66 16,-62 18,-74"/>`;
 
     const heartP = (cx) => `<path d="M${cx},12 C${cx - 24},-6 ${cx - 14},-26 ${cx},-12 C${cx + 14},-26 ${cx + 24},-6 ${cx},12Z" fill="#ff4f9a" stroke="${PI}" stroke-width="3.5"/>`;
     const spiralP = (cx) => { let d = ''; for (let a = 0; a <= Math.PI * 6; a += 0.4) { const rr = 1.2 + a * 0.95; d += (a ? 'L' : 'M') + (cx + rr * Math.cos(a)).toFixed(1) + ',' + (rr * Math.sin(a)).toFixed(1); } return `<ellipse fill="#fff" stroke="${PI}" stroke-width="4" cx="${cx}" cy="0" rx="15" ry="19"/><path d="${d}" fill="none" stroke="${PI}" stroke-width="3.5" stroke-linecap="round"/>`; };
@@ -131,21 +142,22 @@
     const head = `<g transform="translate(0,-282) scale(1.22)"><g id="${id}-head">
         <defs><radialGradient id="${id}-hg" cx="0.38" cy="0.3" r="0.85"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="0.6" stop-color="${skin}" stop-opacity="0"/><stop offset="1" stop-color="#7a5fb0" stop-opacity="0.35"/></radialGradient></defs>
         ${curl}
-        <ellipse ${st(5)} fill="${skin}" cx="0" cy="0" rx="68" ry="62"/><ellipse cx="0" cy="0" rx="68" ry="62" fill="url(#${id}-hg)"/>
+        ${tufts}
+        <ellipse ${st(5)} fill="${skin}" cx="0" cy="0" rx="68" ry="62"/><ellipse cx="0" cy="0" rx="68" ry="62" fill="url(#${id}-hg)"/>${ageSkin}
         <path d="M52,-34 A68,62 0 0 1 56,34" fill="none" stroke="#8be9ff" stroke-width="5" stroke-linecap="round" opacity="0.75"/>
         ${ears}
         <g id="${id}-face" transform="${faceT}" opacity="${view === 'back' ? 0 : 1}">
         <ellipse cx="${fx - 42}" cy="22" rx="12" ry="7.5" fill="#ff8fb0" opacity="0.55"/><ellipse cx="${fx + 42}" cy="22" rx="12" ry="7.5" fill="#ff8fb0" opacity="0.55"/>
         <g id="${id}-eyes" transform="translate(${fx},-6)">${eye(-22)}${eye(22)}<g id="${id}-pupils">${pupil(-22)}${pupil(22)}</g></g>
-        <g id="${id}-brows" ${st(6)} fill="none"><path id="${id}-bl" d="M${fx - 38},-34 L${fx - 8},-38"/><path id="${id}-br" d="M${fx + 8},-38 L${fx + 38},-34"/></g>
-        ${altEyes}${mouthSvg}${glasses}</g>${nose}${fxSvg}
+        <g id="${id}-brows" stroke="${browCol}" stroke-width="${(6 + AT * 3).toFixed(1)}" stroke-linecap="round" stroke-linejoin="round" fill="none"><path id="${id}-bl" d="M${fx - 38},-34 L${fx - 8},-38"/><path id="${id}-br" d="M${fx + 8},-38 L${fx + 38},-34"/></g>
+        ${altEyes}${mouthSvg}${glasses}${ageFace}</g>${nose}${fxSvg}
       </g></g>`;
     const sc = o.scale || 1;
     return `<g id="${id}-pos"><g id="${id}" transform="translate(${o.x || 0},${o.y || 0}) scale(${(o.flip ? -1 : 1) * sc},${sc})">
       <ellipse fill="#000" opacity="0.22" cx="0" cy="3" rx="78" ry="13"/>
       ${legsV}
-      <g id="${id}-body">${armsV[0]}${torsoV}${armsV[1]}</g>
-      ${head}
+      <g transform="rotate(${stoop.toFixed(1)} 0 -70)"><g id="${id}-body">${armsV[0]}${torsoV}${armsV[1]}</g>
+      ${head}</g>
     </g></g>`;
   }
 
@@ -437,7 +449,6 @@
       shake(t, a) { tl.to(st, { keyframes: [{ dx: -a, dy: a * 0.7, duration: 0.05 }, { dx: a * 0.9, dy: -a * 0.6, duration: 0.05 }, { dx: -a * 0.6, dy: a * 0.4, duration: 0.05 }, { dx: 0, dy: 0, duration: 0.06 }], onUpdate: apply }, t); return this; },
     };
   }
-
 
   // ---------- expressions for the mascot: eyes + mouth + brows + effects in one call ----------
   const EXPR = {

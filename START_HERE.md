@@ -18,7 +18,7 @@ Then send `Animation/renders/Clip N.mp4` with SendUserFile. `new-clip.sh` copies
 Needs: Node (npx hyperframes), Python 3 (`python3` works in Git Bash), ffmpeg.
 
 ## 3. The library (`_kit/`)
-- **Hero**: `style:"mascot"` - cream head with a curl, glossy eyes, yellow hoodie. Views `front|q3|side|back`, `dir:"left|right|away|toward"`, walking `walk:[t0,t1,dx]`. 12 expressions via `say` (`happy joy love crying sad nervous scared angry dizzy mindblown shocked smug sleepy scream explain`). Pear characters (`style:"pear"`) = supporting cast (hats, moustache, glasses).
+- **Hero**: `style:"mascot"` - cream head with a curl, glossy eyes, yellow hoodie. Views `front|q3|side|back`, `dir:"left|right|away|toward"`, walking `walk:[t0,t1,dx]`. `age` option (grey hair, wrinkles, glasses, stoop, cane; docs/MASCOT_AGES.png) for Day-N aging, 12 expressions via `say` (`happy joy love crying sad nervous scared angry dizzy mindblown shocked smug sleepy scream explain`). Pear characters (`style:"pear"`) = supporting cast (hats, moustache, glasses).
 - **Talking close-ups**: `say:[{char,emotion,at:"spoken phrase"}]` -> face, brows, arms, mouth flaps, camera close-up with blurred+darkened background.
 - **Environments (`bg`)**: street (day/dusk/night), railway, harbor, dayCloud, buildSite, neonNight, officeNight, office1925, serverHall, bedroom, kitchen, classroom, hospital, livingRoom (day/night), factory, lab, stadium.
 - **Props**: car bus truck train plane bike boat (wheels spin), factoryLine robotArm serverRack labBench controlPanel.
@@ -31,7 +31,8 @@ Cheat sheet with JSON examples: `LIBRARY.md`. Picture catalog: `LIBRARY_CATALOG.
 ## 5. Voices (Fish Audio) - nothing generated yet
 `VOICES.md` has the 4 voice ids (mascot + 3 side voices), API cheat sheet, emotion-tag map. Other characters speak only a few short lines (<=8 words), so no more voices are needed. Do not generate audio without the user's go-ahead; API key only in env var `FISH_API_KEY`. Fish free plan is non-commercial; two voices imitate third-party IP - warn before monetised use.
 
-## 6. Titles / thumbnails
+## 6. Titles / thumbnails / script packaging
+Full playbook: `PACKAGING_PLAYBOOK.md`; script outline with timings: `SCRIPT_TEMPLATE.md`. The channel is NOT about tech/news (Nvidia was just video 1); it tests hypothetical-premise videos for maximum reach, without "What If" in every title.
 Skill section "Titles and thumbnails": rule + catch + specific number; title and thumbnail say different things; mascot big bottom-left, 2-4 giant words top (white + one yellow word), escalation split panels, one strong emotion, neon-purple/yellow palette (`neonNight`). Titles should not start with "What If".
 
 ## 7. GitHub backup
