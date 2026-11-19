@@ -32,3 +32,17 @@ Pay off the twist, then a sequel hook ("Three days later, a black car stops outs
 
 ## Testing plan
 3-5 videos with the same structure and different premises. Compare CTR and average view duration. Keep what wins, drop what loses. Re-test titles with Studio "Test & compare" when available.
+
+## Reference set 3: superpower channel (12 videos, 215K to 1M views in ~1 month; measured + seen, 2026-11-19)
+Titles (all "What IF You Could / Were X?"): one power + often a number: "10x Faster", "Stop Time", "Shapeshift", "See 10 Seconds Into the Future", "Teleport", "100x Stronger", "Indestructible", "Control Gravity", "Fly", "Shoot Webs", "Copy Powers", "1,000x Faster". 3-7 words, one verb, no subtitle. Lengths 5:28-22:06 (biggest = 1M at 10:19, so runtime is not the limiter). Universal powers (speed, time) beat niche ones in this sample; one channel, one month, so treat as a pattern to test.
+Thumbnails (measured): saturation 0.41-0.72 on neon-night backgrounds, but TWO thumbnails are near-white backgrounds (saturation 0.04-0.16, 62-77% bright) so they stand out in a dark feed; contrast sd 53-91; yellow 2-6% of the frame (the text word); dark pixels 31-73% on night scenes.
+Rules seen:
+1. Thumbnail text is a 2-word reaction or result, ending with a period, NOT the title: "TOO SLOW." "PAUSED." "I ALREADY WON." "TOO MUCH." "NO WINGS." "ONE SHOT." "MINE TOO." "NICE BOAT." First word white, second yellow, bottom-left, heavy dark outline.
+2. Show the aftermath or consequence (a crumpled truck, a wrecking ball cracking, a car left behind, a casino dealer stunned), not the power itself.
+3. One recurring hero (black round head, half-lidded smug eyes, blue hoodie), dynamic diagonal poses (running, punching, floating, arms crossed).
+4. A small second character reacts (shock, laughter) for scale and humour.
+5. Number badge top-right for multipliers (10x, 100x, 1,000x) in white with outline.
+6. Motion language: speed lines, glow trails, pixel dissolve, neon rim lights; props that show scale (car, truck, boat, wheel).
+7. Alternate dark neon-city thumbnails with a clean white one so the channel grid does not look identical.
+8. Series consistency: same mascot, palette, text placement, title grammar. This channel proves a uniform "What IF" series can work; the user prefers variety in titles, so keep the STRUCTURE (one power + number, 2-word reaction text) and vary the wording.
+Cautions: some of these thumbnails use a real person's face, a branded drink and a famous superhero suit. Do not copy likenesses, brands or other creators' characters; use original equivalents.
