@@ -30,6 +30,12 @@ Other characters speak only a few short lines per video (about 10% of words, 8 w
 - **Voices added 2026-11-19 (user said yes; nothing generated):** the hero id `3885...` is "Elliot" by Rameen Kaif, already in My Voices. The others are saved under **Bookmarks** (fish.audio/app/bookmarks/): `f79c...` = "Gregory" (anxious young; page tags say Female, description says young male), plus the user's own additions Max Goof, Twinko and Venti (ids in the cast table). Zoro and the Smash announcer are also bookmarked but EXCLUDED. Bookmarks have a "Use" button for Text to Speech / Voice Acting. "My Voices" (0/10 slots) is for the user's own cloned voices, so bookmarks are the right place for others' voices.
 - Heads-up: voices that imitate named characters (Max Goof, Venti) need a Fish terms / rights check before monetised use (see rights warning above).
 
+## Fish voice-over workflow (used for Short 1, 2026-11-19; user approved generation)
+1. Fish web app (built-in browser, user logged in): Voice Acting -> New scene -> **Paste script** with `ROLE: [emotion] line` per line -> Import -> set voices (Narrator = Elliot from Recently used/My Voices, others from Bookmarked or Default) -> Create scene -> scene note -> **Perform scene** (about 600 characters for a 45 s Short).
+2. Export -> tick **Scene mix** -> Export. The built-in browser pane does NOT save downloads to disk: ask the user to click Download (History tab) so the zip lands in Downloads.
+3. `python3 fishvo.py "<Downloads>/<date>_<scene>.zip" "Short 1"` cuts every line from the mix using manifest.csv, speeds Elliot to 1.2x, joins with 0.32 s pauses, normalises loudness, writes the voice-over + transcript.
+4. `bash new-clip.sh S1` times every word and builds the lip-sync envelope; build the spec with phrase timing; render.
+
 ## API cheat sheet
 - `POST https://api.fish.audio/v1/tts`, header `Authorization: Bearer $FISH_API_KEY`, optional header `model: s2.1-pro` (`s2.1-pro-free` for no-credit accounts). Key from fish.audio/app/developers/get-started/ - keep it in the environment variable `FISH_API_KEY`, never in files or chat.
 - Body: `{"text":"...","reference_id":"<id>","format":"mp3","prosody":{"speed":1.0,"volume":0},"temperature":0.7,"top_p":0.7}`

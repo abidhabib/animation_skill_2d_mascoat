@@ -25,8 +25,8 @@ pick() { # first file in dir $1 whose first number equals N (for a Short: file n
     fi
   done
 }
-VO=$(pick "$(ls -d "$VIDEO"/Voice*over* 2>/dev/null | head -1)")
-TX=$(pick "$(ls -d "$VIDEO"/Transcript* "$VIDEO"/Script* 2>/dev/null | head -1)")
+VO=$(pick "$(ls -d "$VIDEO"/Voice*over*/ 2>/dev/null | head -1)")   # folders only (a "Script - x.md" file must not match)
+TX=$(pick "$(ls -d "$VIDEO"/Transcript*/ "$VIDEO"/Script*/ 2>/dev/null | head -1)")
 SILENT="${SILENT:-}"   # SILENT=45 bash new-clip.sh S1  -> a silent clip of 45 s (no voice-over yet; time scenes by hand, add the voice later)
 if [ -z "$SILENT" ]; then
 [ -n "$VO" ] || { echo "no voice-over numbered $N"; exit 1; }
