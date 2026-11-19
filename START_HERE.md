@@ -7,6 +7,12 @@ Last updated 2026-11-19. If this file and the code disagree, trust the code and 
 - Scripts/titles: use the skill `/video-script-writer` (it reads PACKAGING_PLAYBOOK.md + SCRIPT_TEMPLATE.md + VOICES.md, never writes a script until asked). Typical first messages from the user: "Plan a video: <premise>" (-> `PACKAGING_PLAYBOOK.md` + `SCRIPT_TEMPLATE.md`: 10 titles, thumbnail concept, script outline), "Make clip N" (-> workflow in section 2), "Make a thumbnail for <title>" (-> `PACKAGING_PLAYBOOK.md` thumbnail rules + mascot; use `python3 Animation/thumb.py specs/thumb_xxx.json name` (see LIBRARY.md Thumbnails section)).
 - Read order: CLAUDE.md -> START_HERE.md -> LIBRARY.md (scenes, envs, props, mascot options) -> STYLE_RULES.md -> PACKAGING_PLAYBOOK.md -> VOICES.md. Pictures: LIBRARY_CATALOG.png and docs/.
 
+## 0b. CURRENT DEFAULTS (approved by the user 2026-11-19 after Short 1, "perfect") - follow these for every new video and Short
+- **Animation = KIT V2** (LIBRARY.md "KIT V2", "Cinematic shots, not slides", "User rules from Short 1 review"): 2.5D hero, cast `role`s, camera `shots`, zoom-through transitions, every narration beat shows its own picture, varied places, no random weather, 9:16 safe zone. Reference build: `specs/short1_v2.json` -> `renders/Short 1.mp4`.
+- **Voice-over = Fish Audio** (VOICES.md "HARD RULES", "DOWNLOADING", "Fish voice-over workflow"): Elliot = main character/narrator, generated in Text to Speech at Speed 1.2x with ONLY `[curious]` `[intrigued]` `[nervous]` `[serious, slow]` tags; CTA lines at 1.0x; other characters in their own voices at 1.0x; Claude downloads the audio itself (history audio links + curl), never asks the user; join, then `new-clip.sh` (word timing + lip sync).
+- **Every long video gets a companion Short** (PACKAGING_PLAYBOOK.md). Titles default to "What If You Could ...".
+- Kit/skill/doc updates are committed and pushed without asking (only this Animation repo).
+
 ## 1. What this project is
 A 2D cartoon YouTube explainer made with HyperFrames (HTML rendered to video). 32 clips, one per voice-over chunk (~30 s each).
 Clips 1-22 are hand-built (`clip-01`..`clip-22`); clips 23-32 were built from the scene library via `specs/clipN.json`. All rendered to `renders/Clip N.mp4`.
