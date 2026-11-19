@@ -68,6 +68,45 @@
     o.chars = (o.chars || []).concat(Array.from({ length: g.n }, (_, i) => ({ name: "g" + i, style: g.style || "pear", x: g.x + i * g.dx, y: g.y + (i % 2) * (g.stagger || 10), scale: (g.scale || 1) * (0.92 + r() * 0.16), face: g.face == null ? 0.6 : g.face, flip: !!g.flip, shirt: SHIRTS[Math.floor(r() * 8)], hair: HAIRS[Math.floor(r() * 6)], skin: SKINS[Math.floor(r() * 5)], hat: g.hats ? g.hats[Math.floor(r() * g.hats.length)] : undefined, hatCol: g.hatCol, glasses: r() > 0.7, stache: r() > 0.78, walk: g.walk ? [g.walk[0] + i * 0.06, g.walk[1], g.walk[2]] : undefined })));
   }
   function chars(o, sid) { return (o.chars || []).map((c, i) => T.char(Object.assign({ id: `${sid}-c${i}` }, c))).join(""); }
+
+  // ---------- number tags: a glowing number floating over a head (trust score, price, age ...) ----------
+  // spec: "tags":[{"ch":"hero"|index, "text":"62", "t":0.5, "to":[[2.0,"41"],[3.5,"31"]], "size":120, "col":"#5dffb0" (auto: >=70 green, 45-69 amber, <45 red), "dy":60, "x":..,"y":..}]
+  // The number pops in with a bounce, glows softly (finite pulse), and each "to" step swaps the value with a new pop and colour.
+  function tagCol(txt, c) { if (c) return c; const v = parseFloat(txt); if (isNaN(v)) return "#7dffea"; return v >= 70 ? "#5dffb0" : v >= 45 ? "#ffd24a" : "#ff6a5c"; }
+  function tagList(o) {
+    return (o.tags || []).map((g, i) => {
+      const ch = typeof g.ch === "number" ? (o.chars || [])[g.ch] : (o.chars || []).find((c) => c.name === g.ch), sc = ch ? (ch.scale || 1) : 1;
+      const x = g.x != null ? g.x : (ch ? ch.x || 0 : 960), y = g.y != null ? g.y : (ch ? (ch.y || 0) - 372 * sc - (g.dy == null ? 70 : g.dy) : 300);
+      const vals = [[g.t == null ? 0.3 : g.t, String(g.text)]].concat((g.to || []).map((a) => [a[0], String(a[1])]));
+      return { g, i, x, y, vals, size: g.size || 120 };
+    });
+  }
+  function tagsSvg(o, sid) {
+    const L = tagList(o); if (!L.length) return "";
+    let out = `<defs><filter id="${sid}-tgb" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter></defs>`;
+    L.forEach(({ g, i, x, y, vals, size }) => {
+      vals.forEach(([t, v], k) => {
+        const col = tagCol(v, g.col), w = Math.max(size * 1.1, v.length * size * 0.66 + 56), h = size * 1.12, fs = size;
+        out += `<g id="${sid}-tgv${i}_${k}" opacity="0"><g id="${sid}-tgg${i}_${k}"><rect x="${x - w / 2 - 6}" y="${y - h * 0.74 - 6}" width="${w + 12}" height="${h + 12}" rx="${h * 0.36}" fill="${col}" filter="url(#${sid}-tgb)"/>`
+          + `<text x="${x}" y="${y + fs * 0.34}" font-size="${fs}" text-anchor="middle" fill="${col}" filter="url(#${sid}-tgb)">${esc(v)}</text></g>`
+          + `<rect x="${x - w / 2}" y="${y - h * 0.74}" width="${w}" height="${h}" rx="${h * 0.34}" fill="#0b0620" fill-opacity="0.72" stroke="${col}" stroke-width="7"/>`
+          + `<text x="${x}" y="${y + fs * 0.34}" font-size="${fs}" text-anchor="middle" fill="#ffffff" stroke="#0b0620" stroke-width="${fs * 0.1}" paint-order="stroke" stroke-linejoin="round">${esc(v)}</text></g>`;
+      });
+    });
+    return out;
+  }
+  function tagsAnim(tl, o, sid, dur) {
+    tagList(o).forEach(({ i, x, y, vals }) => {
+      vals.forEach(([t, v], k) => {
+        const el = `#${sid}-tgv${i}_${k}`, gl = `#${sid}-tgg${i}_${k}`, end = k + 1 < vals.length ? vals[k + 1][0] : dur;
+        tl.fromTo(el, { opacity: 0, scale: 0.45, svgOrigin: `${x} ${y}` }, { opacity: 1, scale: 1, svgOrigin: `${x} ${y}`, duration: 0.42, ease: "back.out(2.6)", immediateRender: false }, t);
+        if (k + 1 < vals.length) tl.set(el, { opacity: 0 }, end);
+        const half = 0.6, reps = Math.max(1, Math.floor((end - t - 0.3) / half)) - 1;
+        tl.fromTo(gl, { opacity: 0.95 }, { opacity: 0.5, duration: half, ease: "sine.inOut", yoyo: true, repeat: reps, immediateRender: false }, t + 0.4);
+      });
+    });
+  }
+
   function animChars(tl, o, sid, dur) {
     (o.chars || []).forEach((c, i) => {
       const id = `${sid}-c${i}`;
@@ -594,7 +633,7 @@
     const WXk = o.weather && (typeof o.weather === "string" ? o.weather : o.weather.type), WX = WXk && WEATHER[WXk] ? WEATHER[WXk](sid, dur) : null;
     const RB = RICH[o.bg] ? RICH[o.bg](o.seed, o) : null;
     const back = RB ? DEFS + (RB.defs ? `<defs>${RB.defs}</defs>` : "") + `<g id="${sid}-far">${RB.far}</g><g id="${sid}-mid">${RB.mid}</g>${o.exposure ? `<rect x="-400" y="-400" width="2720" height="1880" fill="#2a1030" opacity="${o.exposure}"/>` : ""}${(o.lights || []).map((L) => `<circle cx="${L[0]}" cy="${L[1]}" r="${L[2]}" fill="url(#rb-glow)" opacity="${L[3] == null ? 0.7 : L[3]}"/>`).join("")}` : (o.bg === false ? "" : bg(o.bg || "teal", o.seed)) + (o.theme && THEMES[o.theme] ? THEMES[o.theme]() : "");
-    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : chars(o, sid)}${propsHtml(sid, o, true)}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? WX.svg : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}`;
+    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : chars(o, sid)}${propsHtml(sid, o, true)}${tagsSvg(o, sid)}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? WX.svg : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}`;
     const tl = gsap.timeline({ paused: true });
     const C = T.cam(tl, `#${sid}-cam`, Object.assign({ fx: 960, fy: 540, k: 1.04 }, o.cam || {}));
     if (RB) { tl.fromTo(`#${sid}-far`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); }
@@ -602,7 +641,7 @@
     (o.camMoves || []).forEach((m) => C.to(m.t, m.dur, { fx: m.fx, fy: m.fy, k: m.k }, m.ease));
     if (o.drift !== false && !o.say && !o.camMoves && o.type !== "mapTo") C.to(0.3, Math.max(0.5, dur / T.SLOW - 0.3), Object.assign({ k: 1.1, fx: 980 }, o.drift || {}), "sine.inOut");
     M.build(tl, ctx, C);
-    animChars(tl, o, sid, dur);
+    animChars(tl, o, sid, dur); tagsAnim(tl, o, sid, dur);
     applySay(tl, o, sid, C);
     animProps(tl, sid, o, dur); applyPoses(tl, o, sid); if (WX) WX.anim(tl);
     intro(tl, sid, o.in);

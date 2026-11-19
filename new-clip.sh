@@ -27,8 +27,11 @@ pick() { # first file in dir $1 whose first number equals N (for a Short: file n
 }
 VO=$(pick "$(ls -d "$VIDEO"/Voice*over* 2>/dev/null | head -1)")
 TX=$(pick "$(ls -d "$VIDEO"/Transcript* "$VIDEO"/Script* 2>/dev/null | head -1)")
+SILENT="${SILENT:-}"   # SILENT=45 bash new-clip.sh S1  -> a silent clip of 45 s (no voice-over yet; time scenes by hand, add the voice later)
+if [ -z "$SILENT" ]; then
 [ -n "$VO" ] || { echo "no voice-over numbered $N"; exit 1; }
 [ -n "$TX" ] || { echo "no script numbered $N"; exit 1; }
+fi
 [ -e "$P" ] && { echo "exists: $P"; exit 1; }
 
 mkdir -p "$P/compositions" "$P/assets/fonts"
@@ -41,10 +44,15 @@ if [ "$SHORT" = 1 ]; then
 else
   printf '{\n  "id": "clip-%s",\n  "name": "clip-%s"\n}\n' "$NN" "$NN" > "$P/meta.json"; W=1920; H=1080
 fi
-cp "$VO" "$P/assets/vo.mp3"
-cp "$TX" "$P/assets/script.txt"
-DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$P/assets/vo.mp3")
-ROOT=$(python3 -c "print(round($DUR + 0.5, 1))")
+if [ -z "$SILENT" ]; then
+  cp "$VO" "$P/assets/vo.mp3"
+  cp "$TX" "$P/assets/script.txt"
+  DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$P/assets/vo.mp3")
+  ROOT=$(python3 -c "print(round($DUR + 0.5, 1))")
+  AUDIO="<audio id=\"vo\" class=\"clip\" src=\"assets/vo.mp3\" data-start=\"0\" data-duration=\"$DUR\" data-track-index=\"10\" data-volume=\"1\"></audio>"
+else
+  DUR="$SILENT"; ROOT="$SILENT"; AUDIO=""
+fi
 
 cat > "$P/index.html" <<EOF
 <!doctype html>
@@ -68,7 +76,7 @@ cat > "$P/index.html" <<EOF
     <!-- Clip $N. Scenes overlap ~0.3 s; the incoming scene (higher z-index) plays the transition. -->
     <div id="root" data-composition-id="main" data-start="0" data-duration="$ROOT" data-width="$W" data-height="$H">
       <!-- SCENES -->
-      <audio id="vo" class="clip" src="assets/vo.mp3" data-start="0" data-duration="$DUR" data-track-index="10" data-volume="1"></audio>
+      $AUDIO
     </div>
     <script>
       window.__timelines = window.__timelines || {};
@@ -79,6 +87,7 @@ cat > "$P/index.html" <<EOF
 EOF
 
 echo "== clip $N  →  $P"
+if [ -n "$SILENT" ]; then echo "== silent clip, $SILENT s (no voice-over). Scene times are hand-set."; exit 0; fi
 echo "== voice: $(basename "$VO")  ($DUR s, root $ROOT s)"
 echo "== words (word@seconds):"
 (cd "$P/assets" && "$PY" "$KIT/words.py" vo.mp3 script.txt) | grep -v '^wrote'

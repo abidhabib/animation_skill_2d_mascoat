@@ -1,0 +1,340 @@
+[
+ {
+  "name": "s1-roomie",
+  "start": 0,
+  "dur": 4.6,
+  "type": "stage",
+  "bg": "kitchen",
+  "drift": false,
+  "cam": {
+   "fx": 960,
+   "fy": 560,
+   "k": 1.0
+  },
+  "chars": [
+   {
+    "name": "roomie",
+    "style": "mascot",
+    "x": 960,
+    "y": 1040,
+    "scale": 1.75,
+    "vol": true,
+    "shirt": "#5aa0e0",
+    "hoodDark": "#2d5f96"
+   }
+  ],
+  "tags": [
+   {
+    "ch": "roomie",
+    "text": "62",
+    "t": 0.35,
+    "size": 130
+   }
+  ],
+  "time": "day",
+  "extra": "<g font-family='Kalam' font-weight='700' text-anchor='middle'><rect x='700' y='60' width='520' height='170' rx='34' fill='#0b0620' opacity='0.6'/><text x='960' y='132' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='8' paint-order='stroke'>HOW MUCH THEY</text><text x='960' y='214' font-size='84' fill='#ffd400' stroke='#0b0620' stroke-width='9' paint-order='stroke'>TRUST YOU</text></g>"
+ },
+ {
+  "name": "s2-boss",
+  "start": 4.4,
+  "dur": 4.2,
+  "type": "stage",
+  "bg": "officeNight",
+  "drift": false,
+  "cam": {
+   "fx": 960,
+   "fy": 560,
+   "k": 1.0
+  },
+  "chars": [
+   {
+    "name": "boss",
+    "style": "mascot",
+    "x": 960,
+    "y": 1040,
+    "scale": 1.75,
+    "vol": true,
+    "shirt": "#3a3f5c",
+    "hoodDark": "#252840"
+   }
+  ],
+  "tags": [
+   {
+    "ch": "boss",
+    "text": "71",
+    "t": 0.3,
+    "size": 130
+   }
+  ],
+  "in": {
+   "kind": "whip"
+  }
+ },
+ {
+  "name": "s3-dad",
+  "start": 8.4,
+  "dur": 3.9,
+  "type": "stage",
+  "bg": "livingRoom",
+  "drift": false,
+  "cam": {
+   "fx": 960,
+   "fy": 560,
+   "k": 1.0
+  },
+  "chars": [
+   {
+    "name": "dad",
+    "style": "mascot",
+    "x": 960,
+    "y": 1040,
+    "scale": 1.75,
+    "vol": true,
+    "shirt": "#8a5a3c",
+    "hoodDark": "#5e3b25"
+   }
+  ],
+  "tags": [
+   {
+    "ch": "dad",
+    "text": "100",
+    "t": 0.3,
+    "size": 130
+   }
+  ],
+  "time": "day",
+  "in": {
+   "kind": "whip"
+  }
+ },
+ {
+  "name": "s4-sam",
+  "start": 12.1,
+  "dur": 9.6,
+  "type": "stage",
+  "bg": "street",
+  "drift": false,
+  "cam": {
+   "fx": 960,
+   "fy": 560,
+   "k": 1.0
+  },
+  "chars": [
+   {
+    "name": "sam",
+    "style": "mascot",
+    "x": 960,
+    "y": 1040,
+    "scale": 1.75,
+    "vol": true,
+    "shirt": "#4fb286",
+    "hoodDark": "#2f7a5a"
+   }
+  ],
+  "tags": [
+   {
+    "ch": "sam",
+    "text": "41",
+    "t": 0.6,
+    "size": 130
+   }
+  ],
+  "time": "day",
+  "in": {
+   "kind": "whip"
+  },
+  "extra": "<g font-family='Kalam' font-weight='700' text-anchor='middle'><rect x='700' y='60' width='520' height='170' rx='34' fill='#0b0620' opacity='0.6'/><text x='960' y='132' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='8' paint-order='stroke'>BEST FRIEND</text><text x='960' y='214' font-size='76' fill='#ffd400' stroke='#0b0620' stroke-width='9' paint-order='stroke'>OF 12 YEARS</text></g>",
+  "say": [
+   {
+    "char": "sam",
+    "emotion": "nervous",
+    "from": 3.6,
+    "to": 6.4,
+    "zoom": false
+   }
+  ]
+ },
+ {
+  "name": "s5-why",
+  "start": 21.5,
+  "dur": 8.0,
+  "type": "pop",
+  "bg": "night",
+  "in": {
+   "kind": "zoom",
+   "at": [
+    960,
+    540
+   ]
+  },
+  "items": [
+   {
+    "text": "NO BETRAYAL.",
+    "x": 960,
+    "y": 430,
+    "fs": 68,
+    "rot": -3,
+    "t": 0.4
+   },
+   {
+    "text": "CANCELLED",
+    "x": 960,
+    "y": 660,
+    "fs": 88,
+    "card": "#f2c14e",
+    "rot": 2,
+    "t": 2.0
+   },
+   {
+    "text": "4 TIMES",
+    "x": 960,
+    "y": 830,
+    "fs": 108,
+    "card": "#f2c14e",
+    "t": 2.6
+   },
+   {
+    "text": "FORGOT $200",
+    "x": 960,
+    "y": 1000,
+    "fs": 72,
+    "card": "#dff3ff",
+    "t": 4.6
+   }
+  ]
+ },
+ {
+  "name": "s6-rule",
+  "start": 29.3,
+  "dur": 6.3,
+  "type": "pop",
+  "bg": "blue",
+  "in": {
+   "kind": "vwhip"
+  },
+  "items": [
+   {
+    "text": "TRUST IS NOT",
+    "x": 960,
+    "y": 400,
+    "fs": 68,
+    "t": 0.4
+   },
+   {
+    "text": "WHAT YOU DO",
+    "x": 960,
+    "y": 540,
+    "fs": 72,
+    "t": 1.0
+   },
+   {
+    "text": "FOR PEOPLE.",
+    "x": 960,
+    "y": 680,
+    "fs": 72,
+    "t": 1.4
+   },
+   {
+    "text": "IT IS DOING",
+    "x": 960,
+    "y": 860,
+    "fs": 72,
+    "card": "#f2c14e",
+    "t": 3.0
+   },
+   {
+    "text": "WHAT YOU SAID.",
+    "x": 960,
+    "y": 1000,
+    "fs": 58,
+    "card": "#f2c14e",
+    "t": 3.6
+   }
+  ]
+ },
+ {
+  "name": "s7-mirror",
+  "start": 35.4,
+  "dur": 6.2,
+  "type": "stage",
+  "bg": "bedroom",
+  "drift": false,
+  "cam": {
+   "fx": 960,
+   "fy": 560,
+   "k": 1.0
+  },
+  "chars": [
+   {
+    "name": "hero",
+    "style": "mascot",
+    "x": 960,
+    "y": 1040,
+    "scale": 1.75,
+    "vol": true,
+    "turns": [
+     [
+      1.0,
+      0.8,
+      0.0
+     ]
+    ]
+   }
+  ],
+  "tags": [
+   {
+    "ch": "hero",
+    "text": "?",
+    "t": 2.0,
+    "size": 150,
+    "col": "#c9a6ff"
+   }
+  ],
+  "time": "night",
+  "in": {
+   "kind": "whip"
+  },
+  "extra": "<g font-family='Kalam' font-weight='700' text-anchor='middle'><rect x='700' y='60' width='520' height='170' rx='34' fill='#0b0620' opacity='0.6'/><text x='960' y='132' font-size='50' fill='#fff' stroke='#0b0620' stroke-width='8' paint-order='stroke'>THE LOWEST NUMBER</text><text x='960' y='214' font-size='84' fill='#ffd400' stroke='#0b0620' stroke-width='9' paint-order='stroke'>IS YOURS.</text></g>",
+  "say": [
+   {
+    "char": "hero",
+    "emotion": "scared",
+    "from": 0.6,
+    "to": 2.6,
+    "zoom": false
+   }
+  ]
+ },
+ {
+  "name": "s8-end",
+  "start": 41.4,
+  "dur": 3.6,
+  "type": "pop",
+  "bg": "night",
+  "in": {
+   "kind": "iris",
+   "at": [
+    960,
+    540
+   ]
+  },
+  "items": [
+   {
+    "text": "FULL STORY",
+    "x": 960,
+    "y": 520,
+    "fs": 90,
+    "rot": -3,
+    "t": 0.3
+   },
+   {
+    "text": "ON MY CHANNEL",
+    "x": 960,
+    "y": 720,
+    "fs": 62,
+    "card": "#f2c14e",
+    "t": 1.0
+   }
+  ]
+ }
+]
