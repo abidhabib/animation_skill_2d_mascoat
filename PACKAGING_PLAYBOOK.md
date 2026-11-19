@@ -5,7 +5,8 @@ Measure in YouTube Studio: click-through rate (title + thumbnail) and average vi
 
 ## The genre (works without the words "What If")
 Hypothetical premise + a rule that repeats and grows ("every day") + a catch/cost + step-by-step escalation (Day 1 -> Day 30) + the viewer is "you".
-Titles: start roughly 50/50 with and without "What If" (reference data in set 4 favours "What If" for core premise videos), then follow the channel's own CTR. Keep one consistent series look so the channel is recognisable.
+Titles: **DECISION 2026-11-19 (user): the channel uses "What If You Could ..." as the default title style** (reference set 4: the winning channels do the same, and non-"What If" titles mostly landed lower). Only use a no-"What If" title when the user asks, or when a number/twist title ("Day 26 Broke Me") clearly beats it; still follow the channel's own CTR in YouTube Studio. Keep one consistent series look (same mascot, palette, thumbnail text placement, title grammar) so the channel is recognisable.
+**Current topic (Video 2, user's choice 2026-11-19, length 7-7:50 min): "What If You Could See How Much Everyone Trusts You?"** Trust number floats over every head (use the `thumb`/badge number style); hero walks street, office, family dinner, crowd; payoff = the friend's number is lower than expected and a parent's is 100. New attribute (trust) of the proven "see everyone's [attribute]" template, not a reword of the IQ video. Backups: "What If Every Lie You Told Showed as a Number?", "What If You Could Rewind 10 Seconds, 10 Times?". The older draft "You Age 1 Year Every Day" is parked for later.
 
 ## Title formulas (under ~60 characters; title says the rule, thumbnail shows the result)
 number + rule - you are the character - day count - the catch - forbidden/secret - contrast - question without "what if" - bold claim then proof - timeline.
