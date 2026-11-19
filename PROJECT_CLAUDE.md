@@ -1,6 +1,6 @@
 # YouTube explainer project - read this first
 
-This folder is the user's 2D cartoon YouTube explainer (32 clips, one per voice-over chunk). Everything reusable lives in `Animation/`.
+This folder is one video project of the user's 2D cartoon YouTube channel (one clip per voice-over chunk; clip numbers start at 1 in every video). Everything reusable lives in `Animation/` (a clone of the shared kit; `git pull` there brings kit upgrades).
 **Full briefing: `Animation/START_HERE.md`.** Skill: `/cartoon-explainer-clip` (installed in `~/.claude/skills/`).
 
 ## Working rules (the user's preferences)

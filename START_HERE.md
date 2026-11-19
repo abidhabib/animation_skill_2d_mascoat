@@ -50,5 +50,5 @@ Repo: https://github.com/abidhabib/animation_skill_2d_mascoat (root = this `Anim
 - `scene.py` copies `scenes.js` only; copy `toon.js` yourself when it changed.
 - Seek-safe only: no `Math.random` (use `T.rng(seed)`), finite `repeat`, no timers.
 - Windows: patch big files with a Python script saved via the Write tool (heredocs with quotes can break); ffmpeg `drawtext` breaks on `%` and `:` in text and needs `fontfile='C\:/Windows/Fonts/arial.ttf'`.
-- Test clips: build as `clip-90+` and delete afterwards; never reuse numbers 1-32.
+- Test clips: build as `clip-90+` and delete afterwards; use numbers 90+ inside any project.
 - The lint warning about a template-literal selector in render output is old and harmless.
