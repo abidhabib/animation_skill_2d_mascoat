@@ -76,21 +76,21 @@
   function tagList(o) {
     return (o.tags || []).map((g, i) => {
       const ch = typeof g.ch === "number" ? (o.chars || [])[g.ch] : (o.chars || []).find((c) => c.name === g.ch), sc = ch ? (ch.scale || 1) : 1;
-      const x = g.x != null ? g.x : (ch ? ch.x || 0 : 960), y = g.y != null ? g.y : (ch ? (ch.y || 0) - 372 * sc - (g.dy == null ? 70 : g.dy) : 300);
+      const x = g.x != null ? g.x : (ch ? ch.x || 0 : 960), y = g.y != null ? g.y : (ch ? (ch.y || 0) - (ch.style === "mascot" ? 372 : 335) * sc - (g.dy == null ? 70 : g.dy) : 300);
       const vals = [[g.t == null ? 0.3 : g.t, String(g.text)]].concat((g.to || []).map((a) => [a[0], String(a[1])]));
       return { g, i, x, y, vals, size: g.size || 120 };
     });
   }
   function tagsSvg(o, sid) {
     const L = tagList(o); if (!L.length) return "";
-    let out = `<defs><filter id="${sid}-tgb" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter></defs>`;
+    let out = `<defs><filter id="${sid}-tgb" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="14"/></filter><filter id="${sid}-tgb2" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter></defs>`;
     L.forEach(({ g, i, x, y, vals, size }) => {
       vals.forEach(([t, v], k) => {
-        const col = tagCol(v, g.col), w = Math.max(size * 1.1, v.length * size * 0.66 + 56), h = size * 1.12, fs = size;
-        out += `<g id="${sid}-tgv${i}_${k}" opacity="0"><g id="${sid}-tgg${i}_${k}"><rect x="${x - w / 2 - 6}" y="${y - h * 0.74 - 6}" width="${w + 12}" height="${h + 12}" rx="${h * 0.36}" fill="${col}" filter="url(#${sid}-tgb)"/>`
-          + `<text x="${x}" y="${y + fs * 0.34}" font-size="${fs}" text-anchor="middle" fill="${col}" filter="url(#${sid}-tgb)">${esc(v)}</text></g>`
-          + `<rect x="${x - w / 2}" y="${y - h * 0.74}" width="${w}" height="${h}" rx="${h * 0.34}" fill="#0b0620" fill-opacity="0.72" stroke="${col}" stroke-width="7"/>`
-          + `<text x="${x}" y="${y + fs * 0.34}" font-size="${fs}" text-anchor="middle" fill="#ffffff" stroke="#0b0620" stroke-width="${fs * 0.1}" paint-order="stroke" stroke-linejoin="round">${esc(v)}</text></g>`;
+        const col = tagCol(v, g.col), fs = size, ty = y + fs * 0.34;
+        out += `<g id="${sid}-tgv${i}_${k}" opacity="0"><g id="${sid}-tgg${i}_${k}">`
+          + `<text x="${x}" y="${ty}" font-size="${fs * 1.08}" text-anchor="middle" fill="${col}" stroke="${col}" stroke-width="${fs * 0.16}" stroke-linejoin="round" filter="url(#${sid}-tgb)">${esc(v)}</text></g>`
+          + `<text x="${x}" y="${ty}" font-size="${fs}" text-anchor="middle" fill="${col}" stroke="${col}" stroke-width="${fs * 0.05}" stroke-linejoin="round" opacity="0.9" filter="url(#${sid}-tgb2)">${esc(v)}</text>`
+          + `<text x="${x}" y="${ty}" font-size="${fs}" text-anchor="middle" fill="#ffffff" stroke="#0b0620" stroke-width="${fs * 0.07}" paint-order="stroke" stroke-linejoin="round">${esc(v)}</text></g>`;
       });
     });
     return out;

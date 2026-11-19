@@ -14,13 +14,14 @@
   "chars": [
    {
     "name": "roomie",
-    "style": "mascot",
+    "style": "pear",
     "x": 960,
     "y": 1040,
-    "scale": 1.75,
-    "vol": true,
-    "shirt": "#5aa0e0",
-    "hoodDark": "#2d5f96"
+    "scale": 1.9,
+    "hair": "short",
+    "hairCol": "#4a2e1c",
+    "skin": "#f0c8a0",
+    "shirt": "#e0562f"
    }
   ],
   "tags": [
@@ -28,7 +29,7 @@
     "ch": "roomie",
     "text": "62",
     "t": 0.35,
-    "size": 130
+    "size": 150
    }
   ],
   "time": "day",
@@ -49,13 +50,16 @@
   "chars": [
    {
     "name": "boss",
-    "style": "mascot",
+    "style": "pear",
     "x": 960,
     "y": 1040,
-    "scale": 1.75,
-    "vol": true,
-    "shirt": "#3a3f5c",
-    "hoodDark": "#252840"
+    "scale": 1.9,
+    "hair": "short",
+    "hairCol": "#8d8d95",
+    "skin": "#e8b98f",
+    "suit": "#2b3350",
+    "tie": "#c0392b",
+    "stache": true
    }
   ],
   "tags": [
@@ -63,7 +67,7 @@
     "ch": "boss",
     "text": "71",
     "t": 0.3,
-    "size": 130
+    "size": 150
    }
   ],
   "in": {
@@ -85,13 +89,16 @@
   "chars": [
    {
     "name": "dad",
-    "style": "mascot",
+    "style": "pear",
     "x": 960,
     "y": 1040,
-    "scale": 1.75,
-    "vol": true,
-    "shirt": "#8a5a3c",
-    "hoodDark": "#5e3b25"
+    "scale": 1.9,
+    "hair": "short",
+    "hairCol": "#c9c9d0",
+    "skin": "#eab88c",
+    "shirt": "#6b7f5a",
+    "stache": true,
+    "glasses": true
    }
   ],
   "tags": [
@@ -99,7 +106,7 @@
     "ch": "dad",
     "text": "100",
     "t": 0.3,
-    "size": 130
+    "size": 150
    }
   ],
   "time": "day",
@@ -122,13 +129,14 @@
   "chars": [
    {
     "name": "sam",
-    "style": "mascot",
+    "style": "pear",
     "x": 960,
     "y": 1040,
-    "scale": 1.75,
-    "vol": true,
-    "shirt": "#4fb286",
-    "hoodDark": "#2f7a5a"
+    "scale": 1.9,
+    "hair": "short",
+    "hairCol": "#1d1410",
+    "skin": "#c68a5b",
+    "shirt": "#4fb286"
    }
   ],
   "tags": [
@@ -136,7 +144,7 @@
     "ch": "sam",
     "text": "41",
     "t": 0.6,
-    "size": 130
+    "size": 150
    }
   ],
   "time": "day",
@@ -171,7 +179,7 @@
    {
     "text": "NO BETRAYAL.",
     "x": 960,
-    "y": 430,
+    "y": 255,
     "fs": 68,
     "rot": -3,
     "t": 0.4
@@ -179,7 +187,7 @@
    {
     "text": "CANCELLED",
     "x": 960,
-    "y": 660,
+    "y": 485,
     "fs": 88,
     "card": "#f2c14e",
     "rot": 2,
@@ -188,7 +196,7 @@
    {
     "text": "4 TIMES",
     "x": 960,
-    "y": 830,
+    "y": 655,
     "fs": 108,
     "card": "#f2c14e",
     "t": 2.6
@@ -196,7 +204,7 @@
    {
     "text": "FORGOT $200",
     "x": 960,
-    "y": 1000,
+    "y": 825,
     "fs": 72,
     "card": "#dff3ff",
     "t": 4.6
@@ -216,28 +224,28 @@
    {
     "text": "TRUST IS NOT",
     "x": 960,
-    "y": 400,
+    "y": 250,
     "fs": 68,
     "t": 0.4
    },
    {
     "text": "WHAT YOU DO",
     "x": 960,
-    "y": 540,
+    "y": 390,
     "fs": 72,
     "t": 1.0
    },
    {
     "text": "FOR PEOPLE.",
     "x": 960,
-    "y": 680,
+    "y": 530,
     "fs": 72,
     "t": 1.4
    },
    {
     "text": "IT IS DOING",
     "x": 960,
-    "y": 860,
+    "y": 710,
     "fs": 72,
     "card": "#f2c14e",
     "t": 3.0
@@ -245,7 +253,7 @@
    {
     "text": "WHAT YOU SAID.",
     "x": 960,
-    "y": 1000,
+    "y": 850,
     "fs": 58,
     "card": "#f2c14e",
     "t": 3.6
@@ -286,7 +294,7 @@
     "ch": "hero",
     "text": "?",
     "t": 2.0,
-    "size": 150,
+    "size": 170,
     "col": "#c9a6ff"
    }
   ],
@@ -322,7 +330,7 @@
    {
     "text": "FULL STORY",
     "x": 960,
-    "y": 520,
+    "y": 470,
     "fs": 90,
     "rot": -3,
     "t": 0.3
@@ -330,7 +338,7 @@
    {
     "text": "ON MY CHANNEL",
     "x": 960,
-    "y": 720,
+    "y": 640,
     "fs": 62,
     "card": "#f2c14e",
     "t": 1.0
