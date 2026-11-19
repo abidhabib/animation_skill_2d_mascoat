@@ -18,5 +18,8 @@ Talking: `"say":[{"char":"hero","emotion":"crying","at":"spoken phrase"}]`.
 Semi-3D: `"vol":true` on a mascot (form shading, specular highlights, rim lights, chin/ground shadows; see docs/SEMI3D_BEFORE_AFTER.png). Head turn: `"turns":[[t,dur,yaw,fromYaw]]` with yaw -1 (left) .. 0 (front) .. 1 (right), see docs/HEAD_TURN.png; or call `T.turn(tl,id,t,dur,yaw)`.
 Aging: `"age":0..70` on a mascot (15 first lines, 30 glasses + grey tufts, 50 grey brows + spots, 55+ cane, 60+ white hair, side/three-quarter views stoop). `cane:true/false` overrides. See docs/MASCOT_AGES.png.
 
+## Thumbnails (`python3 thumb.py specs/thumb_foo.json name` -> thumbnails/name.png 1920x1080 + name_1280x720.jpg)
+Spec = one scene with `"type":"thumb"`: `bg` (any env, or `white`), `text` (`["TOO","SLOW."]` or "TOO SLOW."; last word yellow, `accent` recolours, `textPos` bl|br|tl|tr, `textSize`, `textRot`), `badge` ("10x", `badgeCol`, `badgeSize`, `badgeX/Y`), `lines` (speed lines `{dir:"left|right",col,n}`), `glow` (`{x,y,r,col}`), `burst` (impact star), `arrow` (`{x,y,rot,k,col}`), `props` (vehicles etc, `rot` tilts a prop), `chars` with `pose` (`run punch float cross point shock stand`; mascots get `vol:true` shading automatically) and `say` for the face (`smug`, `shocked`...). Examples: `specs/thumb_example_speed.json`, `specs/thumb_example_white.json`; pictures `docs/THUMB_EXAMPLE_*.jpg`. Thumbnail rules: `PACKAGING_PLAYBOOK.md` (2-word reaction text that is NOT the title, aftermath not the power, number badge, alternate dark neon and white backgrounds).
+
 ## Look and light
 `"weather":"rain|snow|fog|sunrise|stars"`, `"exposure":0.3`, `"lights":[[x,y,r,opacity]]`, `"camMoves":[{t,dur,fx,fy,k}]`, `"theme":"google"`.

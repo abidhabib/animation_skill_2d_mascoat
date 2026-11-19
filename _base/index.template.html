@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="assets/world.js"></script>
+    <script src="assets/toon.js"></script>
+    <script src="assets/scenes.js"></script>
+    <style>
+      @font-face { font-family: "Kalam"; src: url("assets/fonts/kalam-700.woff2") format("woff2"); font-weight: 700; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #1b1a1f; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      #root > div { filter: saturate(0.85) contrast(1.06); }
+    </style>
+  </head>
+  <body>
+    <!-- thumbnail. Scenes overlap ~0.3 s; the incoming scene (higher z-index) plays the transition. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="1.2" data-width="1920" data-height="1080">
+      <!-- SCENES -->
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

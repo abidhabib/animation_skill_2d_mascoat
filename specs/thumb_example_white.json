@@ -1,0 +1,51 @@
+{
+ "type": "thumb",
+ "bg": "white",
+ "text": [
+  "NOT A",
+  "SCRATCH."
+ ],
+ "textPos": "bl",
+ "badge": "100x",
+ "badgeCol": "#ffd400",
+ "props": [
+  {
+   "type": "truck",
+   "x": 760,
+   "y": 900,
+   "scale": 1.25,
+   "col": "#d23a2e",
+   "rot": -14,
+   "label": "CRUSHED",
+   "dir": "right"
+  }
+ ],
+ "burst": {
+  "x": 1010,
+  "y": 470,
+  "r": 170,
+  "col": "#ffd400"
+ },
+ "chars": [
+  {
+   "name": "hero",
+   "style": "mascot",
+   "x": 1420,
+   "y": 1190,
+   "scale": 2.5,
+   "pose": "cross",
+   "face": 0.0,
+   "hoodDark": "#1f3fa0",
+   "shirt": "#2f6bff"
+  }
+ ],
+ "say": [
+  {
+   "char": "hero",
+   "emotion": "smug",
+   "from": 0.1,
+   "to": 0.2,
+   "zoom": false
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+{"type":"thumb","bg":"street","time":"night","seed":4,"text":["TOO","SLOW."],"badge":"10x",
+ "lines":{"dir":"left","col":"#bff6ff","n":18},"glow":{"x":1250,"y":560,"r":620,"col":"#4fe8ff"},
+ "props":[{"type":"car","x":520,"y":930,"scale":1.7,"col":"#e0402f","beam":true,"dir":"right"}],
+ "chars":[{"name":"hero","style":"mascot","x":1330,"y":1190,"scale":2.7,"pose":"run","face":0.3}],
+ "say":[{"char":"hero","emotion":"smug","from":0.1,"to":0.2,"zoom":false}]}

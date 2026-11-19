@@ -54,6 +54,8 @@
   function prepChars(o) {
     (o.chars || []).forEach((c) => {
       if (c.style !== "mascot") return;
+      if (o.type === "thumb" && c.vol == null) c.vol = true;
+      if (c.pose && POSES[c.pose] && POSES[c.pose].side && !c.dir && !c.view) c.dir = "right";
       if (c.walk && !c.dir && !c.view) c.dir = c.walk[2] >= 0 ? "right" : "left";
       if (c.dir === "left") { c.view = "side"; c.flip = true; } else if (c.dir === "right") { c.view = "side"; c.flip = false; } else if (c.dir === "away") c.view = "back"; else if (c.dir === "toward") c.view = "front";
     });
@@ -488,7 +490,7 @@
   function propSvg(sid, p, i) {
     p._id = `${sid}-p${i}`; const dir = p.dir || (p.move && p.move[2] < 0 ? "left" : "right"), k = p.scale || 1, sx = (dir === "left" ? -1 : 1) * k;
     if (!PROPS[p.type]) throw new Error("unknown prop " + p.type);
-    return `<g id="${p._id}-pos"><g transform="translate(${p.x || 0},${p.y || 0}) scale(${sx},${k})"><g id="${p._id}">${PROPS[p.type](p)}</g></g></g>`;
+    return `<g id="${p._id}-pos"><g transform="translate(${p.x || 0},${p.y || 0}) rotate(${p.rot || 0}) scale(${sx},${k})"><g id="${p._id}">${PROPS[p.type](p)}</g></g></g>`;
   }
   const propsHtml = (sid, o, front) => (o.props || []).map((p, i) => ((!!p.front) === front ? propSvg(sid, p, i) : "")).join("");
   function animProps(tl, sid, o, dur) {
@@ -550,6 +552,39 @@
     stars: (sid, dur) => { const r = T.rng(13); const st = Array.from({ length: 70 }, (_, i) => `<circle class="${sid}-st${i % 6}" cx="${(r() * 1900 + 10).toFixed(0)}" cy="${(r() * 300 + 8).toFixed(0)}" r="${(1.5 + r() * 3).toFixed(1)}" fill="#fff"/>`).join(""); return { svg: `<g opacity="0.95">${st}<path d="M1700,90 a56,56 0 1,0 40,90 a44,44 0 1,1 -40,-90Z" fill="#fbf3c8"/></g>`, anim: (tl) => { for (let k = 0; k < 6; k++) tl.fromTo(`.${sid}-st${k}`, { opacity: 0.25 }, { opacity: 1, duration: 0.5 + k * 0.17, ease: "sine.inOut", yoyo: true, repeat: Math.ceil(dur / (0.5 + k * 0.17)) }, k * 0.11); } }; },
   };
 
+
+  // =====================================================================================
+  // THUMBNAIL scene type: hero + 2-word reaction text (last word yellow) + number badge + speed lines + glow
+  // spec: {"type":"thumb","bg":...,"text":["TOO","SLOW."],"badge":"10x","lines":{"dir":"left"},"glow":{x,y,r,col},"arrow":{x,y,rot},"burst":{x,y,r},"chars":[{...,"pose":"run"}]}
+  // =====================================================================================
+  RICH.white = () => ({ far: `<defs><linearGradient id="rb-wh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3e8f2"/></linearGradient></defs>` + FULL("url(#rb-wh)"), mid: `<ellipse cx="960" cy="1010" rx="1100" ry="60" fill="#9aa6bd" opacity="0.28"/><path d="M-400,1000 L2320,1000" stroke="#c7cfdd" stroke-width="4"/>` });
+  const POSES = {
+    stand: {}, run: { side: true, tilt: -6, l: 60, r: -70, ll: 34, lr: -34 }, punch: { side: true, tilt: -3, l: 55, r: -95, ll: 22, lr: -22 },
+    float: { side: true, tilt: 72, l: 168, r: -168, ll: 8, lr: -8 }, cross: { l: -52, r: 52 }, point: { side: true, l: 12, r: -108 }, shock: { l: 150, r: -150 },
+  };
+  function applyPoses(tl, o, sid) {
+    (o.chars || []).forEach((c, i) => {
+      const P = c.pose && POSES[c.pose]; if (!P) return; const id = `${sid}-c${i}`, sgn = c.flip ? -1 : 1;
+      if (P.l != null) T.armSet(tl, id, "l", P.l); if (P.r != null) T.armSet(tl, id, "r", P.r);
+      if (P.ll != null) { tl.set(`#${id}-ll`, { rotation: P.ll, svgOrigin: "-14 -76" }, 0); tl.set(`#${id}-lr`, { rotation: P.lr, svgOrigin: "14 -76" }, 0); }
+      if (P.tilt) tl.set(`#${id}-pos`, { rotation: P.tilt * sgn, svgOrigin: `${c.x || 0} ${c.y || 0}` }, 0);
+    });
+  }
+  S.thumb = {
+    svg: ({ o, id }) => { const r = T.rng(o.seed || 3); let g = "";
+      if (o.glow) { const G = o.glow; g += `<defs><radialGradient id="${id("gl")}"><stop offset="0" stop-color="${G.col || "#4fe8ff"}" stop-opacity="0.85"/><stop offset="1" stop-color="${G.col || "#4fe8ff"}" stop-opacity="0"/></radialGradient></defs><circle cx="${G.x || 1200}" cy="${G.y || 560}" r="${G.r || 560}" fill="url(#${id("gl")})"/>`; }
+      if (o.lines) { const L = o.lines, dir = L.dir === "right" ? 1 : -1, n = L.n || 16; for (let i = 0; i < n; i++) { const y = 80 + r() * 900, len = 360 + r() * 700, x0 = dir < 0 ? 1920 - r() * 500 : r() * 500, w = 4 + r() * 10; g += `<path d="M${x0},${y} L${x0 + dir * len},${y - w / 2} L${x0 + dir * len},${y + w / 2}Z" fill="${L.col || "#ffffff"}" opacity="${(0.25 + r() * 0.4).toFixed(2)}"/>`; } }
+      if (o.burst) { const B = o.burst, n = 14; let pts = ""; for (let i = 0; i < n * 2; i++) { const a = (i / (n * 2)) * Math.PI * 2, rr = i % 2 ? (B.r || 200) * 0.55 : (B.r || 200); pts += `${(B.x + rr * Math.cos(a)).toFixed(0)},${(B.y + rr * Math.sin(a)).toFixed(0)} `; } g += `<polygon points="${pts}" fill="${B.col || "#ffd400"}" stroke="${INK}" stroke-width="8" stroke-linejoin="round"/>`; }
+      return g; },
+    build() {},
+    top: ({ o }) => { let out = "";
+      if (o.text) { const words = Array.isArray(o.text) ? o.text : String(o.text).split(" "), lines = Array.isArray(o.text) ? o.text : [words.slice(0, -1).join(" "), words[words.length - 1]].filter(Boolean), fs = o.textSize || 200, pos = o.textPos || "bl", x = pos.endsWith("l") ? 70 : 1850, anchor = pos.endsWith("l") ? "start" : "end", yB = pos.startsWith("b") ? 1030 : 70 + fs * lines.length * 0.95;
+        out += `<g font-family="Kalam" font-weight="700" transform="rotate(${o.textRot == null ? -3 : o.textRot} ${x} ${yB})">` + lines.map((ln, i) => { const y = yB - (lines.length - 1 - i) * fs * 0.92, last = i === lines.length - 1; return `<text x="${x + 8}" y="${y + 10}" font-size="${fs}" text-anchor="${anchor}" fill="#000" opacity="0.45" stroke="#000" stroke-width="${fs * 0.14}" stroke-linejoin="round">${esc(ln)}</text><text x="${x}" y="${y}" font-size="${fs}" text-anchor="${anchor}" fill="${last ? (o.accent || "#ffd400") : "#ffffff"}" stroke="#0b0620" stroke-width="${fs * 0.12}" paint-order="stroke" stroke-linejoin="round">${esc(ln)}</text>`; }).join("") + `</g>`; }
+      if (o.badge) { const bs = o.badgeSize || 230, bx = o.badgeX || 1830, by = o.badgeY || 270; out += `<g font-family="Kalam" font-weight="700" transform="rotate(6 ${bx} ${by})"><text x="${bx}" y="${by}" font-size="${bs}" text-anchor="end" fill="${o.badgeCol || "#ffffff"}" stroke="#0b0620" stroke-width="${bs * 0.13}" paint-order="stroke" stroke-linejoin="round">${esc(o.badge)}</text></g>`; }
+      if (o.arrow) { const A = o.arrow; out += `<g transform="translate(${A.x},${A.y}) rotate(${A.rot || 0}) scale(${A.k || 1})"><path d="M-170,-26 L40,-26 L40,-78 L170,0 L40,78 L40,26 L-170,26Z" fill="${A.col || "#e0262a"}" stroke="#0b0620" stroke-width="9" stroke-linejoin="round"/></g>`; }
+      return out; },
+  };
+
   // ---------- mount: build a whole scene into #sid-svg ----------
   function mount(sid, o) {
     expandGroup(o);
@@ -559,7 +594,7 @@
     const WXk = o.weather && (typeof o.weather === "string" ? o.weather : o.weather.type), WX = WXk && WEATHER[WXk] ? WEATHER[WXk](sid, dur) : null;
     const RB = RICH[o.bg] ? RICH[o.bg](o.seed, o) : null;
     const back = RB ? DEFS + (RB.defs ? `<defs>${RB.defs}</defs>` : "") + `<g id="${sid}-far">${RB.far}</g><g id="${sid}-mid">${RB.mid}</g>${o.exposure ? `<rect x="-400" y="-400" width="2720" height="1880" fill="#2a1030" opacity="${o.exposure}"/>` : ""}${(o.lights || []).map((L) => `<circle cx="${L[0]}" cy="${L[1]}" r="${L[2]}" fill="url(#rb-glow)" opacity="${L[3] == null ? 0.7 : L[3]}"/>`).join("")}` : (o.bg === false ? "" : bg(o.bg || "teal", o.seed)) + (o.theme && THEMES[o.theme] ? THEMES[o.theme]() : "");
-    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : chars(o, sid)}${propsHtml(sid, o, true)}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? WX.svg : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}`;
+    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : chars(o, sid)}${propsHtml(sid, o, true)}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? WX.svg : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}`;
     const tl = gsap.timeline({ paused: true });
     const C = T.cam(tl, `#${sid}-cam`, Object.assign({ fx: 960, fy: 540, k: 1.04 }, o.cam || {}));
     if (RB) { tl.fromTo(`#${sid}-far`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); }
@@ -569,7 +604,7 @@
     M.build(tl, ctx, C);
     animChars(tl, o, sid, dur);
     applySay(tl, o, sid, C);
-    animProps(tl, sid, o, dur); if (WX) WX.anim(tl);
+    animProps(tl, sid, o, dur); applyPoses(tl, o, sid); if (WX) WX.anim(tl);
     intro(tl, sid, o.in);
     if (o.custom) o.custom(tl, ctx, C, T);
     window.__timelines[sid] = tl;

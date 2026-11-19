@@ -4,7 +4,7 @@ Last updated 2026-11-19. If this file and the code disagree, trust the code and 
 
 ## 0. How the user starts a new session (read this if you are a fresh session)
 - New video: `bash Animation/new-video.sh "Video 2"`, then the user opens Claude in that new folder. Memory is per folder, so a fresh folder has NO memory: everything you need is in `CLAUDE.md` (auto-loaded), this file, the skill `cartoon-explainer-clip` (global) and the docs listed below.
-- Typical first messages from the user: "Plan a video: <premise>" (-> `PACKAGING_PLAYBOOK.md` + `SCRIPT_TEMPLATE.md`: 10 titles, thumbnail concept, script outline), "Make clip N" (-> workflow in section 2), "Make a thumbnail for <title>" (-> `PACKAGING_PLAYBOOK.md` thumbnail rules + mascot; no reusable thumbnail scene type yet, build it once if asked).
+- Typical first messages from the user: "Plan a video: <premise>" (-> `PACKAGING_PLAYBOOK.md` + `SCRIPT_TEMPLATE.md`: 10 titles, thumbnail concept, script outline), "Make clip N" (-> workflow in section 2), "Make a thumbnail for <title>" (-> `PACKAGING_PLAYBOOK.md` thumbnail rules + mascot; use `python3 Animation/thumb.py specs/thumb_xxx.json name` (see LIBRARY.md Thumbnails section)).
 - Read order: CLAUDE.md -> START_HERE.md -> LIBRARY.md (scenes, envs, props, mascot options) -> STYLE_RULES.md -> PACKAGING_PLAYBOOK.md -> VOICES.md. Pictures: LIBRARY_CATALOG.png and docs/.
 
 ## 1. What this project is

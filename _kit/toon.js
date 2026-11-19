@@ -145,7 +145,8 @@
     const yaw0 = view === 'side' ? 1 : view === 'q3' ? 0.45 : 0, a0 = 1 - 0.38 * Math.abs(yaw0), b0 = 30 * yaw0;
     const faceT = yaw0 ? `translate(${b0},0) scale(${a0},1)` : '';
     const nose = `<g transform="translate(${yaw0 * 71},0)"><g id="${id}-nose" data-y0="${yaw0}" opacity="${yaw0 ? 1 : 0}"><ellipse ${st(4)} fill="${skin}" cx="0" cy="6" rx="8" ry="6.5"/></g></g>`;
-    const ears = view === 'side' ? `<ellipse ${st(4)} fill="${skin}" cx="-30" cy="12" rx="9" ry="13"/>` : view === 'back' ? `<ellipse ${st(4)} fill="${skin}" cx="-68" cy="6" rx="9" ry="13"/><ellipse ${st(4)} fill="${skin}" cx="68" cy="6" rx="9" ry="13"/>` : '';
+    const earFill = o.skin ? skin : '#efd3ba';
+    const ears = view === 'side' ? `<ellipse ${st(4)} fill="${earFill}" cx="-30" cy="12" rx="8" ry="12"/><path d="M-33,8 q4,4 0,10" fill="none" stroke="${PI}" stroke-width="2.5" stroke-linecap="round"/>` : view === 'back' ? `<ellipse ${st(4)} fill="${earFill}" cx="-68" cy="6" rx="9" ry="13"/><ellipse ${st(4)} fill="${earFill}" cx="68" cy="6" rx="9" ry="13"/>` : '';
     const head = `<g transform="translate(0,-282) scale(1.22)"><g id="${id}-head">
         <defs><radialGradient id="${id}-hg" cx="0.38" cy="0.3" r="0.85"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="0.6" stop-color="${skin}" stop-opacity="0"/><stop offset="1" stop-color="#7a5fb0" stop-opacity="0.35"/></radialGradient></defs>
         ${curl}
