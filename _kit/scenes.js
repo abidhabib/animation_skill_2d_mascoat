@@ -78,13 +78,14 @@
       const ch = typeof g.ch === "number" ? (o.chars || [])[g.ch] : (o.chars || []).find((c) => c.name === g.ch), sc = ch ? (ch.scale || 1) : 1;
       const x = g.x != null ? g.x : (ch ? ch.x || 0 : 960), y = g.y != null ? g.y : (ch ? (ch.y || 0) - (ch.style === "mascot" ? 372 : 335) * sc - (g.dy == null ? 70 : g.dy) : 300);
       const vals = [[g.t == null ? 0.3 : g.t, String(g.text)]].concat((g.to || []).map((a) => [a[0], String(a[1])]));
-      return { g, i, x, y, vals, size: g.size || 120 };
+      return { g, i, x, y, vals, size: g.size || 120, ch };
     });
   }
   function tagsSvg(o, sid) {
     const L = tagList(o); if (!L.length) return "";
     let out = `<defs><filter id="${sid}-tgb" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="14"/></filter><filter id="${sid}-tgb2" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter></defs>`;
     L.forEach(({ g, i, x, y, vals, size }) => {
+      out += `<g id="${sid}-tgw${i}">`;
       vals.forEach(([t, v], k) => {
         const col = tagCol(v, g.col), fs = size, ty = y + fs * 0.34;
         out += `<g id="${sid}-tgv${i}_${k}" opacity="0"><g id="${sid}-tgg${i}_${k}">`
@@ -92,13 +93,16 @@
           + `<text x="${x}" y="${ty}" font-size="${fs}" text-anchor="middle" fill="${col}" stroke="${col}" stroke-width="${fs * 0.05}" stroke-linejoin="round" opacity="0.9" filter="url(#${sid}-tgb2)">${esc(v)}</text>`
           + `<text x="${x}" y="${ty}" font-size="${fs}" text-anchor="middle" fill="#ffffff" stroke="#0b0620" stroke-width="${fs * 0.07}" paint-order="stroke" stroke-linejoin="round">${esc(v)}</text></g>`;
       });
+      out += `</g>`;
     });
     return out;
   }
-  function tagsAnim(tl, o, sid, dur) {
-    tagList(o).forEach(({ i, x, y, vals }) => {
+  function tagsAnim(tl, o, sid, dur, C) {
+    tagList(o).forEach(({ g, i, x, y, vals, ch }) => {
+      if (ch && ch.walk) tl.fromTo(`#${sid}-tgw${i}`, { x: 0 }, { x: ch.walk[2], duration: ch.walk[1] - ch.walk[0], ease: "none", immediateRender: false }, ch.walk[0]);
       vals.forEach(([t, v], k) => {
         const el = `#${sid}-tgv${i}_${k}`, gl = `#${sid}-tgg${i}_${k}`, end = k + 1 < vals.length ? vals[k + 1][0] : dur;
+        if (C && g.punch !== false && o.punch !== false) { const a = g.punch || 1; C.shake(t, 7 * a); C.to(t, 0.1, { r: -1.4 * a }, "power2.out"); C.to(t + 0.1, 0.6, { r: 0 }, "power2.out"); }
         tl.fromTo(el, { opacity: 0, scale: 0.45, svgOrigin: `${x} ${y}` }, { opacity: 1, scale: 1, svgOrigin: `${x} ${y}`, duration: 0.42, ease: "back.out(2.6)", immediateRender: false }, t);
         if (k + 1 < vals.length) tl.set(el, { opacity: 0 }, end);
         const half = 0.6, reps = Math.max(1, Math.floor((end - t - 0.3) / half)) - 1;
@@ -633,15 +637,17 @@
     const WXk = o.weather && (typeof o.weather === "string" ? o.weather : o.weather.type), WX = WXk && WEATHER[WXk] ? WEATHER[WXk](sid, dur) : null;
     const RB = RICH[o.bg] ? RICH[o.bg](o.seed, o) : null;
     const back = RB ? DEFS + (RB.defs ? `<defs>${RB.defs}</defs>` : "") + `<g id="${sid}-far">${RB.far}</g><g id="${sid}-mid">${RB.mid}</g>${o.exposure ? `<rect x="-400" y="-400" width="2720" height="1880" fill="#2a1030" opacity="${o.exposure}"/>` : ""}${(o.lights || []).map((L) => `<circle cx="${L[0]}" cy="${L[1]}" r="${L[2]}" fill="url(#rb-glow)" opacity="${L[3] == null ? 0.7 : L[3]}"/>`).join("")}` : (o.bg === false ? "" : bg(o.bg || "teal", o.seed)) + (o.theme && THEMES[o.theme] ? THEMES[o.theme]() : "");
-    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : chars(o, sid)}${propsHtml(sid, o, true)}${tagsSvg(o, sid)}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? WX.svg : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}`;
+    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : chars(o, sid)}${propsHtml(sid, o, true)}${tagsSvg(o, sid)}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? WX.svg : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}${o.overlay || ""}`;
     const tl = gsap.timeline({ paused: true });
     const C = T.cam(tl, `#${sid}-cam`, Object.assign({ fx: 960, fy: 540, k: 1.04 }, o.cam || {}));
     if (RB) { tl.fromTo(`#${sid}-far`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); }
     document.querySelectorAll(`#${sid}-svg .rb-scroll`).forEach((el) => tl.fromTo(el, { x: 0 }, { x: -Number(el.dataset.scroll || 300), duration: dur, ease: "none" }, 0));
-    (o.camMoves || []).forEach((m) => C.to(m.t, m.dur, { fx: m.fx, fy: m.fy, k: m.k }, m.ease));
+    (o.camMoves || []).forEach((m) => { const pr = {}; ["fx", "fy", "k", "r", "dx", "dy"].forEach((key) => { if (m[key] != null) pr[key] = m[key]; }); C.to(m.t, m.dur, pr, m.ease); });
+    if (o.handheld) { const hr = T.rng(o.seed || 7), a = o.handheld === true ? 5 : o.handheld; for (let tt = 0; tt < dur; tt += 0.5) C.to(tt, 0.5, { dx: (hr() - 0.5) * 2 * a, dy: (hr() - 0.5) * 1.4 * a, r: (hr() - 0.5) * 0.08 * a }, "sine.inOut"); }
+    tagsAnim(tl, o, sid, dur, C);
     if (o.drift !== false && !o.say && !o.camMoves && o.type !== "mapTo") C.to(0.3, Math.max(0.5, dur / T.SLOW - 0.3), Object.assign({ k: 1.1, fx: 980 }, o.drift || {}), "sine.inOut");
     M.build(tl, ctx, C);
-    animChars(tl, o, sid, dur); tagsAnim(tl, o, sid, dur);
+    animChars(tl, o, sid, dur);
     applySay(tl, o, sid, C);
     animProps(tl, sid, o, dur); applyPoses(tl, o, sid); if (WX) WX.anim(tl);
     intro(tl, sid, o.in);

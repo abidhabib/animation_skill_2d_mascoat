@@ -1,173 +1,178 @@
 [
  {
-  "name": "s1-roomie",
+  "name": "s1-walk",
   "start": 0,
-  "dur": 4.6,
+  "dur": 17.8,
   "type": "stage",
-  "bg": "kitchen",
+  "bg": "street",
+  "time": "day",
   "drift": false,
+  "seed": 5,
   "cam": {
-   "fx": 960,
+   "fx": 610,
    "fy": 560,
    "k": 1.0
   },
+  "handheld": 4,
+  "camMoves": [
+   {
+    "t": 0.2,
+    "dur": 9.4,
+    "fx": 1630,
+    "ease": "none"
+   },
+   {
+    "t": 9.6,
+    "dur": 1.5,
+    "fx": 1700,
+    "fy": 600,
+    "k": 1.45,
+    "ease": "power3.inOut"
+   },
+   {
+    "t": 11.2,
+    "dur": 6.4,
+    "fx": 1735,
+    "fy": 600,
+    "k": 1.75,
+    "ease": "sine.inOut"
+   }
+  ],
   "chars": [
    {
-    "name": "roomie",
-    "style": "pear",
-    "x": 960,
+    "name": "hero",
+    "style": "mascot",
+    "x": 520,
     "y": 1040,
-    "scale": 1.9,
-    "hair": "short",
-    "hairCol": "#4a2e1c",
+    "scale": 1.6,
+    "vol": true,
+    "walk": [
+     0.2,
+     9.6,
+     1020
+    ],
+    "moods": [
+     [
+      10.7,
+      "shock"
+     ]
+    ]
+   },
+   {
+    "name": "roomie",
+    "style": "mascot",
+    "y": 1040,
+    "scale": 1.6,
+    "vol": true,
+    "curl": false,
+    "x": 1095,
+    "age": 0,
     "skin": "#f0c8a0",
-    "shirt": "#e0562f"
+    "shirt": "#e0562f",
+    "hoodDark": "#a8381b",
+    "walk": [
+     0.4,
+     4.0,
+     -540
+    ]
+   },
+   {
+    "name": "boss",
+    "style": "mascot",
+    "y": 1040,
+    "scale": 1.6,
+    "vol": true,
+    "curl": false,
+    "x": 1445,
+    "age": 42,
+    "skin": "#e8b98f",
+    "shirt": "#2b3350",
+    "hoodDark": "#1b2038",
+    "walk": [
+     2.7,
+     6.3,
+     -540
+    ]
+   },
+   {
+    "name": "dad",
+    "style": "mascot",
+    "y": 1040,
+    "scale": 1.6,
+    "vol": true,
+    "curl": false,
+    "x": 1725,
+    "age": 56,
+    "cane": false,
+    "skin": "#eab88c",
+    "shirt": "#6b7f5a",
+    "hoodDark": "#46573a",
+    "walk": [
+     5.3,
+     8.9,
+     -540
+    ]
+   },
+   {
+    "name": "sam",
+    "style": "mascot",
+    "y": 1040,
+    "scale": 1.6,
+    "vol": true,
+    "curl": false,
+    "x": 1760,
+    "age": 0,
+    "skin": "#b9825a",
+    "shirt": "#4fb286",
+    "hoodDark": "#2f7a5a"
    }
   ],
   "tags": [
    {
     "ch": "roomie",
     "text": "62",
-    "t": 0.35,
+    "t": 1.7,
     "size": 150
-   }
-  ],
-  "time": "day",
-  "extra": "<g font-family='Kalam' font-weight='700' text-anchor='middle'><rect x='700' y='60' width='520' height='170' rx='34' fill='#0b0620' opacity='0.6'/><text x='960' y='132' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='8' paint-order='stroke'>HOW MUCH THEY</text><text x='960' y='214' font-size='84' fill='#ffd400' stroke='#0b0620' stroke-width='9' paint-order='stroke'>TRUST YOU</text></g>"
- },
- {
-  "name": "s2-boss",
-  "start": 4.4,
-  "dur": 4.2,
-  "type": "stage",
-  "bg": "officeNight",
-  "drift": false,
-  "cam": {
-   "fx": 960,
-   "fy": 560,
-   "k": 1.0
-  },
-  "chars": [
-   {
-    "name": "boss",
-    "style": "pear",
-    "x": 960,
-    "y": 1040,
-    "scale": 1.9,
-    "hair": "short",
-    "hairCol": "#8d8d95",
-    "skin": "#e8b98f",
-    "suit": "#2b3350",
-    "tie": "#c0392b",
-    "stache": true
-   }
-  ],
-  "tags": [
+   },
    {
     "ch": "boss",
     "text": "71",
-    "t": 0.3,
+    "t": 4.4,
     "size": 150
-   }
-  ],
-  "in": {
-   "kind": "whip"
-  }
- },
- {
-  "name": "s3-dad",
-  "start": 8.4,
-  "dur": 3.9,
-  "type": "stage",
-  "bg": "livingRoom",
-  "drift": false,
-  "cam": {
-   "fx": 960,
-   "fy": 560,
-   "k": 1.0
-  },
-  "chars": [
-   {
-    "name": "dad",
-    "style": "pear",
-    "x": 960,
-    "y": 1040,
-    "scale": 1.9,
-    "hair": "short",
-    "hairCol": "#c9c9d0",
-    "skin": "#eab88c",
-    "shirt": "#6b7f5a",
-    "stache": true,
-    "glasses": true
-   }
-  ],
-  "tags": [
+   },
    {
     "ch": "dad",
     "text": "100",
-    "t": 0.3,
+    "t": 7.0,
     "size": 150
-   }
-  ],
-  "time": "day",
-  "in": {
-   "kind": "whip"
-  }
- },
- {
-  "name": "s4-sam",
-  "start": 12.1,
-  "dur": 9.6,
-  "type": "stage",
-  "bg": "street",
-  "drift": false,
-  "cam": {
-   "fx": 960,
-   "fy": 560,
-   "k": 1.0
-  },
-  "chars": [
-   {
-    "name": "sam",
-    "style": "pear",
-    "x": 960,
-    "y": 1040,
-    "scale": 1.9,
-    "hair": "short",
-    "hairCol": "#1d1410",
-    "skin": "#c68a5b",
-    "shirt": "#4fb286"
-   }
-  ],
-  "tags": [
+   },
    {
     "ch": "sam",
     "text": "41",
-    "t": 0.6,
-    "size": 150
+    "t": 10.5,
+    "size": 170,
+    "punch": 1.6
    }
   ],
-  "time": "day",
-  "in": {
-   "kind": "whip"
-  },
-  "extra": "<g font-family='Kalam' font-weight='700' text-anchor='middle'><rect x='700' y='60' width='520' height='170' rx='34' fill='#0b0620' opacity='0.6'/><text x='960' y='132' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='8' paint-order='stroke'>BEST FRIEND</text><text x='960' y='214' font-size='76' fill='#ffd400' stroke='#0b0620' stroke-width='9' paint-order='stroke'>OF 12 YEARS</text></g>",
   "say": [
    {
     "char": "sam",
     "emotion": "nervous",
-    "from": 3.6,
-    "to": 6.4,
+    "from": 12.6,
+    "to": 15.6,
     "zoom": false
    }
-  ]
+  ],
+  "overlay": "<g font-family='Kalam' font-weight='700' text-anchor='middle' id='s1-cap1' opacity='0'><text x='960' y='128' font-size='54' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>HOW MUCH THEY</text><text x='960' y='210' font-size='84' fill='#ffd400' stroke='#0b0620' stroke-width='11' paint-order='stroke' stroke-linejoin='round'>TRUST YOU</text></g><g font-family='Kalam' font-weight='700' text-anchor='middle' id='s1-cap2' opacity='0'><text x='960' y='128' font-size='54' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>BEST FRIEND</text><text x='960' y='210' font-size='84' fill='#ffd400' stroke='#0b0620' stroke-width='11' paint-order='stroke' stroke-linejoin='round'>OF 12 YEARS</text></g>",
+  "js": "tl.fromTo('#s1-cap1',{opacity:0,y:-40},{opacity:1,y:0,duration:0.4,ease:'back.out(2)',immediateRender:false},0.2);tl.to('#s1-cap1',{opacity:0,duration:0.25},1.5);tl.fromTo('#s1-cap2',{opacity:0,y:-40},{opacity:1,y:0,duration:0.4,ease:'back.out(2)',immediateRender:false},8.6);tl.to('#s1-cap2',{opacity:0,duration:0.25},10.2);"
  },
  {
-  "name": "s5-why",
-  "start": 21.5,
-  "dur": 8.0,
-  "type": "pop",
-  "bg": "night",
+  "name": "s2-night",
+  "start": 17.5,
+  "dur": 13.8,
+  "type": "stage",
+  "bg": "street",
+  "time": "night",
   "in": {
    "kind": "zoom",
    "at": [
@@ -175,116 +180,98 @@
     540
    ]
   },
-  "items": [
-   {
-    "text": "NO BETRAYAL.",
-    "x": 960,
-    "y": 255,
-    "fs": 68,
-    "rot": -3,
-    "t": 0.4
-   },
-   {
-    "text": "CANCELLED",
-    "x": 960,
-    "y": 485,
-    "fs": 88,
-    "card": "#f2c14e",
-    "rot": 2,
-    "t": 2.0
-   },
-   {
-    "text": "4 TIMES",
-    "x": 960,
-    "y": 655,
-    "fs": 108,
-    "card": "#f2c14e",
-    "t": 2.6
-   },
-   {
-    "text": "FORGOT $200",
-    "x": 960,
-    "y": 825,
-    "fs": 72,
-    "card": "#dff3ff",
-    "t": 4.6
-   }
-  ]
- },
- {
-  "name": "s6-rule",
-  "start": 29.3,
-  "dur": 6.3,
-  "type": "pop",
-  "bg": "blue",
-  "in": {
-   "kind": "vwhip"
-  },
-  "items": [
-   {
-    "text": "TRUST IS NOT",
-    "x": 960,
-    "y": 250,
-    "fs": 68,
-    "t": 0.4
-   },
-   {
-    "text": "WHAT YOU DO",
-    "x": 960,
-    "y": 390,
-    "fs": 72,
-    "t": 1.0
-   },
-   {
-    "text": "FOR PEOPLE.",
-    "x": 960,
-    "y": 530,
-    "fs": 72,
-    "t": 1.4
-   },
-   {
-    "text": "IT IS DOING",
-    "x": 960,
-    "y": 710,
-    "fs": 72,
-    "card": "#f2c14e",
-    "t": 3.0
-   },
-   {
-    "text": "WHAT YOU SAID.",
-    "x": 960,
-    "y": 850,
-    "fs": 58,
-    "card": "#f2c14e",
-    "t": 3.6
-   }
-  ]
- },
- {
-  "name": "s7-mirror",
-  "start": 35.4,
-  "dur": 6.2,
-  "type": "stage",
-  "bg": "bedroom",
   "drift": false,
+  "seed": 8,
   "cam": {
-   "fx": 960,
-   "fy": 560,
+   "fx": 510,
+   "fy": 380,
    "k": 1.0
   },
+  "handheld": 3,
+  "camMoves": [
+   {
+    "t": 0.2,
+    "dur": 13.1,
+    "fx": 1410,
+    "ease": "none"
+   },
+   {
+    "t": 0.2,
+    "dur": 13.1,
+    "fy": 350,
+    "k": 1.1,
+    "ease": "sine.inOut"
+   }
+  ],
+  "chars": [
+   {
+    "name": "hero",
+    "style": "mascot",
+    "x": 420,
+    "y": 1040,
+    "scale": 1.6,
+    "vol": true,
+    "walk": [
+     0.2,
+     13.3,
+     900
+    ]
+   }
+  ],
+  "overlay": "<g transform='translate(0,-90)'><g font-family='Kalam' font-weight='700' text-anchor='middle'><g id='s2-txa0' opacity='0'><text x='960' y='573' font-size='80' fill='#000' opacity='0.45' stroke='#000' stroke-width='13' stroke-linejoin='round'>NO BETRAYAL.</text><text x='960' y='567' font-size='80' fill='#ffd400' stroke='#0b0620' stroke-width='10' paint-order='stroke' stroke-linejoin='round'>NO BETRAYAL.</text></g></g><g font-family='Kalam' font-weight='700' text-anchor='middle'><g id='s2-txb0' opacity='0'><text x='960' y='524' font-size='80' fill='#000' opacity='0.45' stroke='#000' stroke-width='13' stroke-linejoin='round'>CANCELLED</text><text x='960' y='518' font-size='80' fill='#fff' stroke='#0b0620' stroke-width='10' paint-order='stroke' stroke-linejoin='round'>CANCELLED</text></g><g id='s2-txb1' opacity='0'><text x='960' y='622' font-size='80' fill='#000' opacity='0.45' stroke='#000' stroke-width='13' stroke-linejoin='round'>4 TIMES.</text><text x='960' y='616' font-size='80' fill='#ffd400' stroke='#0b0620' stroke-width='10' paint-order='stroke' stroke-linejoin='round'>4 TIMES.</text></g></g><g font-family='Kalam' font-weight='700' text-anchor='middle'><g id='s2-txc0' opacity='0'><text x='960' y='573' font-size='80' fill='#000' opacity='0.45' stroke='#000' stroke-width='13' stroke-linejoin='round'>FORGOT $200.</text><text x='960' y='567' font-size='80' fill='#ffd400' stroke='#0b0620' stroke-width='10' paint-order='stroke' stroke-linejoin='round'>FORGOT $200.</text></g></g><g font-family='Kalam' font-weight='700' text-anchor='middle'><g id='s2-txd0' opacity='0'><text x='960' y='483' font-size='72' fill='#000' opacity='0.45' stroke='#000' stroke-width='12' stroke-linejoin='round'>TRUST IS NOT</text><text x='960' y='477' font-size='72' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>TRUST IS NOT</text></g><g id='s2-txd1' opacity='0'><text x='960' y='570' font-size='72' fill='#000' opacity='0.45' stroke='#000' stroke-width='12' stroke-linejoin='round'>WHAT YOU DO</text><text x='960' y='564' font-size='72' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>WHAT YOU DO</text></g><g id='s2-txd2' opacity='0'><text x='960' y='658' font-size='72' fill='#000' opacity='0.45' stroke='#000' stroke-width='12' stroke-linejoin='round'>FOR PEOPLE.</text><text x='960' y='652' font-size='72' fill='#ffd400' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>FOR PEOPLE.</text></g></g><g font-family='Kalam' font-weight='700' text-anchor='middle'><g id='s2-txe0' opacity='0'><text x='960' y='524' font-size='80' fill='#000' opacity='0.45' stroke='#000' stroke-width='13' stroke-linejoin='round'>IT IS DOING</text><text x='960' y='518' font-size='80' fill='#fff' stroke='#0b0620' stroke-width='10' paint-order='stroke' stroke-linejoin='round'>IT IS DOING</text></g><g id='s2-txe1' opacity='0'><text x='960' y='622' font-size='80' fill='#000' opacity='0.45' stroke='#000' stroke-width='13' stroke-linejoin='round'>WHAT YOU SAID.</text><text x='960' y='616' font-size='80' fill='#ffd400' stroke='#0b0620' stroke-width='10' paint-order='stroke' stroke-linejoin='round'>WHAT YOU SAID.</text></g></g></g>",
+  "js": "S.slamIn(tl,'#s2-txa0',0.6,C);tl.set('#s2-txa0',{opacity:0},2.4);S.slamIn(tl,'#s2-txb0',2.6,C);S.slamIn(tl,'#s2-txb1',2.72,C);tl.set('#s2-txb0',{opacity:0},5.0);tl.set('#s2-txb1',{opacity:0},5.0);S.slamIn(tl,'#s2-txc0',5.2,C);tl.set('#s2-txc0',{opacity:0},7.8);S.slamIn(tl,'#s2-txd0',8.0,C);S.slamIn(tl,'#s2-txd1',8.12,C);S.slamIn(tl,'#s2-txd2',8.24,C);tl.set('#s2-txd0',{opacity:0},11.2);tl.set('#s2-txd1',{opacity:0},11.2);tl.set('#s2-txd2',{opacity:0},11.2);S.slamIn(tl,'#s2-txe0',11.4,C);S.slamIn(tl,'#s2-txe1',11.52,C);tl.set('#s2-txe0',{opacity:0},13.4);tl.set('#s2-txe1',{opacity:0},13.4);"
+ },
+ {
+  "name": "s3-mirror",
+  "start": 31.1,
+  "dur": 13.9,
+  "type": "stage",
+  "bg": "bedroom",
+  "time": "night",
+  "in": {
+   "kind": "whip"
+  },
+  "drift": false,
+  "seed": 3,
+  "cam": {
+   "fx": 960,
+   "fy": 600,
+   "k": 1.0
+  },
+  "handheld": 3,
+  "camMoves": [
+   {
+    "t": 0.3,
+    "dur": 8.8,
+    "fy": 560,
+    "k": 1.7,
+    "ease": "sine.inOut"
+   }
+  ],
   "chars": [
    {
     "name": "hero",
     "style": "mascot",
     "x": 960,
     "y": 1040,
-    "scale": 1.75,
+    "scale": 1.6,
     "vol": true,
     "turns": [
      [
-      1.0,
-      0.8,
+      1.2,
+      0.9,
+      0.8
+     ],
+     [
+      2.9,
+      0.9,
       0.0
+     ]
+    ],
+    "moods": [
+     [
+      3.9,
+      "shock"
      ]
     ]
    }
@@ -293,56 +280,13 @@
    {
     "ch": "hero",
     "text": "?",
-    "t": 2.0,
-    "size": 170,
-    "col": "#c9a6ff"
+    "t": 4.0,
+    "size": 190,
+    "col": "#c9a6ff",
+    "punch": 1.5
    }
   ],
-  "time": "night",
-  "in": {
-   "kind": "whip"
-  },
-  "extra": "<g font-family='Kalam' font-weight='700' text-anchor='middle'><rect x='700' y='60' width='520' height='170' rx='34' fill='#0b0620' opacity='0.6'/><text x='960' y='132' font-size='50' fill='#fff' stroke='#0b0620' stroke-width='8' paint-order='stroke'>THE LOWEST NUMBER</text><text x='960' y='214' font-size='84' fill='#ffd400' stroke='#0b0620' stroke-width='9' paint-order='stroke'>IS YOURS.</text></g>",
-  "say": [
-   {
-    "char": "hero",
-    "emotion": "scared",
-    "from": 0.6,
-    "to": 2.6,
-    "zoom": false
-   }
-  ]
- },
- {
-  "name": "s8-end",
-  "start": 41.4,
-  "dur": 3.6,
-  "type": "pop",
-  "bg": "night",
-  "in": {
-   "kind": "iris",
-   "at": [
-    960,
-    540
-   ]
-  },
-  "items": [
-   {
-    "text": "FULL STORY",
-    "x": 960,
-    "y": 470,
-    "fs": 90,
-    "rot": -3,
-    "t": 0.3
-   },
-   {
-    "text": "ON MY CHANNEL",
-    "x": 960,
-    "y": 640,
-    "fs": 62,
-    "card": "#f2c14e",
-    "t": 1.0
-   }
-  ]
+  "overlay": "<rect id='s3-dim' x='656' y='0' width='608' height='1080' fill='#0b0620' opacity='0'/><g font-family='Kalam' font-weight='700' text-anchor='middle' id='s3-cap' opacity='0'><text x='960' y='128' font-size='54' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>THE LOWEST NUMBER</text><text x='960' y='210' font-size='84' fill='#ffd400' stroke='#0b0620' stroke-width='11' paint-order='stroke' stroke-linejoin='round'>IS YOURS.</text></g><g font-family='Kalam' font-weight='700' text-anchor='middle'><g id='s3-z0' opacity='0'><text x='960' y='523' font-size='84' fill='#000' opacity='0.45' stroke='#000' stroke-width='13' stroke-linejoin='round'>FULL STORY</text><text x='960' y='517' font-size='84' fill='#fff' stroke='#0b0620' stroke-width='11' paint-order='stroke' stroke-linejoin='round'>FULL STORY</text></g><g id='s3-z1' opacity='0'><text x='960' y='626' font-size='84' fill='#000' opacity='0.45' stroke='#000' stroke-width='13' stroke-linejoin='round'>ON MY CHANNEL</text><text x='960' y='620' font-size='84' fill='#ffd400' stroke='#0b0620' stroke-width='11' paint-order='stroke' stroke-linejoin='round'>ON MY CHANNEL</text></g></g>",
+  "js": "tl.fromTo('#s3-cap',{opacity:0,y:-40},{opacity:1,y:0,duration:0.4,ease:'back.out(2)',immediateRender:false},0.8);tl.to('#s3-cap',{opacity:0,duration:0.25},3.5);tl.to('#s3-dim',{opacity:0.62,duration:0.5},9.2);S.slamIn(tl,'#s3-z0',9.6,C);S.slamIn(tl,'#s3-z1',9.78,C);"
  }
 ]
