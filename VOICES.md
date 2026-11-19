@@ -14,6 +14,7 @@ Read 2026-11-19 from docs.fish.audio. Voice ids are the `reference_id` for the A
 | Other: "Adrian" (Claude's pick, Fish Official default voice) | `bf322df2096a46f18c579d0baa36f41d` | "A steady and reliable narrator", male, middle-aged. Fish-official, so no third-party character IP. Use for calm adult males: Dad, doctor, teacher |
 | Other: "Ethan" (Claude's pick, Fish Official default voice) | `536d3a5e000945adb7038665781a4aca` | "A curious explainer", male, middle-aged, Fish-official. Use for boss, coworker, friendly adult male |
 
+**Rule (user, 2026-11-19): the main character / narrator voice (Elliot) ALWAYS plays at 1.2x speed.** Set Speed 1.2x in Fish Text to Speech, or (Voice Acting has no speed control) export the scene as separate Clips and speed only Elliot's lines with `ffmpeg -af atempo=1.2` (keeps the pitch); other characters stay at 1.0x.
 **Rule (user, 2026-11-19): Elliot is the MAIN voice (hero). For every other character Claude chooses the voice from this cast, then tells the user.** Preferred order for side roles: Fish-official defaults (Adrian, Ethan, Sarah, Laura, Jordan, Hannah, Selene) first, because they are licensed; character-imitation voices only for characters that need that energy.
 
 **EXCLUDED by the user (2026-11-19): "Zoro" (`c524a197...`) and "Super Smash Bros. 4/Ultimate Announcer" (`90e65eaa...`). Do not use them.** They are still bookmarked in the account unless the user removes them.
