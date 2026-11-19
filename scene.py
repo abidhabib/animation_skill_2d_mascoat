@@ -9,6 +9,11 @@ here = os.path.dirname(os.path.abspath(__file__))
 n = int(sys.argv[1]); clip = os.path.join(here, f"clip-{n:02d}")
 shutil.copy(os.path.join(here, "_kit", "scenes.js"), os.path.join(clip, "assets", "scenes.js"))
 specs = json.load(open(sys.argv[2], encoding="utf-8"))
+# portrait (YouTube Short, 9:16): clip meta.json has "portrait": true -> 1080x1920 output showing a 607.5x1080 slice of the 1920x1080 scene,
+# centred on x=960 (move it with the scene's cam fx). Keep the action and text inside x 690..1230.
+_meta = json.load(open(os.path.join(clip, "meta.json"), encoding="utf-8")) if os.path.exists(os.path.join(clip, "meta.json")) else {}
+PORTRAIT = bool(_meta.get("portrait"))
+OW, OH, VB = (1080, 1920, "656.25 0 607.5 1080") if PORTRAIT else (1920, 1080, "0 0 1920 1080")
 
 # --- timing from the voice-over: "start":"phrase", "end":"phrase" (sets dur), say[].at / from / to as phrases ---
 import re
@@ -42,8 +47,8 @@ HEAD = '''<template>
     #root svg { position: absolute; inset: 0; }
     #root text { font-family: "Kalam"; font-weight: 700; }
   </style>
-  <div id="root" data-composition-id="%(sid)s" data-width="1920" data-height="1080">
-    <svg id="%(sid)s-svg" viewBox="0 0 1920 1080" width="1920" height="1080"></svg>
+  <div id="root" data-composition-id="%(sid)s" data-width="%(ow)d" data-height="%(oh)d">
+    <svg id="%(sid)s-svg" viewBox="%(vb)s" width="%(ow)d" height="%(oh)d"></svg>
   </div>
   <script>
     (function () {
@@ -63,6 +68,6 @@ for s in specs:
     else:
         js = s.pop("js", None)
         custom = f"\n      o.custom = function (tl, ctx, C, T) {{ {js} }};" if js else ""
-        open(path, "w", encoding="utf-8").write(HEAD % {"sid": sid, "opts": json.dumps(s, ensure_ascii=False), "custom": custom})
+        open(path, "w", encoding="utf-8").write(HEAD % {"ow": OW, "oh": OH, "vb": VB, "sid": sid, "opts": json.dumps(s, ensure_ascii=False), "custom": custom})
     mounts.append(f"{name}:{start}:{dur}")
 subprocess.run([sys.executable, os.path.join(here, "mount.py"), str(n), *mounts], check=True)
