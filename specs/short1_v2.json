@@ -104,8 +104,12 @@
    "dir": 1
   },
   "out": {
-   "kind": "whip",
-   "dir": 1
+   "kind": "zoom",
+   "at": [
+    960,
+    430
+   ],
+   "dur": 0.32
   },
   "fg": true,
   "chars": [
@@ -144,8 +148,7 @@
   "type": "stage",
   "bg": "officeNight",
   "in": {
-   "kind": "whip",
-   "dir": 1
+   "kind": "zoom"
   },
   "out": {
    "kind": "whip",
@@ -191,8 +194,12 @@
    "dir": 1
   },
   "out": {
-   "kind": "whip",
-   "dir": 1
+   "kind": "zoom",
+   "at": [
+    960,
+    430
+   ],
+   "dur": 0.32
   },
   "fg": true,
   "chars": [
@@ -225,35 +232,32 @@
   "time": "day"
  },
  {
-  "name": "s5-sam",
+  "name": "s5-alley",
   "start": 11.4,
   "dur": 10.75,
   "type": "stage",
-  "bg": "street",
+  "bg": "alley",
   "time": "day",
-  "seed": 9,
-  "life": {
-   "n": 8
-  },
+  "seed": 11,
   "fg": true,
   "in": {
-   "kind": "whip",
-   "dir": 1
+   "kind": "zoom"
   },
   "out": {
-   "kind": "zoom"
+   "kind": "zoom",
+   "at": [
+    960,
+    300
+   ],
+   "dur": 0.32
   },
   "shots": [
    {
-    "type": "track",
-    "on": "hero"
-   },
-   {
     "type": "push",
     "on": "sam",
-    "t": 4.0,
-    "dur": 2.0,
-    "k": 1.45,
+    "t": 3.6,
+    "dur": 2.4,
+    "k": 1.6,
     "dy": -110
    },
    {
@@ -261,7 +265,7 @@
     "on": "sam",
     "t": 6.2,
     "dur": 4.4,
-    "k": 1.55,
+    "k": 1.9,
     "dy": -110
    }
   ],
@@ -269,27 +273,23 @@
    {
     "name": "hero",
     "style": "mascot",
-    "x": 560,
-    "y": 1040,
+    "x": 880,
+    "y": 1080,
     "scale": 1.6,
+    "dir": "away",
     "walk": [
      0.1,
-     4.0,
-     540
+     3.8,
+     0
     ],
-    "moods": [
-     [
-      6.1,
-      "shock"
-     ]
-    ]
+    "farScale": 0.62
    },
    {
     "name": "sam",
     "role": "friend",
-    "x": 1360,
-    "y": 1040,
-    "scale": 1.6
+    "x": 1010,
+    "y": 930,
+    "scale": 1.7
    }
   ],
   "tags": [
@@ -297,7 +297,7 @@
     "ch": "sam",
     "text": "41",
     "t": 6.04,
-    "size": 170,
+    "size": 150,
     "punch": 1.6
    }
   ],
@@ -309,27 +309,17 @@
     "zoom": false
    }
   ],
-  "overlay": "<g font-family='Kalam' font-weight='700' text-anchor='middle' id='s5-cap' opacity='0'><text x='960' y='190' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>BEST FRIEND</text><text x='960' y='272' font-size='78' fill='#ffd400' stroke='#0b0620' stroke-width='12' paint-order='stroke' stroke-linejoin='round'>12 YEARS</text></g>",
-  "js": "tl.fromTo('#s5-cap',{opacity:0,y:-36},{opacity:1,y:0,duration:0.35,ease:'back.out(2)',immediateRender:false},2.4);tl.to('#s5-cap',{opacity:0,duration:0.2},5.4);"
+  "overlay": "<g font-family='Kalam' font-weight='700' text-anchor='middle' id='s5-cap' opacity='0'><text x='960' y='190' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>BEST FRIEND</text><text x='960' y='268' font-size='78' fill='#ffd400' stroke='#0b0620' stroke-width='12' paint-order='stroke' stroke-linejoin='round'>12 YEARS</text></g>",
+  "js": "tl.fromTo('#s5-cap',{opacity:0,y:-36},{opacity:1,y:0,duration:0.35,ease:'back.out(2)',immediateRender:false},2.4);tl.to('#s5-cap',{opacity:0,duration:0.2},5.6);"
  },
  {
-  "name": "s6-walk",
+  "name": "s6a-cancel",
   "start": 21.85,
-  "dur": 10.85,
+  "dur": 3.3,
   "type": "stage",
-  "bg": "street",
-  "time": "dusk",
-  "seed": 7,
-  "timeShift": {
-   "t": 3.0,
-   "dur": 3.0,
-   "to": "night"
-  },
-  "weather": "rain",
-  "weatherAt": 4.6,
-  "life": {
-   "n": 8
-  },
+  "bg": "livingRoom",
+  "time": "night",
+  "seed": 3,
   "fg": true,
   "in": {
    "kind": "zoom"
@@ -340,66 +330,251 @@
   },
   "shots": [
    {
-    "type": "track",
-    "on": "hero"
+    "type": "push",
+    "on": "sam",
+    "t": 0,
+    "dur": 3.3,
+    "k": 1.15,
+    "dx": 160,
+    "dy": -40
+   }
+  ],
+  "chars": [
+   {
+    "name": "sam",
+    "role": "friend",
+    "x": 800,
+    "y": 1040,
+    "scale": 1.5,
+    "moods": [
+     [
+      0.2,
+      "frown"
+     ]
+    ],
+    "browsAt": [
+     [
+      0.2,
+      "worried"
+     ]
+    ],
+    "looks": [
+     [
+      0.3,
+      8,
+      4
+     ]
+    ]
+   }
+  ],
+  "tags": [
+   {
+    "ch": "sam",
+    "text": "70",
+    "t": 0.3,
+    "size": 140,
+    "to": [
+     [
+      1.9,
+      "63"
+     ],
+     [
+      2.2,
+      "56"
+     ],
+     [
+      2.5,
+      "50"
+     ],
+     [
+      2.8,
+      "46"
+     ]
+    ]
+   }
+  ],
+  "extra": "<g id='s6a-b0' opacity='0'><rect x='895' y='420' width='262' height='70' rx='24' fill='#ffffff' stroke='#0b0620' stroke-width='5'/><path d='M912,478 l-16,20 l32,-9Z' fill='#ffffff' stroke='#0b0620' stroke-width='5' stroke-linejoin='round'/><text x='1026' y='463' font-family='Kalam' font-weight='700' text-anchor='middle' font-size='25' fill='#2a1f3d'>Can&#39;t make it, sorry</text></g><g id='s6a-b1' opacity='0'><rect x='895' y='504' width='262' height='70' rx='24' fill='#ffffff' stroke='#0b0620' stroke-width='5'/><path d='M912,562 l-16,20 l32,-9Z' fill='#ffffff' stroke='#0b0620' stroke-width='5' stroke-linejoin='round'/><text x='1026' y='547' font-family='Kalam' font-weight='700' text-anchor='middle' font-size='25' fill='#2a1f3d'>Can&#39;t make it, sorry</text></g><g id='s6a-b2' opacity='0'><rect x='895' y='588' width='262' height='70' rx='24' fill='#ffffff' stroke='#0b0620' stroke-width='5'/><path d='M912,646 l-16,20 l32,-9Z' fill='#ffffff' stroke='#0b0620' stroke-width='5' stroke-linejoin='round'/><text x='1026' y='631' font-family='Kalam' font-weight='700' text-anchor='middle' font-size='25' fill='#2a1f3d'>Can&#39;t make it, sorry</text></g><g id='s6a-b3' opacity='0'><rect x='895' y='672' width='262' height='70' rx='24' fill='#ffffff' stroke='#0b0620' stroke-width='5'/><path d='M912,730 l-16,20 l32,-9Z' fill='#ffffff' stroke='#0b0620' stroke-width='5' stroke-linejoin='round'/><text x='1026' y='715' font-family='Kalam' font-weight='700' text-anchor='middle' font-size='25' fill='#2a1f3d'>Can&#39;t make it, sorry</text></g>",
+  "js": "S.popIn(tl,'#s6a-b0',1.85);S.popIn(tl,'#s6a-b1',2.15);S.popIn(tl,'#s6a-b2',2.45);S.popIn(tl,'#s6a-b3',2.75);"
+ },
+ {
+  "name": "s6b-money",
+  "start": 24.9,
+  "dur": 2.85,
+  "type": "stage",
+  "bg": "street",
+  "time": "dusk",
+  "seed": 8,
+  "fg": true,
+  "in": {
+   "kind": "whip",
+   "dir": 1
+  },
+  "out": {
+   "kind": "zoom",
+   "at": [
+    960,
+    330
+   ],
+   "dur": 0.32
+  },
+  "shots": [
+   {
+    "type": "push",
+    "on": "sam",
+    "t": 0,
+    "dur": 2.85,
+    "k": 1.2,
+    "dx": 90,
+    "dy": -60
+   }
+  ],
+  "chars": [
+   {
+    "name": "sam",
+    "role": "friend",
+    "x": 880,
+    "y": 1040,
+    "scale": 1.5,
+    "moods": [
+     [
+      0.2,
+      "frown"
+     ]
+    ],
+    "browsAt": [
+     [
+      0.2,
+      "worried"
+     ]
+    ]
+   }
+  ],
+  "tags": [
+   {
+    "ch": "sam",
+    "text": "46",
+    "t": 0.15,
+    "size": 140,
+    "to": [
+     [
+      2.1,
+      "41"
+     ]
+    ],
+    "punch": 1.4
+   }
+  ],
+  "extra": "<g id='s6b-bill' opacity='0'><g transform='translate(1090,470) rotate(-8)'><rect x='-125' y='-62' width='250' height='124' rx='14' fill='#8fd19a' stroke='#0b0620' stroke-width='6'/><rect x='-105' y='-44' width='210' height='88' rx='8' fill='none' stroke='#3f8a52' stroke-width='4'/><text x='0' y='20' font-family='Kalam' font-weight='700' text-anchor='middle' font-size='62' fill='#1f4a2a'>$200</text></g></g>",
+  "js": "S.popIn(tl,'#s6b-bill',0.3);tl.to('#s6b-bill',{x:240,y:-260,rotation:28,opacity:0,duration:0.8,ease:'power2.in'},1.75);"
+ },
+ {
+  "name": "s6c-rule",
+  "start": 27.45,
+  "dur": 5.25,
+  "type": "stage",
+  "bg": "bedroom",
+  "time": "night",
+  "seed": 2,
+  "fg": true,
+  "in": {
+   "kind": "zoom"
+  },
+  "out": {
+   "kind": "zoom",
+   "at": [
+    960,
+    520
+   ],
+   "dur": 0.32
+  },
+  "light": {
+   "rim": "#7ab8ff",
+   "fill": "#ffc27a",
+   "side": "left"
+  },
+  "shots": [
+   {
+    "type": "push",
+    "on": "hero",
+    "t": 0,
+    "dur": 5.25,
+    "k": 1.45,
+    "dy": -90
    }
   ],
   "chars": [
    {
     "name": "hero",
     "style": "mascot",
-    "x": 520,
+    "x": 960,
     "y": 1040,
-    "scale": 1.4,
-    "walk": [
-     0.2,
-     10.7,
-     860
+    "scale": 1.6,
+    "looks": [
+     [
+      0.4,
+      0,
+      7
+     ],
+     [
+      3.2,
+      -6,
+      2
+     ]
+    ],
+    "browsAt": [
+     [
+      0.4,
+      "worried"
+     ]
+    ],
+    "moods": [
+     [
+      0.4,
+      "frown"
+     ]
     ]
    }
   ],
-  "overlay": "<g font-family='Kalam' font-weight='700' text-anchor='middle' id='s6-a' opacity='0'><text x='960' y='190' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>CANCELLED</text><text x='960' y='272' font-size='78' fill='#ffd400' stroke='#0b0620' stroke-width='12' paint-order='stroke' stroke-linejoin='round'>4 TIMES.</text></g><g font-family='Kalam' font-weight='700' text-anchor='middle' id='s6-b' opacity='0'><text x='960' y='190' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>FORGOT</text><text x='960' y='272' font-size='78' fill='#ffd400' stroke='#0b0620' stroke-width='12' paint-order='stroke' stroke-linejoin='round'>$200.</text></g><g font-family='Kalam' font-weight='700' text-anchor='middle' id='s6-c' opacity='0'><text x='960' y='190' font-size='52' fill='#fff' stroke='#0b0620' stroke-width='8' paint-order='stroke' stroke-linejoin='round'>TRUST ISN'T WHAT</text><text x='960' y='272' font-size='52' fill='#ffd400' stroke='#0b0620' stroke-width='8' paint-order='stroke' stroke-linejoin='round'>YOU DO FOR PEOPLE.</text></g><g font-family='Kalam' font-weight='700' text-anchor='middle' id='s6-d' opacity='0'><text x='960' y='190' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>IT'S DOING</text><text x='960' y='272' font-size='66' fill='#ffd400' stroke='#0b0620' stroke-width='10' paint-order='stroke' stroke-linejoin='round'>WHAT YOU SAID.</text></g>",
-  "js": "tl.fromTo('#s6-a',{opacity:0,y:-36},{opacity:1,y:0,duration:0.35,ease:'back.out(2)',immediateRender:false},1.85);tl.to('#s6-a',{opacity:0,duration:0.2},3.2);tl.fromTo('#s6-b',{opacity:0,y:-36},{opacity:1,y:0,duration:0.35,ease:'back.out(2)',immediateRender:false},3.3);tl.to('#s6-b',{opacity:0,duration:0.2},5.5);tl.fromTo('#s6-c',{opacity:0,y:-36},{opacity:1,y:0,duration:0.35,ease:'back.out(2)',immediateRender:false},5.7);tl.to('#s6-c',{opacity:0,duration:0.2},8.0);tl.fromTo('#s6-d',{opacity:0,y:-36},{opacity:1,y:0,duration:0.35,ease:'back.out(2)',immediateRender:false},8.05);tl.to('#s6-d',{opacity:0,duration:0.2},10.6);"
+  "overlay": "<g font-family='Kalam' font-weight='700' text-anchor='middle' id='s6c-a' opacity='0'><text x='960' y='190' font-size='50' fill='#fff' stroke='#0b0620' stroke-width='8' paint-order='stroke' stroke-linejoin='round'>TRUST ISN&#39;T WHAT</text><text x='960' y='268' font-size='52' fill='#ffd400' stroke='#0b0620' stroke-width='8' paint-order='stroke' stroke-linejoin='round'>YOU DO FOR PEOPLE.</text></g><g font-family='Kalam' font-weight='700' text-anchor='middle' id='s6c-b' opacity='0'><text x='960' y='190' font-size='56' fill='#fff' stroke='#0b0620' stroke-width='9' paint-order='stroke' stroke-linejoin='round'>IT&#39;S DOING</text><text x='960' y='268' font-size='64' fill='#ffd400' stroke='#0b0620' stroke-width='10' paint-order='stroke' stroke-linejoin='round'>WHAT YOU SAID.</text></g>",
+  "js": "tl.fromTo('#s6c-a',{opacity:0,y:-36},{opacity:1,y:0,duration:0.35,ease:'back.out(2)',immediateRender:false},0.15);tl.to('#s6c-a',{opacity:0,duration:0.2},2.35);tl.fromTo('#s6c-b',{opacity:0,y:-36},{opacity:1,y:0,duration:0.35,ease:'back.out(2)',immediateRender:false},2.47);tl.to('#s6c-b',{opacity:0,duration:0.2},4.9);"
  },
  {
-  "name": "s7-alley",
+  "name": "s7-roof",
   "start": 32.41,
-  "dur": 9.49,
+  "dur": 9.79,
   "type": "stage",
-  "bg": "alley",
+  "bg": "rooftop",
   "time": "night",
-  "seed": 4,
+  "seed": 6,
+  "fg": true,
   "in": {
-   "kind": "whip",
-   "dir": 1
+   "kind": "zoom"
   },
   "out": {
    "kind": "fade",
    "dur": 0.4
   },
   "light": {
-   "rim": "#ff5fd2",
-   "fill": "#7ae0ff",
+   "rim": "#ffd36b",
+   "fill": "#7ab8ff",
    "side": "right"
   },
-  "weather": "rain",
-  "fg": true,
   "shots": [
    {
     "type": "push",
     "on": "hero",
     "t": 0.6,
     "dur": 6.0,
-    "k": 1.75,
-    "dy": -60
+    "k": 1.7,
+    "dy": -90
    }
   ],
   "chars": [
    {
     "name": "hero",
     "style": "mascot",
-    "x": 950,
-    "y": 1010,
+    "x": 960,
+    "y": 1030,
     "scale": 1.7,
     "view": "back",
     "spin": [
@@ -421,7 +596,7 @@
     "ch": "hero",
     "text": "?",
     "t": 5.62,
-    "size": 190,
+    "size": 180,
     "col": "#c9a6ff",
     "punch": 1.5
    }

@@ -33,7 +33,7 @@ Other characters speak only a few short lines per video (about 10% of words, 8 w
 ## Fish voice-over workflow (used for Short 1, 2026-11-19; user approved generation)
 1. Fish web app (built-in browser, user logged in): Voice Acting -> New scene -> **Paste script** with `ROLE: [emotion] line` per line -> Import -> set voices (Narrator = Elliot from Recently used/My Voices, others from Bookmarked or Default) -> Create scene -> scene note -> **Perform scene** (about 600 characters for a 45 s Short).
 2. Export -> tick **Scene mix** -> Export. The built-in browser pane does NOT save downloads to disk: ask the user to click Download (History tab) so the zip lands in Downloads.
-3. `python3 fishvo.py "<Downloads>/<date>_<scene>.zip" "Short 1"` cuts every line from the mix using manifest.csv, speeds Elliot to 1.2x, joins with 0.32 s pauses, normalises loudness, writes the voice-over + transcript.
+3. `python3 fishvo.py "<Downloads>/<date>_<scene>.zip" "Short 1"` cuts every line from the mix using manifest.csv, speeds Elliot to 1.2x (call-to-action lines stay 1.0x), joins with 0.32 s pauses, normalises loudness, writes the voice-over + transcript.
 4. `bash new-clip.sh S1` times every word and builds the lip-sync envelope; build the spec with phrase timing; render.
 
 ## API cheat sheet

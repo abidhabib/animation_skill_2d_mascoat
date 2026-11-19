@@ -36,15 +36,17 @@
   }
 
   // ---------- intro transitions (played by the incoming scene on its own svg) ----------
-  function intro(tl, sid, o) {
+  // stage point -> CSS pixels of the scene's svg element (portrait shows the x 656..1264 slice scaled 1.78x)
+  const toPx = (at, so) => so && so.portrait ? [(at[0] - 656.25) * 1.7778, (at[1] - (so.lift == null ? 160 : so.lift) * 0) * 1.7778] : at;
+  function intro(tl, sid, o, so) {
     if (!o) return;
-    const el = `#${sid}-svg`, at = o.at || [960, 540];
+    const el = `#${sid}-svg`, at = toPx(o.at || [960, 540], so);
     switch (o.kind) {
       case "whip": tl.fromTo(el, { x: (o.dir || 1) * 700, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 0); break;
       case "vwhip": tl.fromTo(el, { y: (o.dir || 1) * 600, filter: "blur(16px)" }, { y: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out" }, 0); break;
       case "iris": case "flood": tl.fromTo(el, { clipPath: `circle(0px at ${at[0]}px ${at[1]}px)` }, { clipPath: `circle(2300px at ${at[0]}px ${at[1]}px)`, duration: o.kind === "iris" ? 0.38 : 0.45, ease: "power2.in" }, 0); break;
       case "wipe": { tl.fromTo(el, { clipPath: "polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)" }, { clipPath: "polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)", duration: 0.4, ease: "power2.inOut" }, 0); break; }
-      case "zoom": tl.fromTo(el, { scale: 2.6, transformOrigin: `${at[0]}px ${at[1]}px`, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0); break;
+      case "zoom": tl.fromTo(el, { scale: o.k || 2.8, transformOrigin: `${at[0]}px ${at[1]}px`, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0); break;
       case "drop": tl.fromTo(el, { y: -1100 }, { y: 0, duration: 0.42, ease: "bounce.out" }, 0); break;
     }
   }
@@ -776,10 +778,10 @@
     });
   }
   // out:{kind:"whip"|"zoom"|"fade", dir:1}: the exit move at the end of a scene (pairs with the next scene's in)
-  function outro(tl, sid, o, dur) {
+  function outro(tl, sid, o, dur, so) {
     if (!o) return; const el = `#${sid}-svg`, dd = o.dur || 0.28, t = Math.max(0, dur - dd);
     if (o.kind === "whip") tl.to(el, { x: -(o.dir || 1) * 760, filter: "blur(18px)", duration: dd, ease: "power3.in" }, t);
-    else if (o.kind === "zoom") tl.to(el, { scale: 2.6, transformOrigin: o.origin || "50% 40%", filter: "blur(10px)", duration: dd, ease: "power3.in" }, t);
+    else if (o.kind === "zoom") { const p = o.at ? toPx(o.at, so) : null; tl.to(el, { scale: o.k || 3.2, transformOrigin: p ? `${p[0]}px ${p[1]}px` : o.origin || "50% 40%", filter: "blur(12px)", duration: dd, ease: "power3.in" }, t); }   // zoom INTO a point; pair with the next scene's in:{kind:"zoom"} = zoom-through
     else if (o.kind === "fade") tl.to(el, { opacity: 0, duration: dd }, t);
   }
   // safeGuide:true in a portrait scene draws the 9:16 safe box (preview only)
@@ -809,7 +811,7 @@
     if (RB) { tl.fromTo(`#${sid}-far`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); }
     if (RB2) { tl.fromTo(`#${sid}-far2`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid2`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); tl.to([`#${sid}-far2`, `#${sid}-mid2`], { opacity: 1, duration: o.timeShift.dur || 2.5, ease: "sine.inOut" }, o.timeShift.t || 0); }
     if (WX && o.weatherAt != null) { tl.fromTo(`#${sid}-wxw`, { opacity: 0 }, { opacity: 1, duration: 1.4, ease: "sine.in" }, o.weatherAt); if (q(`#${sid}-refl`)) tl.fromTo(`#${sid}-refl`, { opacity: 0 }, { opacity: 1, duration: 1.8, ease: "sine.in", immediateRender: false }, o.weatherAt + 0.4); }
-    lifeAnim(tl, sid, dur); outro(tl, sid, o.out, dur);
+    lifeAnim(tl, sid, dur); outro(tl, sid, o.out, dur, o);
     document.querySelectorAll(`#${sid}-svg .rb-scroll`).forEach((el) => tl.fromTo(el, { x: 0 }, { x: -Number(el.dataset.scroll || 300), duration: dur, ease: "none" }, 0));
     (o.camMoves || []).forEach((m) => { const pr = {}; ["fx", "fy", "k", "r", "dx", "dy"].forEach((key) => { if (m[key] != null) pr[key] = m[key]; }); C.to(m.t, m.dur, pr, m.ease); });
     if (o.handheld) { const hr = T.rng(o.seed || 7), a = o.handheld === true ? 5 : o.handheld; for (let tt = 0; tt < dur; tt += 0.5) C.to(tt, 0.5, { dx: (hr() - 0.5) * 2 * a, dy: (hr() - 0.5) * 1.4 * a, r: (hr() - 0.5) * 0.08 * a }, "sine.inOut"); }
@@ -819,7 +821,7 @@
     animChars(tl, o, sid, dur);
     applySay(tl, o, sid, C);
     animProps(tl, sid, o, dur); applyPoses(tl, o, sid); if (WX) WX.anim(tl);
-    intro(tl, sid, o.in);
+    intro(tl, sid, o.in, o);
     if (o.custom) o.custom(tl, ctx, C, T);
     window.__timelines[sid] = tl;
     return { tl, C };
