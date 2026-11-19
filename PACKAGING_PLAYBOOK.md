@@ -46,3 +46,20 @@ Rules seen:
 7. Alternate dark neon-city thumbnails with a clean white one so the channel grid does not look identical.
 8. Series consistency: same mascot, palette, text placement, title grammar. This channel proves a uniform "What IF" series can work; the user prefers variety in titles, so keep the STRUCTURE (one power + number, 2-word reaction text) and vary the wording.
 Cautions: some of these thumbnails use a real person's face, a branded drink and a famous superhero suit. Do not copy likenesses, brands or other creators' characters; use original equivalents.
+
+## Long-form blueprint: 11-13 minute videos (user's target length, 2026-11-19)
+Patterns to TEST, not guarantees. Narration about 1,200-1,500 words (the reference scripts run ~100 words/min including silence); about 22-26 clips of ~30 s each in the project workflow.
+| Position | Job | Device |
+|---|---|---|
+| 0:00-0:40 | Hook | Strong first frame, a concrete moment (no "welcome back"), show the power/problem twice, plant ONE open loop ("by Day 26 you'll cry") |
+| ~0:40 | Promise + premise | Say the rule in 3 lines, state what the viewer will get and roughly when |
+| 1:00-3:30 | Fun/Setup | Quick wins with a punch word each, numbers on every beat, a viewer question near 2:00, re-hook line before the section ends |
+| 3:30-6:00 | Escalation | Bigger stage each step, a side-character touch (<= 8 words) about every 45 s, micro-cliffhanger at the end of each step |
+| ~6:00 (50%) | Midpoint twist | The expected rule changes or a cost appears; this is where long videos usually bleed viewers, so give a new reason to stay (a bigger open loop) |
+| 6:00-8:30 | Consequences | Stakes up, one more viewer question, pay the SMALL open loops |
+| 8:30-10:30 | Climax | Moral choice with a countdown, pay the title's promise (still before the very end) |
+| 10:30-12:00 | Payoff + new loop | Emotional payoff, reverse twist, sequel hook, comment question; subscribe ask only after payoff |
+Re-hook every 90-120 s: a teaser line ("but that was not the worst part"), a question to the viewer, a new Day/number card, or a visual/audio change.
+Pattern interrupts: new location or camera move about every 10 s, cut on voice pauses, a music/sound change at each section break, one 3-5 s silence beat before the big moments, vary narration speed.
+Lengthen without padding: add more tests, more places, branching consequences, a second character's mini-story; never repeat the same joke type more than three times.
+Packaging triad: title, thumbnail and first 30 s must make the same promise; deliver it (misleading packaging may raise clicks but hurts trust and retention). After publishing: read the retention graph, find the steepest drops, shorten or re-hook those parts next time.
