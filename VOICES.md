@@ -1,3 +1,5 @@
+**MAIN VOICE NOW (user, 2026-11-20, latest): the user's own updated "Elliot" in My Voices (cloned from an ElevenLabs recording), Fish id `22e3589fe5f14a8d8f5a5a23644b3cd7`, Speed 1.1x, no tags, 1st generation, fishjoin with `NOSLOW=1`. Open: https://fish.audio/app/text-to-speech/?modelId=22e3589fe5f14a8d8f5a5a23644b3cd7. This replaces "Abid's Fav", "Energetic Male" and the old Elliot id `3885...`.**
+
 # Voices (Fish Audio)
 
 **MAIN VOICE (user, 2026-11-20): "Abid's Fav" by Abid Habib, Fish id `4de5245b355c4974a0c71baf01775d48` (https://fish.audio/m/4de5245b355c4974a0c71baf01775d48), replaces Elliot as the main character / narrator. Every rule below that says "Elliot" applies to this voice (Speed 1.2x set in Fish, no tag by default, rhythm check, CTA at 1.0x). Open it with https://fish.audio/app/text-to-speech/?modelId=4de5245b355c4974a0c71baf01775d48. First used: V02 clip 1 (test); the Elliot version is kept as `renders/V02 - Clip 1 (Elliot).mp4`.**
