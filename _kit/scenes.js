@@ -55,6 +55,9 @@
   // direction-aware characters: walk dx sets side view + mirror; dir 'away' = back view shrinking, 'toward' = front view growing
   // ---------- cast roles: "role":"dad" expands to a full look; any key you give yourself wins ----------
   const HERO_DEFAULT = 'abid';
+  // real head/body height of a mascot (matches toon.js: tall -> legs longer, body + head lifted; headK -> head size)
+  const LIFT = (c) => Math.round(((c.tall || 1) - 1) * 260);
+  const HEADOFF = (c) => (c.build === 'kid' ? 268 : Math.round(206 + 62 * (c.headK || 1.22))) + LIFT(c);
   const ROLES = {
     hoodie: { style: "mascot" },   // the old yellow-hoodie hero
     abid: { style: "mascot", roll: true, tuck: true, legW: 18, build: "slim", tall: 1.16, headK: 1.08, hair: "fluffy", hairCol: "#3a2418", skin: "#f6d6bd", stache: "curl", beard: "goatee", outfit: "shirt", shirt: "#1f1f26", hoodDark: "#131318", collar: "#3c3c4a", pants: "#24242c", eyes: "dark", curl: false },   // the user's own character (black shirt, curly hair, curled moustache)
@@ -133,7 +136,7 @@
   function tagList(o) {
     return (o.tags || []).map((g, i) => {
       const ch = typeof g.ch === "number" ? (o.chars || [])[g.ch] : (o.chars || []).find((c) => c.name === g.ch), sc = ch ? (ch.scale || 1) : 1;
-      const x = g.x != null ? g.x : (ch ? ch.x || 0 : 960), y = g.y != null ? g.y : (ch ? (ch.y || 0) - (ch.style === "mascot" ? 372 : 335) * sc - (g.dy == null ? 70 : g.dy) : 300);
+      const x = g.x != null ? g.x : (ch ? ch.x || 0 : 960), y = g.y != null ? g.y : (ch ? (ch.y || 0) - (ch.style === "mascot" ? HEADOFF(ch) + 90 : 335) * sc - (g.dy == null ? 70 : g.dy) : 300);
       const vals = [[g.t == null ? 0.3 : g.t, String(g.text)]].concat((g.to || []).map((a) => [a[0], String(a[1])]));
       return { g, i, x, y, vals, size: g.size || 120, ch };
     });
@@ -572,7 +575,7 @@
       if (!(X && X.silent)) { const rest = X ? (X.mouth === "open" ? "smile" : X.mouth) : (E.mood === "open" ? "smile" : E.mood); if (s.env && s.env.length && T.lips) T.lips(tl, id, s.from, s.env, s.envFps || 15, rest); else T.talk(tl, id, s.from + 0.1, s.to, rest); }
       if (E.shake) C.shake(s.from + 0.05, E.shake);
       if (s.zoom !== false && o.bg && RICH[o.bg]) { const bl = s.blur == null ? 14 : s.blur; ["far", "mid"].forEach((k) => { tl.set(`#${sid}-${k}`, { filter: "blur(0px) brightness(1)" }, 0); tl.to(`#${sid}-${k}`, { filter: `blur(${bl}px) brightness(0.72)`, duration: 0.45 }, s.from - 0.15); tl.to(`#${sid}-${k}`, { filter: "blur(0px) brightness(1)", duration: 0.5 }, s.to + 0.1); }); }
-      if (s.zoom !== false) { C.to(s.from - 0.2, 0.55, { k: s.k || 1.9, fx: (c.x || 960), fy: (c.y || 1000) - 240 * sc }, "power2.inOut"); C.to(s.to + 0.1, 0.6, { k: 1.06, fx: 960, fy: 540 }, "power2.inOut"); }
+      if (s.zoom !== false) { C.to(s.from - 0.2, 0.55, { k: s.k || 1.9, fx: (c.x || 960), fy: (c.y || 1000) - (240 + (c.style === "mascot" ? HEADOFF(c) - 282 : 0)) * sc }, "power2.inOut"); C.to(s.to + 0.1, 0.6, { k: 1.06, fx: 960, fy: 540 }, "power2.inOut"); }
     });
   }
 
@@ -766,13 +769,13 @@
   // ---------- in bed, seen from above: "bed":{ch:"hero", col:"#6a8fd0", sheet:"#f4efe6", full:true, phone:{t0,t1}} ----------
   function bedParts(B, o, sid) {
     if (!B) return null; const c = (o.chars || []).find((q) => q.name === B.ch) || (o.chars || [])[0]; if (!c) return null;
-    const sc = c.scale || 1, cx = c.x || 960, hy = (c.y || 1000) - 282 * sc, col = B.col || "#6a8fd0";
+    const sc = c.scale || 1, cx = c.x || 960, hy = (c.y || 1000) - HEADOFF(c) * sc, by = (c.y || 1000) - LIFT(c) * sc, col = B.col || "#6a8fd0";
     const back = (B.full !== false ? `<rect x="-400" y="-400" width="2720" height="1880" fill="${B.sheet || "#f1ebe2"}"/>` + Array.from({ length: 14 }, (_, i) => `<path d="M-400,${-200 + i * 110} L2320,${-120 + i * 110}" stroke="#00000010" stroke-width="18"/>`).join("") : "")
       + `<rect x="${cx - 230 * sc}" y="${hy - 150 * sc}" width="${460 * sc}" height="${260 * sc}" rx="${100 * sc}" fill="#ffffff" stroke="${INK}" stroke-width="${6 * sc}"/><path d="M${cx - 150 * sc},${hy - 120 * sc} q${150 * sc},${40 * sc} ${300 * sc},0" fill="none" stroke="#00000018" stroke-width="${8 * sc}"/>`
       + (B.phone ? `<g id="${sid}-bph"><g transform="translate(${cx + 300 * sc},${hy + 10 * sc}) rotate(18)"><rect x="${-45 * sc}" y="${-85 * sc}" width="${90 * sc}" height="${170 * sc}" rx="${16 * sc}" fill="#1b1d26" stroke="${INK}" stroke-width="${5 * sc}"/><rect x="${-37 * sc}" y="${-75 * sc}" width="${74 * sc}" height="${150 * sc}" rx="${10 * sc}" fill="#ffcfb5"/><text x="0" y="${-20 * sc}" font-size="${30 * sc}" text-anchor="middle" font-family="Kalam" font-weight="700" fill="#2a1f3d">7:00</text></g><g id="${sid}-bring" opacity="0"><path d="M${cx + 380 * sc},${hy - 60 * sc} q${40 * sc},${60 * sc} 0,${130 * sc} M${cx + 420 * sc},${hy - 90 * sc} q${60 * sc},${90 * sc} 0,${190 * sc}" fill="none" stroke="#ff7a1a" stroke-width="${8 * sc}" stroke-linecap="round"/></g></g>` : "");
-    const front = `<path d="M${cx - 360 * sc},${c.y - 205 * sc} Q${cx},${c.y - 250 * sc} ${cx + 360 * sc},${c.y - 205 * sc} L${cx + 420 * sc},${c.y + 700} L${cx - 420 * sc},${c.y + 700}Z" fill="${col}" stroke="${INK}" stroke-width="${7 * sc}" stroke-linejoin="round"/>`
-      + `<path d="M${cx - 340 * sc},${c.y - 170 * sc} Q${cx},${c.y - 210 * sc} ${cx + 340 * sc},${c.y - 170 * sc}" fill="none" stroke="#ffffff70" stroke-width="${14 * sc}" stroke-linecap="round"/>`
-      + [1, 2, 3].map((i) => `<path d="M${cx - 380 * sc + i * 40},${c.y - 120 * sc + i * 90 * sc} q${180 * sc},${-30 * sc} ${360 * sc},0" fill="none" stroke="#00000020" stroke-width="${6 * sc}" stroke-linecap="round"/>`).join("");
+    const front = `<path d="M${cx - 360 * sc},${by - 205 * sc} Q${cx},${by - 250 * sc} ${cx + 360 * sc},${by - 205 * sc} L${cx + 420 * sc},${c.y + 700} L${cx - 420 * sc},${c.y + 700}Z" fill="${col}" stroke="${INK}" stroke-width="${7 * sc}" stroke-linejoin="round"/>`
+      + `<path d="M${cx - 340 * sc},${by - 170 * sc} Q${cx},${by - 210 * sc} ${cx + 340 * sc},${by - 170 * sc}" fill="none" stroke="#ffffff70" stroke-width="${14 * sc}" stroke-linecap="round"/>`
+      + [1, 2, 3].map((i) => `<path d="M${cx - 380 * sc + i * 40},${by - 120 * sc + i * 90 * sc} q${180 * sc},${-30 * sc} ${360 * sc},0" fill="none" stroke="#00000020" stroke-width="${6 * sc}" stroke-linecap="round"/>`).join("");
     return { back, front };
   }
   function bedAnim(tl, B, sid, dur) {
@@ -814,7 +817,7 @@
   function shotsToCam(o, dur) {
     const L = o.shots || (o.shot ? [o.shot] : []); if (!L.length) return; o.camMoves = o.camMoves || []; o.drift = false;
     const find = (n) => (o.chars || []).find((c) => c.name === n) || (o.chars || []).find((c) => !c._copy);
-    const headY = (c) => (c.y || 1000) - (c.style === "mascot" ? (c.build === "kid" ? 268 : 282) : 250) * (c.scale || 1);
+    const headY = (c) => (c.y || 1000) - (c.style === "mascot" ? HEADOFF(c) : 250) * (c.scale || 1);
     L.forEach((s, i) => {
       const t = s.t || 0, d2 = s.dur || dur - t, c = s.on ? find(s.on) : find(), k = s.k;
       if (s.type === "track" && c) { const w = c.walk || [t, t + d2, 0], lead = s.lead == null ? 70 * Math.sign(w[2] || 1) : s.lead, fy = s.fy || (c.y || 1000) - (324 + (o.portrait ? (o.lift == null ? 160 : o.lift) : 0)) / (k || 1);   // feet land at 80% of the frame

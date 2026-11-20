@@ -55,7 +55,7 @@
     const LS = o.lightSide === 'left' ? -1 : 1, RIM = o.rim || '#8be9ff', FIL = o.fill || '#ffd29a', RIMR = LS > 0 ? RIM : FIL, RIML = LS > 0 ? FIL : RIM;
     // cast looks: outfit hoodie|tee|shirt|suit|coat|apron|vest|cardigan|uniform|dress, build slim|wide|kid
     const outfit = o.outfit || 'hoodie', hoodie = outfit === 'hoodie', SHORT = outfit === 'tee' || outfit === 'dress', SLV = outfit === 'coat' ? '#f4f6fa' : hood;
-    const KID = o.build === 'kid', bw = { slim: 0.86, wide: 1.17 }[o.build] || 1, HK = KID ? 1.42 : (o.headK || 1.22), TALL = o.tall || 1, HY = (KID ? -268 : -282) * TALL;
+    const KID = o.build === 'kid', bw = { slim: 0.86, wide: 1.17 }[o.build] || 1, HK = KID ? 1.42 : (o.headK || 1.22), TALL = o.tall || 1, LIFT = Math.round((TALL - 1) * 260), HIP = -76 - LIFT, HY = KID ? -268 : Math.round(-206 - 62 * HK);  // tall: extra height goes into the legs; body + head lift together (neck joint and arm reach stay the same)
     // ---- age: 0 = young; ~15 first lines, 30 glasses + grey tufts, 50 grey brows, 60+ white hair + cane + stoop ----
     const age = o.age || 0, AT = Math.min(1, age / 70);
     const canePath = `<path d="M0,-4 L0,92" stroke="${PI}" stroke-width="11" stroke-linecap="round"/><path d="M0,-4 L0,92" stroke="#b4783a" stroke-width="6" stroke-linecap="round"/><path d="M-15,-6 Q-15,-24 0,-24 Q15,-24 15,-8" fill="none" stroke="${PI}" stroke-width="11" stroke-linecap="round"/><path d="M-15,-6 Q-15,-24 0,-24 Q15,-24 15,-8" fill="none" stroke="#b4783a" stroke-width="6" stroke-linecap="round"/>`;
@@ -88,7 +88,7 @@
     const STACHE = o.stache === 'curl' ? `<path fill="none" stroke="${HCOL}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" d="M${fx - 3},19 Q${fx - 14},15 ${fx - 24},20 Q${fx - 30},23 ${fx - 32},16 M${fx + 3},19 Q${fx + 14},15 ${fx + 24},20 Q${fx + 30},23 ${fx + 32},16"/>` : o.stache ? `<path ${st(3.5)} fill="${HCOL}" d="M${fx - 24},20 C${fx - 13},8 ${fx - 3},12 ${fx},16 C${fx + 3},12 ${fx + 13},8 ${fx + 24},20 C${fx + 12},26 ${fx - 12},26 ${fx - 24},20Z"/>` : '';
     const BEARD = o.beard === 'goatee' ? `<ellipse cx="${fx}" cy="34" rx="46" ry="24" fill="${HCOL}" opacity="0.13"/><path ${st(3)} fill="${HCOL}" d="M${fx - 10},46 Q${fx},60 ${fx + 10},46 Q${fx},51 ${fx - 10},46Z"/>` : o.beard ? `<path ${st(4)} fill="${HCOL}" d="M${fx - 60},4 C${fx - 58},78 ${fx + 58},78 ${fx + 60},4 C${fx + 40},24 ${fx - 40},24 ${fx - 60},4Z"/>` : '';
     const leg = (side) => { const x = side === 'l' ? -20 : 20, dir = side === 'l' ? -1 : 1;
-      return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}"><path d="M${x},-76 L${x},-16" fill="none" stroke="${PI}" stroke-width="${(o.legW || 13) + 7}" stroke-linecap="round"/><path d="M${x},-76 L${x},-16" fill="none" stroke="${pants}" stroke-width="${o.legW || 13}" stroke-linecap="round"/>${V ? `<path d="M${x - 3.5},-72 L${x - 3.5},-22" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="3.5" stroke-linecap="round"/>` : ''}
+      return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}" data-hy="${HIP}"><path d="M${x},${HIP} L${x},-16" fill="none" stroke="${PI}" stroke-width="${(o.legW || 13) + 7}" stroke-linecap="round"/><path d="M${x},${HIP} L${x},-16" fill="none" stroke="${pants}" stroke-width="${o.legW || 13}" stroke-linecap="round"/>${V ? `<path d="M${x - 3.5},${HIP + 4} L${x - 3.5},-22" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="3.5" stroke-linecap="round"/>` : ''}
         <path ${st(4)} fill="#fff" d="M${x - 18},-4 C${x - 18},-24 ${x + 14},-26 ${x + 20},-12 L${x + 22},0 L${x - 18},0Z" transform="${side === 'r' ? '' : ''}"/><path d="M${x - 18},-4 L${x + 22},-4" stroke="${hood}" stroke-width="7" stroke-linecap="round"/><path d="M${x - 6},-20 l6,5 M${x + 4},-22 l6,5" stroke="${PI}" stroke-width="3" stroke-linecap="round"/></g>`; };
     const arm = (side) => { const x = side === 'l' ? -48 : 48, k = side === 'l' ? -6 : 6;
       return `<g id="${id}-a${side}" data-sx="${x}" data-sy="-190">
@@ -145,7 +145,7 @@
 
     // side view: shoes point forward (+x), both arms hang from the shoulder line, one drawstring, pocket on the front
     const sideLeg = (side) => { const x = side === 'l' ? -14 : 14;
-      return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}"><path d="M${x},-76 L${x},-16" fill="none" stroke="${PI}" stroke-width="${(o.legW || 13) + 7}" stroke-linecap="round"/><path d="M${x},-76 L${x},-16" fill="none" stroke="${pants}" stroke-width="${o.legW || 13}" stroke-linecap="round"/>${V ? `<path d="M${x - 3.5},-72 L${x - 3.5},-22" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="3.5" stroke-linecap="round"/>` : ''}
+      return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}" data-hy="${HIP}"><path d="M${x},${HIP} L${x},-16" fill="none" stroke="${PI}" stroke-width="${(o.legW || 13) + 7}" stroke-linecap="round"/><path d="M${x},${HIP} L${x},-16" fill="none" stroke="${pants}" stroke-width="${o.legW || 13}" stroke-linecap="round"/>${V ? `<path d="M${x - 3.5},${HIP + 4} L${x - 3.5},-22" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="3.5" stroke-linecap="round"/>` : ''}
         <path ${st(4)} fill="#fff" d="M${x - 10},-4 C${x - 10},-26 ${x + 22},-26 ${x + 34},-12 L${x + 38},0 L${x - 10},0Z"/><path d="M${x - 10},-4 L${x + 38},-4" stroke="${hood}" stroke-width="7" stroke-linecap="round"/><path d="M${x + 2},-21 l5,5 M${x + 11},-22 l5,5" stroke="${PI}" stroke-width="3" stroke-linecap="round"/></g>`; };
     const sideArm = (side) => { const x = side === 'l' ? -3 : 3, col = SHORT ? skin : outfit === 'coat' ? (side === 'l' ? '#d7dce6' : '#f4f6fa') : side === 'l' ? hoodDark : hood;
       return `<g id="${id}-a${side}" data-sx="${x}" data-sy="-190">
@@ -216,9 +216,9 @@
     const sc = o.scale || 1;
     return `<g id="${id}-pos"><g id="${id}" transform="translate(${o.x || 0},${o.y || 0}) scale(${(o.flip ? -1 : 1) * sc},${sc})">
       ${V ? '<ellipse fill="#000" opacity="0.14" cx="0" cy="3" rx="96" ry="17"/><ellipse fill="#000" opacity="0.32" cx="0" cy="3" rx="56" ry="9"/>' : '<ellipse fill="#000" opacity="0.22" cx="0" cy="3" rx="78" ry="13"/>'}
-      <g transform="scale(1,${TALL})">${LEGS}${SKIRT}</g>
-      <g transform="rotate(${stoop.toFixed(1)} 0 -70)"><g transform="scale(1,${TALL})"><g id="${id}-body">${bw !== 1 ? `<g transform="scale(${bw},1)">` : ''}${FARA}${BPS}${torsoV}${armsV[1]}${bw !== 1 ? '</g>' : ''}</g></g>
-      ${head}</g>
+      ${LEGS}<g transform="translate(0,${-LIFT})">${SKIRT}
+      <g transform="rotate(${stoop.toFixed(1)} 0 -70)"><g><g id="${id}-body">${bw !== 1 ? `<g transform="scale(${bw},1)">` : ''}${FARA}${BPS}${torsoV}${armsV[1]}${bw !== 1 ? '</g>' : ''}</g></g>
+      ${head}</g></g>
     </g></g>`;
   }
 
@@ -392,8 +392,9 @@
     const st = (t1 - t0) / steps;
     for (let i = 0; i < steps; i++) {
       const a = i % 2 ? 22 : -22;
-      tl.to(`#${id}-ll`, { rotation: a, svgOrigin: '-18 -76', duration: st, ease: 'sine.inOut' }, t0 + i * st);
-      tl.to(`#${id}-lr`, { rotation: -a, svgOrigin: '18 -76', duration: st, ease: 'sine.inOut' }, t0 + i * st);
+      const hy = (q(`#${id}-ll`) && q(`#${id}-ll`).dataset.hy) || -76;
+      tl.to(`#${id}-ll`, { rotation: a, svgOrigin: `-18 ${hy}`, duration: st, ease: 'sine.inOut' }, t0 + i * st);
+      tl.to(`#${id}-lr`, { rotation: -a, svgOrigin: `18 ${hy}`, duration: st, ease: 'sine.inOut' }, t0 + i * st);
       tl.to(`#${id}-body`, { y: -6, duration: st / 2, ease: 'sine.out', yoyo: true, repeat: 1 }, t0 + i * st);
     }
     tl.to(`#${id}-ll, #${id}-lr`, { rotation: 0, duration: 0.15 }, t1);
