@@ -4,6 +4,8 @@ description: Make the next numbered clip of the user's 2D cartoon explainer vide
 ---
 
 
+> **SENDING (user rule):** every finished clip/Short goes out with SendUserFile AND its clickable path in the message: a markdown link relative to `YouTube Content` plus the full Windows path, so the user can open it in File Explorer.
+
 > **SHARED STUDIO (2026-11-19):** the live kit is `YouTube Content/_Studio Kit/` (open Claude in `YouTube Content`). Wherever this file says `Animation/...`, read `_Studio Kit/...` for kit files; each video has its own folder (`V02 - Trust Numbers/`: specs, clips, renders, voice files) and the scripts run from inside it: `bash "../_Studio Kit/new-clip.sh" N`, `python3 "../_Studio Kit/scene.py" N specs/x.json`, `bash "../_Studio Kit/render-clip.sh" N`. New video: `bash "_Studio Kit/new-video.sh" "V03 - Topic"`. No git pull, no clones; push `_Studio Kit` after kit changes.
 
 # Cartoon explainer clip
