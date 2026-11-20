@@ -31,6 +31,7 @@ Spec = one scene with `"type":"thumb"`: `bg` (any env, or `white`), `text` (`["T
 - Hands in front of the face (rubbing eyes, covering the mouth): the real arms are drawn behind the head, so set `armL:186, armR:-186` and draw sleeve + fist shapes in `extra` (example: V02 `specs/make_clip01_02.py`, scene s4-rub).
 - No `fg` foreground silhouettes indoors (they read as black blobs); keep them for streets.
 - Voice per clip: `python3 "../_Studio Kit/fishjoin.py" "Clip 02" "<text>" <fish-url-or-file> ... [gap=0.5] ...` joins Fish parts (Elliot 1.2x lines + other voices) into the clip voice-over + transcript.
+- **Specs follow the words**: write the clip spec as a small generator that reads `clips/clip-NN/assets/vo.words.json` and places every scene cut, number pop, text slam and camera move on a spoken word (`Words(n).t('phrase')`), never on hand-typed seconds. A re-recorded voice then re-times everything with one run. Example: V02 `specs/make_clip01_02.py`.
 - Clip rhythm that the user asked for: 4-5 shots per 15-17 s clip, a new picture on every sentence, camera always moving (push, pull, track, punch on numbers), whip or zoom-through between shots.
 
 ## KIT V2 (2026-11-19): 2.5D characters, cast roles, cinematic environments. Pictures: docs/CAST_ROLES.png, docs/KIT_V2_SHOTS.png, test `renders/Kit v2 test.mp4`, spec `specs/kit_v2_test.json`

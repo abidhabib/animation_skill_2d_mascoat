@@ -3,6 +3,9 @@
 ## HARD RULES for the main character / narrator (Elliot), user review of Short 1 (2026-11-19)
 - **Emotion tags: ONLY these four are allowed**: `[curious]`, `[intrigued]`, `[nervous]`, `[serious, slow]`. Never use any other tag on the main character.
 - **Banned (they made the voice bad)**: `[low, ominous]`, `[whispering]`, `[warm, quick]` (it made the line far too fast). Also do not invent new tags such as `[building tension]` or `[quiet, hurt]`: if a line needs a mood, pick one of the four or use no tag.
+- **NO TAG BY DEFAULT (user, V02 clip 1 review):** tags also change the pacing; `[curious]` made Elliot rush and broke the rhythm on top of 1.2x. Elliot's lines get **no tag** unless one line truly needs an emotion; then tag only that line (prefer `[serious, slow]`, which slows down). Never tag a whole paragraph.
+- **Pace with punctuation, not tags:** full stops, commas and `...` give natural pauses ("Your alarm goes off... Seven a.m.").
+- **Generate in short pieces** (1-2 sentences per Fish generation) so one tag or rush cannot take over a clip. `fishjoin.py` then picks the steadier of the two takes, slows any piece that runs faster than Elliot's normal pace (pitch kept) and makes every pause at least 0.24 s.
 - **Speed 1.2x is set during generation in Fish** (Text to Speech: Speed 1.2x; in Voice Acting use the role/line speed if offered, otherwise generate Elliot's lines in Text to Speech at 1.2x). `fishvo.py`'s ffmpeg speed-up is only the fallback when Fish could not do it.
 - Call-to-action lines ("Full story on my channel", subscribe, comment) are generated at 1.0x and never sped up.
 - Other characters keep normal speed; their tags are free (e.g. `[nervous]` worked for Sam).
