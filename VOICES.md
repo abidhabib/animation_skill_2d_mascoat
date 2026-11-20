@@ -17,6 +17,9 @@
 - **Very short lines get truncated** (e.g. "Seven a.m." alone came back cut mid-word = audible jitter). Never generate a line under ~4 words alone: generate it together with its neighbour ("Your alarm goes off. Seven a.m."), then split at the natural silence between the sentences. Always check each take ends with trailing silence (`silencedetect` shows a final silence_start near the end) and that both takes of a pair have similar length; if the 1st take is cut short, use the complete one.
 - History list order can be shuffled: match takes by Last-Modified time + duration, not by list position.
 
+- **OTHER CHARACTERS = BOOKMARKED VOICES ONLY (user 2026-11-20):** Max Goof `66b40af2b5074a278bd4274f51d9fa57` (male teen/young adult: roommate, friends, loud lines), Twinko `15742afadec44b82bf52f7bb62b83f83` (female: mom, barista, cashier, girlfriend), Venti `e34c486929524d41b88646b4ac2f382f` (light/playful/quirky: coworker, kid), Gregory `f79c48d249324e599d3c2cd3302f3dd2` (anxious young male: Sam, nervous side roles). Do NOT use Fish-official Ethan/Adrian for new work (boss/dad: use Gregory or Max Goof in a lower register until the user bookmarks a deeper voice). 1.0x, one sentence per take.
+- **Narrator-only stretches:** compare "one take" vs "one sentence per take" (test A/B on Clip 2); the user decides which sounds natural.
+
 ## History (old, replaced)
 - 2026-11-19: Elliot `3885786187cc47adb78fecb51b02db99` at 1.2x with only four tags allowed. Replaced.
 - 2026-11-20 trials: "Abid's Fav" `4de5245b355c4974a0c71baf01775d48` (1.2x) and "Energetic Male" `802e3bc2b27e49c2995d23ef70e6ac89` (1.0x). Test renders kept: `renders/V02 - Clip 1 (Elliot).mp4`, `renders/V02 - Clip 1 (Abid's Fav).mp4`. Pitch can be changed after download with ffmpeg rubberband (tests in `Voice-overs Chunks/_pitch-tests`).
