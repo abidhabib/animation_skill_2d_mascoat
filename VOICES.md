@@ -4,6 +4,8 @@
 
 **VOICE TRIAL (user, 2026-11-20): "Energetic Male" by @lengyue, Fish id `802e3bc2b27e49c2995d23ef70e6ac89` (young, clear American), generated at Speed 1.0x as the possible new main voice; tested on V02 clip 1. For 1.0x voices run fishjoin with `NOSLOW=1` (no time-stretch, Fish's own pace). Earlier tests kept: `renders/V02 - Clip 1 (Elliot).mp4`, `renders/V02 - Clip 1 (Abid's Fav).mp4`. Pitch can be changed after download (ffmpeg rubberband, speed unchanged): tests in `Voice-overs Chunks/_pitch-tests`.**
 
+**TAKES (user rule, 2026-11-20): Fish makes 2 generations per text; ALWAYS use the 2nd generation** (in the Text to Speech history the two takes of one text sit together; the 2nd generation is the newer one, listed first). Pass only that link to fishjoin.py (no automatic take picking). Avoid many `...` in the text: with the pause step they slow the rhythm; use commas and full stops.
+
 ## HARD RULES for the main character / narrator (Elliot), user review of Short 1 (2026-11-19)
 - **Emotion tags: ONLY these four are allowed**: `[curious]`, `[intrigued]`, `[nervous]`, `[serious, slow]`. Never use any other tag on the main character.
 - **Banned (they made the voice bad)**: `[low, ominous]`, `[whispering]`, `[warm, quick]` (it made the line far too fast). Also do not invent new tags such as `[building tension]` or `[quiet, hurt]`: if a line needs a mood, pick one of the four or use no tag.
