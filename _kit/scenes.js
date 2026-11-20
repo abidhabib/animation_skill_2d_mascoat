@@ -55,6 +55,7 @@
   // direction-aware characters: walk dx sets side view + mirror; dir 'away' = back view shrinking, 'toward' = front view growing
   // ---------- cast roles: "role":"dad" expands to a full look; any key you give yourself wins ----------
   const ROLES = {
+    abid: { style: "mascot", hair: "fluffy", hairCol: "#3a2418", skin: "#f6d6bd", stache: "curl", beard: "goatee", outfit: "shirt", shirt: "#1f1f26", hoodDark: "#131318", collar: "#3c3c4a", pants: "#1a1a20", eyes: "dark", curl: false },   // the user's own character (black shirt, curly hair, curled moustache)
     dad: { style: "mascot", skin: "#f1c8a0", age: 50, hair: "short", hairCol: "#8d8a96", outfit: "cardigan", shirt: "#6b7f5a", hoodDark: "#46573a", stache: true, glasses: true, curl: false },
     mom: { style: "mascot", skin: "#f5d6b8", age: 32, hair: "bun", hairCol: "#5a3825", outfit: "cardigan", shirt: "#c96f8a", hoodDark: "#8d4a60", skirt: "#4a3f6e", glasses: false, curl: false },
     grandpa: { style: "mascot", skin: "#e8c4a0", age: 72, outfit: "cardigan", shirt: "#8a7a5a", hoodDark: "#5e533c", stache: true, curl: false },
@@ -175,6 +176,7 @@
       if (c.dir === "away" || c.dir === "toward") { const w = c.walk || [0.1, dur - 0.1, 0], aw = c.dir === "away", org = `${c.x || 0} ${c.y || 0}`; if (!c.walk) T.walk(tl, id, w[0], w[1], 0, 0); tl.fromTo(`#${id}-pos`, aw ? { scale: 1, y: 0, svgOrigin: org } : { scale: c.farScale || 0.5, y: -(c.depth || 80), svgOrigin: org }, { scale: aw ? (c.farScale || 0.5) : 1, y: aw ? -(c.depth || 80) : 0, svgOrigin: org, duration: w[1] - w[0], ease: "none", immediateRender: false }, w[0]); }
       (c.turns || []).forEach(([tt, dur2, to, from]) => T.turn(tl, id, tt, dur2, to, from));
       (c.moods || []).forEach(([t, m]) => T.mood(tl, id, t, m));
+      (c.exprAt || []).forEach(([t, name, dur2]) => T.expr && T.expr(tl, id, t, name, dur2 || 99));
       (c.browsAt || []).forEach(([t, k]) => T.brows(tl, id, t, k));
       (c.arms || []).forEach(([t, side, deg]) => T.armTo(tl, id, side, deg, t, 0.3));
       (c.looks || []).forEach(([t, dx, dy]) => T.look(tl, id, t, dx, dy || 0));
