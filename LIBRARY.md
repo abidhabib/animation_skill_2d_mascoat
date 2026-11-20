@@ -79,3 +79,5 @@ Measured: cuts every 1-4 s (2 cuts in 10 s on calm beats, 4 in 17 s on busier on
 9. Show the idea before it is spoken when possible.
 Worked example: `V02 - Trust Numbers/specs/make_clip01_v3.py` (11 shots, exterior dawn -> window fly-through -> phone 7:00 detail -> pull-out reveal -> grab to lens -> freeze -> lock screen -> rack to mom -> glow -> 99 -> rub -> shake -> dive into 99).
 Hero outfit (user 2026-11-20): denim-blue shirt + beige chinos (no more all-black). Crow's-feet lines removed from aged faces (they read as cat whiskers).
+
+**Zoom limit (user 2026-11-20, "dont over zoom"):** camera `k` never above 1.6 (cam and camMoves); show close-ups by framing/scale, not by deep zoom. Clamp in every spec generator (see `MAXK` in make_clip01_v3.py).
