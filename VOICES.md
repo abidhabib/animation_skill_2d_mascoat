@@ -6,6 +6,8 @@
 
 **TAKES (user rule, 2026-11-20): Fish makes 2 generations per text; ALWAYS use the 2nd generation** (in the Text to Speech history the two takes of one text sit together; the 2nd generation is the newer one, listed first). Pass only that link to fishjoin.py (no automatic take picking). Avoid many `...` in the text: with the pause step they slow the rhythm; use commas and full stops.
 
+**NO TAGS AT ALL (user, 2026-11-20): never put any emotion/direction tag ([curious], [intrigued], [nervous], [serious, slow] or any other) in Fish text for the main voice. Pace only with commas and full stops (few `...`). This replaces every older rule that allowed tags.**
+
 ## HARD RULES for the main character / narrator (Elliot), user review of Short 1 (2026-11-19)
 - **Emotion tags: ONLY these four are allowed**: `[curious]`, `[intrigued]`, `[nervous]`, `[serious, slow]`. Never use any other tag on the main character.
 - **Banned (they made the voice bad)**: `[low, ominous]`, `[whispering]`, `[warm, quick]` (it made the line far too fast). Also do not invent new tags such as `[building tension]` or `[quiet, hurt]`: if a line needs a mood, pick one of the four or use no tag.
