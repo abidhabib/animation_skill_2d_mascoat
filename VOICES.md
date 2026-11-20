@@ -1,5 +1,7 @@
 # Voices (Fish Audio)
 
+**MAIN VOICE (user, 2026-11-20): "Abid's Fav" by Abid Habib, Fish id `4de5245b355c4974a0c71baf01775d48` (https://fish.audio/m/4de5245b355c4974a0c71baf01775d48), replaces Elliot as the main character / narrator. Every rule below that says "Elliot" applies to this voice (Speed 1.2x set in Fish, no tag by default, rhythm check, CTA at 1.0x). Open it with https://fish.audio/app/text-to-speech/?modelId=4de5245b355c4974a0c71baf01775d48. First used: V02 clip 1 (test); the Elliot version is kept as `renders/V02 - Clip 1 (Elliot).mp4`.**
+
 ## HARD RULES for the main character / narrator (Elliot), user review of Short 1 (2026-11-19)
 - **Emotion tags: ONLY these four are allowed**: `[curious]`, `[intrigued]`, `[nervous]`, `[serious, slow]`. Never use any other tag on the main character.
 - **Banned (they made the voice bad)**: `[low, ominous]`, `[whispering]`, `[warm, quick]` (it made the line far too fast). Also do not invent new tags such as `[building tension]` or `[quiet, hurt]`: if a line needs a mood, pick one of the four or use no tag.
