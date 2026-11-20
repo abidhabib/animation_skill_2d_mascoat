@@ -55,7 +55,7 @@
     const LS = o.lightSide === 'left' ? -1 : 1, RIM = o.rim || '#8be9ff', FIL = o.fill || '#ffd29a', RIMR = LS > 0 ? RIM : FIL, RIML = LS > 0 ? FIL : RIM;
     // cast looks: outfit hoodie|tee|shirt|suit|coat|apron|vest|cardigan|uniform|dress, build slim|wide|kid
     const outfit = o.outfit || 'hoodie', hoodie = outfit === 'hoodie', SHORT = outfit === 'tee' || outfit === 'dress', SLV = outfit === 'coat' ? '#f4f6fa' : hood;
-    const KID = o.build === 'kid', bw = { slim: 0.86, wide: 1.17 }[o.build] || 1, HK = KID ? 1.42 : 1.22, HY = KID ? -268 : -282;
+    const KID = o.build === 'kid', bw = { slim: 0.86, wide: 1.17 }[o.build] || 1, HK = KID ? 1.42 : (o.headK || 1.22), TALL = o.tall || 1, HY = (KID ? -268 : -282) * TALL;
     // ---- age: 0 = young; ~15 first lines, 30 glasses + grey tufts, 50 grey brows, 60+ white hair + cane + stoop ----
     const age = o.age || 0, AT = Math.min(1, age / 70);
     const canePath = `<path d="M0,-4 L0,92" stroke="${PI}" stroke-width="11" stroke-linecap="round"/><path d="M0,-4 L0,92" stroke="#b4783a" stroke-width="6" stroke-linecap="round"/><path d="M-15,-6 Q-15,-24 0,-24 Q15,-24 15,-8" fill="none" stroke="${PI}" stroke-width="11" stroke-linecap="round"/><path d="M-15,-6 Q-15,-24 0,-24 Q15,-24 15,-8" fill="none" stroke="#b4783a" stroke-width="6" stroke-linecap="round"/>`;
@@ -85,7 +85,7 @@
       : o.hat === 'hardhat' ? `<path ${st(5)} fill="${hatC}" d="M-64,-40 C-66,-84 -32,-98 0,-98 C32,-98 66,-84 64,-40Z"/><path d="M0,-98 L0,-44" stroke="${PI}" stroke-width="5" opacity="0.5"/><ellipse ${st(5)} fill="${hatC}" cx="0" cy="-40" rx="86" ry="12"/>`
       : o.hat === 'chef' ? `<path ${st(5)} fill="${hatC}" d="M-48,-42 C-86,-66 -64,-128 -24,-114 C-14,-146 26,-146 32,-114 C70,-128 86,-66 48,-42Z"/><path ${st(5)} fill="${hatC}" d="M-50,-60 L50,-60 L50,-38 L-50,-38Z"/>`
       : `<path ${st(5)} fill="${hatC}" d="M-50,-44 C-54,-96 54,-96 50,-44Z"/><ellipse ${st(5)} fill="${hatC}" cx="0" cy="-42" rx="84" ry="13"/><path d="M-50,-56 L50,-56" stroke="#7a1f45" stroke-width="7"/>`;
-    const STACHE = o.stache === 'curl' ? `<path ${st(3)} fill="${HCOL}" d="M${fx},14 C${fx - 8},10 ${fx - 18},12 ${fx - 24},20 C${fx - 28},26 ${fx - 36},26 ${fx - 38},20 C${fx - 36},28 ${fx - 26},32 ${fx - 18},26 C${fx - 10},22 ${fx - 4},22 ${fx},20 C${fx + 4},22 ${fx + 10},22 ${fx + 18},26 C${fx + 26},32 ${fx + 36},28 ${fx + 38},20 C${fx + 36},26 ${fx + 28},26 ${fx + 24},20 C${fx + 18},12 ${fx + 8},10 ${fx},14Z"/>` : o.stache ? `<path ${st(3.5)} fill="${HCOL}" d="M${fx - 24},20 C${fx - 13},8 ${fx - 3},12 ${fx},16 C${fx + 3},12 ${fx + 13},8 ${fx + 24},20 C${fx + 12},26 ${fx - 12},26 ${fx - 24},20Z"/>` : '';
+    const STACHE = o.stache === 'curl' ? `<path fill="none" stroke="${HCOL}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" d="M${fx - 3},19 Q${fx - 14},15 ${fx - 24},20 Q${fx - 30},23 ${fx - 32},16 M${fx + 3},19 Q${fx + 14},15 ${fx + 24},20 Q${fx + 30},23 ${fx + 32},16"/>` : o.stache ? `<path ${st(3.5)} fill="${HCOL}" d="M${fx - 24},20 C${fx - 13},8 ${fx - 3},12 ${fx},16 C${fx + 3},12 ${fx + 13},8 ${fx + 24},20 C${fx + 12},26 ${fx - 12},26 ${fx - 24},20Z"/>` : '';
     const BEARD = o.beard === 'goatee' ? `<ellipse cx="${fx}" cy="34" rx="46" ry="24" fill="${HCOL}" opacity="0.13"/><path ${st(3)} fill="${HCOL}" d="M${fx - 10},46 Q${fx},60 ${fx + 10},46 Q${fx},51 ${fx - 10},46Z"/>` : o.beard ? `<path ${st(4)} fill="${HCOL}" d="M${fx - 60},4 C${fx - 58},78 ${fx + 58},78 ${fx + 60},4 C${fx + 40},24 ${fx - 40},24 ${fx - 60},4Z"/>` : '';
     const leg = (side) => { const x = side === 'l' ? -20 : 20, dir = side === 'l' ? -1 : 1;
       return `<g id="${id}-l${side === 'l' ? 'l' : 'r'}"><path d="M${x},-76 L${x},-16" fill="none" stroke="${PI}" stroke-width="20" stroke-linecap="round"/><path d="M${x},-76 L${x},-16" fill="none" stroke="${pants}" stroke-width="13" stroke-linecap="round"/>${V ? `<path d="M${x - 3.5},-72 L${x - 3.5},-22" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="3.5" stroke-linecap="round"/>` : ''}
@@ -216,8 +216,8 @@
     const sc = o.scale || 1;
     return `<g id="${id}-pos"><g id="${id}" transform="translate(${o.x || 0},${o.y || 0}) scale(${(o.flip ? -1 : 1) * sc},${sc})">
       ${V ? '<ellipse fill="#000" opacity="0.14" cx="0" cy="3" rx="96" ry="17"/><ellipse fill="#000" opacity="0.32" cx="0" cy="3" rx="56" ry="9"/>' : '<ellipse fill="#000" opacity="0.22" cx="0" cy="3" rx="78" ry="13"/>'}
-      ${LEGS}${SKIRT}
-      <g transform="rotate(${stoop.toFixed(1)} 0 -70)"><g id="${id}-body">${bw !== 1 ? `<g transform="scale(${bw},1)">` : ''}${FARA}${BPS}${torsoV}${armsV[1]}${bw !== 1 ? '</g>' : ''}</g>
+      <g transform="scale(1,${TALL})">${LEGS}${SKIRT}</g>
+      <g transform="rotate(${stoop.toFixed(1)} 0 -70)"><g transform="scale(1,${TALL})"><g id="${id}-body">${bw !== 1 ? `<g transform="scale(${bw},1)">` : ''}${FARA}${BPS}${torsoV}${armsV[1]}${bw !== 1 ? '</g>' : ''}</g></g>
       ${head}</g>
     </g></g>`;
   }

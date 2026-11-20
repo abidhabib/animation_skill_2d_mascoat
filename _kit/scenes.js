@@ -55,7 +55,7 @@
   // direction-aware characters: walk dx sets side view + mirror; dir 'away' = back view shrinking, 'toward' = front view growing
   // ---------- cast roles: "role":"dad" expands to a full look; any key you give yourself wins ----------
   const ROLES = {
-    abid: { style: "mascot", hair: "fluffy", hairCol: "#3a2418", skin: "#f6d6bd", stache: "curl", beard: "goatee", outfit: "shirt", shirt: "#1f1f26", hoodDark: "#131318", collar: "#3c3c4a", pants: "#1a1a20", eyes: "dark", curl: false },   // the user's own character (black shirt, curly hair, curled moustache)
+    abid: { style: "mascot", build: "slim", tall: 1.16, headK: 1.08, hair: "fluffy", hairCol: "#3a2418", skin: "#f6d6bd", stache: "curl", beard: "goatee", outfit: "shirt", shirt: "#1f1f26", hoodDark: "#131318", collar: "#3c3c4a", pants: "#1a1a20", eyes: "dark", curl: false },   // the user's own character (black shirt, curly hair, curled moustache)
     dad: { style: "mascot", skin: "#f1c8a0", age: 50, hair: "short", hairCol: "#8d8a96", outfit: "cardigan", shirt: "#6b7f5a", hoodDark: "#46573a", stache: true, glasses: true, curl: false },
     mom: { style: "mascot", skin: "#f5d6b8", age: 32, hair: "bun", hairCol: "#5a3825", outfit: "cardigan", shirt: "#c96f8a", hoodDark: "#8d4a60", skirt: "#4a3f6e", glasses: false, curl: false },
     grandpa: { style: "mascot", skin: "#e8c4a0", age: 72, outfit: "cardigan", shirt: "#8a7a5a", hoodDark: "#5e533c", stache: true, curl: false },
