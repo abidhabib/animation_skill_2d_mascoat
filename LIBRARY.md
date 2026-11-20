@@ -90,3 +90,7 @@ No slides/whips by default. Use: (1) straight cut that continues the camera move
 - **Cozy world**: render grade is warm/golden by default; prefer golden-hour / sunset / warm-lamp lighting where the story allows (keep cold blue only for tense or lonely beats).
 - **Voices**: main character/narrator = "Abid's Fav" 1.1x; every other character uses a BOOKMARKED Fish voice (Twinko, Venti, Gregory, Max Goof...) at 1.0x, picked by role (see VOICES.md cast).
 - **Pacing of the voice**: never cram short opening lines together; generate short punchy lines ("Your alarm goes off." / "Seven a.m.") as separate pieces and join with 0.45-0.5 s gaps.
+
+## USER RULES 2026-11-20 (night): no black shapes on screen, drone shots
+- **NO dark shapes / black dips / blurred zoom-through blobs at cuts** (user: "that black hole type thing on screen changing"). The `pass`, `dip black`, and heavy `zoom` transitions exist in the kit but are NOT to be used. Default = straight cut that continues the camera move; `dissolve` (0.3 s) only for time passing.
+- **Drone-style shots**: use a high wide establishing shot with a slow sweep + zoom-in (cam k 0.9 -> 1.5, fx/fy travelling) at the start of a new place, and a zoom-OUT (k 1.6 -> 0.95) at emotional endings. Never roll the camera (it shows the stage edge as a black strip); keep k >= 0.9.
