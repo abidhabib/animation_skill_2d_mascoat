@@ -5,7 +5,10 @@ PART = one take or two takes plus the part's text:   "urlA|urlB::Your alarm goes
 Rhythm check per part (user rule: tags/rushing must not break Elliot's rhythm):
   1. of two takes, keep the one whose speaking rate is closest to the target (steadier, less rushed)
   2. if a part still runs faster than MAX words/s (speech only), slow it down a little (atempo, pitch kept, never below 0.86)
-  3. every pause inside a part is made at least MINGAP long; parts are joined with 0.35 s pauses (gap=0.6 changes one)
+  3. every pause inside a part is made at least MINGAP long; parts are joined with 0.3 s pauses (gap=0.25 changes one;
+     use about 0.25 when the speaker changes so a reply comes like a real conversation)
+  4. smooth hand-offs: every part/speaker is levelled to the same loudness, gets soft 15/60 ms fades, and all pauses are
+     filled with quiet room tone instead of dead silence (no jerk/stop when the voice changes)
 Writes "Voice-overs Chunks/<name> - Voice-over.mp3" + "Transcript Chunks/<name> - Transcript.txt" and prints the rate of each part."""
 import os, re, subprocess, sys, tempfile
 
@@ -28,17 +31,23 @@ def fetch(src):
 def rate(w, words):
     d = dur(w); inner = sum(e - s for s, e in silences(w) if s > 0.05 and e < d - 0.05)
     return words / max(0.3, d - inner) if words else None
+def tone(sec):
+    """room tone: a very quiet natural hiss instead of dead digital silence (no 'audio stopped' feeling)"""
+    g = new(); run("-f", "lavfi", "-i", "anoisesrc=color=pink:amplitude=0.0018:sample_rate=44100", "-t", f"{sec:.3f}", "-ac", "1", g); return g
+def smooth(w):
+    """same loudness for every part/speaker + soft edges (no clicks, no volume jump between voices)"""
+    d = dur(w); s = new(); run("-i", w, "-af", f"loudnorm=I=-18:TP=-2,afade=t=in:d=0.015,afade=t=out:st={max(0, d - 0.06):.3f}:d=0.06", "-ar", "44100", "-ac", "1", s); return s
 def even_pauses(w):
     d = dur(w); cuts = [(s, e) for s, e in silences(w) if s > 0.05 and e < d - 0.05 and e - s < MINGAP]
     if not cuts: return w
     segs, pos = [], 0.0
     for s, e in cuts:
         mid = (s + e) / 2; a = new(); run("-i", w, "-af", f"atrim={pos}:{mid},asetpts=PTS-STARTPTS", a); segs.append(a)
-        g = new(); run("-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", f"{MINGAP - (e - s):.3f}", g); segs.append(g); pos = mid
+        segs.append(tone(MINGAP - (e - s))); pos = mid
     a = new(); run("-i", w, "-af", f"atrim={pos},asetpts=PTS-STARTPTS", a); segs.append(a)
     lst = new("txt"); open(lst, "w").write("".join(f"file '{p}'\n" for p in segs)); out = new(); run("-f", "concat", "-safe", "0", "-i", lst, out); return out
 
-parts, gap = [], 0.35
+parts, gap = [], 0.3
 for a in args:
     if a.startswith("gap="): gap = float(a[4:]); continue
     srcs, _, ptxt = a.partition("::"); words = len(ptxt.split()) if ptxt else 0
@@ -50,11 +59,10 @@ for a in args:
             print(f"  part {len(parts) // 2 + 1}: {r:.2f} w/s -> slowed x{k:.2f}")
         else: print(f"  part {len(parts) // 2 + 1}: {r:.2f} w/s ok")
     else: w = max(takes, key=dur)
-    w = even_pauses(w)
-    if parts:
-        g = new(); run("-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", str(gap), g); parts.append(g)
-    parts.append(w); gap = 0.35
-end = new(); run("-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", "0.4", end); parts.append(end)
+    w = smooth(even_pauses(w))
+    if parts: parts.append(tone(gap))
+    parts.append(w); gap = 0.3
+parts.insert(0, tone(0.08)); parts.append(tone(0.4))
 lst = new("txt"); open(lst, "w").write("".join(f"file '{p}'\n" for p in parts))
 os.makedirs(os.path.join(video, "Voice-overs Chunks"), exist_ok=True); os.makedirs(os.path.join(video, "Transcript Chunks"), exist_ok=True)
 out = os.path.join(video, "Voice-overs Chunks", f"{name} - Voice-over.mp3")
