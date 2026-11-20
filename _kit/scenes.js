@@ -623,7 +623,9 @@
       <rect x="-5" y="-270" width="270" height="150" rx="10" fill="#0f1a2e" stroke="${INK}" stroke-width="5"/>${[0, 1, 2, 3, 4].map((i) => `<rect x="${15 + i * 48}" y="${-130 - [60, 90, 40, 100, 70][i]}" width="34" height="${[60, 90, 40, 100, 70][i]}" fill="#4fe8ff"/>`).join("")}
       ${Array.from({ length: 10 }, (_, i) => `<circle class="led" cx="${-280 + i * 62}" cy="-84" r="13" fill="${["#ea4335", "#fbbc05", "#34a853", "#4285f4"][i % 4]}" stroke="${INK}" stroke-width="3"/>`).join("")}${Array.from({ length: 6 }, (_, i) => `<rect x="${-280 + i * 100}" y="-52" width="70" height="30" rx="8" fill="#c7ccd8" stroke="${INK}" stroke-width="4"/>`).join("")}<rect x="280" y="-140" width="22" height="90" rx="10" fill="#e0402f" stroke="${INK}" stroke-width="4"/>`,
   };
+  PROPS.toaster = (p) => `<g><rect x="-80" y="-120" width="160" height="120" rx="26" fill="${p.col || "#cfd3dc"}" stroke="${INK}" stroke-width="6"/><path d="M-60,-100 L60,-100" stroke="#ffffff90" stroke-width="8" stroke-linecap="round"/><rect x="-55" y="-128" width="40" height="18" rx="6" fill="#2b2b33"/><rect x="15" y="-128" width="40" height="18" rx="6" fill="#2b2b33"/><path d="M-50,-126 L-50,-150 Q-35,-166 -20,-150 L-20,-126Z M20,-126 L20,-150 Q35,-166 50,-150 L50,-126Z" fill="${p.burnt === false ? "#d9a35a" : "#4a2c1a"}" stroke="${INK}" stroke-width="4"/><rect x="80" y="-90" width="18" height="34" rx="6" fill="#2b2b33" stroke="${INK}" stroke-width="3"/><g id="${p._id}-smoke">${p.smoke === false ? "" : [0, 1, 2, 3, 4, 5].map((i) => `<circle class="sm" cx="${-34 + (i % 3) * 30}" cy="-175" r="${18 + (i % 3) * 7}" fill="#7d7d86" opacity="0"/>`).join("")}</g></g>`;
   const PROPANIM = {
+    toaster: (tl, id, p, dur) => { document.querySelectorAll(`#${id}-smoke .sm`).forEach((c, i) => tl.fromTo(c, { y: 0, x: 0, opacity: 0.75, scale: 0.6, transformOrigin: "50% 50%" }, { y: -170, x: (i % 2 ? 26 : -22), opacity: 0, scale: 1.6, duration: 1.6, ease: "sine.out", repeat: Math.ceil(dur / 1.6), immediateRender: false }, (i * 0.27) % 1.6)); },
     train: (tl, id, p, dur) => { tl.fromTo(`#${id}-smoke`, { y: 0, opacity: 0.9 }, { y: -50, opacity: 0, duration: 0.9, ease: "none", repeat: Math.ceil(dur / 0.9) }, 0); },
     boat: (tl, id, p, dur) => { tl.fromTo(`#${id}-bob`, { y: 0, rotation: -1.5, transformOrigin: "50% 100%" }, { y: -10, rotation: 1.5, duration: 0.9, ease: "sine.inOut", yoyo: true, repeat: Math.ceil(dur / 0.9) }, 0); },
     factoryLine: (tl, id, p, dur) => { tl.fromTo(`#${id}-boxes`, { x: 0 }, { x: 240, duration: 1.4, ease: "none", repeat: Math.ceil(dur / 1.4) }, 0); },
@@ -733,6 +735,46 @@
       return out; },
   };
 
+
+  // ---------- phone close-up: "phone":{x,y,k,screen:"lock"|"call",time,date,name,sub,top,bottom,skin} ----------
+  // A phone held in a hand. Characters placed inside the screen are clipped to it (a photo / a video call);
+  // a tag on such a character glows over the screen. Groups #<sid>-phb (back), #<sid>-phc (characters), #<sid>-phf (front) move together.
+  function phoneParts(P, sid) {
+    if (!P) return null;
+    const x = P.x || 960, y = P.y || 560, k = P.k || 1, W = 420 * k, H = 860 * k, sw = 384 * k, sh = 820 * k, sx = x - sw / 2, sy = y - sh / 2, call = P.screen === "call", skin = P.skin || "#fff6ea";
+    const T = (tx, ty, fs, fill, txt, extra) => `<text x="${tx}" y="${ty}" font-size="${fs}" text-anchor="middle" font-family="Kalam" font-weight="700" fill="${fill}" ${extra || ""}>${esc(txt)}</text>`;
+    const back = `<defs><linearGradient id="${sid}-phw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.top || (call ? "#f3e2c8" : "#ffcfb5")}"/><stop offset="1" stop-color="${P.bottom || (call ? "#d9c2a2" : "#9fbfff")}"/></linearGradient><clipPath id="${sid}-phclip"><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${44 * k}"/></clipPath></defs>`
+      + `<ellipse cx="${x}" cy="${y + H / 2 + 60 * k}" rx="${250 * k}" ry="${190 * k}" fill="${skin}" stroke="${INK}" stroke-width="${7 * k}"/>`
+      + `<rect x="${x - W / 2}" y="${y - H / 2}" width="${W}" height="${H}" rx="${62 * k}" fill="#1b1d26" stroke="${INK}" stroke-width="${8 * k}"/>`
+      + `<rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${44 * k}" fill="url(#${sid}-phw)"/>` + (call ? `<circle cx="${x}" cy="${y + 40 * k}" r="${300 * k}" fill="#fff" opacity="0.25"/>` : "");
+    const top = call ? T(x, sy + 92 * k, 44 * k, "#2a1f3d", P.name || "Dad") + T(x, sy + 132 * k, 26 * k, "#2a1f3d", P.sub || "video call 00:12", 'opacity="0.7"')
+      : T(x, sy + 150 * k, 110 * k, "#ffffff", P.time || "7:00", `stroke="#2a1f3d" stroke-width="${6 * k}" paint-order="stroke"`) + T(x, sy + 200 * k, 28 * k, "#ffffff", P.date || "Monday, 7 June", `stroke="#2a1f3d" stroke-width="${4 * k}" paint-order="stroke"`);
+    const bottom = call ? `<circle cx="${x - 90 * k}" cy="${sy + sh - 90 * k}" r="${40 * k}" fill="#6a7385" stroke="${INK}" stroke-width="${4 * k}"/><circle cx="${x + 90 * k}" cy="${sy + sh - 90 * k}" r="${40 * k}" fill="#e6322c" stroke="${INK}" stroke-width="${4 * k}"/><path d="M${x + 70 * k},${sy + sh - 86 * k} q${20 * k},${-14 * k} ${40 * k},0" fill="none" stroke="#fff" stroke-width="${8 * k}" stroke-linecap="round"/>`
+      : `<circle cx="${sx + 60 * k}" cy="${sy + sh - 70 * k}" r="${30 * k}" fill="#00000040"/><circle cx="${sx + sw - 60 * k}" cy="${sy + sh - 70 * k}" r="${30 * k}" fill="#00000040"/><rect x="${x - 70 * k}" y="${sy + sh - 22 * k}" width="${140 * k}" height="${8 * k}" rx="${4 * k}" fill="#ffffff" opacity="0.8"/>`;
+    const front = `<g clip-path="url(#${sid}-phclip)"><path d="M${sx},${sy + 120 * k} L${sx + sw},${sy - 60 * k} L${sx + sw},${sy + 60 * k} L${sx},${sy + 240 * k}Z" fill="#fff" opacity="0.08"/></g>` + top + bottom
+      + `<rect x="${x - 60 * k}" y="${sy + 14 * k}" width="${120 * k}" height="${30 * k}" rx="${15 * k}" fill="#1b1d26"/>`
+      + [0, 1, 2].map((i) => `<rect x="${x + W / 2 - 34 * k}" y="${y - 90 * k + i * 110 * k}" width="${86 * k}" height="${70 * k}" rx="${34 * k}" fill="${skin}" stroke="${INK}" stroke-width="${6 * k}"/>`).join("")
+      + `<path d="M${x - W / 2 - 70 * k},${y + 150 * k} q${90 * k},${-60 * k} ${120 * k},${10 * k} q${-6 * k},${70 * k} ${-110 * k},${90 * k}Z" fill="${skin}" stroke="${INK}" stroke-width="${6 * k}" stroke-linejoin="round"/>`;
+    return { back: `<g id="${sid}-phb">${back}</g>`, front: `<g id="${sid}-phf">${front}</g>`, clip: `${sid}-phclip` };
+  }
+  // ---------- in bed, seen from above: "bed":{ch:"hero", col:"#6a8fd0", sheet:"#f4efe6", full:true, phone:{t0,t1}} ----------
+  function bedParts(B, o, sid) {
+    if (!B) return null; const c = (o.chars || []).find((q) => q.name === B.ch) || (o.chars || [])[0]; if (!c) return null;
+    const sc = c.scale || 1, cx = c.x || 960, hy = (c.y || 1000) - 282 * sc, col = B.col || "#6a8fd0";
+    const back = (B.full !== false ? `<rect x="-400" y="-400" width="2720" height="1880" fill="${B.sheet || "#f1ebe2"}"/>` + Array.from({ length: 14 }, (_, i) => `<path d="M-400,${-200 + i * 110} L2320,${-120 + i * 110}" stroke="#00000010" stroke-width="18"/>`).join("") : "")
+      + `<rect x="${cx - 230 * sc}" y="${hy - 150 * sc}" width="${460 * sc}" height="${260 * sc}" rx="${100 * sc}" fill="#ffffff" stroke="${INK}" stroke-width="${6 * sc}"/><path d="M${cx - 150 * sc},${hy - 120 * sc} q${150 * sc},${40 * sc} ${300 * sc},0" fill="none" stroke="#00000018" stroke-width="${8 * sc}"/>`
+      + (B.phone ? `<g id="${sid}-bph"><g transform="translate(${cx + 300 * sc},${hy + 10 * sc}) rotate(18)"><rect x="${-45 * sc}" y="${-85 * sc}" width="${90 * sc}" height="${170 * sc}" rx="${16 * sc}" fill="#1b1d26" stroke="${INK}" stroke-width="${5 * sc}"/><rect x="${-37 * sc}" y="${-75 * sc}" width="${74 * sc}" height="${150 * sc}" rx="${10 * sc}" fill="#ffcfb5"/><text x="0" y="${-20 * sc}" font-size="${30 * sc}" text-anchor="middle" font-family="Kalam" font-weight="700" fill="#2a1f3d">7:00</text></g><g id="${sid}-bring" opacity="0"><path d="M${cx + 380 * sc},${hy - 60 * sc} q${40 * sc},${60 * sc} 0,${130 * sc} M${cx + 420 * sc},${hy - 90 * sc} q${60 * sc},${90 * sc} 0,${190 * sc}" fill="none" stroke="#ff7a1a" stroke-width="${8 * sc}" stroke-linecap="round"/></g></g>` : "");
+    const front = `<path d="M${cx - 360 * sc},${c.y - 205 * sc} Q${cx},${c.y - 250 * sc} ${cx + 360 * sc},${c.y - 205 * sc} L${cx + 420 * sc},${c.y + 700} L${cx - 420 * sc},${c.y + 700}Z" fill="${col}" stroke="${INK}" stroke-width="${7 * sc}" stroke-linejoin="round"/>`
+      + `<path d="M${cx - 340 * sc},${c.y - 170 * sc} Q${cx},${c.y - 210 * sc} ${cx + 340 * sc},${c.y - 170 * sc}" fill="none" stroke="#ffffff70" stroke-width="${14 * sc}" stroke-linecap="round"/>`
+      + [1, 2, 3].map((i) => `<path d="M${cx - 380 * sc + i * 40},${c.y - 120 * sc + i * 90 * sc} q${180 * sc},${-30 * sc} ${360 * sc},0" fill="none" stroke="#00000020" stroke-width="${6 * sc}" stroke-linecap="round"/>`).join("");
+    return { back, front };
+  }
+  function bedAnim(tl, B, sid, dur) {
+    if (!B || !B.phone) return; const t0 = B.phone.t0 || 0, t1 = B.phone.t1 || 1.5, n = Math.max(1, Math.round((t1 - t0) / 0.12));
+    tl.fromTo(`#${sid}-bph`, { x: -4 }, { x: 4, duration: 0.06, ease: "none", yoyo: true, repeat: n * 2 - 1, immediateRender: false }, t0);
+    tl.set(`#${sid}-bring`, { opacity: 1 }, t0); tl.fromTo(`#${sid}-bring`, { scale: 0.8, svgOrigin: "0 0" }, { scale: 1, duration: 0.3, repeat: Math.max(0, Math.round((t1 - t0) / 0.3) - 1), ease: "sine.out", immediateRender: false }, t0); tl.set(`#${sid}-bring`, { opacity: 0 }, t1);
+  }
+
   // ---------- cinematic helpers: foreground, street life, wet reflections, shot presets, exits, safe guide ----------
   // fg:true|"street"|"room": dark blurred silhouettes in front of everything that pass faster than the camera (parallax 1.7)
   function fgSvg(o) {
@@ -796,8 +838,9 @@
     const WXk = o.weather && (typeof o.weather === "string" ? o.weather : o.weather.type), WX = WXk && WEATHER[WXk] ? WEATHER[WXk](sid, dur) : null;
     const RB = RICH[o.bg] ? RICH[o.bg](o.seed, o) : null;
     const RB2 = RB && o.timeShift ? RICH[o.bg](o.seed, Object.assign({}, o, { time: o.timeShift.to })) : null, LF = lifeSvg(o, sid), DOF = o.dof ? ` style="filter:blur(${o.dof}px)"` : "";
+    const PH = phoneParts(o.phone, sid), PHB = PH || { back: "", front: "" }, BDP = bedParts(o.bed, o, sid) || { back: "", front: "" };
     const back = RB ? DEFS + (RB.defs ? `<defs>${RB.defs}</defs>` : "") + `<g id="${sid}-pfar"><g${DOF}><g id="${sid}-far">${RB.far}</g>${RB2 ? `<g id="${sid}-far2" opacity="0">${RB2.far}</g>` : ""}</g></g><g id="${sid}-pmid"><g id="${sid}-mid">${RB.mid}</g>${RB2 ? `<g id="${sid}-mid2" opacity="0">${RB2.mid}</g>` : ""}${LF}</g>${o.exposure ? `<rect x="-400" y="-400" width="2720" height="1880" fill="#2a1030" opacity="${o.exposure}"/>` : ""}${(o.lights || []).map((L) => `<circle cx="${L[0]}" cy="${L[1]}" r="${L[2]}" fill="url(#rb-glow)" opacity="${L[3] == null ? 0.7 : L[3]}"/>`).join("")}` : (o.bg === false ? "" : bg(o.bg || "teal", o.seed)) + (o.theme && THEMES[o.theme] ? THEMES[o.theme]() : "");
-    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${o.charsBehind ? "" : reflHtml(o, sid) + chars(o, sid)}${propsHtml(sid, o, true)}${tagsSvg(o, sid)}${o.fg ? `<g id="${sid}-pfg">${fgSvg(o)}</g>` : ""}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? `<g id="${sid}-wxw">${WX.svg}</g>` : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}${o.overlay || ""}${o.safeGuide && o.portrait ? SAFE_GUIDE : ""}`;
+    svg.innerHTML = `<g id="${sid}-cam">${back}${o.charsBehind ? chars(o, sid) : ""}${M.svg(ctx)}${propsHtml(sid, o, false)}${PHB.back}${BDP.back}${o.extraBack || ""}${o.charsBehind ? "" : reflHtml(o, sid) + (PH ? `<g id="${sid}-phc" clip-path="url(#${PH.clip})">${chars(o, sid)}</g>` : chars(o, sid))}${propsHtml(sid, o, true)}${BDP.front}${PHB.front}${tagsSvg(o, sid)}${o.fg ? `<g id="${sid}-pfg">${fgSvg(o)}</g>` : ""}${o.extra || ""}</g>${M.over ? M.over(ctx) : ""}${WX ? `<g id="${sid}-wxw">${WX.svg}</g>` : ""}${RB ? VIG + (RB.heavy ? VIG : "") : ""}${M.top ? M.top(ctx) : ""}${o.overlay || ""}${o.safeGuide && o.portrait ? SAFE_GUIDE : ""}`;
     const tl = gsap.timeline({ paused: true });
     // camera: parallax per layer (far 0.35, mid 0.78, foreground 1.7) incl. zoom depth; heads lead the body a little (2.5D)
     const P0 = Object.assign({ fx: 960, fy: 540, k: 1.04 }, o.cam || {}), PX = o.parallax || [];
@@ -811,7 +854,7 @@
     if (RB) { tl.fromTo(`#${sid}-far`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); }
     if (RB2) { tl.fromTo(`#${sid}-far2`, { x: 22 }, { x: -22, duration: dur, ease: "none" }, 0); tl.fromTo(`#${sid}-mid2`, { x: 10 }, { x: -10, duration: dur, ease: "none" }, 0); tl.to([`#${sid}-far2`, `#${sid}-mid2`], { opacity: 1, duration: o.timeShift.dur || 2.5, ease: "sine.inOut" }, o.timeShift.t || 0); }
     if (WX && o.weatherAt != null) { tl.fromTo(`#${sid}-wxw`, { opacity: 0 }, { opacity: 1, duration: 1.4, ease: "sine.in" }, o.weatherAt); if (q(`#${sid}-refl`)) tl.fromTo(`#${sid}-refl`, { opacity: 0 }, { opacity: 1, duration: 1.8, ease: "sine.in", immediateRender: false }, o.weatherAt + 0.4); }
-    lifeAnim(tl, sid, dur); outro(tl, sid, o.out, dur, o);
+    lifeAnim(tl, sid, dur); bedAnim(tl, o.bed, sid, dur); outro(tl, sid, o.out, dur, o);
     document.querySelectorAll(`#${sid}-svg .rb-scroll`).forEach((el) => tl.fromTo(el, { x: 0 }, { x: -Number(el.dataset.scroll || 300), duration: dur, ease: "none" }, 0));
     (o.camMoves || []).forEach((m) => { const pr = {}; ["fx", "fy", "k", "r", "dx", "dy"].forEach((key) => { if (m[key] != null) pr[key] = m[key]; }); C.to(m.t, m.dur, pr, m.ease); });
     if (o.handheld) { const hr = T.rng(o.seed || 7), a = o.handheld === true ? 5 : o.handheld; for (let tt = 0; tt < dur; tt += 0.5) C.to(tt, 0.5, { dx: (hr() - 0.5) * 2 * a, dy: (hr() - 0.5) * 1.4 * a, r: (hr() - 0.5) * 0.08 * a }, "sine.inOut"); }
