@@ -60,7 +60,7 @@
   const HEADOFF = (c) => (c.build === 'kid' ? 268 : Math.round(206 + 62 * (c.headK || 1.22))) + LIFT(c);
   const ROLES = {
     hoodie: { style: "mascot" },   // the old yellow-hoodie hero
-    abid: { style: "mascot", roll: true, tuck: true, legW: 18, build: "slim", tall: 1.16, headK: 1.08, hair: "fluffy", hairCol: "#3a2418", skin: "#f6d6bd", stache: "curl", beard: "goatee", outfit: "shirt", shirt: "#1f1f26", hoodDark: "#131318", collar: "#3c3c4a", pants: "#24242c", eyes: "dark", curl: false },   // the user's own character (black shirt, curly hair, curled moustache)
+    abid: { style: "mascot", roll: true, tuck: true, legW: 18, build: "slim", tall: 1.16, headK: 1.08, hair: "fluffy", hairCol: "#3a2418", skin: "#f6d6bd", stache: "curl", beard: "goatee", outfit: "shirt", shirt: "#4a78b8", hoodDark: "#33598f", collar: "#2f5286", pants: "#b8a07a", eyes: "dark", curl: false },   // the user's own character (denim-blue shirt + beige chinos since 2026-11-20, curly hair, curled moustache)
     dad: { style: "mascot", skin: "#f1c8a0", age: 50, hair: "short", hairCol: "#8d8a96", outfit: "cardigan", shirt: "#6b7f5a", hoodDark: "#46573a", stache: true, glasses: true, curl: false },
     mom: { style: "mascot", skin: "#f5d6b8", age: 32, hair: "bun", hairCol: "#5a3825", outfit: "cardigan", shirt: "#c96f8a", hoodDark: "#8d4a60", skirt: "#4a3f6e", glasses: false, curl: false },
     grandpa: { style: "mascot", skin: "#e8c4a0", age: 72, outfit: "cardigan", shirt: "#8a7a5a", hoodDark: "#5e533c", stache: true, curl: false },
@@ -401,7 +401,7 @@
     <linearGradient id="rb-dirt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d89c58"/><stop offset="1" stop-color="#9a6030"/></linearGradient>
     <linearGradient id="rb-hall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1230"/><stop offset="1" stop-color="#1f3466"/></linearGradient>
     <radialGradient id="rb-glow"><stop offset="0" stop-color="#fff3b8" stop-opacity="0.95"/><stop offset="1" stop-color="#fff3b8" stop-opacity="0"/></radialGradient>
-    <radialGradient id="rb-vig" cx="0.5" cy="0.5" r="0.78"><stop offset="0.55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.5"/></radialGradient>
+    <radialGradient id="rb-vig" cx="0.5" cy="0.5" r="0.78"><stop offset="0.55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.1"/></radialGradient>
   </defs>`;
   const FULL = (f) => `<rect x="-400" y="-400" width="2720" height="1880" fill="${f}"/>`;
   const R_ = (x, y, w, h, f, sw, rx) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx || 0}" fill="${f}" stroke="${INK}" stroke-width="${sw == null ? 5 : sw}"/>`;
@@ -411,7 +411,7 @@
   const tiles = (y) => `<rect x="-400" y="${y}" width="2720" height="${1100 - y}" fill="url(#rb-floor)"/><path d="M-400,${y} L2320,${y}" stroke="${INK}" stroke-width="6"/>` + Array.from({ length: 24 }, (_, i) => `<path d="M${-400 + i * 140},${y} L${-400 + i * 140 - (i - 10) * 36},1100" stroke="#1a1820" stroke-width="3" opacity="0.6"/>`).join("") + `<path d="M-400,${y + 46} L2320,${y + 46} M-400,${y + 110} L2320,${y + 110}" stroke="#1a1820" stroke-width="3" opacity="0.6"/>`;
   const RICH = {
     officeNight: (seed, o) => ({   // brand:true brings back the Video 1 brand mark + four-colour stripe
-      far: FULL("url(#rb-wall)") + `<g>${R_(1090, 40, 830, 480, "url(#rb-night)", 10)}<circle cx="1760" cy="150" r="46" fill="#f8efc0"/><rect x="1090" y="400" width="830" height="120" fill="#27553a"/>${treeBlob(1260, 250, 1.1)}${treeBlob(1520, 300, 0.9)}${treeBlob(1790, 240, 1.2)}<path d="M1500,40 L1500,520 M1090,280 L1920,280" stroke="#f5f1e6" stroke-width="12"/><rect x="1070" y="510" width="870" height="26" fill="#f5f1e6" stroke="${INK}" stroke-width="5"/></g>`
+      far: FULL("url(#rb-wall)") + `<g>${R_(1090, 40, 830, 480, (o && o.time === "day") ? "url(#rb-day)" : "url(#rb-night)", 10)}${(o && o.time === "day") ? softCloud(1250, 120, 0.5) : `<circle cx="1760" cy="150" r="46" fill="#f8efc0"/>`}<rect x="1090" y="400" width="830" height="120" fill="#27553a"/>${treeBlob(1260, 250, 1.1)}${treeBlob(1520, 300, 0.9)}${treeBlob(1790, 240, 1.2)}<path d="M1500,40 L1500,520 M1090,280 L1920,280" stroke="#f5f1e6" stroke-width="12"/><rect x="1070" y="510" width="870" height="26" fill="#f5f1e6" stroke="${INK}" stroke-width="5"/></g>`
         + (o && o.brand ? `<rect x="-400" y="560" width="2720" height="14" fill="#4285f4"/><rect x="-400" y="574" width="2720" height="14" fill="#ea4335"/><rect x="-400" y="588" width="2720" height="14" fill="#fbbc05"/><rect x="-400" y="602" width="2720" height="14" fill="#34a853"/>` : `<rect x="-400" y="560" width="2720" height="56" fill="#3f6f86"/><rect x="-400" y="578" width="2720" height="10" fill="#5f97ad"/>`) + `<path d="M-400,560 L2320,560 M-400,616 L2320,616" stroke="${INK}" stroke-width="3"/>`
         + `<g>${R_(505, 95, 460, 905, "#9cb8bd", 12)}<rect x="528" y="118" width="414" height="860" fill="#b9d3d6" opacity="0.7"/><path d="M570,185 L690,400 M615,185 L735,400" stroke="#e8f2f2" stroke-width="12" stroke-linecap="round" opacity="0.7"/>${o && o.brand ? `<g transform="translate(735,385) scale(0.9)">${ICONS.gmark(1)}</g>` : ""}</g>`
         + `<circle cx="960" cy="520" r="760" fill="url(#rb-glow)" opacity="0.45"/>`,

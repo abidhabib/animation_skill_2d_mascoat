@@ -18,4 +18,9 @@ npx --yes "$V" check --no-cache 2>&1 | grep -E "✗|^\s+✗| error|Error" | grep
 mkdir -p "$RD"
 echo "== render"
 npx --yes "$V" render . -o "$RD/$OUT" -q high --fps 30 2>&1 | grep -E "rendered in|rror" || true
+# --- film look (user director rules 2026-11-20): cool grade + light grain on every render (NO vignette: user dislikes black edges); FILM=0 turns it off
+if [ "${FILM:-1}" = "1" ] && [ -f "$RD/$OUT" ]; then
+  ffmpeg -v error -y -i "$RD/$OUT" -vf "curves=r='0/0 0.5/0.48 1/0.97':b='0/0.02 0.5/0.52 1/1',eq=saturation=0.9:contrast=1.06,noise=alls=4:allf=t" -c:v libx264 -crf 22 -preset medium -pix_fmt yuv420p -c:a copy "$RD/.film.mp4" && mv "$RD/.film.mp4" "$RD/$OUT"
+  echo "film look applied"
+fi
 ls -la "$RD/$OUT"
