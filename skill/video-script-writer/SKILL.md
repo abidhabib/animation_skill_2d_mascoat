@@ -6,7 +6,7 @@ description: Write titles, a retention-engineered script (default 11-13 minutes)
 
 > **SHARED STUDIO (2026-11-19):** the live kit is `YouTube Content/_Studio Kit/` (open Claude in `YouTube Content`). Wherever this file says `Animation/...`, read `_Studio Kit/...` for kit files; each video has its own folder (`V02 - Trust Numbers/`: specs, clips, renders, voice files) and the scripts run from inside it: `bash "../_Studio Kit/new-clip.sh" N`, `python3 "../_Studio Kit/scene.py" N specs/x.json`, `bash "../_Studio Kit/render-clip.sh" N`. New video: `bash "_Studio Kit/new-video.sh" "V03 - Topic"`. No git pull, no clones; push `_Studio Kit` after kit changes.
 
-# Video script writer (user's channel: hypothetical-premise cartoon explainers, hero = yellow-hoodie mascot)
+# Video script writer (user's channel: hypothetical-premise cartoon explainers, hero = the user's own character: curly hair, thin curled moustache, goatee, black shirt with rolled sleeves (kit role `abid`); old yellow-hoodie mascot retired 2026-11-20)
 
 Do NOT write a script until the user says to (they sometimes only want advice). Never generate voice audio.
 

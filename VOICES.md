@@ -1,32 +1,26 @@
-**MAIN VOICE NOW (user, 2026-11-20, latest): the user's own updated "Elliot" in My Voices (cloned from an ElevenLabs recording), Fish id `22e3589fe5f14a8d8f5a5a23644b3cd7`, Speed 1.1x, no tags, 1st generation, fishjoin with `NOSLOW=1`. Open: https://fish.audio/app/text-to-speech/?modelId=22e3589fe5f14a8d8f5a5a23644b3cd7. This replaces "Abid's Fav", "Energetic Male" and the old Elliot id `3885...`.**
-
 # Voices (Fish Audio)
 
-**MAIN VOICE (user, 2026-11-20): "Abid's Fav" by Abid Habib, Fish id `4de5245b355c4974a0c71baf01775d48` (https://fish.audio/m/4de5245b355c4974a0c71baf01775d48), replaces Elliot as the main character / narrator. Every rule below that says "Elliot" applies to this voice (Speed 1.2x set in Fish, no tag by default, rhythm check, CTA at 1.0x). Open it with https://fish.audio/app/text-to-speech/?modelId=4de5245b355c4974a0c71baf01775d48. First used: V02 clip 1 (test); the Elliot version is kept as `renders/V02 - Clip 1 (Elliot).mp4`.**
+## CURRENT MAIN VOICE + HARD RULES (user, 2026-11-20 - this block wins over anything older below)
+- **Main character / narrator = the user's updated "Elliot"** in My Voices (cloned from an ElevenLabs recording), Fish id `22e3589fe5f14a8d8f5a5a23644b3cd7`. Open: https://fish.audio/app/text-to-speech/?modelId=22e3589fe5f14a8d8f5a5a23644b3cd7
+- **Speed 1.1x**, set in Fish Text to Speech before Generate. Call-to-action lines (subscribe, comment, "full story on my channel") at 1.0x.
+- **NO TAGS AT ALL, ever** ([curious], [nervous], [serious, slow] or any other). Pace only with commas and full stops; avoid many `...` (they slow the rhythm).
+- **Always the 1st generation**: Fish makes 2 takes per text; the 1st is the OLDER one, listed SECOND in the history. Confirm with the files' Last-Modified time (about 1 s older). Pass only that link to `fishjoin.py`.
+- Join with `NOSLOW=1 python3 fishjoin.py ...`: no time-stretch, pauses stretched only after punctuation (never mid-sentence), equal loudness, soft fades, room tone in pauses, `gap=0.25` before another speaker so hand-offs do not jerk.
+- Generate in short pieces (1-2 sentences each) so one bad take cannot spoil a clip. Before every Generate, check the text box with JS (no leftover text from the last line).
+- Claude downloads the audio itself (history `<audio>` links `platform.r2.fish.audio/tasks/...mp3` + curl), never asks the user.
+- Other characters: their own cast voices below at 1.0x (tags allowed for them).
+- Hero picture to match: the user's own character `role:"abid"` (LIBRARY.md, docs/ABID_CHARACTER.png).
 
-**VOICE TRIAL (user, 2026-11-20): "Energetic Male" by @lengyue, Fish id `802e3bc2b27e49c2995d23ef70e6ac89` (young, clear American), generated at Speed 1.0x as the possible new main voice; tested on V02 clip 1. For 1.0x voices run fishjoin with `NOSLOW=1` (no time-stretch, Fish's own pace). Earlier tests kept: `renders/V02 - Clip 1 (Elliot).mp4`, `renders/V02 - Clip 1 (Abid's Fav).mp4`. Pitch can be changed after download (ffmpeg rubberband, speed unchanged): tests in `Voice-overs Chunks/_pitch-tests`.**
-
-**TAKES (user rule, 2026-11-20, latest): Fish makes 2 generations per text; ALWAYS use the 1st generation** (the OLDER take: in the Text to Speech history the two takes of one text sit together, the 1st generation is listed SECOND; confirm with the files' Last-Modified time, it is about 1 s older). Pass only that link to fishjoin.py (no automatic take picking). Avoid many `...` in the text: with the pause step they slow the rhythm; use commas and full stops.
-
-**NO TAGS AT ALL (user, 2026-11-20): never put any emotion/direction tag ([curious], [intrigued], [nervous], [serious, slow] or any other) in Fish text for the main voice. Pace only with commas and full stops (few `...`). This replaces every older rule that allowed tags.**
-
-## HARD RULES for the main character / narrator (Elliot), user review of Short 1 (2026-11-19)
-- **Emotion tags: ONLY these four are allowed**: `[curious]`, `[intrigued]`, `[nervous]`, `[serious, slow]`. Never use any other tag on the main character.
-- **Banned (they made the voice bad)**: `[low, ominous]`, `[whispering]`, `[warm, quick]` (it made the line far too fast). Also do not invent new tags such as `[building tension]` or `[quiet, hurt]`: if a line needs a mood, pick one of the four or use no tag.
-- **NO TAG BY DEFAULT (user, V02 clip 1 review):** tags also change the pacing; `[curious]` made Elliot rush and broke the rhythm on top of 1.2x. Elliot's lines get **no tag** unless one line truly needs an emotion; then tag only that line (prefer `[serious, slow]`, which slows down). Never tag a whole paragraph.
-- **Pace with punctuation, not tags:** full stops, commas and `...` give natural pauses ("Your alarm goes off... Seven a.m.").
-- **Generate in short pieces** (1-2 sentences per Fish generation) so one tag or rush cannot take over a clip. `fishjoin.py` then picks the steadier of the two takes, slows any piece that runs faster than Elliot's normal pace (pitch kept) and makes every pause at least 0.24 s.
-- **Smooth speaker hand-offs (user, V02 clip 2):** the jump from Elliot to another voice must not jerk or stop. `fishjoin.py` levels every part to the same loudness, adds soft 15/60 ms fades, fills every pause with quiet room tone (never dead silence) and uses about 0.25 s before a reply (`gap=0.25`).
-- **Speed 1.2x is set during generation in Fish** (Text to Speech: Speed 1.2x; in Voice Acting use the role/line speed if offered, otherwise generate Elliot's lines in Text to Speech at 1.2x). `fishvo.py`'s ffmpeg speed-up is only the fallback when Fish could not do it.
-- Call-to-action lines ("Full story on my channel", subscribe, comment) are generated at 1.0x and never sped up.
-- Other characters keep normal speed; their tags are free (e.g. `[nervous]` worked for Sam).
+## History (old, replaced)
+- 2026-11-19: Elliot `3885786187cc47adb78fecb51b02db99` at 1.2x with only four tags allowed. Replaced.
+- 2026-11-20 trials: "Abid's Fav" `4de5245b355c4974a0c71baf01775d48` (1.2x) and "Energetic Male" `802e3bc2b27e49c2995d23ef70e6ac89` (1.0x). Test renders kept: `renders/V02 - Clip 1 (Elliot).mp4`, `renders/V02 - Clip 1 (Abid's Fav).mp4`. Pitch can be changed after download with ffmpeg rubberband (tests in `Voice-overs Chunks/_pitch-tests`).
 
 Read 2026-11-19 from docs.fish.audio. Voice ids are the `reference_id` for the API.
 
 ## Cast
 | Role | Fish model id | What we know |
 |---|---|---|
-| **Main character (mascot)** | `3885786187cc47adb78fecb51b02db99` | Page is a JS shell: name/description not readable. User chose it as the hero voice |
+| **Main character (hero)** | `22e3589fe5f14a8d8f5a5a23644b3cd7` | The user's updated "Elliot" (My Voices), 1.1x, no tags, 1st generation (old Elliot `3885786187cc47adb78fecb51b02db99` retired) |
 | Other: anxious young male | `f79c48d249324e599d3c2cd3302f3dd2` | User's description: energetic, anxious, fast, breathy, urgent. Page not readable |
 | Other: "Max Goof" (user added 2026-11-19) | `66b40af2b5074a278bd4274f51d9fa57` | Bookmarked as "Max Goof (A Goofy Movie version)": versatile, expressive, enthusiastic to dramatic shouting. Use for energetic / loud / teen-style lines |
 | Other: "Twinko" (user added) | `15742afadec44b82bf52f7bb62b83f83` | By @Benyamin. Female, young, bright, playful, animated, energetic. The only female role voice: use for mum / sister / girlfriend / female friend lines |
@@ -35,7 +29,7 @@ Read 2026-11-19 from docs.fish.audio. Voice ids are the `reference_id` for the A
 | Other: "Adrian" (Claude's pick, Fish Official default voice) | `bf322df2096a46f18c579d0baa36f41d` | "A steady and reliable narrator", male, middle-aged. Fish-official, so no third-party character IP. Use for calm adult males: Dad, doctor, teacher |
 | Other: "Ethan" (Claude's pick, Fish Official default voice) | `536d3a5e000945adb7038665781a4aca` | "A curious explainer", male, middle-aged, Fish-official. Use for boss, coworker, friendly adult male |
 
-**Rule (user, 2026-11-19): the main character / narrator voice (Elliot) ALWAYS plays at 1.2x speed.** Set Speed 1.2x in Fish Text to Speech, or (Voice Acting has no speed control) export the scene as separate Clips and speed only Elliot's lines with `ffmpeg -af atempo=1.2` (keeps the pitch); other characters stay at 1.0x.
+**Old rule (2026-11-19, now 1.1x, see top): the main character / narrator voice (Elliot) ALWAYS plays at 1.2x speed.** Set Speed 1.2x in Fish Text to Speech, or (Voice Acting has no speed control) export the scene as separate Clips and speed only Elliot's lines with `ffmpeg -af atempo=1.2` (keeps the pitch); other characters stay at 1.0x.
 **Rule (user, 2026-11-19): Elliot is the MAIN voice (hero). For every other character Claude chooses the voice from this cast, then tells the user.** Preferred order for side roles: Fish-official defaults (Adrian, Ethan, Sarah, Laura, Jordan, Hannah, Selene) first, because they are licensed; character-imitation voices only for characters that need that energy.
 
 **EXCLUDED by the user (2026-11-19): "Zoro" (`c524a197...`) and "Super Smash Bros. 4/Ultimate Announcer" (`90e65eaa...`). Do not use them.** They are still bookmarked in the account unless the user removes them.
