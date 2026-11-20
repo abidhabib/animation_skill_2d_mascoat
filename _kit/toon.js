@@ -368,7 +368,7 @@
     tl.to(`#${id}-head`, { y: -3 * a, duration: d(0.8), ease: 'sine.inOut', yoyo: true, repeat: n * 2 - 1 }, t0 + 0.12);
     // weight shift: the body leans side to side over the feet, the head counters a little
     const m = Math.max(1, Math.floor((t1 - t0) / 3.2));
-    tl.fromTo(`#${id}-body`, { rotation: -1.3 * a }, { rotation: 1.3 * a, transformOrigin: '50% 100%', duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: m * 2 - 1, immediateRender: false }, t0 + 0.3);
+    tl.fromTo(`#${id}-body`, { rotation: -0.5 * a }, { rotation: 0.5 * a, transformOrigin: '50% 100%', duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: m * 2 - 1, immediateRender: false }, t0 + 0.3);
     tl.fromTo(`#${id}-head`, { rotation: 1 * a }, { rotation: -1 * a, transformOrigin: '50% 100%', duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: m * 2 - 1, immediateRender: false }, t0 + 0.5);
   }
   // secondary motion: the curl and the hoodie strings swing (stronger and faster while walking: a = 2)

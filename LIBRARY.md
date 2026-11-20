@@ -84,3 +84,9 @@ Hero outfit (user 2026-11-20): denim-blue shirt + beige chinos (no more all-blac
 
 ## TRANSITIONS (user 2026-11-20: "jerks and instant shifts make the video look bad") - default for every video
 No slides/whips by default. Use: (1) straight cut that continues the camera move or matches framing (no `in`), (2) cut on action (cut mid-movement), (3) `"in":{"kind":"pass","dur":0.45}` = a dark out-of-focus shape crosses the lens and reveals the next shot (generators also set the previous scene's `out` pass and extend its dur by the pass time), (4) zoom-through into a window/eye/number for a new place, (5) `"in":{"kind":"dissolve","dur":0.35}` only for time passing (extend previous dur), (6) `"in":{"kind":"dip","color":"white"|"black"}` only for a shock or big time jump. Whip at most once per clip. Composition roots are transparent now, so any transition shows the previous shot underneath, never a black gap. Example: `V02 - Trust Numbers/specs/make_clip01_v3.py` (TR table).
+
+## USER RULES 2026-11-20 (evening)
+- **No unnecessary leg movement**: characters stand still unless the story needs them to move; no extras walking for decoration, walks only for a real journey (go somewhere, enter, leave). Idle sway is now very small.
+- **Cozy world**: render grade is warm/golden by default; prefer golden-hour / sunset / warm-lamp lighting where the story allows (keep cold blue only for tense or lonely beats).
+- **Voices**: main character/narrator = "Abid's Fav" 1.1x; every other character uses a BOOKMARKED Fish voice (Twinko, Venti, Gregory, Max Goof...) at 1.0x, picked by role (see VOICES.md cast).
+- **Pacing of the voice**: never cram short opening lines together; generate short punchy lines ("Your alarm goes off." / "Seven a.m.") as separate pieces and join with 0.45-0.5 s gaps.
