@@ -38,6 +38,14 @@
   // ---------- intro transitions (played by the incoming scene on its own svg) ----------
   // stage point -> CSS pixels of the scene's svg element (portrait shows the x 656..1264 slice scaled 1.78x)
   const toPx = (at, so) => so && so.portrait ? [(at[0] - 656.25) * 1.7778, (at[1] - (so.lift == null ? 160 : so.lift) * 0) * 1.7778] : at;
+  // "pass": a dark out-of-focus shape (a shoulder / door edge) crosses the lens right->left; outgoing + incoming scenes draw the same
+  // shape in sync, the incoming scene is revealed behind its edge (user 2026-11-20: smooth, invisible transitions instead of slides)
+  function passer(tl, el, t, d) {
+    const svg = document.querySelector(el); if (!svg) return; const NS = "http://www.w3.org/2000/svg";
+    const g = document.createElementNS(NS, "g"); g.setAttribute("class", "passer");
+    [[420, 0.35], [360, 0.6], [300, 0.97]].forEach(([rx, op]) => { const e = document.createElementNS(NS, "ellipse"); e.setAttribute("cx", "0"); e.setAttribute("cy", "560"); e.setAttribute("rx", String(rx)); e.setAttribute("ry", "900"); e.setAttribute("fill", "#17131f"); e.setAttribute("opacity", String(op)); g.appendChild(e); });
+    svg.appendChild(g); tl.fromTo(g, { x: 2400 }, { x: -480, duration: d, ease: "power1.inOut", immediateRender: true }, t);
+  }
   function intro(tl, sid, o, so) {
     if (!o) return;
     const el = `#${sid}-svg`, at = toPx(o.at || [960, 540], so);
@@ -48,6 +56,10 @@
       case "wipe": { tl.fromTo(el, { clipPath: "polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)" }, { clipPath: "polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)", duration: 0.4, ease: "power2.inOut" }, 0); break; }
       case "zoom": tl.fromTo(el, { scale: o.k || 2.8, transformOrigin: `${at[0]}px ${at[1]}px`, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0); break;
       case "drop": tl.fromTo(el, { y: -1100 }, { y: 0, duration: 0.42, ease: "bounce.out" }, 0); break;
+      // smooth transitions (2026-11-20). dissolve/pass need the previous scene to overlap by their duration (spec: prev dur += d)
+      case "dissolve": tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: o.dur || 0.35, ease: "sine.inOut" }, 0); break;
+      case "dip": tl.fromTo(el, { filter: o.color === "black" ? "brightness(0)" : "brightness(2.6)" }, { filter: "brightness(1)", duration: o.dur || 0.3, ease: "power2.out" }, 0); break;
+      case "pass": { const d = o.dur || 0.45; tl.fromTo(el, { clipPath: "polygon(2400px 0px, 4000px 0px, 4000px 2200px, 2400px 2200px)" }, { clipPath: "polygon(-480px 0px, 4000px 0px, 4000px 2200px, -480px 2200px)", duration: d, ease: "power1.inOut" }, 0); passer(tl, el, 0, d); break; }
     }
   }
 
@@ -834,6 +846,8 @@
     if (o.kind === "whip") tl.to(el, { x: -(o.dir || 1) * 760, filter: "blur(18px)", duration: dd, ease: "power3.in" }, t);
     else if (o.kind === "zoom") { const p = o.at ? toPx(o.at, so) : null; tl.to(el, { scale: o.k || 3.2, transformOrigin: p ? `${p[0]}px ${p[1]}px` : o.origin || "50% 40%", filter: "blur(12px)", duration: dd, ease: "power3.in" }, t); }   // zoom INTO a point; pair with the next scene's in:{kind:"zoom"} = zoom-through
     else if (o.kind === "fade") tl.to(el, { opacity: 0, duration: dd }, t);
+    else if (o.kind === "pass") passer(tl, el, Math.max(0, dur - (o.dur || 0.45)), o.dur || 0.45);
+    else if (o.kind === "dip") tl.to(el, { filter: o.color === "black" ? "brightness(0)" : "brightness(2.6)", duration: o.dur || 0.15, ease: "power2.in" }, Math.max(0, dur - (o.dur || 0.15)));
   }
   // safeGuide:true in a portrait scene draws the 9:16 safe box (preview only)
   const SAFE_GUIDE = `<rect x="686" y="130" width="486" height="734" fill="none" stroke="#ff3b6b" stroke-width="4" stroke-dasharray="18 12"/>`;

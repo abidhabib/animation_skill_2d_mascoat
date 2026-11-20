@@ -76,7 +76,7 @@ for s_ in specs:
 HEAD = '''<template>
   <style>
     @font-face { font-family: "Kalam"; src: url("assets/fonts/kalam-700.woff2") format("woff2"); font-weight: 700; }
-    #root { position: absolute; inset: 0; overflow: hidden; background: #1b1a1f; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: transparent;  /* transparent so pass/dissolve/whip show the previous shot underneath, never a black gap */ }
     #root svg { position: absolute; inset: 0; }
     #root text { font-family: "Kalam"; font-weight: 700; }
   </style>

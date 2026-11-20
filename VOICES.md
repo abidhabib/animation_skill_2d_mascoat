@@ -1,6 +1,7 @@
 # Voices (Fish Audio)
 
 ## CURRENT MAIN VOICE + HARD RULES (user, 2026-11-20 - this block wins over anything older below)
+- **MAIN VOICE CHANGED (user 2026-11-20, later): "Abid's Fav"** Fish id `4de5245b355c4974a0c71baf01775d48` (https://fish.audio/app/m/4de5245b355c4974a0c71baf01775d48/), Speed 1.1x, same rules below (no tags, 1st generation, commas). Elliot is retired as the main voice.
 - **Main character / narrator = the user's updated "Elliot"** in My Voices (cloned from an ElevenLabs recording), Fish id `22e3589fe5f14a8d8f5a5a23644b3cd7`. Open: https://fish.audio/app/text-to-speech/?modelId=22e3589fe5f14a8d8f5a5a23644b3cd7
 - **Speed 1.1x**, set in Fish Text to Speech before Generate. Call-to-action lines (subscribe, comment, "full story on my channel") at 1.0x.
 - **NO TAGS AT ALL, ever** ([curious], [nervous], [serious, slow] or any other). Pace only with commas and full stops; avoid many `...` (they slow the rhythm).

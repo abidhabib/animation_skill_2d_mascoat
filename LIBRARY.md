@@ -81,3 +81,6 @@ Worked example: `V02 - Trust Numbers/specs/make_clip01_v3.py` (11 shots, exterio
 Hero outfit (user 2026-11-20): denim-blue shirt + beige chinos (no more all-black). Crow's-feet lines removed from aged faces (they read as cat whiskers).
 
 **Zoom limit (user 2026-11-20, "dont over zoom"):** camera `k` never above 1.6 (cam and camMoves); show close-ups by framing/scale, not by deep zoom. Clamp in every spec generator (see `MAXK` in make_clip01_v3.py).
+
+## TRANSITIONS (user 2026-11-20: "jerks and instant shifts make the video look bad") - default for every video
+No slides/whips by default. Use: (1) straight cut that continues the camera move or matches framing (no `in`), (2) cut on action (cut mid-movement), (3) `"in":{"kind":"pass","dur":0.45}` = a dark out-of-focus shape crosses the lens and reveals the next shot (generators also set the previous scene's `out` pass and extend its dur by the pass time), (4) zoom-through into a window/eye/number for a new place, (5) `"in":{"kind":"dissolve","dur":0.35}` only for time passing (extend previous dur), (6) `"in":{"kind":"dip","color":"white"|"black"}` only for a shock or big time jump. Whip at most once per clip. Composition roots are transparent now, so any transition shows the previous shot underneath, never a black gap. Example: `V02 - Trust Numbers/specs/make_clip01_v3.py` (TR table).
