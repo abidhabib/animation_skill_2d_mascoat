@@ -2,6 +2,8 @@
 
 **MAIN VOICE (user, 2026-11-20): "Abid's Fav" by Abid Habib, Fish id `4de5245b355c4974a0c71baf01775d48` (https://fish.audio/m/4de5245b355c4974a0c71baf01775d48), replaces Elliot as the main character / narrator. Every rule below that says "Elliot" applies to this voice (Speed 1.2x set in Fish, no tag by default, rhythm check, CTA at 1.0x). Open it with https://fish.audio/app/text-to-speech/?modelId=4de5245b355c4974a0c71baf01775d48. First used: V02 clip 1 (test); the Elliot version is kept as `renders/V02 - Clip 1 (Elliot).mp4`.**
 
+**VOICE TRIAL (user, 2026-11-20): "Energetic Male" by @lengyue, Fish id `802e3bc2b27e49c2995d23ef70e6ac89` (young, clear American), generated at Speed 1.0x as the possible new main voice; tested on V02 clip 1. For 1.0x voices run fishjoin with `NOSLOW=1` (no time-stretch, Fish's own pace). Earlier tests kept: `renders/V02 - Clip 1 (Elliot).mp4`, `renders/V02 - Clip 1 (Abid's Fav).mp4`. Pitch can be changed after download (ffmpeg rubberband, speed unchanged): tests in `Voice-overs Chunks/_pitch-tests`.**
+
 ## HARD RULES for the main character / narrator (Elliot), user review of Short 1 (2026-11-19)
 - **Emotion tags: ONLY these four are allowed**: `[curious]`, `[intrigued]`, `[nervous]`, `[serious, slow]`. Never use any other tag on the main character.
 - **Banned (they made the voice bad)**: `[low, ominous]`, `[whispering]`, `[warm, quick]` (it made the line far too fast). Also do not invent new tags such as `[building tension]` or `[quiet, hurt]`: if a line needs a mood, pick one of the four or use no tag.

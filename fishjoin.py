@@ -13,6 +13,7 @@ Writes "Voice-overs Chunks/<name> - Voice-over.mp3" + "Transcript Chunks/<name> 
 import os, re, subprocess, sys, tempfile
 
 TARGET, MAX, MINGAP = 3.3, 3.6, 0.24          # words per second of speech (Elliot at 1.2x), shortest pause in seconds
+if os.environ.get("NOSLOW"): MAX = 99.0     # NOSLOW=1: never slow a part (voices generated at 1.0x keep Fish's own speed)
 name, text, args = sys.argv[1], sys.argv[2], sys.argv[3:]
 video = os.environ.get("VIDEO_DIR") or os.getcwd()
 tmp = tempfile.mkdtemp(); n = [0]
