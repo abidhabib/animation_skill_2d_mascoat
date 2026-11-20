@@ -54,7 +54,9 @@
   // ---------- characters from opts ----------
   // direction-aware characters: walk dx sets side view + mirror; dir 'away' = back view shrinking, 'toward' = front view growing
   // ---------- cast roles: "role":"dad" expands to a full look; any key you give yourself wins ----------
+  const HERO_DEFAULT = 'abid';
   const ROLES = {
+    hoodie: { style: "mascot" },   // the old yellow-hoodie hero
     abid: { style: "mascot", roll: true, tuck: true, legW: 18, build: "slim", tall: 1.16, headK: 1.08, hair: "fluffy", hairCol: "#3a2418", skin: "#f6d6bd", stache: "curl", beard: "goatee", outfit: "shirt", shirt: "#1f1f26", hoodDark: "#131318", collar: "#3c3c4a", pants: "#24242c", eyes: "dark", curl: false },   // the user's own character (black shirt, curly hair, curled moustache)
     dad: { style: "mascot", skin: "#f1c8a0", age: 50, hair: "short", hairCol: "#8d8a96", outfit: "cardigan", shirt: "#6b7f5a", hoodDark: "#46573a", stache: true, glasses: true, curl: false },
     mom: { style: "mascot", skin: "#f5d6b8", age: 32, hair: "bun", hairCol: "#5a3825", outfit: "cardigan", shirt: "#c96f8a", hoodDark: "#8d4a60", skirt: "#4a3f6e", glasses: false, curl: false },
@@ -98,6 +100,8 @@
   // depth: characters further up the ground (smaller y) are drawn smaller; alley/rooftop do it automatically
   const RICH_DEPTH = { alley: [800, 1060, 0.42], rooftop: [850, 1060, 0.62], street: [800, 1060, 0.55] }, DEPTH_AUTO = { alley: 1, rooftop: 1 };
   function prepChars(o) {
+    // DEFAULT HERO (user 2026-11-20) = the user's own character role "abid". Old yellow hoodie: scene "hero":"hoodie" or char "role":"hoodie".
+    (o.chars || []).forEach((c) => { if (c.name === 'hero' && !c.role && (c.style || 'mascot') === 'mascot' && o.hero !== 'hoodie' && HERO_DEFAULT !== 'hoodie') c.role = HERO_DEFAULT; });
     (o.chars || []).forEach((c) => { if (c.role && ROLES[c.role]) { const R = ROLES[c.role]; Object.keys(R).forEach((k) => { if (c[k] === undefined) c[k] = R[k]; }); } });
     expandSpins(o);
     const DEP = Array.isArray(o.depth) ? o.depth : o.depth === true || (o.depth !== false && DEPTH_AUTO[o.bg]) ? RICH_DEPTH[o.bg] || [800, 1060, 0.5] : null;
