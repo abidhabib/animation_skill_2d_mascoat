@@ -15,7 +15,8 @@ def _video_dir():
 VD = _video_dir()
 CLIPS = os.path.join(VD, "clips") if VD else here
 n = int(sys.argv[1]); clip = os.path.join(CLIPS, f"clip-{n:02d}")
-shutil.copy(os.path.join(here, "_kit", "scenes.js"), os.path.join(clip, "assets", "scenes.js"))
+for _f in ("scenes.js", "toon.js"):  # keep the clip's kit copy current (characters live in toon.js)
+    shutil.copy(os.path.join(here, "_kit", _f), os.path.join(clip, "assets", _f))
 specs = json.load(open(sys.argv[2], encoding="utf-8"))
 # portrait (YouTube Short, 9:16): clip meta.json has "portrait": true -> 1080x1920 output showing a 607.5x1080 slice of the 1920x1080 scene,
 # centred on x=960 (move it with the scene's cam fx). Keep the action and text inside x 690..1230.
