@@ -37,8 +37,26 @@ def tone(sec):
 def smooth(w):
     """same loudness for every part/speaker + soft edges (no clicks, no volume jump between voices)"""
     d = dur(w); s = new(); run("-i", w, "-af", f"loudnorm=I=-18:TP=-2,afade=t=in:d=0.015,afade=t=out:st={max(0, d - 0.06):.3f}:d=0.06", "-ar", "44100", "-ac", "1", s); return s
-def even_pauses(w):
-    d = dur(w); cuts = [(s, e) for s, e in silences(w) if s > 0.05 and e < d - 0.05 and e - s < MINGAP]
+WKIT = os.path.join(os.path.expanduser("~"), "claude-skill-repos", "claude-animation-skills", "kit")
+def word_times(w, ptxt):
+    """Parakeet word timings of one part (same tool as new-clip.sh); [] if it is not available"""
+    try:
+        d = tempfile.mkdtemp(); a = os.path.join(d, "part.mp3"); run("-i", w, "-b:a", "192k", a)
+        open(os.path.join(d, "script.txt"), "w", encoding="utf-8").write(ptxt)
+        subprocess.run(["bash", "-c", f'cd "{d}" && "{WKIT}/.venv/bin/python" "{WKIT}/words.py" part.mp3 script.txt'], capture_output=True, check=True)
+        import json; return json.load(open(os.path.join(d, "part.words.json"), encoding="utf-8"))
+    except Exception: return []
+PUNCT = re.compile(r"(\.|,|\?|!|:|;|…)['\"]?$")
+def even_pauses(w, ptxt=""):
+    """Stretch a too-short pause to MINGAP ONLY after punctuation (. , ? ! ... :). Never between words inside a phrase
+    (stretching tiny breaths like 'is ... burning' made gaps/flicker mid-sentence; user review V02 clip 2)."""
+    if not ptxt: return w
+    W = word_times(w, ptxt); d = dur(w); sil = silences(w); cuts = []
+    for a, b in zip(W, W[1:]):
+        if not PUNCT.search(a["w"]): continue
+        s = next(((s0, e0) for s0, e0 in sil if s0 < b["s"] + 0.05 and e0 > a["e"] - 0.1 and s0 > 0.05 and e0 < d - 0.05), None)
+        s0, e0 = s if s else (a["e"], a["e"])
+        if e0 - s0 < MINGAP: cuts.append((s0, e0))
     if not cuts: return w
     segs, pos = [], 0.0
     for s, e in cuts:
@@ -59,7 +77,7 @@ for a in args:
             print(f"  part {len(parts) // 2 + 1}: {r:.2f} w/s -> slowed x{k:.2f}")
         else: print(f"  part {len(parts) // 2 + 1}: {r:.2f} w/s ok")
     else: w = max(takes, key=dur)
-    w = smooth(even_pauses(w))
+    w = smooth(even_pauses(w, ptxt))
     if parts: parts.append(tone(gap))
     parts.append(w); gap = 0.3
 parts.insert(0, tone(0.08)); parts.append(tone(0.4))
