@@ -6,7 +6,15 @@ JSON: [{"name":"s1-hook","start":0,"dur":4.2,"type":"docStamp","bg":"teal","in":
   - "copy": true → only re-sync assets/scenes.js from _kit."""
 import json, os, shutil, subprocess, sys
 here = os.path.dirname(os.path.abspath(__file__))
-n = int(sys.argv[1]); clip = os.path.join(here, f"clip-{n:02d}")
+# shared studio: inside a video folder (has "Voice-overs Chunks" or "clips", or VIDEO_DIR is set) clips live in <video>/clips
+def _video_dir():
+    v = os.environ.get("VIDEO_DIR")
+    if v: return os.path.abspath(v)
+    c = os.getcwd()
+    return c if os.path.isdir(os.path.join(c, "Voice-overs Chunks")) or os.path.isdir(os.path.join(c, "clips")) else None
+VD = _video_dir()
+CLIPS = os.path.join(VD, "clips") if VD else here
+n = int(sys.argv[1]); clip = os.path.join(CLIPS, f"clip-{n:02d}")
 shutil.copy(os.path.join(here, "_kit", "scenes.js"), os.path.join(clip, "assets", "scenes.js"))
 specs = json.load(open(sys.argv[2], encoding="utf-8"))
 # portrait (YouTube Short, 9:16): clip meta.json has "portrait": true -> 1080x1920 output showing a 607.5x1080 slice of the 1920x1080 scene,

@@ -4,10 +4,18 @@ usage: python3 mount.py N name:start:dur [name:start:dur ...]
 import os, re, sys
 
 here = os.path.dirname(os.path.abspath(__file__))
+# shared studio: inside a video folder (has "Voice-overs Chunks" or "clips", or VIDEO_DIR is set) clips live in <video>/clips
+def _video_dir():
+    v = os.environ.get("VIDEO_DIR")
+    if v: return os.path.abspath(v)
+    c = os.getcwd()
+    return c if os.path.isdir(os.path.join(c, "Voice-overs Chunks")) or os.path.isdir(os.path.join(c, "clips")) else None
+VD = _video_dir()
+CLIPS = os.path.join(VD, "clips") if VD else here
 n = int(sys.argv[1])
-p = os.path.join(here, f"clip-{n:02d}", "index.html")
+p = os.path.join(CLIPS, f"clip-{n:02d}", "index.html")
 import json
-_mp = os.path.join(here, f"clip-{n:02d}", "meta.json")
+_mp = os.path.join(CLIPS, f"clip-{n:02d}", "meta.json")
 _portrait = os.path.exists(_mp) and bool(json.load(open(_mp, encoding="utf-8")).get("portrait"))
 W, H = (1080, 1920) if _portrait else (1920, 1080)
 rows = []

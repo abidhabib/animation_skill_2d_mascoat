@@ -11,7 +11,9 @@ import csv, os, re, subprocess, sys, tempfile, zipfile
 MAIN, SPEED, GAP = "Elliot", 1.2, 0.32
 CTA = re.compile(r"channel|subscribe|full (story|video)|link (is )?(in|below)|comment", re.I)   # call-to-action lines stay at 1.0x (user rule)
 zp, name = sys.argv[1], sys.argv[2]
-here = os.path.dirname(os.path.abspath(__file__)); video = os.path.dirname(here)
+here = os.path.dirname(os.path.abspath(__file__))
+_c = os.environ.get("VIDEO_DIR") or os.getcwd()
+video = _c if os.path.isdir(os.path.join(_c, "Voice-overs Chunks")) else os.path.dirname(here)   # run it from inside the video folder
 tmp = tempfile.mkdtemp()
 zipfile.ZipFile(zp).extractall(tmp)
 mix = next(os.path.join(r, f) for r, _, fs in os.walk(tmp) for f in fs if f.endswith(".wav"))

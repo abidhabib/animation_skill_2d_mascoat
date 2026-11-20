@@ -4,6 +4,10 @@ Writes thumbnails/<name>.png (1920x1080) and thumbnails/<name>_1280x720.jpg (upl
 Uses the scratch project clip-99 (deleted afterwards when possible)."""
 import json, os, shutil, subprocess, sys
 here = os.path.dirname(os.path.abspath(__file__))
+_c = os.environ.get("VIDEO_DIR") or os.getcwd()
+VD = _c if os.path.isdir(os.path.join(_c, "Voice-overs Chunks")) or os.path.isdir(os.path.join(_c, "clips")) else None
+ENV = {k: v for k, v in os.environ.items() if k != "VIDEO_DIR"}
+spec_abs = os.path.abspath(sys.argv[1])
 spec_path = sys.argv[1]
 name = sys.argv[2] if len(sys.argv) > 2 else os.path.splitext(os.path.basename(spec_path))[0]
 spec = json.load(open(spec_path, encoding="utf-8"))
@@ -20,9 +24,9 @@ for f in ("package.json", "hyperframes.json"): shutil.copy(os.path.join(here, "_
 open(os.path.join(P, "meta.json"), "w").write('{"id": "clip-99", "name": "clip-99"}')
 tmp = os.path.join(here, "specs", "_thumb_tmp.json")
 json.dump([scene], open(tmp, "w", encoding="utf-8"))
-subprocess.run([sys.executable, os.path.join(here, "scene.py"), "99", tmp], check=True)
-subprocess.run(["bash", os.path.join(here, "render-clip.sh"), "99"], check=True)
-out = os.path.join(here, "thumbnails"); os.makedirs(out, exist_ok=True)
+subprocess.run([sys.executable, os.path.join(here, "scene.py"), "99", tmp], check=True, cwd=here, env=ENV)
+subprocess.run(["bash", os.path.join(here, "render-clip.sh"), "99"], check=True, cwd=here, env=ENV)
+out = os.path.join(VD or here, "thumbnails"); os.makedirs(out, exist_ok=True)
 video = os.path.join(here, "renders", "Clip 99.mp4")
 png = os.path.join(out, name + ".png"); jpg = os.path.join(out, name + "_1280x720.jpg")
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "0.9", "-i", video, "-frames:v", "1", png], check=True)

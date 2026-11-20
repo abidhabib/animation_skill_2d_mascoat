@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
-# Scaffold clip N:  bash new-clip.sh 2
+# Scaffold clip N:  cd "<video folder>" && bash "../_Studio Kit/new-clip.sh" 2
 # Finds voice-over N and script N (matched by the first number in each file name), copies the shared kit,
 # times every word with Parakeet, writes index.html with the voice track, and prints what the planner needs.
 set -euo pipefail
 ANIM="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VIDEO="$(dirname "$ANIM")"
+# --- shared studio: run from inside a video folder (it has "Voice-overs Chunks" or "clips") and everything
+# --- goes there: <video>/clips/clip-NN, <video>/renders/<V02> - Clip N.mp4. VIDEO_DIR=... forces a folder.
+# --- Run from anywhere else = legacy mode (clips inside the kit folder, voice files next to the kit).
+if [ -n "${VIDEO_DIR:-}" ]; then VD="$(cd "$VIDEO_DIR" && pwd)"; elif [ -d "$PWD/Voice-overs Chunks" ] || [ -d "$PWD/clips" ]; then VD="$PWD"; else VD=""; fi
+if [ -n "$VD" ]; then VIDEO="$VD"; CLIPS="$VD/clips"; RD="$VD/renders"; PFX="$(basename "$VD" | grep -o '^V[0-9]\+' || true)"; else VIDEO="$(dirname "$ANIM")"; CLIPS="$ANIM"; RD="$ANIM/renders"; PFX=""; fi
 ARG="${1:?usage: new-clip.sh N   |   new-clip.sh S1  (YouTube Short 1 = portrait 9:16, stored as clip 90)}"
 SHORT=0; K=0
 if [[ "$ARG" =~ ^[Ss]([0-9]+)$ ]]; then SHORT=1; K=$((10#${BASH_REMATCH[1]})); N=$((89 + K)); else N=$((10#$ARG)); fi
 NN=$(printf %02d "$N")
-P="$ANIM/clip-$NN"
+P="$CLIPS/clip-$NN"; mkdir -p "$CLIPS"
 KIT="$HOME/claude-skill-repos/claude-animation-skills/kit"
 PY="$KIT/.venv/bin/python"
 
@@ -24,6 +28,7 @@ pick() { # first file in dir $1 whose first number equals N (for a Short: file n
       [ -n "$num" ] && [ $((10#$num)) -eq "$N" ] && { echo "$f"; return; }
     fi
   done
+  return 0
 }
 VO=$(pick "$(ls -d "$VIDEO"/Voice*over*/ 2>/dev/null | head -1)")   # folders only (a "Script - x.md" file must not match)
 TX=$(pick "$(ls -d "$VIDEO"/Transcript*/ "$VIDEO"/Script*/ 2>/dev/null | head -1)")

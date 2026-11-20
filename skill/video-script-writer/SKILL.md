@@ -3,6 +3,9 @@ name: video-script-writer
 description: Write titles, a retention-engineered script (default 11-13 minutes), thumbnail concept and chunked voice-over files for the user's cartoon YouTube channel. Use when the user asks for a video idea, title, script, hook or retention plan, or runs /video-script-writer.
 ---
 
+
+> **SHARED STUDIO (2026-11-19):** the live kit is `YouTube Content/_Studio Kit/` (open Claude in `YouTube Content`). Wherever this file says `Animation/...`, read `_Studio Kit/...` for kit files; each video has its own folder (`V02 - Trust Numbers/`: specs, clips, renders, voice files) and the scripts run from inside it: `bash "../_Studio Kit/new-clip.sh" N`, `python3 "../_Studio Kit/scene.py" N specs/x.json`, `bash "../_Studio Kit/render-clip.sh" N`. New video: `bash "_Studio Kit/new-video.sh" "V03 - Topic"`. No git pull, no clones; push `_Studio Kit` after kit changes.
+
 # Video script writer (user's channel: hypothetical-premise cartoon explainers, hero = yellow-hoodie mascot)
 
 Do NOT write a script until the user says to (they sometimes only want advice). Never generate voice audio.
