@@ -12,7 +12,8 @@ Rhythm check per part (user rule: tags/rushing must not break Elliot's rhythm):
 Writes "Voice-overs Chunks/<name> - Voice-over.mp3" + "Transcript Chunks/<name> - Transcript.txt" and prints the rate of each part."""
 import os, re, subprocess, sys, tempfile
 
-TARGET, MAX, MINGAP = 3.3, 3.6, 0.24          # words per second of speech (Elliot at 1.2x), shortest pause in seconds
+TARGET, MAX, MINGAP = 3.3, 3.6, 0.24
+COMMA_MAX = 0.12          # words per second of speech (Elliot at 1.2x), shortest pause in seconds
 if os.environ.get("NOSLOW"): MAX = 99.0     # NOSLOW=1: never slow a part (voices generated at 1.0x keep Fish's own speed)
 name, text, args = sys.argv[1], sys.argv[2], sys.argv[3:]
 video = os.environ.get("VIDEO_DIR") or os.getcwd()
@@ -47,7 +48,7 @@ def word_times(w, ptxt):
         subprocess.run(["bash", "-c", f'cd "{d}" && "{WKIT}/.venv/bin/python" "{WKIT}/words.py" part.mp3 script.txt'], capture_output=True, check=True)
         import json; return json.load(open(os.path.join(d, "part.words.json"), encoding="utf-8"))
     except Exception: return []
-PUNCT = re.compile(r"(\.|,|\?|!|:|;|…)['\"]?$")
+PUNCT = re.compile(r"(\.|\?|!|…)['\"]?$")  # sentence ends only: never stretch a comma pause (it sounds like the voice stops and restarts mid-sentence; user review V02 clip 2, 2026-11-20)
 def even_pauses(w, ptxt=""):
     """Stretch a too-short pause to MINGAP ONLY after punctuation (. , ? ! ... :). Never between words inside a phrase
     (stretching tiny breaths like 'is ... burning' made gaps/flicker mid-sentence; user review V02 clip 2)."""
@@ -55,9 +56,23 @@ def even_pauses(w, ptxt=""):
     W = word_times(w, ptxt); d = dur(w); sil = silences(w); cuts = []
     for a, b in zip(W, W[1:]):
         if not PUNCT.search(a["w"]): continue
-        s = next(((s0, e0) for s0, e0 in sil if s0 < b["s"] + 0.05 and e0 > a["e"] - 0.1 and s0 > 0.05 and e0 < d - 0.05), None)
+        s = next(((s0, e0) for s0, e0 in sil if s0 < b["s"] + 0.05 and s0 >= a["s"] + 0.1 and s0 > 0.05 and e0 < d - 0.05), None)
         s0, e0 = s if s else (a["e"], a["e"])
         if e0 - s0 < MINGAP: cuts.append((s0, e0))
+    # COMMA pauses inside a sentence: never stretch, and shorten a long one to COMMA_MAX (a 0.25 s hole after "game," made the
+    # voice sound like it stopped and restarted; user review V02 clip 2, 2026-11-20). Cut from the middle of the silence.
+    trims = []
+    for a, b in zip(W, W[1:]):
+        if not a["w"].rstrip("'\"").endswith((",", ":", ";")): continue
+        s = next(((s0, e0) for s0, e0 in sil if s0 < b["s"] + 0.05 and s0 >= a["s"] + 0.1 and s0 > 0.05 and e0 < d - 0.05), None)
+        if s and s[1] - s[0] > COMMA_MAX + 0.03: trims.append(s)
+    cuts = []  # 2026-11-20: NEVER insert pauses (room tone) inside a take: the natural Fish rhythm sounds right, inserted gaps after short sentences like 'sixty-two. Sixty-two what?' sounded like a stop/start
+    if trims and not cuts:
+        segs, pos = [], 0.0
+        for s0, e0 in trims:
+            keep = COMMA_MAX / 2; a = new(); run("-i", w, "-af", f"atrim={pos}:{s0 + keep},asetpts=PTS-STARTPTS,afade=t=out:st={max(0, s0 + keep - pos - 0.03):.3f}:d=0.03", a); segs.append(a); pos = e0 - keep
+        a = new(); run("-i", w, "-af", f"atrim={pos},asetpts=PTS-STARTPTS,afade=t=in:d=0.03", a); segs.append(a)
+        lst = new("txt"); open(lst, "w").write("".join("file '" + q + "'" + chr(10) for q in segs)); out = new(); run("-f", "concat", "-safe", "0", "-i", lst, out); return out
     if not cuts: return w
     segs, pos = [], 0.0
     for s, e in cuts:

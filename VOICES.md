@@ -6,6 +6,7 @@
 - **NO TAGS AT ALL, ever** ([curious], [nervous], [serious, slow] or any other). Pace only with commas and full stops; avoid many `...` (they slow the rhythm).
 - **Always the 1st generation**: Fish makes 2 takes per text; the 1st is the OLDER one, listed SECOND in the history. Confirm with the files' Last-Modified time (about 1 s older). Pass only that link to `fishjoin.py`.
 - Join with `NOSLOW=1 python3 fishjoin.py ...`: no time-stretch, pauses stretched only after punctuation (never mid-sentence), equal loudness, soft fades, room tone in pauses, `gap=0.25` before another speaker so hand-offs do not jerk.
+- **No stop/start inside a take (user review V02 Clip 2, 2026-11-20):** `fishjoin.py` NEVER inserts or stretches pauses inside a Fish take (inserted room-tone gaps after short sentences like "sixty-two. Sixty-two what?" sounded like the voice stopping), and any comma pause longer than ~0.15 s is trimmed to 0.12 s. Only the gap BETWEEN parts is added (0.3 s, 0.25 before another speaker). After joining, ALWAYS check `ffmpeg -i vo.mp3 -af silencedetect=noise=-38dB:d=0.05 -f null -`: no hole >0.15 s mid-sentence, then listen/check frames before sending.
 - Generate in short pieces (1-2 sentences each) so one bad take cannot spoil a clip. Before every Generate, check the text box with JS (no leftover text from the last line).
 - Claude downloads the audio itself (history `<audio>` links `platform.r2.fish.audio/tasks/...mp3` + curl), never asks the user.
 - Other characters: their own cast voices below at 1.0x (tags allowed for them).
