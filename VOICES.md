@@ -13,6 +13,10 @@
 - Other characters: their own cast voices below at 1.0x (tags allowed for them).
 - Hero picture to match: the user's own character `role:"abid"` (LIBRARY.md, docs/ABID_CHARACTER.png).
 
+- **Natural pace (user 2026-11-20, latest):** main voice at **1.0x**, ONE sentence per take, joined with 0.4-0.55 s pauses sized to the beat. Fish rushes when a take holds several sentences.
+- **Very short lines get truncated** (e.g. "Seven a.m." alone came back cut mid-word = audible jitter). Never generate a line under ~4 words alone: generate it together with its neighbour ("Your alarm goes off. Seven a.m."), then split at the natural silence between the sentences. Always check each take ends with trailing silence (`silencedetect` shows a final silence_start near the end) and that both takes of a pair have similar length; if the 1st take is cut short, use the complete one.
+- History list order can be shuffled: match takes by Last-Modified time + duration, not by list position.
+
 ## History (old, replaced)
 - 2026-11-19: Elliot `3885786187cc47adb78fecb51b02db99` at 1.2x with only four tags allowed. Replaced.
 - 2026-11-20 trials: "Abid's Fav" `4de5245b355c4974a0c71baf01775d48` (1.2x) and "Energetic Male" `802e3bc2b27e49c2995d23ef70e6ac89` (1.0x). Test renders kept: `renders/V02 - Clip 1 (Elliot).mp4`, `renders/V02 - Clip 1 (Abid's Fav).mp4`. Pitch can be changed after download with ffmpeg rubberband (tests in `Voice-overs Chunks/_pitch-tests`).
