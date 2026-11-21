@@ -106,3 +106,14 @@ No slides/whips by default. Use: (1) straight cut that continues the camera move
 ## LIGHTING MIX (user 2026-11-20): "a little dark does not mean make every clip dark"
 Plan the light per clip like a film: roughly half the shots LIGHT (bright day, sunny office, daytime street, sky), half warm/dim (sunset loft, lamp-lit rooms, cafe, night neon). Never more than 2 dark shots in a row; open and close clips on different brightness; use dark only where the story is tense, reflective or cozy. When writing a spec list the brightness of each shot (L = light, M = mid, D = dark) and check the mix before rendering.
 Bug fixed: environments that define gradient/clip ids (`sunsetOffice`, `cafe`) now suffix the ids with the scene name; before, duplicate ids across shots in one clip made the sky vanish.
+
+## PREMIUM MOTION STANDARD (user 2026-11-21) - applies to every new clip from Clip 13 on
+Goal: modern, minimal, premium 2D motion design with subtle 2.5D depth (never 3D or realistic); not "2010 template" slides.
+1. Design each shot from its script line, no generic layouts. Show the idea before it is spoken.
+2. Objects ENTER, ACT and EXIT with polished motion (ease-out in, ease-in out, slight overshoot or settle; slide/scale/rotate), never just appear. Use `motion.py` helpers.
+3. Narration -> object rules: time -> a clock or watch MOUNTED on the wall (shadow + rim) or worn, hands sweeping; phone call -> a real call screen (name, ringing, accept/decline); money -> bills that fly in and a counter that ticks up smoothly; messages -> chat bubbles that rise in; photo -> a framed photo dropped on a surface. Always add the supporting object when it adds value.
+4. Minimal, never crowded: 2-4 meaningful objects per shot, each clearly attached to the environment (on the wall, desk, floor) with a contact shadow and the right layer order.
+5. Smooth flow: transitions are dissolves (0.3-0.4 s overlap), match-moves (camera keeps moving across the cut) or zoom-through an object; NO black dips, dark shapes or slides. Combine transition + camera move + object animation so the next shot grows out of the last.
+6. Camera: purposeful pans, side tracking, push-ins, pull-outs, slight parallax; zoom stays 0.9-1.5; no static frames unless the story needs it.
+7. Pace slightly faster (average shot 2-3 s); the energy comes from camera and object motion, not from cutting between unrelated places.
+8. Consistency: if this style performs well, every future clip follows it. Worked examples: `V02 - Trust Numbers/specs/make_clip13_v1.py` onward. Helpers: `_Studio Kit/motion.py`, `ambient.py`.
