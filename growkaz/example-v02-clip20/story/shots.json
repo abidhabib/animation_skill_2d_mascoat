@@ -1,0 +1,319 @@
+{
+ "title": "V02 Clip 20",
+ "duration": 25.3,
+ "shots": [
+  {
+   "id": "u01",
+   "start": 0,
+   "end": 1.6,
+   "line": "But you try anyway.",
+   "scene": "hero leaves the mall, determined",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.4
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "footstep",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "u02",
+   "start": 1.6,
+   "end": 4.0,
+   "line": "Shortcut one, a gift.",
+   "scene": "shoe box slides onto counter",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.15,
+     "name": "whoosh",
+     "gain": -16
+    },
+    {
+     "at": 0.6,
+     "name": "thump",
+     "gain": -14
+    },
+    {
+     "at": 0.7,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "u03",
+   "start": 4.0,
+   "end": 7.5,
+   "line": "You buy Sam the sneakers he's wanted for a year.",
+   "scene": "Sam opens the box, joy",
+   "set": "apartment",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "swish",
+     "gain": -18
+    },
+    {
+     "at": 1.2,
+     "name": "shimmer",
+     "gain": -16
+    },
+    {
+     "at": 1.4,
+     "name": "cheer",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "u04",
+   "start": 7.5,
+   "end": 9.4,
+   "line": "Forty-one, forty-six.",
+   "scene": "41 -> 46 on Sam's head",
+   "set": "apartment",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 1.05,
+     "name": "ding",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "u05",
+   "start": 9.4,
+   "end": 12.8,
+   "line": "Then, one second later, back to forty-three.",
+   "scene": "46 -> 43, smile goes awkward",
+   "set": "apartment",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 2.7,
+     "name": "blip",
+     "gain": -10
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "u06",
+   "start": 12.8,
+   "end": 14.05,
+   "line": "He doesn't know why.",
+   "scene": "giant Sam face, confused",
+   "set": "apartment",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "u07",
+   "start": 14.05,
+   "end": 16.1,
+   "line": "It just feels like a bribe.",
+   "scene": "price tag swings",
+   "set": "apartment",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "tick",
+     "gain": -20
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "u08",
+   "start": 16.1,
+   "end": 19.5,
+   "line": "Shortcut two, the perfect apology speech.",
+   "scene": "night desk, drafts into bin",
+   "set": "apartment",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.4
+   },
+   "sfx": [
+    {
+     "at": 0.85,
+     "name": "swish",
+     "gain": -18
+    },
+    {
+     "at": 1.4,
+     "name": "swish",
+     "gain": -18
+    },
+    {
+     "at": 1.95,
+     "name": "swish",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  },
+  {
+   "id": "u09",
+   "start": 19.5,
+   "end": 22.3,
+   "line": "You rehearse it in the mirror, three times.",
+   "scene": "mirror rehearsal, 3 tally marks",
+   "set": "bathroom",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "tick",
+     "gain": -16
+    },
+    {
+     "at": 1.2,
+     "name": "tick",
+     "gain": -16
+    },
+    {
+     "at": 1.8,
+     "name": "tick",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "u10",
+   "start": 22.3,
+   "end": 23.25,
+   "line": "Forty-four.",
+   "scene": "Sam 43 -> 44",
+   "set": "apartment",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.15,
+     "name": "blip",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "u11",
+   "start": 23.25,
+   "end": 25.3,
+   "line": "Words are cheap.",
+   "scene": "pages blow away, pull out",
+   "set": "apartment",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "wind",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 12.8,
+   "mood": "hopeful",
+   "intensity": 0.3
+  },
+  {
+   "start": 12.8,
+   "end": 25.3,
+   "mood": "sad",
+   "intensity": 0.35
+  }
+ ],
+ "sfx": []
+}

@@ -18,8 +18,7 @@ if [ ! -f "$STUDIO/render.mjs" ]; then
   [ -d "$SKILL_KIT" ] || { echo "make-2d-video skill not installed (needs ~/.claude/skills/make-2d-video). Install the GrowKaz_Stickman.plugin first."; exit 1; }
   mkdir -p "$STUDIO"; cp -r "$SKILL_KIT/." "$STUDIO/"; echo "studio copied from the plugin kit"
 fi
-cp -f "$HERE/engine/toon2d.js" "$STUDIO/engine/toon2d.js"
-cp -f "$HERE/engine/styles.js" "$STUDIO/engine/styles.js"
+cp -f "$HERE/engine/"*.js "$STUDIO/engine/"            # toon2d.js, storyfx.js, styles.js (+ any new engine helpers)
 cp -f "$HERE/render.mjs" "$STUDIO/render.mjs"
 mkdir -p "$STUDIO/engine/sets"; cp -f "$HERE/sets/"*.js "$STUDIO/engine/sets/" 2>/dev/null || true
 cd "$STUDIO"

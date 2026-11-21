@@ -41,3 +41,8 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Sound: music sections per clip (moods: mystery tension action wonder hopeful sad triumph playful calm dark epic; music gain -22 dB),
   SFX per shot (pop blip ding swish whoosh hit impact freeze heartbeat shimmer applause murmur phonering clock tick...).
 - Mix light and dark shots; diegetic objects over captions; minimal on-screen text (see LIBRARY.md rules, they still apply).
+
+## Shared helpers + sets (import in every shots file)
+- `/engine/storyfx.js`: `blink(t)`, `headNum(g,x,y,str,t,t0)` (glowing number ON the head, y = ground - 300*s), `numChange(g,x,y,from,to,t,tSwitch)` (old pops out, new pops in, +/- floater), `floater()`, `camEase(t, dur, {z0,z1,x0,x1,y0,y1})` = the smooth eased camera: use it for EVERY shot.
+- `/engine/sets/`: `mall.js` (golden mall), `apartment.js` (Sam's dusk living room, `{mood:'night', sofa:false, wall}`), `bathroom.js` (mirror; `mirrorRect()` + `mirrorGlass()` for reflections). Add new places here once, then reuse.
+- Second reference build: `_Studio Kit/growkaz/example-v02-clip20/` (gift + mirror speech: props, number changes on a beat, mirror reflection).
