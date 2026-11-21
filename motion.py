@@ -18,13 +18,17 @@ def exit_(sel, t, to="right", d=0.45, dist=420):
 def wall_clock(cid, x, y, r=100, h0=8, m0=50, sweep_min=10, t0=0.2, dur=3.0):
     """Clock MOUNTED on a wall: wall bracket + soft cast shadow + rim; the minute hand sweeps `sweep_min` minutes over `dur` seconds."""
     ticks = "".join(f"<path d='M{x},{y - r + 9} v{14 if i % 3 == 0 else 8}' stroke='#0b0620' stroke-width='{5 if i % 3 == 0 else 3}' transform='rotate({i * 30} {x} {y})'/>" for i in range(12))
+    # hands carry NO transform attribute (GSAP on an element that already has one mis-places the rotation origin = wrong clock);
+    # the start angle is set with tl.set and the sweep is a plain rotation tween around the clock centre
     svg = (f"<g id='{cid}'><circle cx='{x + 8}' cy='{y + 10}' r='{r + 8}' fill='#000' opacity='0.16'/>"
            f"<circle cx='{x}' cy='{y}' r='{r + 8}' fill='#2a2233' stroke='#0b0620' stroke-width='6'/><circle cx='{x}' cy='{y}' r='{r}' fill='#faf5e8' stroke='#0b0620' stroke-width='4'/>{ticks}"
-           f"<g id='{cid}-h' transform='rotate({h0 * 30 + m0 * 0.5} {x} {y})'><path d='M{x},{y} v-{r * 0.5:.0f}' stroke='#0b0620' stroke-width='9' stroke-linecap='round'/></g>"
-           f"<g id='{cid}-m' transform='rotate({m0 * 6} {x} {y})'><path d='M{x},{y} v-{r * 0.78:.0f}' stroke='#0b0620' stroke-width='6' stroke-linecap='round'/></g><circle cx='{x}' cy='{y}' r='7' fill='#e6322c'/></g>")
-    js = (f"tl.fromTo('#{cid}',{{opacity:0,scale:0.85,transformOrigin:'{x}px {y}px'}},{{opacity:1,scale:1,duration:0.5,ease:'back.out(1.6)',immediateRender:false}},{t0:.2f});"
-          f"tl.to('#{cid}-m',{{rotation:{m0 * 6 + sweep_min * 6},svgOrigin:'{x} {y}',duration:{dur:.2f},ease:'power1.inOut'}},{t0 + 0.3:.2f});"
-          f"tl.to('#{cid}-h',{{rotation:{h0 * 30 + (m0 + sweep_min) * 0.5},svgOrigin:'{x} {y}',duration:{dur:.2f},ease:'power1.inOut'}},{t0 + 0.3:.2f});")
+           f"<g id='{cid}-h'><path d='M{x},{y} v-{r * 0.5:.0f}' stroke='#0b0620' stroke-width='9' stroke-linecap='round'/></g>"
+           f"<g id='{cid}-m'><path d='M{x},{y} v-{r * 0.78:.0f}' stroke='#0b0620' stroke-width='6' stroke-linecap='round'/></g><circle cx='{x}' cy='{y}' r='7' fill='#e6322c'/></g>")
+    a_h0, a_m0 = h0 * 30 + m0 * 0.5, m0 * 6
+    js = (f"tl.set('#{cid}-h',{{rotation:{a_h0},svgOrigin:'{x} {y}'}},0);tl.set('#{cid}-m',{{rotation:{a_m0},svgOrigin:'{x} {y}'}},0);"
+          f"tl.fromTo('#{cid}',{{opacity:0,scale:0.85,transformOrigin:'{x}px {y}px'}},{{opacity:1,scale:1,duration:0.5,ease:'back.out(1.6)',immediateRender:false}},{t0:.2f});"
+          f"tl.to('#{cid}-m',{{rotation:{a_m0 + sweep_min * 6},svgOrigin:'{x} {y}',duration:{dur:.2f},ease:'power1.inOut'}},{t0 + 0.3:.2f});"
+          f"tl.to('#{cid}-h',{{rotation:{a_h0 + sweep_min * 0.5},svgOrigin:'{x} {y}',duration:{dur:.2f},ease:'power1.inOut'}},{t0 + 0.3:.2f});")
     return svg, js
 
 def chat_bubbles(cid, x, y, lines, t0=0.3, gap=0.55, w=420):

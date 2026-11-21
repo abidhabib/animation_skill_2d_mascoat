@@ -117,3 +117,5 @@ Goal: modern, minimal, premium 2D motion design with subtle 2.5D depth (never 3D
 6. Camera: purposeful pans, side tracking, push-ins, pull-outs, slight parallax; zoom stays 0.9-1.5; no static frames unless the story needs it.
 7. Pace slightly faster (average shot 2-3 s); the energy comes from camera and object motion, not from cutting between unrelated places.
 8. Consistency: if this style performs well, every future clip follows it. Worked examples: `V02 - Trust Numbers/specs/make_clip13_v1.py` onward. Helpers: `_Studio Kit/motion.py`, `ambient.py`.
+
+**2D fallback + clocks (user 2026-11-21):** when a scene is hard to do with 2.5D depth, use clean flat 2D but keep it smooth and professional (eased moves, dissolves, no jitter). Clocks: only via `motion.wall_clock` (hands have no transform attribute; start angle set with tl.set; never tween rotation on an element that already carries a transform attribute, it puts the hand on the wrong pivot). Smoothness: render new clips with `FPS=60 bash render-clip.sh N` when motion is fast (pans, drone moves); keep old clips as they are.

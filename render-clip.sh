@@ -17,7 +17,7 @@ echo "== check"
 npx --yes "$V" check --no-cache 2>&1 | grep -E "✗|^\s+✗| error|Error" | grep -v " 0 error" || echo "no errors"
 mkdir -p "$RD"
 echo "== render"
-npx --yes "$V" render . -o "$RD/$OUT" -q high --fps 30 2>&1 | grep -E "rendered in|rror" || true
+npx --yes "$V" render . -o "$RD/$OUT" -q high --fps ${FPS:-30} 2>&1 | grep -E "rendered in|rror" || true
 # --- film look (user director rules 2026-11-20): warm cozy golden grade (user 2026-11-20) + light grain on every render (NO vignette: user dislikes black edges); FILM=0 turns it off
 if [ "${FILM:-1}" = "1" ] && [ -f "$RD/$OUT" ]; then
   ffmpeg -v error -y -i "$RD/$OUT" -vf "curves=r='0/0.02 0.5/0.53 1/1':g='0/0.01 0.5/0.51 1/0.99':b='0/0 0.5/0.46 1/0.93',eq=saturation=0.95:contrast=1.04,noise=alls=4:allf=t" -c:v libx264 -crf 22 -preset medium -pix_fmt yuv420p -c:a copy "$RD/.film.mp4" && mv "$RD/.film.mp4" "$RD/$OUT"
