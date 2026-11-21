@@ -3,6 +3,8 @@ name: cartoon-explainer-clip
 description: Make the next numbered clip of the user's 2D cartoon explainer video (bean/pear-character style measured from their favourite reference videos) in HyperFrames, timed to their own voice-over chunk. Use when the user asks to make, continue, redo or edit "clip N" / the next clip / a scene of their YouTube explainer, or runs /cartoon-explainer-clip.
 ---
 
+> **NEW DEFAULT ENGINE (user 2026-11-21):** new clips (V02 Clip 19 on, and future videos) are made with the GrowKaz engine + our own cartoon cast, not HyperFrames. First read `YouTube Content/_Studio Kit/growkaz/README.md`, run `bash "_Studio Kit/growkaz/setup-studio.sh"`, then per clip `bash "../_Studio Kit/growkaz/gk-clip.sh" init|sheet|render N`. Style `cozy`, smooth eased camera, expressive faces on the beat, numbers glow on heads. The HyperFrames workflow below is kept for older clips and Shorts.
+
 
 > **SENDING (user rule):** every finished clip/Short goes out with SendUserFile AND its clickable path in the message: a markdown link relative to `YouTube Content` plus the full Windows path, so the user can open it in File Explorer.
 

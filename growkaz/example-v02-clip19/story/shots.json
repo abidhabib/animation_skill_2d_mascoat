@@ -1,0 +1,263 @@
+{
+ "title": "V02 Clip 19",
+ "duration": 17.627,
+ "shots": [
+  {
+   "id": "s001",
+   "start": 0.0,
+   "end": 2.1,
+   "line": "You tell a stranger you love their haircut.",
+   "scene": "two-shot, fake compliment",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "pop",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "s002",
+   "start": 2.1,
+   "end": 2.95,
+   "line": "You don't.",
+   "scene": "giant face, grin cracks",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "s003",
+   "start": 2.95,
+   "end": 3.95,
+   "line": "Minus three.",
+   "scene": "stranger, 54 -> 51, -3 sinks",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "blip",
+     "gain": -10
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "s004",
+   "start": 3.95,
+   "end": 5.8,
+   "line": "Okay, next, please.",
+   "scene": "OTS cashier waves next",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -26
+   }
+  },
+  {
+   "id": "s005",
+   "start": 5.8,
+   "end": 7.3,
+   "line": "She never found out.",
+   "scene": "tracking walk away",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -26
+   }
+  },
+  {
+   "id": "s006",
+   "start": 7.3,
+   "end": 8.45,
+   "line": "Nobody did.",
+   "scene": "high wide crowd with numbers",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -26
+   }
+  },
+  {
+   "id": "s007",
+   "start": 8.45,
+   "end": 10.1,
+   "line": "It doesn't matter.",
+   "scene": "close, smile fades",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "s008",
+   "start": 10.1,
+   "end": 13.0,
+   "line": "People feel it, without knowing why.",
+   "scene": "FREEZE: threads to people, they frown",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "flash",
+    "dur": 0.35
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "freeze",
+     "gain": -8
+    },
+    {
+     "at": 0.6,
+     "name": "heartbeat",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s009",
+   "start": 13.0,
+   "end": 14.45,
+   "line": "You can't fake it.",
+   "scene": "mask falls and cracks",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.9,
+     "name": "hit",
+     "gain": -10
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s010",
+   "start": 14.45,
+   "end": 15.8,
+   "line": "You can't buy it.",
+   "scene": "bills bounce off 41",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "swish",
+     "gain": -14
+    },
+    {
+     "at": 0.75,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s011",
+   "start": 15.8,
+   "end": 17.627,
+   "line": "You can't perform it.",
+   "scene": "empty stage bow, audience leaves",
+   "set": "mall",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "applause",
+     "gain": -20
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 10.1,
+   "mood": "playful",
+   "intensity": 0.3
+  },
+  {
+   "start": 10.1,
+   "end": 17.627,
+   "mood": "sad",
+   "intensity": 0.35
+  }
+ ],
+ "sfx": []
+}
