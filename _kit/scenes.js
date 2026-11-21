@@ -422,6 +422,29 @@
   const treeBlob = (x, y, k) => `<g transform="translate(${x},${y}) scale(${k})"><rect x="-10" y="40" width="20" height="120" fill="#7a5a3a" stroke="${INK}" stroke-width="4"/>${[[0, 0, 70, "#5fcf53"], [-48, 30, 50, "#52bd48"], [52, 26, 54, "#52bd48"]].map(([a, b, r, f]) => `<circle cx="${a}" cy="${b}" r="${r}" fill="${f}" stroke="${INK}" stroke-width="4"/>`).join("")}<circle cx="-14" cy="-22" r="26" fill="#8be474" opacity="0.8"/></g>`;
   const tiles = (y) => `<rect x="-400" y="${y}" width="2720" height="${1100 - y}" fill="url(#rb-floor)"/><path d="M-400,${y} L2320,${y}" stroke="${INK}" stroke-width="6"/>` + Array.from({ length: 24 }, (_, i) => `<path d="M${-400 + i * 140},${y} L${-400 + i * 140 - (i - 10) * 36},1100" stroke="#1a1820" stroke-width="3" opacity="0.6"/>`).join("") + `<path d="M-400,${y + 46} L2320,${y + 46} M-400,${y + 110} L2320,${y + 110}" stroke="#1a1820" stroke-width="3" opacity="0.6"/>`;
   const RICH = {
+    // SUNSET OFFICE / LOFT (user 2026-11-20, like the reference "managing director" shot): slightly dark room, one huge window with an
+    // orange -> purple sunset, a big low sun, silhouette city with lit windows, mullions, warm glow spilling on the floor, a plant.
+    // time:"dusk" = deeper purple sky. Use for the promise, the rules, reflective beats.
+    sunsetOffice: (seed, o) => {
+      const deep = o && o.time === "night";
+      const sky = deep ? ["#2a1d4d", "#6a3b7a", "#c46a5a"] : ["#7d3f86", "#e0645a", "#ffb35a"];
+      const bldg = (x, w, h, c) => `<rect x="${x}" y="${900 - h}" width="${w}" height="${h + 200}" fill="${c}"/>` + Array.from({ length: Math.floor(h / 70) }, (_, r) => Array.from({ length: Math.max(1, Math.floor(w / 46)) }, (_, k) => ((r * 7 + k * 3 + x) % 5 === 0) ? `<rect x="${x + 14 + k * 46}" y="${900 - h + 24 + r * 70}" width="20" height="26" fill="#ffd98a" opacity="0.9"/>` : "").join("")).join("");
+      return {
+        far: `<rect x="-400" y="-400" width="2720" height="1880" fill="#52405f"/>`
+          + `<defs><linearGradient id="so-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="0.55" stop-color="${sky[1]}"/><stop offset="1" stop-color="${sky[2]}"/></linearGradient><radialGradient id="so-sun"><stop offset="0" stop-color="#fff0b0"/><stop offset="0.45" stop-color="#ffc766"/><stop offset="1" stop-color="#ff8f4a" stop-opacity="0"/></radialGradient><clipPath id="so-win"><rect x="520" y="70" width="1330" height="800"/></clipPath></defs>`
+          + `<g clip-path="url(#so-win)"><rect x="520" y="70" width="1330" height="800" fill="url(#so-sky)"/>`
+          + `<circle cx="1360" cy="690" r="330" fill="url(#so-sun)"/><circle cx="1360" cy="700" r="96" fill="#ffe29a"/>`
+          + `<path d="M560,250 q70,-40 150,-6 q40,-32 120,0 q90,-18 120,22 z" fill="#f5a7a0" opacity="0.7"/><path d="M1180,170 q60,-30 130,-4 q60,-26 110,10 z" fill="#d98aa8" opacity="0.7"/>`
+          + `<g opacity="0.95">${bldg(540, 150, 330, "#3a2a52")}${bldg(710, 120, 470, "#35264c")}${bldg(850, 170, 280, "#3f2c58")}${bldg(1040, 100, 400, "#372850")}${bldg(1170, 150, 250, "#43305c")}${bldg(1500, 130, 360, "#3a2a52")}${bldg(1650, 170, 480, "#35264c")}${bldg(1840, 90, 300, "#3f2c58")}</g>`
+          + `<rect x="520" y="860" width="1330" height="20" fill="#2a1e3a"/></g>`
+          + `<g stroke="#17121f" stroke-width="16" fill="none"><rect x="520" y="70" width="1330" height="800"/><path d="M965,70 L965,870 M1408,70 L1408,870"/></g>`
+          + `<path d="M520,70 L1400,870 L1100,870 L520,200Z" fill="#fff" opacity="0.06"/>`,
+        mid: `<rect x="-400" y="880" width="2720" height="300" fill="#5a4258"/><path d="M-400,880 L2320,880" stroke="${INK}" stroke-width="6"/>`
+          + `<path d="M700,880 L1500,880 L1700,1100 L560,1100Z" fill="#ffb35a" opacity="0.28"/>`
+          + `<g transform="translate(300,880)"><path d="M-60,0 L60,0 L44,-120 L-44,-120Z" fill="#8a4f3a" stroke="${INK}" stroke-width="5"/><path d="M0,-120 C-110,-250 -50,-330 0,-190 C40,-340 120,-250 0,-120" fill="#3f7a58" stroke="${INK}" stroke-width="5"/></g>`
+          + `<rect x="0" y="0" width="1920" height="1080" fill="#12081e" opacity="0.08"/>`,
+      };
+    },
     officeNight: (seed, o) => ({   // brand:true brings back the Video 1 brand mark + four-colour stripe
       far: FULL("url(#rb-wall)") + `<g>${R_(1090, 40, 830, 480, (o && o.time === "day") ? "url(#rb-day)" : "url(#rb-night)", 10)}${(o && o.time === "day") ? softCloud(1250, 120, 0.5) : `<circle cx="1760" cy="150" r="46" fill="#f8efc0"/>`}<rect x="1090" y="400" width="830" height="120" fill="#27553a"/>${treeBlob(1260, 250, 1.1)}${treeBlob(1520, 300, 0.9)}${treeBlob(1790, 240, 1.2)}<path d="M1500,40 L1500,520 M1090,280 L1920,280" stroke="#f5f1e6" stroke-width="12"/><rect x="1070" y="510" width="870" height="26" fill="#f5f1e6" stroke="${INK}" stroke-width="5"/></g>`
         + (o && o.brand ? `<rect x="-400" y="560" width="2720" height="14" fill="#4285f4"/><rect x="-400" y="574" width="2720" height="14" fill="#ea4335"/><rect x="-400" y="588" width="2720" height="14" fill="#fbbc05"/><rect x="-400" y="602" width="2720" height="14" fill="#34a853"/>` : `<rect x="-400" y="560" width="2720" height="56" fill="#3f6f86"/><rect x="-400" y="578" width="2720" height="10" fill="#5f97ad"/>`) + `<path d="M-400,560 L2320,560 M-400,616 L2320,616" stroke="${INK}" stroke-width="3"/>`
