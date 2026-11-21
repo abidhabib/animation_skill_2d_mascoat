@@ -102,3 +102,7 @@ No slides/whips by default. Use: (1) straight cut that continues the camera move
 - **`_Studio Kit/ambient.py`** (import in spec generators): `dust`, `lightrays`, `birds`, `drift_clouds`, `steam`, `falling` (real physics: gravity ease + bounce + settle rotation; coins/paper/leaves), `bob` (hovering icon). Put the svg in the scene `extra`, the js in `js`. Every scene should have at least one living background element.
 - **Diegetic icons instead of captions** (thumbs-up = like, heart = love, padlock = trust, glowing panels with 1/2/3 dots = first/second/third, floating +3).
 - Worked examples: `V02 - Trust Numbers/specs/make_clip04_v2.py`, `make_clip05_v2.py`, `make_clip06_v2.py`.
+
+## LIGHTING MIX (user 2026-11-20): "a little dark does not mean make every clip dark"
+Plan the light per clip like a film: roughly half the shots LIGHT (bright day, sunny office, daytime street, sky), half warm/dim (sunset loft, lamp-lit rooms, cafe, night neon). Never more than 2 dark shots in a row; open and close clips on different brightness; use dark only where the story is tense, reflective or cozy. When writing a spec list the brightness of each shot (L = light, M = mid, D = dark) and check the mix before rendering.
+Bug fixed: environments that define gradient/clip ids (`sunsetOffice`, `cafe`) now suffix the ids with the scene name; before, duplicate ids across shots in one clip made the sky vanish.

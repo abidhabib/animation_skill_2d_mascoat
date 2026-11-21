@@ -424,11 +424,33 @@
   const RICH = {
     // CAFE (user 2026-11-20): amber evening cafe, rain on a big window, pendant lamps, counter + espresso machine, menu boards (no text), checker floor.
     cafe: (seed, o) => {
+      const U = String((o && o.name) || seed || 'x').replace(/[^a-zA-Z0-9]/g, ''); const lamp = (x, y) => `<g><path d="M${x},-40 L${x},${y}" stroke="#1b1424" stroke-width="5"/><path d="M${x - 46},${y} L${x + 46},${y} L${x + 28},${y - 40} L${x - 28},${y - 40}Z" fill="#e0a24a" stroke="${INK}" stroke-width="5"/><ellipse cx="${x}" cy="${y + 8}" rx="120" ry="70" fill="#ffd98a" opacity="0.28"/></g>`;
+      return {
+        far: `<rect x="-400" y="-400" width="2720" height="1880" fill="#5a3a2c"/>`
+          + `<defs><linearGradient id="cf-sky-${U}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4b3f6e"/><stop offset="1" stop-color="#d98a5a"/></linearGradient><clipPath id="cf-win-${U}"><rect x="1010" y="120" width="780" height="520"/></clipPath></defs>`
+          + `<g clip-path="url(#cf-win-${U})"><rect x="1010" y="120" width="780" height="520" fill="url(#cf-sky-${U})"/><g fill="#2f2540">${[[1030, 120, 200], [1180, 70, 300], [1300, 150, 240], [1480, 90, 330], [1600, 160, 220], [1740, 80, 280]].map(([x, w, h]) => `<rect x="${x}" y="${640 - h}" width="${w}" height="${h}"/>`).join("")}</g>${Array.from({ length: 22 }, (_, i) => `<rect x="${1040 + (i * 37) % 700}" y="${360 + ((i * 53) % 240)}" width="12" height="16" fill="#ffd98a" opacity="0.85"/>`).join("")}</g>`
+          + `<g stroke="#241a2c" stroke-width="14" fill="none"><rect x="1010" y="120" width="780" height="520"/><path d="M1400,120 L1400,640"/></g>`
+          + `<g id="cf-rain" opacity="0.5" stroke="#cfe3ff" stroke-width="3" stroke-linecap="round">${Array.from({ length: 26 }, (_, i) => `<path d="M${1020 + (i * 31) % 760},${130 + (i * 71) % 480} l-8,34"/>`).join("")}</g>`
+          + `<g>${lamp(300, 220)}${lamp(640, 250)}${lamp(1000, 215)}</g>`
+          + `<g><rect x="90" y="260" width="360" height="220" fill="#2a1c22" stroke="${INK}" stroke-width="6" rx="6"/>${[0, 1, 2, 3, 4].map((i) => `<path d="M130,${310 + i * 40} h${180 + (i % 2) * 90}" stroke="#e9d9b8" stroke-width="7" stroke-linecap="round" opacity="0.8"/>`).join("")}</g>`
+          + `<circle cx="1000" cy="520" r="760" fill="url(#rb-glow)" opacity="0.28"/>`,
+        mid: `<g><rect x="-400" y="660" width="2720" height="130" fill="#7a4f38"/><rect x="-400" y="640" width="2720" height="30" fill="#c58a52" stroke="${INK}" stroke-width="5"/></g>`
+          + `<g transform="translate(620,640)"><rect x="0" y="-150" width="250" height="150" rx="16" fill="#b8b8c4" stroke="${INK}" stroke-width="6"/><rect x="26" y="-112" width="60" height="40" fill="#3a3a48"/><rect x="164" y="-120" width="52" height="86" rx="8" fill="#e8e8f0" stroke="${INK}" stroke-width="4"/><circle cx="190" cy="-140" r="10" fill="#e6322c"/></g>`
+          + `<g id="cf-cups">${[[420, 640], [500, 640]].map(([x, y]) => `<g transform="translate(${x},${y})"><path d="M-28,-60 L28,-60 L20,0 L-20,0Z" fill="#fff" stroke="${INK}" stroke-width="5"/><rect x="-28" y="-74" width="56" height="16" rx="6" fill="#e0562f" stroke="${INK}" stroke-width="4"/></g>`).join("")}</g>`
+          + `<g><rect x="-400" y="790" width="2720" height="300" fill="#4a2f26"/><path d="M-400,790 L2320,790" stroke="${INK}" stroke-width="6"/>${Array.from({ length: 24 }, (_, i) => `<path d="M${-400 + i * 120},790 L${-400 + i * 120 - (i - 8) * 30},1100" stroke="#2a1a16" stroke-width="3" opacity="0.5"/>`).join("")}</g>`
+          + `<rect x="0" y="0" width="1920" height="1080" fill="#1c0f18" opacity="0.12"/>`,
+      };
+    },
+    // SUNSET OFFICE / LOFT (user 2026-11-20, like the reference "managing director" shot): slightly dark room, one huge window with an
+    // orange -> purple sunset, a big low sun, silhouette city with lit windows, mullions, warm glow spilling on the floor, a plant.
+    // time:"dusk" = deeper purple sky. Use for the promise, the rules, reflective beats.
+    // CAFE (user 2026-11-20): amber evening cafe, rain on a big window, pendant lamps, counter + espresso machine, menu boards (no text), checker floor.
+    cafe: (seed, o) => {
       const lamp = (x, y) => `<g><path d="M${x},-40 L${x},${y}" stroke="#1b1424" stroke-width="5"/><path d="M${x - 46},${y} L${x + 46},${y} L${x + 28},${y - 40} L${x - 28},${y - 40}Z" fill="#e0a24a" stroke="${INK}" stroke-width="5"/><ellipse cx="${x}" cy="${y + 8}" rx="120" ry="70" fill="#ffd98a" opacity="0.28"/></g>`;
       return {
         far: `<rect x="-400" y="-400" width="2720" height="1880" fill="#5a3a2c"/>`
-          + `<defs><linearGradient id="cf-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4b3f6e"/><stop offset="1" stop-color="#d98a5a"/></linearGradient><clipPath id="cf-win"><rect x="1010" y="120" width="780" height="520"/></clipPath></defs>`
-          + `<g clip-path="url(#cf-win)"><rect x="1010" y="120" width="780" height="520" fill="url(#cf-sky)"/><g fill="#2f2540">${[[1030, 120, 200], [1180, 70, 300], [1300, 150, 240], [1480, 90, 330], [1600, 160, 220], [1740, 80, 280]].map(([x, w, h]) => `<rect x="${x}" y="${640 - h}" width="${w}" height="${h}"/>`).join("")}</g>${Array.from({ length: 22 }, (_, i) => `<rect x="${1040 + (i * 37) % 700}" y="${360 + ((i * 53) % 240)}" width="12" height="16" fill="#ffd98a" opacity="0.85"/>`).join("")}</g>`
+          + `<defs><linearGradient id="cf-sky-${U}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4b3f6e"/><stop offset="1" stop-color="#d98a5a"/></linearGradient><clipPath id="cf-win-${U}"><rect x="1010" y="120" width="780" height="520"/></clipPath></defs>`
+          + `<g clip-path="url(#cf-win-${U})"><rect x="1010" y="120" width="780" height="520" fill="url(#cf-sky-${U})"/><g fill="#2f2540">${[[1030, 120, 200], [1180, 70, 300], [1300, 150, 240], [1480, 90, 330], [1600, 160, 220], [1740, 80, 280]].map(([x, w, h]) => `<rect x="${x}" y="${640 - h}" width="${w}" height="${h}"/>`).join("")}</g>${Array.from({ length: 22 }, (_, i) => `<rect x="${1040 + (i * 37) % 700}" y="${360 + ((i * 53) % 240)}" width="12" height="16" fill="#ffd98a" opacity="0.85"/>`).join("")}</g>`
           + `<g stroke="#241a2c" stroke-width="14" fill="none"><rect x="1010" y="120" width="780" height="520"/><path d="M1400,120 L1400,640"/></g>`
           + `<g id="cf-rain" opacity="0.5" stroke="#cfe3ff" stroke-width="3" stroke-linecap="round">${Array.from({ length: 26 }, (_, i) => `<path d="M${1020 + (i * 31) % 760},${130 + (i * 71) % 480} l-8,34"/>`).join("")}</g>`
           + `<g>${lamp(300, 220)}${lamp(640, 250)}${lamp(1000, 215)}</g>`
@@ -445,14 +467,14 @@
     // orange -> purple sunset, a big low sun, silhouette city with lit windows, mullions, warm glow spilling on the floor, a plant.
     // time:"dusk" = deeper purple sky. Use for the promise, the rules, reflective beats.
     sunsetOffice: (seed, o) => {
-      const deep = o && o.time === "night";
+      const U = String((o && o.name) || seed || 'x').replace(/[^a-zA-Z0-9]/g, ''), deep = o && o.time === "night";
       const sky = deep ? ["#2a1d4d", "#6a3b7a", "#c46a5a"] : ["#7d3f86", "#e0645a", "#ffb35a"];
       const bldg = (x, w, h, c) => `<rect x="${x}" y="${900 - h}" width="${w}" height="${h + 200}" fill="${c}"/>` + Array.from({ length: Math.floor(h / 70) }, (_, r) => Array.from({ length: Math.max(1, Math.floor(w / 46)) }, (_, k) => ((r * 7 + k * 3 + x) % 5 === 0) ? `<rect x="${x + 14 + k * 46}" y="${900 - h + 24 + r * 70}" width="20" height="26" fill="#ffd98a" opacity="0.9"/>` : "").join("")).join("");
       return {
         far: `<rect x="-400" y="-400" width="2720" height="1880" fill="#52405f"/>`
-          + `<defs><linearGradient id="so-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="0.55" stop-color="${sky[1]}"/><stop offset="1" stop-color="${sky[2]}"/></linearGradient><radialGradient id="so-sun"><stop offset="0" stop-color="#fff0b0"/><stop offset="0.45" stop-color="#ffc766"/><stop offset="1" stop-color="#ff8f4a" stop-opacity="0"/></radialGradient><clipPath id="so-win"><rect x="520" y="70" width="1330" height="800"/></clipPath></defs>`
-          + `<g clip-path="url(#so-win)"><rect x="520" y="70" width="1330" height="800" fill="url(#so-sky)"/>`
-          + `<circle cx="1360" cy="690" r="330" fill="url(#so-sun)"/><circle cx="1360" cy="700" r="96" fill="#ffe29a"/>`
+          + `<defs><linearGradient id="so-sky-${U}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="0.55" stop-color="${sky[1]}"/><stop offset="1" stop-color="${sky[2]}"/></linearGradient><radialGradient id="so-sun-${U}"><stop offset="0" stop-color="#fff0b0"/><stop offset="0.45" stop-color="#ffc766"/><stop offset="1" stop-color="#ff8f4a" stop-opacity="0"/></radialGradient><clipPath id="so-win-${U}"><rect x="520" y="70" width="1330" height="800"/></clipPath></defs>`
+          + `<g clip-path="url(#so-win-${U})"><rect x="520" y="70" width="1330" height="800" fill="url(#so-sky-${U})"/>`
+          + `<circle cx="1360" cy="690" r="330" fill="url(#so-sun-${U})"/><circle cx="1360" cy="700" r="96" fill="#ffe29a"/>`
           + `<path d="M560,250 q70,-40 150,-6 q40,-32 120,0 q90,-18 120,22 z" fill="#f5a7a0" opacity="0.7"/><path d="M1180,170 q60,-30 130,-4 q60,-26 110,10 z" fill="#d98aa8" opacity="0.7"/>`
           + `<g opacity="0.95">${bldg(540, 150, 330, "#3a2a52")}${bldg(710, 120, 470, "#35264c")}${bldg(850, 170, 280, "#3f2c58")}${bldg(1040, 100, 400, "#372850")}${bldg(1170, 150, 250, "#43305c")}${bldg(1500, 130, 360, "#3a2a52")}${bldg(1650, 170, 480, "#35264c")}${bldg(1840, 90, 300, "#3f2c58")}</g>`
           + `<rect x="520" y="860" width="1330" height="20" fill="#2a1e3a"/></g>`
