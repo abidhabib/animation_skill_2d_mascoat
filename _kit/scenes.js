@@ -445,6 +445,18 @@
     // orange -> purple sunset, a big low sun, silhouette city with lit windows, mullions, warm glow spilling on the floor, a plant.
     // time:"dusk" = deeper purple sky. Use for the promise, the rules, reflective beats.
     // CAFE (user 2026-11-20): amber evening cafe, rain on a big window, pendant lamps, counter + espresso machine, menu boards (no text), checker floor.
+    // MALL (user script clip 16-17): bright shopping-mall concourse: skylight ceiling, store fronts with awnings, pillars, plants, benches, glossy tile floor.
+    mall: (seed, o) => {
+      const store = (x, w, col, win) => `<g><rect x="${x}" y="250" width="${w}" height="560" fill="#f3ead8" stroke="${INK}" stroke-width="6"/><rect x="${x + 20}" y="330" width="${w - 40}" height="380" fill="${win}" stroke="${INK}" stroke-width="5"/><path d="M${x - 10},250 h${w + 20} l-20,-86 h-${w - 20}Z" fill="${col}" stroke="${INK}" stroke-width="6"/>${Array.from({ length: 4 }, (_, i) => `<rect x="${x + 40 + i * ((w - 90) / 4)}" y="${430 + (i % 2) * 40}" width="${(w - 90) / 4 - 14}" height="${200 - (i % 2) * 40}" rx="8" fill="#ffffff" opacity="0.55"/>`).join("")}</g>`;
+      return {
+        far: `<rect x="-400" y="-400" width="2720" height="1880" fill="#efe3cf"/><rect x="-400" y="-400" width="2720" height="560" fill="#cfe4f2"/>`
+          + `<g opacity="0.9">${[0, 1, 2, 3, 4, 5].map((i) => `<path d="M${-200 + i * 480},-20 L${-100 + i * 480},160 H${180 + i * 480} L${280 + i * 480},-20Z" fill="#e6f3fb" stroke="${INK}" stroke-width="5"/>`).join("")}</g>`
+          + store(40, 380, "#e0562f", "#bfe3ef") + store(470, 420, "#2f8a57", "#f6dfb4") + store(940, 400, "#4a78b8", "#e9d6f2") + store(1390, 440, "#d9a000", "#c8ecd8"),
+        mid: `<g>${[260, 880, 1500].map((x) => `<rect x="${x}" y="150" width="70" height="700" fill="#e8dcc4" stroke="${INK}" stroke-width="6"/><rect x="${x - 16}" y="826" width="102" height="30" fill="#d4c6a8" stroke="${INK}" stroke-width="5"/>`).join("")}</g>`
+          + `<g transform="translate(1760,860)"><path d="M-54,0 L54,0 L40,-110 L-40,-110Z" fill="#c4643a" stroke="${INK}" stroke-width="5"/><path d="M0,-110 C-110,-250 -40,-330 0,-190 C40,-340 110,-250 0,-110" fill="#4a9e4f" stroke="${INK}" stroke-width="5"/></g>`
+          + `<g><rect x="-400" y="860" width="2720" height="340" fill="#d9ccb0"/><path d="M-400,860 L2320,860" stroke="${INK}" stroke-width="6"/>${Array.from({ length: 26 }, (_, i) => `<path d="M${-400 + i * 120},860 L${-400 + i * 120 - (i - 9) * 34},1100" stroke="#b9ab8c" stroke-width="3" opacity="0.6"/>`).join("")}<rect x="-400" y="900" width="2720" height="40" fill="#fff" opacity="0.18"/></g>`,
+      };
+    },
     sunsetOffice: (seed, o) => {
       const U = String((o && (o.name || o.sid)) || '') + 'n' + (window.__rbn = (window.__rbn || 0) + 1), deep = o && o.time === "night";
       const sky = deep ? ["#2a1d4d", "#6a3b7a", "#c46a5a"] : ["#7d3f86", "#e0645a", "#ffb35a"];
