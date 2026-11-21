@@ -1,0 +1,247 @@
+{
+ "title": "V02 Clip 2",
+ "duration": 20.8,
+ "shots": [
+  {
+   "id": "b01",
+   "start": 0,
+   "end": 1.7,
+   "line": "You walk into the kitchen.",
+   "scene": "walks into kitchen",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "footstep",
+     "gain": -22
+    },
+    {
+     "at": 0.6,
+     "name": "footstep",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "b02",
+   "start": 1.7,
+   "end": 4.8,
+   "line": "Your roommate is burning toast, as usual.",
+   "scene": "smoke, toast pops",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 1.2,
+     "name": "pop",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "b03",
+   "start": 4.8,
+   "end": 8.5,
+   "line": "And above his head, floating in the air like a video game,",
+   "scene": "tilt up, pixels gather",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 1.0,
+     "name": "riser",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "b04",
+   "start": 8.5,
+   "end": 9.6,
+   "line": "sixty-two.",
+   "scene": "62 pops",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "powerup",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "b05",
+   "start": 9.6,
+   "end": 11.3,
+   "line": "No label. No unit.",
+   "scene": "empty slots",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.08,
+     "name": "blip",
+     "gain": -16
+    },
+    {
+     "at": 0.96,
+     "name": "blip",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "b06",
+   "start": 11.3,
+   "end": 14.7,
+   "line": "Just sixty-two, and a feeling that it means something.",
+   "scene": "thinking face",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "b07",
+   "start": 14.7,
+   "end": 15.8,
+   "line": "He looks up.",
+   "scene": "roommate turns",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "swish",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "b08",
+   "start": 15.8,
+   "end": 17.75,
+   "line": "Why are you staring at my hair?",
+   "scene": "pats his hair",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "b09",
+   "start": 17.75,
+   "end": 18.95,
+   "line": "You don't answer.",
+   "scene": "blank stare",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "b10",
+   "start": 18.95,
+   "end": 20.8,
+   "line": "You can't stop looking.",
+   "scene": "OTS 62",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "heartbeat",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 8.5,
+   "mood": "playful",
+   "intensity": 0.25
+  },
+  {
+   "start": 8.5,
+   "end": 20.8,
+   "mood": "mystery",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

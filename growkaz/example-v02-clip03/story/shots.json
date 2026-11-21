@@ -1,0 +1,180 @@
+{
+ "title": "V02 Clip 3",
+ "duration": 16.6,
+ "shots": [
+  {
+   "id": "c01",
+   "start": 0,
+   "end": 1.1,
+   "line": "Your phone rings.",
+   "scene": "phone rings on counter",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "phonering",
+     "gain": -10
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "c02",
+   "start": 1.1,
+   "end": 5.5,
+   "line": "Dad, on video, way too close to the camera, like always.",
+   "scene": "dad too close",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "pop",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "c03",
+   "start": 5.5,
+   "end": 8.6,
+   "line": "You can see half his forehead and the kitchen ceiling.",
+   "scene": "forehead + ceiling",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "c04",
+   "start": 8.6,
+   "end": 11.9,
+   "line": "Above his face on the screen, one hundred.",
+   "scene": "gold 100",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 2.0,
+     "name": "ding",
+     "gain": -10
+    },
+    {
+     "at": 2.05,
+     "name": "shimmer",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "c05",
+   "start": 11.9,
+   "end": 13.35,
+   "line": "And that's when it clicks.",
+   "scene": "realisation",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.85,
+     "name": "impact",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "c06",
+   "start": 13.35,
+   "end": 15.1,
+   "line": "These numbers aren't random.",
+   "scene": "three faces orbit",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -18
+    },
+    {
+     "at": 0.45,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 0.8,
+     "name": "blip",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "c07",
+   "start": 15.1,
+   "end": 16.6,
+   "line": "They're about you.",
+   "scene": "numbers orbit, push in",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "riser",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 11.9,
+   "mood": "playful",
+   "intensity": 0.25
+  },
+  {
+   "start": 11.9,
+   "end": 16.6,
+   "mood": "wonder",
+   "intensity": 0.35
+  }
+ ],
+ "sfx": []
+}

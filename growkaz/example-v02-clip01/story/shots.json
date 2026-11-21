@@ -1,0 +1,229 @@
+{
+ "title": "V02 Clip 1",
+ "duration": 19.1,
+ "shots": [
+  {
+   "id": "a01",
+   "start": 0,
+   "end": 1.6,
+   "line": "Your alarm goes off.",
+   "scene": "phone buzzes on nightstand, dark",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.15,
+     "name": "phonebuzz",
+     "gain": -10
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "a02",
+   "start": 1.6,
+   "end": 3.0,
+   "line": "Seven a.m.",
+   "scene": "wall clock hits 7:00",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "tick",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "a03",
+   "start": 3.0,
+   "end": 6.6,
+   "line": "You roll over, you grab your phone, and you freeze.",
+   "scene": "sits up, grabs phone, freezes",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.9,
+     "name": "swish",
+     "gain": -20
+    },
+    {
+     "at": 2.68,
+     "name": "freeze",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "a04",
+   "start": 6.6,
+   "end": 10.6,
+   "line": "Because floating above the photo on your lock screen, your mom's smiling face,",
+   "scene": "POV phone, mom photo",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -22
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "a05",
+   "start": 10.6,
+   "end": 13.0,
+   "line": "there's a tiny glowing number.",
+   "scene": "tiny glow appears",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 1.0,
+     "name": "shimmer",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "a06",
+   "start": 13.0,
+   "end": 14.1,
+   "line": "Ninety-nine.",
+   "scene": "close 99",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "ding",
+     "gain": -12
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "a07",
+   "start": 14.1,
+   "end": 15.8,
+   "line": "You rub your eyes.",
+   "scene": "giant face rubbing eyes",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "a08",
+   "start": 15.8,
+   "end": 17.3,
+   "line": "You shake the phone.",
+   "scene": "phone shakes",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "swish",
+     "gain": -16
+    },
+    {
+     "at": 0.5,
+     "name": "swish",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "a09",
+   "start": 17.3,
+   "end": 19.1,
+   "line": "It doesn't go away.",
+   "scene": "wide on bed, green glow",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "hum",
+     "gain": -26
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 6.6,
+   "mood": "calm",
+   "intensity": 0.25
+  },
+  {
+   "start": 6.6,
+   "end": 19.1,
+   "mood": "mystery",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

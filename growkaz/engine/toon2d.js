@@ -14,6 +14,9 @@ export const HERO = { skin: '#f6d6bd', hair: 'curly', hairColor: '#3a2418', top:
 export const CASHIER = { skin: '#d6a074', hair: 'ponytail', hairColor: '#2a1d18', top: '#e8e2d0', topDark: '#c8c0a8', apron: '#2f8a57', cap: '#2f8a57', legs: '#3a3f52', shoes: '#2a2a33', eyes: 'dark', lashes: true };
 export const STRANGER = { skin: '#f1c8a0', hair: 'swoop', hairColor: '#7a4a2a', top: '#8a5cc8', topDark: '#6a42a0', legs: '#2e3344', shoes: '#e8e8f0', eyes: 'dark' };
 export const SAM = { skin: '#b9825a', hair: 'curly', hairColor: '#1d1410', top: '#4fb286', topDark: '#2f7a5a', legs: '#3a4a6a', shoes: '#f4f4f4', eyes: 'dark' };
+export const ROOMMATE = { skin: '#f3cfae', hair: 'swoop', hairColor: '#c0602a', top: '#e0743a', topDark: '#b0522a', legs: '#3a3f52', shoes: '#e8e8f0', eyes: 'dark' };
+export const MOM = { skin: '#e8b892', hair: 'long', hairColor: '#4a2a1c', top: '#c96f8a', topDark: '#9d4a64', legs: '#4a3f6e', shoes: '#2a2a33', eyes: 'dark', lashes: true };
+export const DAD = { skin: '#e4b48c', hair: 'short', hairColor: '#8d8a96', top: '#6b7f5a', topDark: '#46573a', legs: '#3a3a44', shoes: '#2a2a33', eyes: 'dark', glasses: true, stache: 'curl' };
 export const SHOPPER = (i) => [{ skin: '#f5d6b8', hair: 'bun', hairColor: '#5a3825', top: '#c96f8a', topDark: '#8d4a60', legs: '#4a3f6e', eyes: 'dark', lashes: true },
   { skin: '#a8714a', hair: 'short', hairColor: '#1d1410', top: '#e0a24a', topDark: '#b07a2a', legs: '#2e3344', eyes: 'dark' },
   { skin: '#e8c4a0', hair: 'short', hairColor: '#8d8a96', top: '#6b7f5a', topDark: '#46573a', legs: '#3a3a44', eyes: 'dark', glasses: true },
