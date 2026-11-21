@@ -422,6 +422,25 @@
   const treeBlob = (x, y, k) => `<g transform="translate(${x},${y}) scale(${k})"><rect x="-10" y="40" width="20" height="120" fill="#7a5a3a" stroke="${INK}" stroke-width="4"/>${[[0, 0, 70, "#5fcf53"], [-48, 30, 50, "#52bd48"], [52, 26, 54, "#52bd48"]].map(([a, b, r, f]) => `<circle cx="${a}" cy="${b}" r="${r}" fill="${f}" stroke="${INK}" stroke-width="4"/>`).join("")}<circle cx="-14" cy="-22" r="26" fill="#8be474" opacity="0.8"/></g>`;
   const tiles = (y) => `<rect x="-400" y="${y}" width="2720" height="${1100 - y}" fill="url(#rb-floor)"/><path d="M-400,${y} L2320,${y}" stroke="${INK}" stroke-width="6"/>` + Array.from({ length: 24 }, (_, i) => `<path d="M${-400 + i * 140},${y} L${-400 + i * 140 - (i - 10) * 36},1100" stroke="#1a1820" stroke-width="3" opacity="0.6"/>`).join("") + `<path d="M-400,${y + 46} L2320,${y + 46} M-400,${y + 110} L2320,${y + 110}" stroke="#1a1820" stroke-width="3" opacity="0.6"/>`;
   const RICH = {
+    // CAFE (user 2026-11-20): amber evening cafe, rain on a big window, pendant lamps, counter + espresso machine, menu boards (no text), checker floor.
+    cafe: (seed, o) => {
+      const lamp = (x, y) => `<g><path d="M${x},-40 L${x},${y}" stroke="#1b1424" stroke-width="5"/><path d="M${x - 46},${y} L${x + 46},${y} L${x + 28},${y - 40} L${x - 28},${y - 40}Z" fill="#e0a24a" stroke="${INK}" stroke-width="5"/><ellipse cx="${x}" cy="${y + 8}" rx="120" ry="70" fill="#ffd98a" opacity="0.28"/></g>`;
+      return {
+        far: `<rect x="-400" y="-400" width="2720" height="1880" fill="#5a3a2c"/>`
+          + `<defs><linearGradient id="cf-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4b3f6e"/><stop offset="1" stop-color="#d98a5a"/></linearGradient><clipPath id="cf-win"><rect x="1010" y="120" width="780" height="520"/></clipPath></defs>`
+          + `<g clip-path="url(#cf-win)"><rect x="1010" y="120" width="780" height="520" fill="url(#cf-sky)"/><g fill="#2f2540">${[[1030, 120, 200], [1180, 70, 300], [1300, 150, 240], [1480, 90, 330], [1600, 160, 220], [1740, 80, 280]].map(([x, w, h]) => `<rect x="${x}" y="${640 - h}" width="${w}" height="${h}"/>`).join("")}</g>${Array.from({ length: 22 }, (_, i) => `<rect x="${1040 + (i * 37) % 700}" y="${360 + ((i * 53) % 240)}" width="12" height="16" fill="#ffd98a" opacity="0.85"/>`).join("")}</g>`
+          + `<g stroke="#241a2c" stroke-width="14" fill="none"><rect x="1010" y="120" width="780" height="520"/><path d="M1400,120 L1400,640"/></g>`
+          + `<g id="cf-rain" opacity="0.5" stroke="#cfe3ff" stroke-width="3" stroke-linecap="round">${Array.from({ length: 26 }, (_, i) => `<path d="M${1020 + (i * 31) % 760},${130 + (i * 71) % 480} l-8,34"/>`).join("")}</g>`
+          + `<g>${lamp(300, 220)}${lamp(640, 250)}${lamp(1000, 215)}</g>`
+          + `<g><rect x="90" y="260" width="360" height="220" fill="#2a1c22" stroke="${INK}" stroke-width="6" rx="6"/>${[0, 1, 2, 3, 4].map((i) => `<path d="M130,${310 + i * 40} h${180 + (i % 2) * 90}" stroke="#e9d9b8" stroke-width="7" stroke-linecap="round" opacity="0.8"/>`).join("")}</g>`
+          + `<circle cx="1000" cy="520" r="760" fill="url(#rb-glow)" opacity="0.28"/>`,
+        mid: `<g><rect x="-400" y="660" width="2720" height="130" fill="#7a4f38"/><rect x="-400" y="640" width="2720" height="30" fill="#c58a52" stroke="${INK}" stroke-width="5"/></g>`
+          + `<g transform="translate(620,640)"><rect x="0" y="-150" width="250" height="150" rx="16" fill="#b8b8c4" stroke="${INK}" stroke-width="6"/><rect x="26" y="-112" width="60" height="40" fill="#3a3a48"/><rect x="164" y="-120" width="52" height="86" rx="8" fill="#e8e8f0" stroke="${INK}" stroke-width="4"/><circle cx="190" cy="-140" r="10" fill="#e6322c"/></g>`
+          + `<g id="cf-cups">${[[420, 640], [500, 640]].map(([x, y]) => `<g transform="translate(${x},${y})"><path d="M-28,-60 L28,-60 L20,0 L-20,0Z" fill="#fff" stroke="${INK}" stroke-width="5"/><rect x="-28" y="-74" width="56" height="16" rx="6" fill="#e0562f" stroke="${INK}" stroke-width="4"/></g>`).join("")}</g>`
+          + `<g><rect x="-400" y="790" width="2720" height="300" fill="#4a2f26"/><path d="M-400,790 L2320,790" stroke="${INK}" stroke-width="6"/>${Array.from({ length: 24 }, (_, i) => `<path d="M${-400 + i * 120},790 L${-400 + i * 120 - (i - 8) * 30},1100" stroke="#2a1a16" stroke-width="3" opacity="0.5"/>`).join("")}</g>`
+          + `<rect x="0" y="0" width="1920" height="1080" fill="#1c0f18" opacity="0.12"/>`,
+      };
+    },
     // SUNSET OFFICE / LOFT (user 2026-11-20, like the reference "managing director" shot): slightly dark room, one huge window with an
     // orange -> purple sunset, a big low sun, silhouette city with lit windows, mullions, warm glow spilling on the floor, a plant.
     // time:"dusk" = deeper purple sky. Use for the promise, the rules, reflective beats.
