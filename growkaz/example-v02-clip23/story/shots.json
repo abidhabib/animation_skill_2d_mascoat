@@ -1,0 +1,239 @@
+{
+ "title": "V02 Clip 23",
+ "duration": 19.1,
+ "shots": [
+  {
+   "id": "d01",
+   "start": 0,
+   "end": 2.95,
+   "line": "Walking home, you feel lighter than you have in weeks.",
+   "scene": "bouncy dusk walk",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "footstep",
+     "gain": -24
+    },
+    {
+     "at": 0.8,
+     "name": "footstep",
+     "gain": -24
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "city",
+    "gain": -28
+   }
+  },
+  {
+   "id": "d02",
+   "start": 2.95,
+   "end": 3.95,
+   "line": "You fixed it.",
+   "scene": "relieved smile",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "d03",
+   "start": 3.95,
+   "end": 5.1,
+   "line": "Mostly.",
+   "scene": "smile slips",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.25,
+     "name": "blip",
+     "gain": -22
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "d04",
+   "start": 5.1,
+   "end": 8.2,
+   "line": "But there's one number you've been avoiding all week.",
+   "scene": "phone face down, gold leak",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "hum",
+     "gain": -24
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "d05",
+   "start": 8.2,
+   "end": 10.7,
+   "line": "The one you were scared to look at too closely,",
+   "scene": "thumb hides Dad's card",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "swish",
+     "gain": -22
+    },
+    {
+     "at": 1.8,
+     "name": "heartbeat",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "d06",
+   "start": 10.7,
+   "end": 12.75,
+   "line": "because it was already perfect.",
+   "scene": "gold 100 revealed",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "shimmer",
+     "gain": -12
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "d07",
+   "start": 12.75,
+   "end": 14.25,
+   "line": "Here's the bigger problem.",
+   "scene": "worried face",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "stinger",
+     "gain": -20
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "d08",
+   "start": 14.25,
+   "end": 15.75,
+   "line": "The highest number in your life,",
+   "scene": "giant 100 over the city",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "riser",
+     "gain": -16
+    },
+    {
+     "at": 0.2,
+     "name": "powerup",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "city",
+    "gain": -28
+   }
+  },
+  {
+   "id": "d09",
+   "start": 15.75,
+   "end": 19.1,
+   "line": "belongs to the person you've been lying to the most.",
+   "scene": "Dad waves, 100",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.25,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 5.1,
+   "mood": "hopeful",
+   "intensity": 0.3
+  },
+  {
+   "start": 5.1,
+   "end": 19.1,
+   "mood": "tension",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

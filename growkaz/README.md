@@ -57,5 +57,6 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
    curl each `https://platform.r2.fish.audio/tasks/<UTC date>/<id>.mp3` with `--max-time 25 --retry 3`; pick the OLDER take (Last-Modified), unless it is < 0.75x the other's length.
    Side characters: their own bookmarked voice (Sam = Gregory f79c48d249324e599d3c2cd3302f3dd2, 1.0x), joined in order with fishjoin.py.
 3. `NOSLOW=1 python3 "../_Studio Kit/fishjoin.py" "Clip NN" "<full text>" "<mp3>::<text>" gap=0.5 ...` -> `gk-clip.sh init NN` -> write shots.json + 01_main.js -> `gk-clip.sh sheet NN` and LOOK at it (fix overlaps, faces that read wrong, numbers on hair) -> `gk-clip.sh render NN` -> SendUserFile + clickable path + Windows path.
-4. Valid SFX names only (see audio/sfx.py LIB; e.g. there is no "thump", use "impact"). If mix fails, frames are kept: re-run `python3 audio/mix.py --project ...` and copy.
+4. Never leave the shell cd-ed inside a project build/ folder: Windows locks it and the next sheet/render hangs (EPERM). Run renders with `timeout`.
+5. Valid SFX names only (see audio/sfx.py LIB; e.g. there is no "thump", use "impact"). If mix fails, frames are kept: re-run `python3 audio/mix.py --project ...` and copy.
 5. New place needed? Add `sets/<place>.js` here once (layers 0.12 sky / 0.55 wall / 0.85 floor+props), run setup-studio.sh, reuse forever. Commit + push the kit.
