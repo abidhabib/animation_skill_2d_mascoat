@@ -36,10 +36,10 @@ export const TOON_EXPR = {
   awkward: { eye: 1, lid: 0.1, brow: [-0.2, 0.15], mouth: 'wavy', sweat: true },
   angry: { eye: 0.9, lid: 0.3, brow: [-0.7, -0.7], angryBrow: true, mouth: 'frownTeeth', red: 0.25 },
   furious: { eye: 0.8, lid: 0.35, brow: [-0.9, -0.9], angryBrow: true, mouth: 'shout', red: 0.5, vein: true },
-  sad: { eye: 1, lid: 0.35, brow: [-0.5, -0.5], sadBrow: true, mouth: 'frown' },
-  cry: { eye: 0, lid: 0, brow: [-0.6, -0.6], sadBrow: true, mouth: 'cry', tears: true, closedEyes: true },
-  worried: { eye: 1.05, lid: 0.1, brow: [-0.45, -0.45], sadBrow: true, mouth: 'wavy' },
-  nervous: { eye: 1.1, lid: 0, brow: [-0.4, -0.4], sadBrow: true, mouth: 'tightSmile', sweat: true },
+  sad: { eye: 1, lid: 0.35, brow: [-0.1, -0.1], sadBrow: true, mouth: 'frown' },
+  cry: { eye: 0, lid: 0, brow: [-0.15, -0.15], sadBrow: true, mouth: 'cry', tears: true, closedEyes: true },
+  worried: { eye: 1.05, lid: 0.1, brow: [0.0, 0.0], sadBrow: true, mouth: 'wavy' },
+  nervous: { eye: 1.1, lid: 0, brow: [0.05, 0.05], sadBrow: true, mouth: 'tightSmile', sweat: true },
   shocked: { eye: 1.35, lid: 0, brow: [0.7, 0.7], mouth: 'o', small: true },
   surprised: { eye: 1.2, lid: 0, brow: [0.55, 0.55], mouth: 'smallO' },
   thinking: { eye: 1, lid: 0.25, brow: [0.35, -0.2], mouth: 'side', look: [0.6, -0.5] },
@@ -81,7 +81,7 @@ export function toonFace(g, hx, hy, r, o = {}) {
   const by = ey - er * 1.55, bw = r * 0.2;
   exs.forEach((x, i) => {
     const lift = (ex.brow?.[i] || 0) * r * 0.18, inner = i === 0 ? 1 : -1;
-    let tilt = 0; if (ex.angryBrow) tilt = r * 0.12; if (ex.sadBrow) tilt = -r * 0.12;
+    let tilt = 0; if (ex.angryBrow) tilt = -r * 0.13; if (ex.sadBrow) tilt = r * 0.16;   // fixed 2026-11-21: inner end DOWN = angry, UP = sad/worried
     g.strokeStyle = shade(c.hairColor || ink, -0.2); g.lineWidth = r * 0.09;
     g.beginPath(); g.moveTo(x - bw, by - lift - (inner === 1 ? 0 : tilt)); g.quadraticCurveTo(x, by - lift - r * 0.05 - tilt * 0.3, x + bw, by - lift - (inner === 1 ? tilt : 0)); g.stroke();
   });

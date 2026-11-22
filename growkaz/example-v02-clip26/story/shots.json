@@ -1,0 +1,314 @@
+{
+ "title": "V02 Clip 26",
+ "duration": 29.5,
+ "shots": [
+  {
+   "id": "i01",
+   "start": 0,
+   "end": 1.5,
+   "line": "Now you have a choice.",
+   "scene": "face between two lights",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "i02",
+   "start": 1.5,
+   "end": 4.1,
+   "line": "Keep lying, and watch it fall slowly.",
+   "scene": "slow red slide",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "riser",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i03",
+   "start": 4.1,
+   "end": 7.1,
+   "line": "Or tell the truth, and watch it fall fast.",
+   "scene": "sharp drop",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "impact",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i04",
+   "start": 7.1,
+   "end": 8.2,
+   "line": "You tell him.",
+   "scene": "you lean in",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i05",
+   "start": 8.2,
+   "end": 10.75,
+   "line": "I dropped out. Three months ago.",
+   "scene": "you confess",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i06",
+   "start": 10.75,
+   "end": 13.2,
+   "line": "I was scared to tell you.",
+   "scene": "tears",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "i07",
+   "start": 13.2,
+   "end": 16.9,
+   "line": "Ninety. Eighty-one. Seventy-four.",
+   "scene": "92->90->81->74",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.36,
+     "name": "blip",
+     "gain": -12
+    },
+    {
+     "at": 1.6,
+     "name": "blip",
+     "gain": -10
+    },
+    {
+     "at": 2.84,
+     "name": "blip",
+     "gain": -8
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i08",
+   "start": 16.9,
+   "end": 18.9,
+   "line": "Then it stops.",
+   "scene": "stillness, 74 holds",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "clock",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i09",
+   "start": 18.9,
+   "end": 20.9,
+   "line": "Thank you for telling me.",
+   "scene": "Dad reaches across",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i10",
+   "start": 20.9,
+   "end": 24.4,
+   "line": "Seventy-eight. Eighty-three. Ninety-one.",
+   "scene": "74->78->83->91",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.38,
+     "name": "ding",
+     "gain": -14
+    },
+    {
+     "at": 1.5,
+     "name": "ding",
+     "gain": -12
+    },
+    {
+     "at": 2.62,
+     "name": "shimmer",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i11",
+   "start": 24.4,
+   "end": 26.1,
+   "line": "The truth hurt him once.",
+   "scene": "Dad's hand on yours",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i12",
+   "start": 26.1,
+   "end": 29.5,
+   "line": "The lie would have hurt him every single day.",
+   "scene": "calendar pages, -1 each",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "tick",
+     "gain": -22
+    },
+    {
+     "at": 1.0,
+     "name": "tick",
+     "gain": -22
+    },
+    {
+     "at": 1.8,
+     "name": "tick",
+     "gain": -22
+    },
+    {
+     "at": 2.6,
+     "name": "tick",
+     "gain": -22
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 7.1,
+   "mood": "tension",
+   "intensity": 0.3
+  },
+  {
+   "start": 7.1,
+   "end": 18.9,
+   "mood": "sad",
+   "intensity": 0.35
+  },
+  {
+   "start": 18.9,
+   "end": 29.5,
+   "mood": "hopeful",
+   "intensity": 0.4
+  }
+ ],
+ "sfx": []
+}
