@@ -1,0 +1,316 @@
+{
+ "title": "V02 Clip 28",
+ "duration": 26.4,
+ "shots": [
+  {
+   "id": "k01",
+   "start": 0,
+   "end": 2.0,
+   "line": "That night, you brush your teeth.",
+   "scene": "brushing in mirror",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  },
+  {
+   "id": "k02",
+   "start": 2.0,
+   "end": 3.1,
+   "line": "You look up.",
+   "scene": "eyes lift",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  },
+  {
+   "id": "k03",
+   "start": 3.1,
+   "end": 6.75,
+   "line": "And above your own head, in the mirror, there's a number.",
+   "scene": "blurred glow forms",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "riser",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  },
+  {
+   "id": "k04",
+   "start": 6.75,
+   "end": 8.8,
+   "line": "You never thought you'd see yourself.",
+   "scene": "shock",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "stinger",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "k05",
+   "start": 8.8,
+   "end": 11.3,
+   "line": "But everyone, includes you.",
+   "scene": "row of faces, you last",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.12,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 0.34,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 0.56,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 0.78,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 1.0,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 1.22,
+     "name": "heartbeat",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "k06",
+   "start": 11.3,
+   "end": 12.0,
+   "line": "[silence]",
+   "scene": "number focuses",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "heartbeat",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  },
+  {
+   "id": "k07",
+   "start": 12.0,
+   "end": 13.1,
+   "line": "Thirty-one.",
+   "scene": "31",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "impact",
+     "gain": -10
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  },
+  {
+   "id": "k08",
+   "start": 13.1,
+   "end": 15.6,
+   "line": "The lowest number you've seen all week.",
+   "scene": "bar chart",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -20
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "k09",
+   "start": 15.6,
+   "end": 19.0,
+   "line": "Lower than the stranger. Lower than Sam.",
+   "scene": "compare bars",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 1.84,
+     "name": "blip",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "k10",
+   "start": 19.0,
+   "end": 20.6,
+   "line": "Every workout you skipped.",
+   "scene": "dusty dumbbells",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -32
+   }
+  },
+  {
+   "id": "k11",
+   "start": 20.6,
+   "end": 22.2,
+   "line": "Every I'll start Monday.",
+   "scene": "Mondays circled, crossed",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.15,
+     "name": "swish",
+     "gain": -24
+    },
+    {
+     "at": 0.6,
+     "name": "swish",
+     "gain": -24
+    },
+    {
+     "at": 1.05,
+     "name": "swish",
+     "gain": -24
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "k12",
+   "start": 22.2,
+   "end": 26.4,
+   "line": "Every promise to yourself, broken quietly, where nobody saw.",
+   "scene": "alone with 31, dims",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 11.3,
+   "mood": "mystery",
+   "intensity": 0.3
+  },
+  {
+   "start": 11.3,
+   "end": 26.4,
+   "mood": "sad",
+   "intensity": 0.35
+  }
+ ],
+ "sfx": []
+}

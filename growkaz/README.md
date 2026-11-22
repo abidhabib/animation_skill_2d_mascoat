@@ -74,3 +74,4 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - 3D framing: keep the number on the head IN FRAME: look target ~0.3-0.4 m above the seated head (y 1.35-1.4 for seated Dad at 2.7-3.2 m), never closer than ~2.3 m. Dolly zoom (Clip 25 h06): move the camera back while narrowing fov = 2*atan(halfWidth/d) for 'the distance grows'.
 - Expression fix (2026-11-21): sad/worried/nervous/cry brows now tilt UP at the middle (they read angry before). After any face change, check a big face on the sheet.
 - Silence inside a take: generate the short line WITH its neighbour (never < 4 words), find the pause with ffmpeg silencedetect, split there, then join with gap=1.2.
+- Mirror shots (Clip 28): reflection inside mirrorRect at ry = m.y + m.h + 230, scale s*1.35 (head + number fully in the glass); you in front at GY + 190, s*1.5; night = multiply rgba(70,80,130,.55).
