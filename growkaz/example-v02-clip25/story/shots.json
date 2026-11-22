@@ -1,0 +1,209 @@
+{
+ "title": "V02 Clip 25",
+ "duration": 14.3,
+ "shots": [
+  {
+   "id": "h01",
+   "start": 0,
+   "end": 1.9,
+   "line": "How's university going, kiddo?",
+   "scene": "Dad asks, OTS",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.4
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h02",
+   "start": 1.9,
+   "end": 2.9,
+   "line": "[silence]",
+   "scene": "you freeze",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "clock",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h03",
+   "start": 2.9,
+   "end": 4.9,
+   "line": "It's fine, you say.",
+   "scene": "fake smile",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "h04",
+   "start": 4.9,
+   "end": 6.4,
+   "line": "Ninety-eight.",
+   "scene": "100->98",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "blip",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h05",
+   "start": 6.4,
+   "end": 7.7,
+   "line": "Ninety-six.",
+   "scene": "98->96",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.27,
+     "name": "blip",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h06",
+   "start": 7.7,
+   "end": 10.3,
+   "line": "Every word, the number falls.",
+   "scene": "dolly zoom, 96->94",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "riser",
+     "gain": -20
+    },
+    {
+     "at": 0.55,
+     "name": "blip",
+     "gain": -16
+    },
+    {
+     "at": 1.75,
+     "name": "blip",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h07",
+   "start": 10.3,
+   "end": 11.9,
+   "line": "Not because he knows.",
+   "scene": "Dad content, 93",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h08",
+   "start": 11.9,
+   "end": 14.3,
+   "line": "Because he feels the distance.",
+   "scene": "high crane, distance",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "heartbeat",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 4.9,
+   "mood": "calm",
+   "intensity": 0.25
+  },
+  {
+   "start": 4.9,
+   "end": 14.3,
+   "mood": "sad",
+   "intensity": 0.35
+  }
+ ],
+ "sfx": []
+}

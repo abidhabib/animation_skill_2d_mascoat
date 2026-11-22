@@ -75,3 +75,5 @@ happy `[happy]`, joy `[excited]`, love `[soft tone][happy]`, crying `[sobbing]`,
 
 ## Planned pipeline (not built)
 Tagged script (`HERO (shocked): ...`, `COACH (excited): ...`) -> one Fish call per line with that character's voice id + tags -> mp3 per line -> joined with the narrator track -> `new-clip.sh` word timings -> `say.at` phrases fill the close-ups automatically.
+
+- Dad (V02): Venti e34c486929524d41b88646b4ac2f382f, 1.0x (chosen 2026-11-21 for Clip 25; keep for every Dad line).

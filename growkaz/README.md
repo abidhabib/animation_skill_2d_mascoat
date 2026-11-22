@@ -55,7 +55,7 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
    For each line: focus `.ProseMirror` (if missing, click `div.whitespace-pre-wrap` first) -> `execCommand('selectAll')` + `execCommand('insertText', false, line)` -> CHECK `ed.innerText === line` -> read the credits number ("N credits left") -> click "Generate Speech" -> wait until credits DROP (= it really generated; retry up to 3x) -> wait 6 s. Without these checks a reload/click can silently skip every line. Never < 4 words per take. No tags.
    Then `/app/generation-history/`: hook `HTMLMediaElement.prototype.play` to collect `currentSrc`, click the "Play audio" buttons; newest first, 2 takes per line.
    curl each `https://platform.r2.fish.audio/tasks/<UTC date>/<id>.mp3` with `--max-time 25 --retry 3`; pick the OLDER take (Last-Modified), unless it is < 0.75x the other's length.
-   Side characters: their own bookmarked voice (Sam = Gregory f79c48d249324e599d3c2cd3302f3dd2, 1.0x), joined in order with fishjoin.py.
+   Side characters: their own bookmarked voice, always the same one (Sam = Gregory f79c48d249324e599d3c2cd3302f3dd2, Dad = Venti e34c486929524d41b88646b4ac2f382f, 1.0x), joined in order with fishjoin.py.
 3. `NOSLOW=1 python3 "../_Studio Kit/fishjoin.py" "Clip NN" "<full text>" "<mp3>::<text>" gap=0.5 ...` -> `gk-clip.sh init NN` -> write shots.json + 01_main.js -> `gk-clip.sh sheet NN` and LOOK at it (fix overlaps, faces that read wrong, numbers on hair) -> `gk-clip.sh render NN` -> SendUserFile + clickable path + Windows path.
 4. Never leave the shell cd-ed inside a project build/ folder: Windows locks it and the next sheet/render hangs (EPERM). Run renders with `timeout`.
 5. Valid SFX names only (see audio/sfx.py LIB; e.g. there is no "thump", use "impact"). If mix fails, frames are kept: re-run `python3 audio/mix.py --project ...` and copy.
@@ -71,3 +71,4 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - 3D renders ~2x slower than 2D (computer time, not tokens).
 
 - Mixing rule (Clip 24): 3D for real places (establishing, push/crane/orbit around characters), 2D for inserts (objects, stamps), giant faces and memories/flashbacks (warm `park(..., {memory:1})`). Fade 0.3-0.35 between them.
+- 3D framing: keep the number on the head IN FRAME: look target ~0.3-0.4 m above the seated head (y 1.35-1.4 for seated Dad at 2.7-3.2 m), never closer than ~2.3 m. Dolly zoom (Clip 25 h06): move the camera back while narrowing fov = 2*atan(halfWidth/d) for 'the distance grows'.
