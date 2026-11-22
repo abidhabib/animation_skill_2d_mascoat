@@ -60,3 +60,11 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 4. Never leave the shell cd-ed inside a project build/ folder: Windows locks it and the next sheet/render hangs (EPERM). Run renders with `timeout`.
 5. Valid SFX names only (see audio/sfx.py LIB; e.g. there is no "thump", use "impact"). If mix fails, frames are kept: re-run `python3 audio/mix.py --project ...` and copy.
 5. New place needed? Add `sets/<place>.js` here once (layers 0.12 sky / 0.55 wall / 0.85 floor+props), run setup-studio.sh, reuse forever. Commit + push the kit.
+
+## 3D backgrounds (soft cartoon 3D + our 2D cast) - TEST STAGE (2026-11-21)
+- `engine/three-toon.js`: rounded shapes (`rbox` rounded box, `lathe` mugs/kettles/lamps, `ball`, `pill`, `disc`), toon shading (`toon(color)`), ink outlines (auto), `halo()` glows.
+- Smooth camera: `cam3(st, t, dur, moves.push|pull|slide|crane|orbit(...))` = eased (smootherstep) + gentle breathing drift. Never jump.
+- Characters: `pin(st, [x,0,z])` -> {x, y, s}: drawToon there in the shot's `overlay` so 2D figures stand in the 3D room and scale with distance. Seated: put feet ~0.78 m from the table centre (spots.chairOld).
+- Sets: `sets3d/kitchen3d.js` (Dad's kitchen, evening/morning; spots stove, chairOld, chairNew, table, kettle, door). Build each 3D place ONCE here, reuse forever.
+- Shot pattern: `registerShot(id, { kind: '3d', init: (T) => {const k = kitchen3d(T); k.st.spots = k.spots; return k.st;}, draw(st,t,info){cam3(...)}, overlay(g,t,info,st){ pin + drawToon + headNum } })`. Example: `example-test3d`.
+- 3D renders ~2x slower than 2D (computer time, not tokens).

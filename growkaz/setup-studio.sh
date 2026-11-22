@@ -21,6 +21,7 @@ fi
 cp -f "$HERE/engine/"*.js "$STUDIO/engine/"            # toon2d.js, storyfx.js, styles.js (+ any new engine helpers)
 cp -f "$HERE/render.mjs" "$STUDIO/render.mjs"
 mkdir -p "$STUDIO/engine/sets"; cp -f "$HERE/sets/"*.js "$STUDIO/engine/sets/" 2>/dev/null || true
+mkdir -p "$STUDIO/engine/sets3d"; cp -f "$HERE/sets3d/"*.js "$STUDIO/engine/sets3d/" 2>/dev/null || true   # soft cartoon 3D sets (three-toon.js)
 cd "$STUDIO"
 [ -d node_modules/three ] || npm install --no-audit --no-fund
 python3 -c "import numpy, scipy" 2>/dev/null || python3 -m pip install numpy scipy faster-whisper

@@ -1,0 +1,74 @@
+{
+ "title": "V02 Test 3D",
+ "duration": 12.0,
+ "shots": [
+  {
+   "id": "t01",
+   "start": 0.0,
+   "end": 3.0,
+   "line": "push in to Dad at the kettle",
+   "scene": "push in to Dad at the kettle",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "t02",
+   "start": 3.0,
+   "end": 6.0,
+   "line": "side slide past the table",
+   "scene": "side slide past the table",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "t03",
+   "start": 6.0,
+   "end": 9.0,
+   "line": "crane up over the table",
+   "scene": "crane up over the table",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "t04",
+   "start": 9.0,
+   "end": 12.0,
+   "line": "orbit around Dad in the old chair",
+   "scene": "orbit around Dad in the old chair",
+   "set": "kitchen3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 12,
+   "mood": "calm",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}
