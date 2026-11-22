@@ -44,15 +44,15 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 
 ## Shared helpers + sets (import in every shots file)
 - `/engine/storyfx.js`: `blink(t)`, `headNum(g,x,y,str,t,t0)` (glowing number ON the head, y = ground - 300*s), `numChange(g,x,y,from,to,t,tSwitch)` (old pops out, new pops in, +/- floater), `floater()`, `camEase(t, dur, {z0,z1,x0,x1,y0,y1})` = the smooth eased camera: use it for EVERY shot.
-- `/engine/sets/`: `mall.js` (golden mall), `apartment.js` (Sam's dusk living room, `{mood:'night', sofa:false, wall}`), `bathroom.js` (mirror; `mirrorRect()` + `mirrorGlass()` for reflections), `bedroom.js` (morning/night bedroom, mounted clock, `bedSpot/standSpot/clockSpot`), `kitchen.js` (morning kitchen, `{smoke}` burnt toast, `toasterSpot/counterTop`), `cafe.js` (golden cafe, table for two `tableSpot`, `cup()` with steam), `street.js` (Sam's street, night/dusk, `{rain}` drops + ripples, mounted street clock, `doorSpot`, `umbrella()`).
-- `handPhone(g,cx,cy,s,screenFn)` in storyfx = POV phone in both hands (screen 300x600, content clipped). Casts in toon2d: HERO, SAM, CASHIER, STRANGER, ROOMMATE, MOM, DAD, SHOPPER(i).
+- `/engine/sets/`: `mall.js` (golden mall), `apartment.js` (Sam's dusk living room, `{mood:'night', sofa:false, wall}`), `bathroom.js` (mirror; `mirrorRect()` + `mirrorGlass()` for reflections), `bedroom.js` (morning/night bedroom, mounted clock, `bedSpot/standSpot/clockSpot`), `kitchen.js` (morning kitchen, `{smoke}` burnt toast, `toasterSpot/counterTop`), `park.js` (sunny childhood-memory park with picket fence, `{memory}` warm haze, `bike()`), `cafe.js` (golden cafe, table for two `tableSpot`, `cup()` with steam), `street.js` (Sam's street, night/dusk, `{rain}` drops + ripples, mounted street clock, `doorSpot`, `umbrella()`).
+- `handPhone(g,cx,cy,s,screenFn)` in storyfx = POV phone in both hands (screen 300x600, content clipped). Casts in toon2d: HERO, KID (young Abid), YOUNG_DAD, SAM, CASHIER, STRANGER, ROOMMATE, MOM, DAD, SHOPPER(i).
 - Camera tip: a set layer at depth d moves cam.x*d, so to centre a point on that layer use cam.x = (px - E.W/2) / d. Add new places here once, then reuse.
 - Reference builds: example-v02-clip01..03 (bedroom/kitchen/phone POV), example-v02-clip20 (props, mirror). Older: `_Studio Kit/growkaz/example-v02-clip20/` (gift + mirror speech: props, number changes on a beat, mirror reflection).
 
 ## Same result on any model / new session (the exact recipe, follow it literally)
 1. Read this README, then the newest example folder (`example-v02-clip22`, `-21`, `-20`, `-01..03`) and copy its structure: one `registerShot` per narration beat, 1-4 s each, `camEase` on every shot, fades 0.3 s, a giant face (`bigToonFace`) every 3-4 shots, an insert/prop shot for objects, numbers ON heads (`headNum`/`numChange` at ground - 300*s standing, - 292*s seated).
 2. Voice (Fish, browser tab, user logged in): open `https://fish.audio/app/text-to-speech/?modelId=<voice id>`, check the page says the voice name + "Speed 1x".
-   For each line: click `div.whitespace-pre-wrap` (editor mounts lazily) -> focus `.ProseMirror` -> `execCommand('selectAll')` + `execCommand('insertText', false, line)` -> click the "Generate Speech" button -> wait ~11 s. Never < 4 words per take (join short lines). No tags.
+   For each line: focus `.ProseMirror` (if missing, click `div.whitespace-pre-wrap` first) -> `execCommand('selectAll')` + `execCommand('insertText', false, line)` -> CHECK `ed.innerText === line` -> read the credits number ("N credits left") -> click "Generate Speech" -> wait until credits DROP (= it really generated; retry up to 3x) -> wait 6 s. Without these checks a reload/click can silently skip every line. Never < 4 words per take. No tags.
    Then `/app/generation-history/`: hook `HTMLMediaElement.prototype.play` to collect `currentSrc`, click the "Play audio" buttons; newest first, 2 takes per line.
    curl each `https://platform.r2.fish.audio/tasks/<UTC date>/<id>.mp3` with `--max-time 25 --retry 3`; pick the OLDER take (Last-Modified), unless it is < 0.75x the other's length.
    Side characters: their own bookmarked voice (Sam = Gregory f79c48d249324e599d3c2cd3302f3dd2, 1.0x), joined in order with fishjoin.py.
@@ -61,10 +61,12 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 5. Valid SFX names only (see audio/sfx.py LIB; e.g. there is no "thump", use "impact"). If mix fails, frames are kept: re-run `python3 audio/mix.py --project ...` and copy.
 5. New place needed? Add `sets/<place>.js` here once (layers 0.12 sky / 0.55 wall / 0.85 floor+props), run setup-studio.sh, reuse forever. Commit + push the kit.
 
-## 3D backgrounds (soft cartoon 3D + our 2D cast) - TEST STAGE (2026-11-21)
+## 3D backgrounds (soft cartoon 3D + our 2D cast) - IN USE since V02 Clip 24 (user approved 2026-11-21)
 - `engine/three-toon.js`: rounded shapes (`rbox` rounded box, `lathe` mugs/kettles/lamps, `ball`, `pill`, `disc`), toon shading (`toon(color)`), ink outlines (auto), `halo()` glows.
 - Smooth camera: `cam3(st, t, dur, moves.push|pull|slide|crane|orbit(...))` = eased (smootherstep) + gentle breathing drift. Never jump.
 - Characters: `pin(st, [x,0,z])` -> {x, y, s}: drawToon there in the shot's `overlay` so 2D figures stand in the 3D room and scale with distance. Seated: put feet ~0.78 m from the table centre (spots.chairOld).
 - Sets: `sets3d/kitchen3d.js` (Dad's kitchen, evening/morning; spots stove, chairOld, chairNew, table, kettle, door). Build each 3D place ONCE here, reuse forever.
 - Shot pattern: `registerShot(id, { kind: '3d', init: (T) => {const k = kitchen3d(T); k.st.spots = k.spots; return k.st;}, draw(st,t,info){cam3(...)}, overlay(g,t,info,st){ pin + drawToon + headNum } })`. Example: `example-test3d`.
 - 3D renders ~2x slower than 2D (computer time, not tokens).
+
+- Mixing rule (Clip 24): 3D for real places (establishing, push/crane/orbit around characters), 2D for inserts (objects, stamps), giant faces and memories/flashbacks (warm `park(..., {memory:1})`). Fade 0.3-0.35 between them.

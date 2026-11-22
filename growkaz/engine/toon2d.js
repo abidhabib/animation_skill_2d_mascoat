@@ -17,6 +17,8 @@ export const SAM = { skin: '#b9825a', hair: 'curly', hairColor: '#1d1410', top: 
 export const ROOMMATE = { skin: '#f3cfae', hair: 'swoop', hairColor: '#c0602a', top: '#e0743a', topDark: '#b0522a', legs: '#3a3f52', shoes: '#e8e8f0', eyes: 'dark' };
 export const MOM = { skin: '#e8b892', hair: 'long', hairColor: '#4a2a1c', top: '#c96f8a', topDark: '#9d4a64', legs: '#4a3f6e', shoes: '#2a2a33', eyes: 'dark', lashes: true };
 export const DAD = { skin: '#e4b48c', hair: 'short', hairColor: '#8d8a96', top: '#6b7f5a', topDark: '#46573a', legs: '#3a3a44', shoes: '#2a2a33', eyes: 'dark', glasses: true, stache: 'curl' };
+export const KID = { ...HERO, stache: null, beard: null, top: '#e0562f', topDark: '#b0402a', collar: '#b0402a', sleeves: null, legs: '#4a78b8', belt: null };   // young Abid (flashbacks)
+export const YOUNG_DAD = { ...DAD, hairColor: '#4a3020' };                                                                                   // Dad, 20 years younger
 export const SHOPPER = (i) => [{ skin: '#f5d6b8', hair: 'bun', hairColor: '#5a3825', top: '#c96f8a', topDark: '#8d4a60', legs: '#4a3f6e', eyes: 'dark', lashes: true },
   { skin: '#a8714a', hair: 'short', hairColor: '#1d1410', top: '#e0a24a', topDark: '#b07a2a', legs: '#2e3344', eyes: 'dark' },
   { skin: '#e8c4a0', hair: 'short', hairColor: '#8d8a96', top: '#6b7f5a', topDark: '#46573a', legs: '#3a3a44', eyes: 'dark', glasses: true },
