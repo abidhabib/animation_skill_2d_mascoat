@@ -1,0 +1,360 @@
+{
+ "title": "V02 Clip 29",
+ "duration": 30.4,
+ "shots": [
+  {
+   "id": "m01",
+   "start": 0,
+   "end": 2.0,
+   "line": "So you do one tiny thing.",
+   "scene": "messy room swoop",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m02",
+   "start": 2.0,
+   "end": 3.4,
+   "line": "You make your bed.",
+   "scene": "bed straightens",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "swish",
+     "gain": -16
+    },
+    {
+     "at": 0.8,
+     "name": "swish",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m03",
+   "start": 3.4,
+   "end": 7.0,
+   "line": "You set the alarm, and this time, you don't snooze it.",
+   "scene": "alarm, sit up",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.0,
+     "name": "phonebuzz",
+     "gain": -12
+    },
+    {
+     "at": 2.4,
+     "name": "pop",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m04",
+   "start": 7.0,
+   "end": 8.5,
+   "line": "You look back.",
+   "scene": "mirror",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m05",
+   "start": 8.5,
+   "end": 9.6,
+   "line": "Thirty-two.",
+   "scene": "31->32 in glass",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.12,
+     "name": "ding",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m06",
+   "start": 9.6,
+   "end": 12.9,
+   "line": "One point. Slow. But real.",
+   "scene": "push into mirror",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m07",
+   "start": 12.9,
+   "end": 17.2,
+   "line": "The next morning, you go for the run you've been promising yourself since January.",
+   "scene": "3D park run",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "footstep",
+     "gain": -20
+    },
+    {
+     "at": 0.55,
+     "name": "footstep",
+     "gain": -20
+    },
+    {
+     "at": 0.9,
+     "name": "footstep",
+     "gain": -20
+    },
+    {
+     "at": 1.25,
+     "name": "footstep",
+     "gain": -20
+    },
+    {
+     "at": 1.6,
+     "name": "footstep",
+     "gain": -20
+    },
+    {
+     "at": 1.95,
+     "name": "footstep",
+     "gain": -20
+    },
+    {
+     "at": 2.3,
+     "name": "footstep",
+     "gain": -20
+    },
+    {
+     "at": 2.65,
+     "name": "footstep",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m08",
+   "start": 17.2,
+   "end": 18.3,
+   "line": "Thirty-four.",
+   "scene": "32->34",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "ding",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m09",
+   "start": 18.3,
+   "end": 21.5,
+   "line": "You drink the water instead of the third coffee.",
+   "scene": "desk, water",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.3,
+     "name": "pop",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m10",
+   "start": 21.5,
+   "end": 22.9,
+   "line": "Thirty-five.",
+   "scene": "34->35",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.15,
+     "name": "ding",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m11",
+   "start": 22.9,
+   "end": 27.2,
+   "line": "It turns out the number in the mirror works exactly like everyone else's.",
+   "scene": "orbit, numbers in the room",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "m12",
+   "start": 27.2,
+   "end": 30.4,
+   "line": "Small things. Kept. Every day.",
+   "scene": "dolly past bed, shoes, bottle",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "whoosh",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 12.9,
+   "mood": "hopeful",
+   "intensity": 0.3
+  },
+  {
+   "start": 12.9,
+   "end": 30.4,
+   "mood": "triumph",
+   "intensity": 0.35
+  }
+ ],
+ "sfx": []
+}

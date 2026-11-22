@@ -75,3 +75,10 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Expression fix (2026-11-21): sad/worried/nervous/cry brows now tilt UP at the middle (they read angry before). After any face change, check a big face on the sheet.
 - Silence inside a take: generate the short line WITH its neighbour (never < 4 words), find the pause with ffmpeg silencedetect, split there, then join with gap=1.2.
 - Mirror shots (Clip 28): reflection inside mirrorRect at ry = m.y + m.h + 230, scale s*1.35 (head + number fully in the glass); you in front at GY + 190, s*1.5; night = multiply rgba(70,80,130,.55).
+
+## RICH 3D RULE (user 2026-11-21, from Clip 29 on)
+- More 3D: every real place is a `sets3d/` set (bedroom3d, kitchen3d, park3d so far). 2D only for giant faces, graphs, tiny inserts (and give those a textured backdrop + props, never a flat colour).
+- Frames must not feel empty: fill with story props + foreground/background (bedroom3d now has desk+laptop+mugs+water bottle, bookshelf, full-length mirror, running shoes, clothes pile, plant, fairy lights; `setBed(0..1)` messy->made).
+- Camera slightly faster: ~1.3x the old travel per shot, shots 1-2.5 s, still eased (cam3). Keep the camera ~3.5-4.5 m from a standing person so the whole body + number fit.
+- 3D mirror reflection: `reflection()` in example-v02-clip29 (mirror the foot point across the glass plane, draw facing the other way, clip to the glass via screenOf(mirCorners)); stand the hero BESIDE the mirror (spots.mirrorFront) so he doesn't block it.
+- park3d: sunrise park, path along X (runFrom/runTo), trees, benches, lamps, fence, hills, skyline, flowers; track runners with the camera moving along X.

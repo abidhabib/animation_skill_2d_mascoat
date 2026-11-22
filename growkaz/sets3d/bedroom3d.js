@@ -30,8 +30,9 @@ export function bedroom3d(T, o = {}) {
   for (const [lx, lz] of [[-1, -0.65], [1, -0.65], [-1, 0.65], [1, 0.65]]) A(disc(0.05, 0.14, '#5a3828', bx + lx, 0, bz + lz, 0.01));
   A(rbox(0.12, 1.05, 1.56, '#7a4e34', bx - 1.12, 0, bz, 0.06));                                 // headboard
   A(rbox(2.1, 0.22, 1.42, '#f4efe6', bx, 0.42, bz, 0.09));                                       // mattress
-  A(rbox(1.35, 0.16, 1.48, dawn ? '#3a4a8a' : '#e08a5a', bx + 0.38, 0.6, bz, 0.08));            // duvet
-  A(rbox(0.4, 0.14, 0.62, '#ffffff', bx - 0.8, 0.62, bz - 0.33, 0.07), rbox(0.4, 0.14, 0.62, '#ffffff', bx - 0.8, 0.62, bz + 0.33, 0.07));
+  const duvet = rbox(1.35, 0.16, 1.48, dawn ? '#3a4a8a' : '#e08a5a', bx + 0.38, 0.6, bz, 0.08); A(duvet);            // duvet (setBed: messy -> made)
+  const lump = ball(0.32, dawn ? '#3a4a8a' : '#e08a5a', bx + 0.2, 0.68, bz + 0.25, 0.012); lump.scale.set(1.4, 0.55, 1); A(lump);
+  const pil1 = rbox(0.4, 0.14, 0.62, '#ffffff', bx - 0.8, 0.62, bz - 0.33, 0.07), pil2 = rbox(0.4, 0.14, 0.62, '#ffffff', bx - 0.8, 0.62, bz + 0.33, 0.07); A(pil1, pil2);
   // nightstand + lamp + phone (screen glow controllable)
   const nx = bx - 1.6, nz = -2.55;
   A(rbox(0.5, 0.55, 0.45, '#8a5a3e', nx, 0, nz, 0.05)); A(pill(0.015, 0.1, '#d8c08a', nx, 0.3, nz + 0.24, 0));
@@ -52,9 +53,36 @@ export function bedroom3d(T, o = {}) {
   A(rbox(0.7, 0.9, 0.03, '#2a2030', -2.9, 1.3, -2.97, 0.02, 0)); A(flat(0.6, 0.8, toon('#8ab0c8'), -2.9, 1.75, -2.94));
   A(rbox(0.9, 0.05, 0.25, '#7a4e34', 3.3, 1.6, -2.85, 0.02)); A(lathe([[0, 0], [0.1, 0], [0.12, 0.16], [0, 0.16]], '#c4643a', 3.1, 1.65, -2.85)); A(ball(0.14, '#4f9a55', 3.1, 1.9, -2.85));
   const rug = disc(1.3, 0.01, dawn ? '#3a3a6a' : '#9a5a7a', 0.2, 0.001, -0.8, 0); rug.scale.z = 0.6; A(rug);
+  // ---- richer room (user 2026-11-21: frames must not feel empty) ----
+  // desk + chair + laptop + mugs + water bottle (right side)
+  const dx = 2.6, dz = -2.45;
+  A(rbox(1.5, 0.05, 0.65, '#9a6a48', dx, 0.74, dz, 0.02)); for (const [lx, lz] of [[-0.68, -0.27], [0.68, -0.27], [-0.68, 0.27], [0.68, 0.27]]) A(disc(0.03, 0.74, '#5a3828', dx + lx, 0, dz + lz, 0.008));
+  const lap = new THREE.Group(); lap.position.set(dx - 0.1, 0.79, dz - 0.05); lap.add(rbox(0.5, 0.02, 0.34, '#b8bec8', 0, 0, 0, 0.01, 0.006)); const lid = rbox(0.5, 0.32, 0.02, '#b8bec8', 0, 0, -0.17, 0.01, 0.006); lid.rotation.x = -0.25; lap.add(lid);
+  const lscr = new THREE.Mesh(new THREE.PlaneGeometry(0.44, 0.26), glowMat('#9fc8ff', 0.9)); lscr.position.set(0, 0.17, -0.155); lscr.rotation.x = -0.25; lap.add(lscr); A(lap);
+  const mugP = [[0, 0], [0.045, 0], [0.05, 0.1], [0, 0.1]];
+  A(lathe(mugP, '#e0562f', dx + 0.35, 0.77, dz + 0.1), lathe(mugP, '#f4f0e6', dx + 0.5, 0.77, dz - 0.05));
+  const bottle = lathe([[0, 0], [0.04, 0], [0.042, 0.2], [0.02, 0.24], [0.02, 0.27], [0, 0.27]], toon('#9fd8f0', { transparent: true, opacity: 0.85 }), dx - 0.55, 0.77, dz + 0.12); A(bottle);
+  const chairD = new THREE.Group(); chairD.add(rbox(0.46, 0.06, 0.46, '#3a5a8a', 0, 0.46, 0, 0.03)); chairD.add(rbox(0.46, 0.5, 0.06, '#3a5a8a', 0, 0.5, 0.21, 0.03)); for (const [lx, lz] of [[-0.19, -0.19], [0.19, -0.19], [-0.19, 0.19], [0.19, 0.19]]) chairD.add(disc(0.022, 0.46, '#2a2a33', lx, 0, lz, 0.008)); chairD.position.set(dx, 0, dz + 0.62); A(chairD);
+  // bookshelf with books (right wall)
+  A(rbox(0.32, 1.7, 0.9, '#7a4e34', 4.2, 0, -1.0, 0.03));
+  for (let r = 0; r < 4; r++) { A(rbox(0.3, 0.03, 0.86, '#5a3828', 4.2, 0.1 + r * 0.42, -1.0, 0.01, 0)); for (let i = 0; i < 6; i++) A(rbox(0.2, 0.26 + ((i * 7 + r) % 3) * 0.04, 0.09, ['#e0562f', '#4a78b8', '#e0b05a', '#2f8a57', '#a8508a', '#3fa7a0'][(i + r) % 6], 4.15, 0.14 + r * 0.42, -1.36 + i * 0.13, 0.015, 0.006)); }
+  // full-length standing mirror (left of the desk), angled to the room
+  const mirX = 1.25, mirZ = -2.6, mir = new THREE.Group(); mir.position.set(mirX, 0, mirZ); mir.rotation.y = -0.35;
+  mir.add(rbox(0.66, 1.7, 0.06, '#e8dcc4', 0, 0.12, 0, 0.04)); const glass = new THREE.Mesh(new THREE.PlaneGeometry(0.56, 1.58), new THREE.MeshBasicMaterial({ color: dawn ? '#3a4a70' : '#bcd4e0' })); glass.position.set(0, 0.97, 0.035); mir.add(glass);
+  mir.add(disc(0.03, 0.12, '#5a3828', -0.25, 0, 0.06, 0.006), disc(0.03, 0.12, '#5a3828', 0.25, 0, 0.06, 0.006)); A(mir);
+  const mirCorners = [[-0.28, 1.76], [0.28, 1.76], [0.28, 0.18], [-0.28, 0.18]].map(([x, y]) => { const v = new THREE.Vector3(x, y, 0.04).applyAxisAngle(new THREE.Vector3(0, 1, 0), -0.35); return [mirX + v.x, v.y, mirZ + v.z]; });
+  // running shoes by the door, clothes pile (messy), big plant, string lights
+  for (const sx of [0, 0.16]) { const sh = pill(0.05, 0.16, '#f4f4f4', 3.4 + sx, 0.05, 0.4, 0.008); sh.rotation.x = Math.PI / 2; A(sh); A(rbox(0.07, 0.03, 0.26, '#e0562f', 3.4 + sx, 0.02, 0.4, 0.01, 0)); }
+  const clothes = new THREE.Group(); [['#4a78b8', 0, 0], ['#e0b05a', 0.2, 0.1], ['#2f8a57', -0.15, 0.15], ['#c0563a', 0.1, -0.12]].forEach(([c, x, z], i) => { const b = ball(0.2, c, x, 0.06 + i * 0.03, z, 0.008); b.scale.set(1.3, 0.35, 1); clothes.add(b); }); clothes.position.set(1.0, 0, -0.6); A(clothes);
+  A(lathe([[0, 0], [0.2, 0], [0.24, 0.42], [0, 0.42]], '#c4643a', -3.7, 0, -0.4)); for (const [ox, oy, oz, r] of [[0, 0.75, 0, 0.32], [-0.18, 0.62, 0.1, 0.24], [0.2, 0.65, -0.05, 0.25], [0, 1.0, 0, 0.22]]) A(ball(r, '#4f9a55', -3.7 + ox, oy, -0.4 + oz));
+  for (let i = 0; i < 16; i++) { const x = -3.2 + i * 0.42, y = 2.75 - Math.sin(i / 15 * Math.PI) * 0.22; const b = new THREE.Mesh(new THREE.SphereGeometry(0.035, 10, 8), glowMat(['#ffd08a', '#ffb0a0', '#a0e0ff'][i % 3], 1.8)); b.position.set(x, y, -2.95); A(b); }
   const lampL = new THREE.PointLight('#ffd49a', dawn ? 0 : 1.5, 4, 2); lampL.position.set(nx - 0.12, 0.95, nz); A(lampL);
   const setPhone = (k, buzz = 0) => { scr.material.color.set('#bfe6ff').multiplyScalar(0.05 + 2.2 * k); pl.intensity = 3.5 * k; ph.material.opacity = 0.55 * k; phone.position.x = nx + 0.1 + buzz; };
   setPhone(0);
-  const spots = { bedEdge: [bx + 0.35, 0, bz + 0.8], standBy: [bx + 1.5, 0, -1.2], phone: [nx + 0.1, 0.57, nz + 0.05], clock: [cx, cy, -2.95], window: [wx, wy, -2.95], nightstand: [nx, 0.55, nz] };
-  return { st, spots, setClock, setPhone };
+  const setBed = (made) => { lump.visible = made < 0.6; lump.scale.set(1.4 * (1 - made * 0.6), 0.55 * (1 - made), 1); duvet.rotation.y = (1 - made) * 0.25; duvet.position.x = bx + 0.38 + (1 - made) * 0.15;
+    pil1.rotation.z = (1 - made) * 0.5; pil1.position.y = 0.62 + (1 - made) * 0.05; clothes.visible = made < 0.5; };
+  setBed(o.made ?? 0);
+  const spots = { desk: [dx, 0.79, dz], deskChair: [dx - 0.1, 0, dz + 0.75], bottle: [dx - 0.55, 0.9, dz + 0.12], mirror: [mirX, 0, mirZ], mirrorFront: [mirX - 1.0, 0, mirZ + 0.75], shoes: [3.48, 0.05, 0.4], laptop: [dx - 0.1, 0.95, dz - 0.1],
+    bedEdge: [bx + 0.35, 0, bz + 0.8], standBy: [bx + 1.5, 0, -1.2], phone: [nx + 0.1, 0.57, nz + 0.05], clock: [cx, cy, -2.95], window: [wx, wy, -2.95], nightstand: [nx, 0.55, nz] };
+  return { st, spots, setClock, setPhone, setBed, mirCorners, bottle, mirNormal: [Math.sin(-0.35), 0, Math.cos(-0.35)] };
 }
