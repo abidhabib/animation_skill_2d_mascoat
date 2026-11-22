@@ -58,6 +58,10 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
    Side characters: their own bookmarked voice, always the same one (Sam = Gregory f79c48d249324e599d3c2cd3302f3dd2, Dad = Venti e34c486929524d41b88646b4ac2f382f, 1.0x), joined in order with fishjoin.py.
 3. `NOSLOW=1 python3 "../_Studio Kit/fishjoin.py" "Clip NN" "<full text>" "<mp3>::<text>" gap=0.5 ...` -> `gk-clip.sh init NN` -> write shots.json + 01_main.js -> `gk-clip.sh sheet NN` and LOOK at it (fix overlaps, faces that read wrong, numbers on hair) -> `gk-clip.sh render NN` -> SendUserFile + clickable path + Windows path.
 4. Never leave the shell cd-ed inside a project build/ folder: Windows locks it and the next sheet/render hangs (EPERM). Run renders with `timeout`.
+   Trimming a finished clip by hand? Trim `renders/<V> - Clip N.mp4` too: every render runs export-final.sh, which re-copies ALL renders/ into Final Clips/ (it undid a Clip 30 trim once).
+   Shortcut for shots.json: write a compact `story/spec.json` and run `python3 "_Studio Kit/growkaz/mkshots.py" <project> <project>/story/spec.json` (format in the script header; examples 31-33).
+   2D full-frame inserts that zoom/pan (camEase + translate): fill the background over -W..2W, or black edges show when panned.
+   Seated numbers in 3D: `q.y - 262*q.s` (standing `- 305*q.s`). Train two-shot camera (you + seat beside you): pos [1.15,1.3,2.7] look [-0.75,1.0,0.95] fov 44; keep cameras in the aisle centre (poles at x = ±0.55).
 5. Valid SFX names only (see audio/sfx.py LIB; e.g. there is no "thump", use "impact"). If mix fails, frames are kept: re-run `python3 audio/mix.py --project ...` and copy.
 5. New place needed? Add `sets/<place>.js` here once (layers 0.12 sky / 0.55 wall / 0.85 floor+props), run setup-studio.sh, reuse forever. Commit + push the kit.
 

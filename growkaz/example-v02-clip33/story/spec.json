@@ -1,0 +1,15 @@
+{"title": "V02 Clip 33", "dur": 34.1, "set": "mixed",
+ "music": [[0, 16.35, "wonder", 0.3], [16.35, 21.6, "playful", 0.3], [21.6, 28.2, "hopeful", 0.3], [28.2, 34.1, "triumph", 0.35]],
+ "shots": [
+  ["r01", 0, 2.9, "Every number you saw this week started somewhere.", "fly through floating numbers", "fade", [[0.1, "whoosh", -18], [1.4, "shimmer", -20]], null],
+  ["r02", 2.9, 5.85, "Mom's ninety-nine took thirty years.", "Mom in the kitchen, 99, the light passing", "fade", [[0.3, "pop", -16]], ["roomtone", -30]],
+  ["r03", 5.85, 9.6, "Dad's hundred took a bike, a fence, and eleven agains.", "park: young Dad and kid on the bike, eleven ticks", "fade", [[1.2, "pop", -16], [2.4, "blip", -20], [2.5, "blip", -20], [2.6, "blip", -20], [2.7, "blip", -20], [2.8, "blip", -20], [2.9, "blip", -20], [3.0, "blip", -20], [3.1, "blip", -20], [3.2, "blip", -20], [3.3, "blip", -20], [3.4, "ding", -16]], ["wind", -30]],
+  ["r04", 9.6, 13.45, "Your own thirty-five took a made bed and a glass of water.", "bedroom: made bed, water, 35", "fade", [[0.3, "pop", -16], [2.5, "swish", -20]], ["roomtone", -30]],
+  ["r05", 13.45, 16.35, "And that one took eleven stations.", "route map, a green 1 over Central", "fade", [[0.4, "ding", -16]], ["hum", -30]],
+  ["r06", 16.35, 17.9, "Trust isn't magic.", "a magic wand taps the 0, nothing happens", "fade", [[0.45, "shimmer", -14], [0.9, "glitch", -20]], null],
+  ["r07", 17.9, 21.6, "It's arithmetic. One kept promise at a time.", "+1 blocks stack up", "cut", [[1.1, "pop", -16], [1.45, "pop", -16], [1.8, "pop", -16], [2.15, "pop", -16], [2.5, "pop", -15], [2.85, "pop", -15], [3.2, "ding", -14]], null],
+  ["r08", 21.6, 26.7, "So, whose number would you check first: your best friend's, your dad's, or your own?", "three portraits in the park", "fade", [[2.4, "pop", -12], [3.28, "pop", -12], [4.32, "pop", -12]], ["wind", -32]],
+  ["r09", 26.7, 28.2, "Tell me in the comments.", "comment bubbles", "fade", [[0.1, "blip", -16], [0.35, "blip", -16], [0.6, "blip", -16]], null],
+  ["r10", 28.2, 31.3, "And if someone came to mind while you watched this, send it to them.", "phone: send to a friend, paper plane", "fade", [[2.4, "whoosh", -14]], null],
+  ["r11", 31.3, 34.1, "Maybe it's their turn to watch the number go up.", "Sam's number ticks up, crane to the sunrise", "fade", [[1.6, "powerup", -14], [2.2, "shimmer", -18]], ["wind", -30]]
+ ]}

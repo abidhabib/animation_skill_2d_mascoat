@@ -1,0 +1,15 @@
+{"title": "V02 Clip 31", "dur": 24.0, "set": "train3d",
+ "music": [[0, 10.05, "sad", 0.3], [10.05, 14.6, "dark", 0.3], [14.6, 24.0, "hopeful", 0.25]],
+ "shots": [
+  ["p01", 0, 1.8, "They sit down right next to you.", "stranger sits beside you", "fade", [[0.1, "footstep", -16], [0.55, "swish", -20]], ["hum", -28]],
+  ["p02", 1.8, 3.95, "Up close, they don't look dangerous.", "push in on the stranger", "fade", [[0.1, "whoosh", -24]], ["hum", -28]],
+  ["p03", 3.95, 5.35, "They look tired.", "giant tired face", "cut", [], ["hum", -30]],
+  ["p04", 5.35, 7.35, "Zero doesn't mean they hate you.", "angry face crossed out", "fade", [[0.2, "pop", -16], [1.0, "glitch", -22]], ["hum", -28]],
+  ["p05", 7.35, 10.05, "Zero means they've stopped trusting everyone.", "pull back: alone in the car", "fade", [[0.1, "whoosh", -22]], ["hum", -28]],
+  ["p06", 10.05, 12.15, "People let them down so many times,", "memory: people leave, number drops", "fade", [[0.3, "hit", -16], [0.9, "hit", -15], [1.5, "hit", -14]], null],
+  ["p07", 12.15, 14.6, "the whole world reads zero.", "their view: red zeros on everyone", "fade", [[0.3, "blip", -18], [0.6, "blip", -18], [0.9, "blip", -18], [1.2, "blip", -18], [1.5, "blip", -17], [1.8, "stinger", -16]], ["hum", -28]],
+  ["p08", 14.6, 17.9, "Sorry. Can you tell me when we reach Central?", "the stranger turns to you", "fade", [], ["hum", -28]],
+  ["p09", 17.9, 19.55, "My phone's dead.", "dead phone screen", "cut", [[0.2, "blip", -18], [0.8, "buzz", -22]], null],
+  ["p10", 19.55, 22.2, "It's the smallest promise you could ever make.", "route map, eleven stops to Central", "fade", [[0.2, "shimmer", -20]], ["hum", -30]],
+  ["p11", 22.2, 24.0, "\"Sure,\" you say.", "you nod, their zero softens", "fade", [[0.5, "ding", -20]], ["hum", -28]]
+ ]}

@@ -1,0 +1,16 @@
+{"title": "V02 Clip 32", "dur": 21.0, "set": "train3d",
+ "music": [[0, 5.9, "calm", 0.3], [5.9, 12.75, "hopeful", 0.25], [12.75, 15.95, "wonder", 0.35], [15.95, 21.0, "hopeful", 0.4]],
+ "shots": [
+  ["q01", 0, 1.2, "Eleven stops.", "route map: eleven dots to Central", "fade", [[0.1, "whoosh", -20]], ["hum", -30]],
+  ["q02", 1.2, 2.45, "You don't touch your phone.", "your phone buzzes face-down, you ignore it", "cut", [[0.15, "phonebuzz", -16], [0.75, "phonebuzz", -17]], ["hum", -28]],
+  ["q03", 2.45, 3.85, "You don't close your eyes.", "heavy lids, then wide awake", "cut", [[0.6, "swish", -18]], null],
+  ["q04", 3.85, 5.9, "You count every station.", "time-lapse, stops light up, they fall asleep", "fade", [[0.15, "blip", -20], [0.35, "blip", -20], [0.55, "blip", -20], [0.75, "blip", -20], [0.95, "blip", -20], [1.15, "blip", -19], [1.35, "blip", -19], [1.55, "blip", -19], [1.75, "blip", -18], [1.9, "blip", -18]], ["hum", -26]],
+  ["q05", 5.9, 6.7, "Central.", "last dot flashes", "cut", [[0.05, "ding", -12]], ["hum", -30]],
+  ["q06", 6.7, 8.05, "You tap their shoulder.", "you reach over, tap", "fade", [[0.6, "pop", -18]], ["hum", -28]],
+  ["q07", 8.05, 9.4, "\"This is you.\"", "they wake up", "cut", [], ["hum", -28]],
+  ["q08", 9.4, 12.75, "They look at you for a second, like they're not used to this.", "giant face, softening, warm light", "fade", [[0.3, "shimmer", -22]], null],
+  ["q09", 12.75, 15.95, "Above their head, the zero flickers.", "the 0 flickers", "fade", [[0.4, "glitch", -22], [1.5, "glitch", -20], [2.4, "glitch", -18], [0.2, "heartbeat", -18]], ["hum", -28]],
+  ["q10", 15.95, 17.55, "One.", "0 becomes a green 1", "cut", [[0.1, "powerup", -12], [0.15, "shimmer", -16]], null],
+  ["q11", 17.55, 18.95, "Thanks.", "they stand, small smile", "fade", [], ["hum", -28]],
+  ["q12", 18.95, 21.0, "And then they're gone.", "empty seat, you smile", "fade", [[0.2, "whoosh", -24]], ["hum", -26]]
+ ]}

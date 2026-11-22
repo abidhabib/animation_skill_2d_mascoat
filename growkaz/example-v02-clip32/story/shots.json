@@ -1,0 +1,374 @@
+{
+ "title": "V02 Clip 32",
+ "duration": 21.0,
+ "shots": [
+  {
+   "id": "q01",
+   "start": 0,
+   "end": 1.2,
+   "line": "Eleven stops.",
+   "scene": "route map: eleven dots to Central",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "q02",
+   "start": 1.2,
+   "end": 2.45,
+   "line": "You don't touch your phone.",
+   "scene": "your phone buzzes face-down, you ignore it",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.15,
+     "name": "phonebuzz",
+     "gain": -16
+    },
+    {
+     "at": 0.75,
+     "name": "phonebuzz",
+     "gain": -17
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "q03",
+   "start": 2.45,
+   "end": 3.85,
+   "line": "You don't close your eyes.",
+   "scene": "heavy lids, then wide awake",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "swish",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "q04",
+   "start": 3.85,
+   "end": 5.9,
+   "line": "You count every station.",
+   "scene": "time-lapse, stops light up, they fall asleep",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.15,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 0.35,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 0.55,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 0.75,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 0.95,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 1.15,
+     "name": "blip",
+     "gain": -19
+    },
+    {
+     "at": 1.35,
+     "name": "blip",
+     "gain": -19
+    },
+    {
+     "at": 1.55,
+     "name": "blip",
+     "gain": -19
+    },
+    {
+     "at": 1.75,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 1.9,
+     "name": "blip",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -26
+   }
+  },
+  {
+   "id": "q05",
+   "start": 5.9,
+   "end": 6.7,
+   "line": "Central.",
+   "scene": "last dot flashes",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.05,
+     "name": "ding",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "q06",
+   "start": 6.7,
+   "end": 8.05,
+   "line": "You tap their shoulder.",
+   "scene": "you reach over, tap",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "pop",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "q07",
+   "start": 8.05,
+   "end": 9.4,
+   "line": "\"This is you.\"",
+   "scene": "they wake up",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "q08",
+   "start": 9.4,
+   "end": 12.75,
+   "line": "They look at you for a second, like they're not used to this.",
+   "scene": "giant face, softening, warm light",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "shimmer",
+     "gain": -22
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "q09",
+   "start": 12.75,
+   "end": 15.95,
+   "line": "Above their head, the zero flickers.",
+   "scene": "the 0 flickers",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "glitch",
+     "gain": -22
+    },
+    {
+     "at": 1.5,
+     "name": "glitch",
+     "gain": -20
+    },
+    {
+     "at": 2.4,
+     "name": "glitch",
+     "gain": -18
+    },
+    {
+     "at": 0.2,
+     "name": "heartbeat",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "q10",
+   "start": 15.95,
+   "end": 17.55,
+   "line": "One.",
+   "scene": "0 becomes a green 1",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "powerup",
+     "gain": -12
+    },
+    {
+     "at": 0.15,
+     "name": "shimmer",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "q11",
+   "start": 17.55,
+   "end": 18.95,
+   "line": "Thanks.",
+   "scene": "they stand, small smile",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "q12",
+   "start": 18.95,
+   "end": 21.0,
+   "line": "And then they're gone.",
+   "scene": "empty seat, you smile",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "whoosh",
+     "gain": -24
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -26
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 5.9,
+   "mood": "calm",
+   "intensity": 0.3
+  },
+  {
+   "start": 5.9,
+   "end": 12.75,
+   "mood": "hopeful",
+   "intensity": 0.25
+  },
+  {
+   "start": 12.75,
+   "end": 15.95,
+   "mood": "wonder",
+   "intensity": 0.35
+  },
+  {
+   "start": 15.95,
+   "end": 21.0,
+   "mood": "hopeful",
+   "intensity": 0.4
+  }
+ ],
+ "sfx": []
+}

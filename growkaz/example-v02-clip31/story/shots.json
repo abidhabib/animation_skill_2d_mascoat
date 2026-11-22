@@ -1,0 +1,330 @@
+{
+ "title": "V02 Clip 31",
+ "duration": 24.0,
+ "shots": [
+  {
+   "id": "p01",
+   "start": 0,
+   "end": 1.8,
+   "line": "They sit down right next to you.",
+   "scene": "stranger sits beside you",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "footstep",
+     "gain": -16
+    },
+    {
+     "at": 0.55,
+     "name": "swish",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "p02",
+   "start": 1.8,
+   "end": 3.95,
+   "line": "Up close, they don't look dangerous.",
+   "scene": "push in on the stranger",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -24
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "p03",
+   "start": 3.95,
+   "end": 5.35,
+   "line": "They look tired.",
+   "scene": "giant tired face",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "p04",
+   "start": 5.35,
+   "end": 7.35,
+   "line": "Zero doesn't mean they hate you.",
+   "scene": "angry face crossed out",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 1.0,
+     "name": "glitch",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "p05",
+   "start": 7.35,
+   "end": 10.05,
+   "line": "Zero means they've stopped trusting everyone.",
+   "scene": "pull back: alone in the car",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "p06",
+   "start": 10.05,
+   "end": 12.15,
+   "line": "People let them down so many times,",
+   "scene": "memory: people leave, number drops",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "hit",
+     "gain": -16
+    },
+    {
+     "at": 0.9,
+     "name": "hit",
+     "gain": -15
+    },
+    {
+     "at": 1.5,
+     "name": "hit",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "p07",
+   "start": 12.15,
+   "end": 14.6,
+   "line": "the whole world reads zero.",
+   "scene": "their view: red zeros on everyone",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 0.6,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 0.9,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 1.2,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 1.5,
+     "name": "blip",
+     "gain": -17
+    },
+    {
+     "at": 1.8,
+     "name": "stinger",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "p08",
+   "start": 14.6,
+   "end": 17.9,
+   "line": "Sorry. Can you tell me when we reach Central?",
+   "scene": "the stranger turns to you",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "p09",
+   "start": 17.9,
+   "end": 19.55,
+   "line": "My phone's dead.",
+   "scene": "dead phone screen",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 0.8,
+     "name": "buzz",
+     "gain": -22
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "p10",
+   "start": 19.55,
+   "end": 22.2,
+   "line": "It's the smallest promise you could ever make.",
+   "scene": "route map, eleven stops to Central",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "shimmer",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "p11",
+   "start": 22.2,
+   "end": 24.0,
+   "line": "\"Sure,\" you say.",
+   "scene": "you nod, their zero softens",
+   "set": "train3d",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "ding",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 10.05,
+   "mood": "sad",
+   "intensity": 0.3
+  },
+  {
+   "start": 10.05,
+   "end": 14.6,
+   "mood": "dark",
+   "intensity": 0.3
+  },
+  {
+   "start": 14.6,
+   "end": 24.0,
+   "mood": "hopeful",
+   "intensity": 0.25
+  }
+ ],
+ "sfx": []
+}

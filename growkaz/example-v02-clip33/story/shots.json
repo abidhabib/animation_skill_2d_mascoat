@@ -1,0 +1,412 @@
+{
+ "title": "V02 Clip 33",
+ "duration": 34.1,
+ "shots": [
+  {
+   "id": "r01",
+   "start": 0,
+   "end": 2.9,
+   "line": "Every number you saw this week started somewhere.",
+   "scene": "fly through floating numbers",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -18
+    },
+    {
+     "at": 1.4,
+     "name": "shimmer",
+     "gain": -20
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "r02",
+   "start": 2.9,
+   "end": 5.85,
+   "line": "Mom's ninety-nine took thirty years.",
+   "scene": "Mom in the kitchen, 99, the light passing",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "pop",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "r03",
+   "start": 5.85,
+   "end": 9.6,
+   "line": "Dad's hundred took a bike, a fence, and eleven agains.",
+   "scene": "park: young Dad and kid on the bike, eleven ticks",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.2,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 2.4,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 2.5,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 2.6,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 2.7,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 2.8,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 2.9,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 3.0,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 3.1,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 3.2,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 3.3,
+     "name": "blip",
+     "gain": -20
+    },
+    {
+     "at": 3.4,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -30
+   }
+  },
+  {
+   "id": "r04",
+   "start": 9.6,
+   "end": 13.45,
+   "line": "Your own thirty-five took a made bed and a glass of water.",
+   "scene": "bedroom: made bed, water, 35",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 2.5,
+     "name": "swish",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "r05",
+   "start": 13.45,
+   "end": 16.35,
+   "line": "And that one took eleven stations.",
+   "scene": "route map, a green 1 over Central",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "r06",
+   "start": 16.35,
+   "end": 17.9,
+   "line": "Trust isn't magic.",
+   "scene": "a magic wand taps the 0, nothing happens",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.45,
+     "name": "shimmer",
+     "gain": -14
+    },
+    {
+     "at": 0.9,
+     "name": "glitch",
+     "gain": -20
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "r07",
+   "start": 17.9,
+   "end": 21.6,
+   "line": "It's arithmetic. One kept promise at a time.",
+   "scene": "+1 blocks stack up",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 1.1,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 1.45,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 1.8,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 2.15,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 2.5,
+     "name": "pop",
+     "gain": -15
+    },
+    {
+     "at": 2.85,
+     "name": "pop",
+     "gain": -15
+    },
+    {
+     "at": 3.2,
+     "name": "ding",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "r08",
+   "start": 21.6,
+   "end": 26.7,
+   "line": "So, whose number would you check first: your best friend's, your dad's, or your own?",
+   "scene": "three portraits in the park",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 2.4,
+     "name": "pop",
+     "gain": -12
+    },
+    {
+     "at": 3.28,
+     "name": "pop",
+     "gain": -12
+    },
+    {
+     "at": 4.32,
+     "name": "pop",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -32
+   }
+  },
+  {
+   "id": "r09",
+   "start": 26.7,
+   "end": 28.2,
+   "line": "Tell me in the comments.",
+   "scene": "comment bubbles",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "blip",
+     "gain": -16
+    },
+    {
+     "at": 0.35,
+     "name": "blip",
+     "gain": -16
+    },
+    {
+     "at": 0.6,
+     "name": "blip",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "r10",
+   "start": 28.2,
+   "end": 31.3,
+   "line": "And if someone came to mind while you watched this, send it to them.",
+   "scene": "phone: send to a friend, paper plane",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 2.4,
+     "name": "whoosh",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "r11",
+   "start": 31.3,
+   "end": 34.1,
+   "line": "Maybe it's their turn to watch the number go up.",
+   "scene": "Sam's number ticks up, crane to the sunrise",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.6,
+     "name": "powerup",
+     "gain": -14
+    },
+    {
+     "at": 2.2,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 16.35,
+   "mood": "wonder",
+   "intensity": 0.3
+  },
+  {
+   "start": 16.35,
+   "end": 21.6,
+   "mood": "playful",
+   "intensity": 0.3
+  },
+  {
+   "start": 21.6,
+   "end": 28.2,
+   "mood": "hopeful",
+   "intensity": 0.3
+  },
+  {
+   "start": 28.2,
+   "end": 34.1,
+   "mood": "triumph",
+   "intensity": 0.35
+  }
+ ],
+ "sfx": []
+}
