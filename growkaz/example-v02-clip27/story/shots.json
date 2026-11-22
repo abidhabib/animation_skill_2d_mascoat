@@ -1,0 +1,296 @@
+{
+ "title": "V02 Clip 27",
+ "duration": 32.1,
+ "shots": [
+  {
+   "id": "j01",
+   "start": 0,
+   "end": 1.05,
+   "line": "He doesn't yell.",
+   "scene": "calm Dad",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j02",
+   "start": 1.05,
+   "end": 3.7,
+   "line": "He doesn't ask why you waited so long.",
+   "scene": "soft smile",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j03",
+   "start": 3.7,
+   "end": 6.9,
+   "line": "He just pushes the sugar bowl toward you and says,",
+   "scene": "sugar bowl slides",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "swish",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j04",
+   "start": 6.9,
+   "end": 10.1,
+   "line": "So. What do you actually want to do?",
+   "scene": "Dad asks",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j05",
+   "start": 10.1,
+   "end": 12.85,
+   "line": "And for the first time in months, you tell him.",
+   "scene": "you explain",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j06",
+   "start": 12.85,
+   "end": 15.6,
+   "line": "The real plan. The scary one.",
+   "scene": "notebook, lightbulb",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.45,
+     "name": "shimmer",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "j07",
+   "start": 15.6,
+   "end": 17.9,
+   "line": "You sit at that old table until midnight.",
+   "scene": "talk into night",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j08",
+   "start": 17.9,
+   "end": 20.6,
+   "line": "Two cups of tea. Then three.",
+   "scene": "cups land",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 0.42,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 1.86,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "j09",
+   "start": 20.6,
+   "end": 22.6,
+   "line": "When you finally stand up to leave,",
+   "scene": "you stand",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j10",
+   "start": 22.6,
+   "end": 25.4,
+   "line": "you look up at his head one last time.",
+   "scene": "tilt up to Dad",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j11",
+   "start": 25.4,
+   "end": 26.7,
+   "line": "Ninety-six.",
+   "scene": "91->96",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.24,
+     "name": "ding",
+     "gain": -10
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j12",
+   "start": 26.7,
+   "end": 28.8,
+   "line": "Not one hundred. Not yet.",
+   "scene": "ghost 100 fades",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j13",
+   "start": 28.8,
+   "end": 32.1,
+   "line": "But this time, the number is about the real you.",
+   "scene": "your real smile",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 15.6,
+   "mood": "calm",
+   "intensity": 0.3
+  },
+  {
+   "start": 15.6,
+   "end": 32.1,
+   "mood": "hopeful",
+   "intensity": 0.4
+  }
+ ],
+ "sfx": []
+}
