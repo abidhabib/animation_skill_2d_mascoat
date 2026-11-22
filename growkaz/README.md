@@ -82,3 +82,5 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Camera slightly faster: ~1.3x the old travel per shot, shots 1-2.5 s, still eased (cam3). Keep the camera ~3.5-4.5 m from a standing person so the whole body + number fit.
 - 3D mirror reflection: `reflection()` in example-v02-clip29 (mirror the foot point across the glass plane, draw facing the other way, clip to the glass via screenOf(mirCorners)); stand the hero BESIDE the mirror (spots.mirrorFront) so he doesn't block it.
 - park3d: sunrise park, path along X (runFrom/runTo), trees, benches, lamps, fence, hills, skyline, flowers; track runners with the camera moving along X.
+- train3d: commuter car, aisle along Z; `update(t)` scrolls the city past the windows + sways handles, `setLights(k)` dims/flickers; seatsL/seatsR for passengers (keep seats near the camera empty), youSeat, farEnd.
+- Eerie stranger: grey skin + 'tired' stare + red rim + glowing number (example-v02-clip30). End-card subscribe pill: small, bottom-right, generic (no logos).
