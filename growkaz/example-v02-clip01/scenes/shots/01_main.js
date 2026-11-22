@@ -101,3 +101,30 @@ registerShot('a09', { draw(g, t, info) {
     glow(g, hx - 30 * s, bedGround() - 20 - 175 * s, 140, '#8dffc8', 0.3 + 0.08 * Math.sin(t * 3));
   });
 } });
+
+// ===== 3D upgrade (2026-11-21): the bedroom shots now use the soft cartoon 3D bedroom; the same ids override the 2D ones above =====
+import { cam3, moves, pin, screenOf } from '/engine/three-toon.js';
+import { bedroom3d } from '/engine/sets3d/bedroom3d.js';
+const RIM3 = { color: '#ffc68a', dir: [0.7, -0.7], w: 3.5 };
+const initB = (time) => (T) => { const b = bedroom3d(T, { time }); Object.assign(b.st, { spots: b.spots, setClock: b.setClock, setPhone: b.setPhone }); return b.st; };
+// a01 "Your alarm goes off."  dark blue dawn: the phone on the nightstand lights up and buzzes, camera eases in
+registerShot('a01', { kind: '3d', init: initB('dawn'),
+  draw(st, t, info) { const p = st.spots.phone; st.setPhone(t > 0.15 ? 0.8 + 0.2 * Math.sin(t * 18) : 0, t > 0.15 ? Math.sin(t * 60) * 0.006 : 0);
+    cam3(st, t, info.dur, { from: { pos: [p[0] - 0.7, 1.45, p[2] + 2.7], look: [p[0] + 0.2, p[1], p[2]], fov: 32 }, to: { pos: [p[0] - 0.35, 1.15, p[2] + 1.6], look: p, fov: 30 } }); } });
+// a02 "Seven a.m."  push to the mounted wall clock as the minute hand ticks onto 7:00, sunrise light on the wall
+registerShot('a02', { kind: '3d', init: initB('morning'),
+  draw(st, t, info) { const m = Math.min(60, 59 + ease.out(prog(t, 0.25, 0.55))); st.setClock(6, m % 60 === 0 ? 0 : m); if (m >= 60) st.setClock(7, 0);
+    const c = st.spots.clock; cam3(st, t, info.dur, { from: { pos: [c[0] + 0.4, c[1] - 0.2, c[2] + 2.0], look: c, fov: 30 }, to: { pos: [c[0] + 0.2, c[1] - 0.1, c[2] + 1.3], look: c, fov: 28 } }); } });
+// a03 "You roll over, you grab your phone, and you freeze."  he sits on the bed edge, reaches, grabs the phone, freezes; gentle slide + small push on the freeze
+registerShot('a03', { kind: '3d', init: initB('morning'),
+  draw(st, t, info) { const fz = 2.68, pk = ease.inOut(prog(t, fz, fz + 0.4)); st.setPhone(t > 1.5 ? 0.6 : 0.3);
+    cam3(st, t, info.dur, { from: { pos: [1.4, 1.35, 2.6], look: [-0.9, 0.75, -1.8], fov: 36 }, to: { pos: [1.0 - 0.4 * pk, 1.3, 2.2 - 0.5 * pk], look: [-0.9, 0.8, -1.8], fov: 34 - 3 * pk } }); },
+  overlay(g, t, info, st) { const fz = 2.68, q = pin(st, st.spots.bedEdge, 1.55);
+    drawToon(g, { x: q.x, y: q.y, s: q.s, facing: -1, cast: HERO, pose: breathe(posesAt(t, [[0, 'sit'], [0.9, 'reach'], [1.6, 'phone']]), t), prop: t > 1.5 ? 'phone' : null, expr: t < 1.0 ? 'tired' : t < fz ? 'neutral' : 'shocked', blink: t < fz && blink(t), rim: RIM3 });
+    if (t > fz) glow(g, E.W / 2, E.H / 2, 900, '#ffffff', 0.1 * (1 - prog(t, fz, fz + 0.5))); } });
+// a09 "It doesn't go away."  slow pull-out + slight orbit: he sits staring at the phone, its green glow on his face
+registerShot('a09', { kind: '3d', init: initB('morning'),
+  draw(st, t, info) { st.setPhone(0.5); cam3(st, t, info.dur, moves.orbit([-0.2, 0.75, -1.4], 0.3, -0.15, 3.7, 1.4)); },
+  overlay(g, t, info, st) { const q = pin(st, st.spots.bedEdge, 1.55);
+    drawToon(g, { x: q.x, y: q.y, s: q.s, facing: -1, cast: HERO, pose: breathe(POSES.phone, t, 0.5), prop: 'phone', expr: 'worried', blink: blink(t), rim: RIM3 });
+    glow(g, q.x - 30 * q.s, q.y - 175 * q.s, 140 * q.s, '#8dffc8', 0.3 + 0.08 * Math.sin(t * 3)); } });

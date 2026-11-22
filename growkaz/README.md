@@ -65,7 +65,8 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - `engine/three-toon.js`: rounded shapes (`rbox` rounded box, `lathe` mugs/kettles/lamps, `ball`, `pill`, `disc`), toon shading (`toon(color)`), ink outlines (auto), `halo()` glows.
 - Smooth camera: `cam3(st, t, dur, moves.push|pull|slide|crane|orbit(...))` = eased (smootherstep) + gentle breathing drift. Never jump.
 - Characters: `pin(st, [x,0,z])` -> {x, y, s}: drawToon there in the shot's `overlay` so 2D figures stand in the 3D room and scale with distance. Seated: put feet ~0.78 m from the table centre (spots.chairOld).
-- Sets: `sets3d/kitchen3d.js` (Dad's kitchen, evening/morning; spots stove, chairOld, chairNew, table, kettle, door). Build each 3D place ONCE here, reuse forever.
+- Sets: `sets3d/kitchen3d.js` (Dad's kitchen, evening/morning; spots stove, chairOld, chairNew, table, kettle, door), `sets3d/bedroom3d.js` (hero bedroom dawn/morning; `setClock(h,m)` real moving hands, `setPhone(glow, buzz)`; spots bedEdge, phone, clock, window).
+- Rule badges (Clip 5): big glowing round 1 / 2 / 3 badges pop centre then settle top-left (`badgeN` in example-v02-clip05) = how we show numbered rules. Build each 3D place ONCE here, reuse forever.
 - Shot pattern: `registerShot(id, { kind: '3d', init: (T) => {const k = kitchen3d(T); k.st.spots = k.spots; return k.st;}, draw(st,t,info){cam3(...)}, overlay(g,t,info,st){ pin + drawToon + headNum } })`. Example: `example-test3d`.
 - 3D renders ~2x slower than 2D (computer time, not tokens).
 

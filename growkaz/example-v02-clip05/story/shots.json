@@ -1,0 +1,306 @@
+{
+ "title": "V02 Clip 5",
+ "duration": 24.6,
+ "shots": [
+  {
+   "id": "g01",
+   "start": 0,
+   "end": 1.45,
+   "line": "There are three rules.",
+   "scene": "1 2 3 slots light",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "blip",
+     "gain": -14
+    },
+    {
+     "at": 0.42,
+     "name": "blip",
+     "gain": -14
+    },
+    {
+     "at": 0.64,
+     "name": "blip",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "g02",
+   "start": 1.45,
+   "end": 5.75,
+   "line": "First, every person gets a number, from zero to one hundred.",
+   "scene": "badge 1, 0/50/100 count",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.05,
+     "name": "impact",
+     "gain": -14
+    },
+    {
+     "at": 1.5,
+     "name": "counter",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "g03",
+   "start": 5.75,
+   "end": 10.1,
+   "line": "Second, it changes live, based on what you say and what you do.",
+   "scene": "badge 2, +4 then -6",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.05,
+     "name": "impact",
+     "gain": -14
+    },
+    {
+     "at": 1.6,
+     "name": "ding",
+     "gain": -14
+    },
+    {
+     "at": 3.2,
+     "name": "blip",
+     "gain": -10
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "g04",
+   "start": 10.1,
+   "end": 12.75,
+   "line": "Third, only you can see it.",
+   "scene": "badge 3, stranger can't see",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.05,
+     "name": "impact",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "g05",
+   "start": 12.75,
+   "end": 14.5,
+   "line": "Strangers start around fifty.",
+   "scene": "queue of ~50s",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "pop",
+     "gain": -22
+    },
+    {
+     "at": 0.22,
+     "name": "pop",
+     "gain": -22
+    },
+    {
+     "at": 0.34,
+     "name": "pop",
+     "gain": -22
+    },
+    {
+     "at": 0.46,
+     "name": "pop",
+     "gain": -22
+    },
+    {
+     "at": 0.58,
+     "name": "pop",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "g06",
+   "start": 14.5,
+   "end": 15.9,
+   "line": "They don't trust you yet.",
+   "scene": "arms crossed 50",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "g07",
+   "start": 15.9,
+   "end": 17.35,
+   "line": "They don't doubt you either.",
+   "scene": "easy shrug 50",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "g08",
+   "start": 17.35,
+   "end": 19.05,
+   "line": "You're just a face.",
+   "scene": "crowd flows past",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "g09",
+   "start": 19.05,
+   "end": 21.2,
+   "line": "Which means, you can play this.",
+   "scene": "sly grin",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "shimmer",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "g10",
+   "start": 21.2,
+   "end": 24.6,
+   "line": "And for a while, it feels like a game you're winning.",
+   "scene": "numbers tick up",
+   "set": "",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.3
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "powerup",
+     "gain": -18
+    },
+    {
+     "at": 1.2,
+     "name": "ding",
+     "gain": -18
+    },
+    {
+     "at": 1.9,
+     "name": "ding",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 12.75,
+   "mood": "mystery",
+   "intensity": 0.3
+  },
+  {
+   "start": 12.75,
+   "end": 24.6,
+   "mood": "playful",
+   "intensity": 0.35
+  }
+ ],
+ "sfx": []
+}
