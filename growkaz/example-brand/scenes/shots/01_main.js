@@ -22,20 +22,26 @@ import { bigToonFace, HERO, SAM } from '/engine/toon2d.js';
 import { headNum } from '/engine/storyfx.js';
 import { glow, alpha, seg } from '/engine/core.js';
 registerShot('thumb', { draw(g) {
-  const gr = g.createLinearGradient(0, 0, E.W, E.H); gr.addColorStop(0, '#2a1458'); gr.addColorStop(0.55, '#6a2a7a'); gr.addColorStop(1, '#ff7a4a'); g.fillStyle = gr; g.fillRect(0, 0, E.W, E.H);
-  for (let i = 0; i < 22; i++) { const x = (i * 337) % E.W, y = 120 + (i * 211) % 700, r = 30 + (i * 17) % 60; g.fillStyle = alpha(['#ffb070', '#c080ff', '#ff6a9a'][i % 3], 0.12); g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }
-  g.fillStyle = 'rgba(20,8,40,.55)'; for (let i = 0; i < 18; i++) { const w = 70 + (i * 37) % 60, h = 160 + (i * 97) % 260; g.fillRect(i * 110 - 20, E.H - h, w, h); }
-  // friend + the number (the reason to click)
-  glow(g, 1430, 330, 420, '#ff6a3a', 0.55);
-  bigToonFace(g, 1430, 760, 215, { cast: SAM, expr: 'smile', look: [-0.6, 0], rimColor: '#ffb070' });
-  text(g, '41', 1430, 300, { size: 330, color: '#ff4033', stroke: 30, strokeColor: '#1b1424', glow: 40, glowColor: 'rgba(255,80,50,.9)' }); g.fillStyle = '#ff4033'; g.strokeStyle = '#1b1424'; g.lineWidth = 10; g.beginPath(); g.moveTo(1660, 250); g.lineTo(1740, 250); g.lineTo(1700, 320); g.closePath(); g.fill(); g.stroke();
-  // you, shocked, big, bottom-left
-  glow(g, 470, 700, 500, '#8fd0ff', 0.25);
-  bigToonFace(g, 470, 800, 285, { cast: HERO, expr: 'shocked', look: [0.9, -0.5], rimColor: '#8fd0ff' });
+  // sunset sky: deep purple top (text + number sit here, max contrast) -> pink -> orange -> gold at the horizon
+  const gr = g.createLinearGradient(0, 0, 0, E.H); [['#2a1450', 0], ['#7a2a78', 0.32], ['#e0566a', 0.55], ['#ff9a50', 0.72], ['#ffd27a', 0.86]].forEach(([c, k]) => gr.addColorStop(k, c)); g.fillStyle = gr; g.fillRect(0, 0, E.W, E.H);
+  // big setting sun between the two of them + god rays
+  const sx = 960, sy = 820; glow(g, sx, sy, 900, '#ffcf7a', 0.55); g.save(); g.globalCompositeOperation = 'lighter'; for (let i = 0; i < 14; i++) { const a = Math.PI + i * Math.PI / 13; g.fillStyle = 'rgba(255,220,150,.07)'; g.beginPath(); g.moveTo(sx, sy); g.arc(sx, sy, 1400, a - 0.04, a + 0.04); g.closePath(); g.fill(); } g.restore();
+  g.fillStyle = '#fff1c8'; g.beginPath(); g.arc(sx, sy, 210, 0, 7); g.fill();
+  for (let i = 0; i < 6; i++) { g.fillStyle = 'rgba(255,190,140,.35)'; g.beginPath(); g.ellipse(200 + i * 330, 430 + (i % 2) * 60, 170, 26, 0, 0, 7); g.fill(); }
+  // skyline silhouette
+  g.fillStyle = '#3a1a48'; for (let i = 0; i < 24; i++) { const w = 60 + (i * 37) % 70, h = 140 + (i * 97) % 230; g.fillRect(i * 84 - 30, E.H - h, w, h); } g.fillRect(0, E.H - 90, E.W, 90);
+  // best friend, smiling, sun rim on the left side of his head
+  bigToonFace(g, 1450, 800, 220, { cast: SAM, expr: 'smile', look: [-0.6, 0], rimColor: '#ffe0a0' });
+  // the number: low, red, over his head, on the dark sky
+  glow(g, 1450, 290, 330, '#ff3a3a', 0.45);
+  text(g, '41', 1450, 300, { size: 330, color: '#ff4033', stroke: 30, strokeColor: '#1b1424', glow: 40, glowColor: 'rgba(255,70,50,.9)' });
+  g.fillStyle = '#ff4033'; g.strokeStyle = '#1b1424'; g.lineWidth = 10; g.beginPath(); g.moveTo(1670, 250); g.lineTo(1750, 250); g.lineTo(1710, 320); g.closePath(); g.fill(); g.stroke();
+  // you, shocked, big, bottom-left, warm rim
+  bigToonFace(g, 470, 800, 285, { cast: HERO, expr: 'shocked', look: [0.9, -0.5], rimColor: '#ffd08a' });
   // arrow from you to the number
-  g.lineCap = 'round'; g.strokeStyle = '#1b1424'; g.lineWidth = 34; g.beginPath(); g.moveTo(830, 520); g.quadraticCurveTo(1000, 330, 1180, 330); g.stroke(); g.strokeStyle = '#ffd84a'; g.lineWidth = 20; g.stroke();
-  g.fillStyle = '#ffd84a'; g.strokeStyle = '#1b1424'; g.lineWidth = 8; g.beginPath(); g.moveTo(1240, 330); g.lineTo(1170, 290); g.lineTo(1170, 370); g.closePath(); g.fill(); g.stroke();
-  // 2 words, top-left, white + yellow, heavy outline
-  text(g, 'BEST', 330, 150, { size: 170, color: '#ffffff', stroke: 26, strokeColor: '#1b1424', align: 'center' });
-  text(g, 'FRIEND?', 470, 300, { size: 170, color: '#ffd84a', stroke: 26, strokeColor: '#1b1424', align: 'center' });
+  g.lineCap = 'round'; g.strokeStyle = '#1b1424'; g.lineWidth = 34; g.beginPath(); g.moveTo(830, 520); g.quadraticCurveTo(1000, 330, 1190, 320); g.stroke(); g.strokeStyle = '#ffd84a'; g.lineWidth = 20; g.stroke();
+  g.fillStyle = '#ffd84a'; g.strokeStyle = '#1b1424'; g.lineWidth = 8; g.beginPath(); g.moveTo(1250, 318); g.lineTo(1180, 278); g.lineTo(1180, 358); g.closePath(); g.fill(); g.stroke();
+  // 2 words that ADD to the title (12 years of friendship), white + yellow
+  text(g, '12', 230, 160, { size: 190, color: '#ffffff', stroke: 28, strokeColor: '#1b1424', align: 'center' });
+  text(g, 'YEARS.', 470, 320, { size: 180, color: '#ffd84a', stroke: 28, strokeColor: '#1b1424', align: 'center' });
 } });
