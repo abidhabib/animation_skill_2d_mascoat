@@ -1,0 +1,6 @@
+{"title": "V03 Clip 26", "dur": 6.6, "set": "semi3d",
+ "music": [[0, 6.6, "hopeful", 0.3]],
+ "shots": [
+  ["z01", 0, 2.7, "If this helped you see past the headlines, subscribe.", "3D road at sunset, you wave; a SUBSCRIBE button pops and is pressed", "zoom", [[0.3, "pop", -16], [2.0, "ding", -12]], ["wind", -34]],
+  ["z02", 2.7, 6.6, "It's free, and it really helps. And watch this one next.", "camera drifts up the road; a NEXT VIDEO card slot glows", "zoom", [[0.4, "blip", -18], [2.0, "whoosh", -22]], ["wind", -34]]
+ ]}

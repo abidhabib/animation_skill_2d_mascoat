@@ -137,3 +137,5 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Check before rendering: `node render.mjs --project projects/<slug> --overflow --scale 0.5` scans every shot (5 moments each) for text sticking out of its box/paper/screen and prints suspects (also build/overflow.json). Many suspects are false positives (small icons); verify the real ones with `--stills`.
 - Built-in guards: `FP.stamp` grows its box to fit the text; `fitSz(g,str,maxW,size,weight,font)` shrinks fonts (used by newsBanner, commentCard, post, chain ball, cheque, newspaper headlines). For hand-built cards: measure with `g.measureText` or keep text 25% shorter than the box.
 - Camera: `sway(i)` in finfx.js (even shots push in + drift right, odd shots pull out + drift left): `camEase(t, info.dur, sway(i))`; spec transition `"zoom"` (mkshots: fade|zoom|whipR|whipL|flash|cut) zooms through into the next scene. Examples: example-v03-clip18..20 (chalkboard, ladder world climbed by the camera).
+
+- WARNING: `gk-clip.sh init N` deletes projects/<slug> (spec + shots). Re-init only before writing them; keep a copy in example-* (V03 clip 24 lost its files this way, 2026-11-23).

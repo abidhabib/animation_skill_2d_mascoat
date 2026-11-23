@@ -24,11 +24,11 @@ registerShot('s01', { kind: '3d', init: initD,
 
 // s02 "One, spending. ... do they raise their plans, or pause?"  the plans bar rises (RAISE) then stalls (PAUSE)
 registerShot('s02', { kind: '3d', init: initD,
-  draw(st, t, info) { st.upd(t); st.setBars(ease.out(prog(t, 0.2, 1.4)), 0.7 * ease.out(prog(t, 3.8, 4.6))); cam3(st, t, info.dur, { from: { pos: [-0.8, 1.8, -3.0], look: [0, 1.3, -11], fov: 40 }, to: { pos: [0.8, 2.3, -3.6], look: [0.1, 1.6, -11], fov: 40 } }); },
+  draw(st, t, info) { st.upd(t); st.setBars(ease.out(prog(t, 0.2, 1.4)), 0.7 * ease.out(prog(t, 3.7, 4.5))); cam3(st, t, info.dur, { from: { pos: [-0.8, 1.8, -3.0], look: [0, 1.3, -11], fov: 40 }, to: { pos: [0.8, 2.3, -3.6], look: [0.1, 1.6, -11], fov: 40 } }); },
   overlay(g, t, info, st) { const k = pop(t, 1.3, 0.4); if (k > 0) { g.save(); g.translate(E.W / 2, 135); g.scale(k, k); FP.glass(g, -450, -62, 900, 124, { r: 30 }); text(g, "BIG TECH: NEXT YEAR'S PLANS", 0, 4, { size: 52, color: '#ffffff', stroke: 0 }); g.restore(); }
     const a = screenOf(st, [-1.5, 1.7, -11]), b = screenOf(st, [1.5, 3.0, -11]); lab(g, a.x, a.y, 'THIS YEAR', t, 0.9, { fs: 32 });
-    lab(g, b.x, b.y - 10, 'RAISE?', t, 3.8, { ...GRN, fs: 40 });
-    FP.stamp(g, E.W * 0.5, 330, 0.9, 'PAUSE?', '#ff4d5e', prog(t, 5.3, 5.6), { fs: 96, rot: -0.05 });
+    lab(g, b.x, b.y - 10, 'RAISE?', t, 3.7, { ...GRN, fs: 40 });
+    FP.stamp(g, E.W * 0.5, 330, 0.9, 'PAUSE?', '#ff4d5e', prog(t, 4.9, 5.2), { fs: 96, rot: -0.05 });
     person(g, st, [3.8, 0, -8.8], t, { h: 1.5, facing: -1, expr: t > 5.2 ? 'worried' : 'neutral' }); } });
 
 // s03 "Two, margins. Nvidia already expects to keep a little less of each dollar next quarter."
@@ -48,8 +48,8 @@ registerShot('s04', { kind: '3d', init: initV,
 
 // s05 "Three, debt. The more of the buying that's borrowed, the closer this gets to Cisco."  the debt chain grows from Nvidia toward Cisco
 registerShot('s05', { kind: '3d', init: initV,
-  draw(st, t, info) { st.upd(t); st.setTilt(0.1); st.setCoins('L', 6); st.setCoins('R', 6); st.chain.scale.x = Math.max(0.001, ease.inOut(prog(t, 1.6, 5.2))); cam3(st, t, info.dur, { from: { pos: [3.8, 2.2, 5.6], look: [3.9, 1.7, -1.5], fov: 36 }, to: { pos: [-1.6, 2.0, 5.2], look: [-3.0, 1.6, -1.5], fov: 36 } }); },
+  draw(st, t, info) { st.upd(t); st.setTilt(0.1); st.setCoins('L', 6); st.setCoins('R', 6); st.chain.scale.x = Math.max(0.001, ease.inOut(prog(t, 1.2, 4.6))); cam3(st, t, info.dur, { from: { pos: [3.8, 2.2, 5.6], look: [3.9, 1.7, -1.5], fov: 36 }, to: { pos: [-1.6, 2.0, 5.2], look: [-3.0, 1.6, -1.5], fov: 36 } }); },
   overlay(g, t, info, st) { const n = screenOf(st, [3.9, 2.9, -1.5]), c = screenOf(st, [-3.9, 2.9, -1.5]);
     const k = pop(t, 0.2, 0.4); if (k > 0) { g.save(); g.translate(E.W / 2, 80); g.scale(k, k); FP.glass(g, -300, -58, 600, 116, { r: 28 }); text(g, '3RD  DEBT', 0, 4, { size: 58, color: '#ff8a7a', stroke: 0 }); g.restore(); }
-    lab(g, n.x, n.y - 10, 'BORROWED BUYING', t, 1.0, { ...RED, fs: 36 }); lab(g, c.x, c.y - 10, 'CISCO', t, 3.8, { ...YEL, fs: 40 });
-    const m = pop(t, 3.4, 0.4); if (m > 0) { g.save(); g.translate(E.W / 2, E.H - 120); g.scale(m, m); FP.glass(g, -430, -50, 860, 100, { r: 26, fill: 'rgba(40,10,14,.95)', border: 'rgba(255,100,110,.6)' }); text(g, 'MORE BORROWED = CLOSER TO CISCO', 0, 4, { size: 44, color: '#ff8a7a', stroke: 0 }); g.restore(); } } });
+    lab(g, n.x, n.y - 10, 'BORROWED BUYING', t, 1.0, { ...RED, fs: 36 }); lab(g, c.x, c.y - 10, 'CISCO', t, 3.4, { ...YEL, fs: 40 });
+    const m = pop(t, 3.2, 0.4); if (m > 0) { g.save(); g.translate(E.W / 2, E.H - 120); g.scale(m, m); FP.glass(g, -430, -50, 860, 100, { r: 26, fill: 'rgba(40,10,14,.95)', border: 'rgba(255,100,110,.6)' }); text(g, 'MORE BORROWED = CLOSER TO CISCO', 0, 4, { size: 44, color: '#ff8a7a', stroke: 0 }); g.restore(); } } });

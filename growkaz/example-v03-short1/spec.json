@@ -1,0 +1,14 @@
+{"title": "V03 Short 1", "dur": 29.9, "set": "semi3d",
+ "music": [[0, 11.8, "mystery", 0.3], [11.8, 21.6, "sad", 0.3], [21.6, 29.9, "mystery", 0.32]],
+ "shots": [
+  ["h1", 0, 2.9, "Ten thousand dollars into Nvidia, at the very top.", "HOOK: $10,000 pops in frame 1 over the Nvidia cube, camera pushes in", "cut", [[0.05, "pop", -10], [0.0, "stinger", -14]], ["roomtone", -36]],
+  ["h2", 2.9, 5.0, "Six weeks later, about six thousand.", "the number drains from $10,000 to $6,000, coins vanish", "cut", [[0.4, "impact", -10], [0.5, "slowmo", -18]], null],
+  ["h3", 5.0, 8.2, "Someone did the exact same thing in two thousand, with Cisco.", "zoom-through sideways to the Cisco cube: 2000", "zoom", [[0.1, "whoosh", -14], [1.8, "pop", -14]], null],
+  ["h4", 8.2, 11.8, "Most valuable company on Earth. Everyone said, you can't lose.", "Cisco cube glows gold: #1, YOU CAN'T LOSE", "cut", [[0.2, "shimmer", -16], [2.8, "pop", -14]], null],
+  ["h5", 11.8, 15.4, "Cisco fell almost ninety percent. And here's the brutal part.", "Cisco coins crash, -90% in red", "cut", [[0.6, "impact", -10], [1.4, "freeze", -16]], null],
+  ["h6", 15.4, 18.2, "The company didn't fail. Its sales doubled.", "data-center bars: sales double", "zoom", [[0.1, "whoosh", -14], [1.9, "ding", -12]], ["hum", -34]],
+  ["h7", 18.2, 21.6, "Holders still waited almost twenty-six years to get their money back.", "the road of years: you walk, grey, 26 YEARS counts up", "zoom", [[0.2, "whoosh", -14], [3.0, "ding", -12]], ["wind", -34]],
+  ["h8", 21.6, 24.0, "Nvidia isn't priced like Cisco was.", "scale: Cisco's pan heavy, Nvidia's light", "zoom", [[0.2, "ding", -12], [0.5, "blip", -16]], ["roomtone", -36]],
+  ["h9", 24.0, 26.7, "But it shares one thing that's far more dangerous.", "a chain grows between the two cubes", "cut", [[0.3, "riser", -20], [2.0, "stinger", -14]], null],
+  ["h10", 26.7, 29.9, "And it's not the chart. Full breakdown on my channel.", "back to the Nvidia cube: $6,000 then the loop frame $10,000", "cut", [[1.3, "pop", -16]], null]
+ ]}
