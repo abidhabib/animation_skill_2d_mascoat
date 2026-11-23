@@ -1,0 +1,126 @@
+{
+ "title": "Lab props",
+ "duration": 16.0,
+ "shots": [
+  {
+   "id": "L01",
+   "start": 0.0,
+   "end": 2.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L02",
+   "start": 2.0,
+   "end": 4.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L03",
+   "start": 4.0,
+   "end": 6.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L04",
+   "start": 6.0,
+   "end": 8.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L05",
+   "start": 8.0,
+   "end": 10.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L06",
+   "start": 10.0,
+   "end": 12.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L07",
+   "start": 12.0,
+   "end": 14.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L08",
+   "start": 14.0,
+   "end": 16.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  }
+ ]
+}

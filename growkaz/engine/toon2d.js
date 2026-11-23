@@ -56,6 +56,42 @@ export function toonFace(g, hx, hy, r, o = {}) {
   const side = o.front ? 0 : 0.16;                              // 3/4 view: features drift to the facing side
   const fx = hx + r * side, look = o.look || ex.look || [0, 0];
   g.save(); g.lineCap = 'round'; g.lineJoin = 'round';
+  // CLEAN face (default since 2026-11-22, user: "minimal clear face"): dark glossy eyes like the hero sheet, no white bug-eyes,
+  // soft brows, constant light blush; features grow a little when the head is small on screen so they still read.
+  // o.face === 'classic' (or cast.face) keeps the old white-eye face.
+  if ((o.face || c.face) !== 'classic') {
+    const T = g.getTransform(), px = r * Math.hypot(T.a, T.b), boost = px < 34 ? Math.min(1.35, Math.pow(34 / Math.max(px, 6), 0.4)) : 1;
+    g.fillStyle = alpha('#ff8a8a', 0.22 + 0.3 * (ex.blush || 0)); for (const dx of [-0.5, 0.52]) { g.beginPath(); g.ellipse(fx + dx * r, hy + r * 0.24, r * 0.15, r * 0.085, 0, 0, Math.PI * 2); g.fill(); }
+    if (ex.red) { g.fillStyle = alpha('#ff3a3a', ex.red * 0.3); g.beginPath(); g.ellipse(hx, hy - r * 0.2, r * 0.85, r * 0.45, 0, 0, Math.PI * 2); g.fill(); }
+    const ey = hy - r * 0.04, exs = [fx - r * 0.3, fx + r * 0.3], sc0 = boost * (ex.eye ? Math.max(0.85, Math.min(1.2, ex.eye)) : 1);
+    const ew = r * 0.125 * sc0, eh = r * 0.168 * sc0, lw = Math.max(r * 0.05, 1.2 / Math.hypot(T.a, T.b));
+    exs.forEach((x, i) => {
+      const sc = o.front ? 1 : (i === 0 ? 0.92 : 1.04), w = ew * sc, h = eh * sc;
+      if (o.blink || ex.closedEyes) { g.strokeStyle = ink; g.lineWidth = lw * 1.1; g.beginPath(); g.arc(x, ey - h * 0.1, w * 1.05, Math.PI * 0.15, Math.PI * 0.85); g.stroke(); return; }
+      if (ex.happyEyes) { g.strokeStyle = ink; g.lineWidth = lw * 1.25; g.beginPath(); g.arc(x, ey + h * 0.45, w * 1.1, Math.PI * 1.15, Math.PI * 1.85); g.stroke(); return; }
+      const lx = look[0] * w * 0.35, ly = look[1] * h * 0.3;
+      if (ex.small) {   // shocked / surprised: white eye, tiny pupil (the one face that keeps a white)
+        g.fillStyle = '#ffffff'; g.strokeStyle = ink; g.lineWidth = lw * 0.8; g.beginPath(); g.ellipse(x, ey, w * 1.25, h * 1.15, 0, 0, Math.PI * 2); g.fill(); g.stroke();
+        circle(g, x + lx, ey + ly, w * 0.5, '#24161a'); circle(g, x + lx + w * 0.18, ey + ly - w * 0.2, w * 0.17, '#ffffff');
+      } else {
+        g.fillStyle = c.eyes === 'blue' ? '#2a3a6a' : '#24161a'; g.beginPath(); g.ellipse(x + lx * 0.4, ey + ly * 0.4, w, h, 0, 0, Math.PI * 2); g.fill();
+        circle(g, x + lx * 0.4 + w * 0.32, ey + ly * 0.4 - h * 0.38, w * 0.4, '#ffffff'); circle(g, x + lx * 0.4 - w * 0.35, ey + ly * 0.4 + h * 0.4, w * 0.17, alpha('#ffffff', 0.85));
+      }
+      if (ex.lid > 0) { const ww = ex.small ? w * 1.3 : w * 1.08, hh = ex.small ? h * 1.2 : h * 1.08, yl = ey - hh + hh * 2 * Math.min(0.75, ex.lid);
+        g.save(); g.beginPath(); g.ellipse(x, ey, ww + lw, hh + lw, 0, 0, Math.PI * 2); g.clip(); g.fillStyle = c.skin; g.fillRect(x - ww * 2, ey - hh * 2, ww * 4, yl - (ey - hh * 2)); g.restore();
+        g.strokeStyle = ink; g.lineWidth = lw; g.beginPath(); g.moveTo(x - ww * 1.05, yl + h * 0.05); g.quadraticCurveTo(x, yl - h * 0.06, x + ww * 1.05, yl + h * 0.05); g.stroke(); }
+      if (ex.angryBrow && !ex.small) { const inner = i === 0 ? 1 : -1; g.fillStyle = c.skin; g.beginPath(); g.moveTo(x + inner * w * 1.3, ey - h * 0.1); g.lineTo(x + inner * w * 1.3, ey - h * 1.3); g.lineTo(x - inner * w * 1.3, ey - h * 1.3); g.closePath(); g.fill(); }
+      if (c.lashes) { const out = i === 0 ? -1 : 1; g.strokeStyle = ink; g.lineWidth = lw * 0.9; g.beginPath(); g.moveTo(x + out * w * 0.75, ey - h * 0.7); g.quadraticCurveTo(x + out * w * 1.2, ey - h * 0.9, x + out * w * 1.45, ey - h * 1.25); g.stroke(); }
+    });
+    const by = ey - eh * 1.9, bw = r * 0.13;
+    exs.forEach((x, i) => {
+      const lift = (ex.brow?.[i] || 0) * r * 0.14, inner = i === 0 ? 1 : -1; let tilt = 0; if (ex.angryBrow) tilt = -r * 0.1; if (ex.sadBrow) tilt = r * 0.1;
+      g.strokeStyle = shade(c.hairColor || ink, -0.25); g.lineWidth = Math.max(r * 0.065, lw); g.lineCap = 'round';
+      g.beginPath(); g.moveTo(x - bw, by - lift - (inner === 1 ? 0 : tilt)); g.quadraticCurveTo(x, by - lift - r * 0.04 - tilt * 0.3, x + bw, by - lift - (inner === 1 ? tilt : 0)); g.stroke();
+    });
+    faceRest(g, o, c, ex, ink, hx, hy, r, fx, ey, exs, ew * 1.1, Math.max(r * 0.05, lw), look);
+    g.restore(); return;
+  }
   // cheeks
   if (ex.blush) { g.fillStyle = alpha('#ff8a8a', 0.35 * ex.blush); for (const dx of [-0.52, 0.56]) { g.beginPath(); g.ellipse(fx + dx * r, hy + r * 0.2, r * 0.17, r * 0.1, 0, 0, Math.PI * 2); g.fill(); } }
   if (ex.red) { g.fillStyle = alpha('#ff3a3a', ex.red * 0.35); g.beginPath(); g.ellipse(hx, hy - r * 0.2, r * 0.9, r * 0.5, 0, 0, Math.PI * 2); g.fill(); }
@@ -85,9 +121,14 @@ export function toonFace(g, hx, hy, r, o = {}) {
     g.strokeStyle = shade(c.hairColor || ink, -0.2); g.lineWidth = r * 0.09;
     g.beginPath(); g.moveTo(x - bw, by - lift - (inner === 1 ? 0 : tilt)); g.quadraticCurveTo(x, by - lift - r * 0.05 - tilt * 0.3, x + bw, by - lift - (inner === 1 ? tilt : 0)); g.stroke();
   });
+  faceRest(g, o, c, ex, ink, hx, hy, r, fx, ey, exs, er, r * 0.065, look);
+  g.restore();
+}
+
+function faceRest(g, o, c, ex, ink, hx, hy, r, fx, ey, exs, er, lw, look) {
   // mouth
   const mx = fx + r * 0.02, my = hy + r * 0.48, talk = o.talk || 0;
-  g.strokeStyle = ink; g.lineWidth = r * 0.065;
+  g.strokeStyle = ink; g.lineWidth = lw;
   const fillMouth = (w, h, tongue = true) => { g.fillStyle = '#5a1a26'; g.beginPath(); g.ellipse(mx, my, w, h, 0, 0, Math.PI * 2); g.fill(); g.stroke();
     if (tongue && h > r * 0.08) { g.fillStyle = '#ff7a8a'; g.beginPath(); g.ellipse(mx, my + h * 0.45, w * 0.6, h * 0.45, 0, 0, Math.PI * 2); g.fill(); } };
   if (talk > 0.05 && !['laugh', 'shout'].includes(ex.mouth)) fillMouth(r * 0.16, r * (0.04 + 0.16 * talk));
@@ -107,20 +148,18 @@ export function toonFace(g, hx, hy, r, o = {}) {
     case 'cry': g.beginPath(); g.moveTo(mx - r * 0.24, my + r * 0.12); g.quadraticCurveTo(mx, my - r * 0.12, mx + r * 0.24, my + r * 0.12); g.stroke(); break;
     case 'o': fillMouth(r * 0.12, r * 0.17, false); break;
     case 'smallO': fillMouth(r * 0.07, r * 0.09, false); break;
-    case 'side': seg(g, [[mx - r * 0.05, my], [mx + r * 0.2, my - r * 0.04]], r * 0.065, ink); break;
-    default: seg(g, [[mx - r * 0.18, my], [mx + r * 0.18, my]], r * 0.065, ink);
+    case 'side': seg(g, [[mx - r * 0.05, my], [mx + r * 0.2, my - r * 0.04]], lw, ink); break;
+    default: seg(g, [[mx - r * 0.18, my], [mx + r * 0.18, my]], lw, ink);
   }
   // moustache + goatee (hero)
-  if (c.stache === 'curl') { g.strokeStyle = shade(c.hairColor, -0.1); g.lineWidth = r * 0.07; const sy = my - r * 0.17;
-    g.beginPath(); g.moveTo(mx - r * 0.04, sy); g.quadraticCurveTo(mx - r * 0.24, sy - r * 0.06, mx - r * 0.3, sy + r * 0.02); g.quadraticCurveTo(mx - r * 0.36, sy - r * 0.1, mx - r * 0.28, sy - r * 0.12); g.stroke();
-    g.beginPath(); g.moveTo(mx + r * 0.04, sy); g.quadraticCurveTo(mx + r * 0.24, sy - r * 0.06, mx + r * 0.3, sy + r * 0.02); g.quadraticCurveTo(mx + r * 0.36, sy - r * 0.1, mx + r * 0.28, sy - r * 0.12); g.stroke(); }
-  if (c.beard === 'goatee') { g.fillStyle = shade(c.hairColor, 0.05); g.beginPath(); g.ellipse(mx, my + r * 0.28 + (talk > 0.05 ? r * 0.12 * talk : 0), r * 0.12, r * 0.09, 0, 0, Math.PI * 2); g.fill(); }
+  if (c.stache === 'curl') { g.strokeStyle = shade(c.hairColor, -0.1); g.lineWidth = lw * 0.95; const sy = my - r * 0.25;   // thin curled moustache, clear of the mouth
+    for (const d of [-1, 1]) { g.beginPath(); g.moveTo(mx + d * r * 0.025, sy); g.quadraticCurveTo(mx + d * r * 0.14, sy - r * 0.05, mx + d * r * 0.2, sy + r * 0.005); g.quadraticCurveTo(mx + d * r * 0.25, sy - r * 0.035, mx + d * r * 0.21, sy - r * 0.07); g.stroke(); } }
+  if (c.beard === 'goatee') { g.fillStyle = shade(c.hairColor, 0.05); g.beginPath(); g.ellipse(mx, my + r * 0.25 + (talk > 0.05 ? r * 0.12 * talk : 0), r * 0.075, r * 0.06, 0, 0, Math.PI * 2); g.fill(); }
   if (c.glasses) { g.strokeStyle = ink; g.lineWidth = r * 0.05; for (const x of exs) { g.beginPath(); g.arc(x, ey, er * 1.35, 0, Math.PI * 2); g.stroke(); } seg(g, [[exs[0] + er * 1.35, ey], [exs[1] - er * 1.35, ey]], r * 0.04, ink); }
   // extras
   if (ex.tears) { g.fillStyle = '#8fd0ff'; for (const x of exs) { g.beginPath(); g.moveTo(x, ey + er); g.quadraticCurveTo(x - r * 0.08, ey + er + r * 0.22, x, ey + er + r * 0.3); g.quadraticCurveTo(x + r * 0.08, ey + er + r * 0.22, x, ey + er); g.fill(); } }
   if (ex.sweat) { g.fillStyle = '#9fd8ff'; g.strokeStyle = ink; g.lineWidth = r * 0.03; g.beginPath(); g.moveTo(hx - r * 0.72, hy - r * 0.55); g.quadraticCurveTo(hx - r * 0.84, hy - r * 0.32, hx - r * 0.72, hy - r * 0.26); g.quadraticCurveTo(hx - r * 0.6, hy - r * 0.32, hx - r * 0.72, hy - r * 0.55); g.fill(); g.stroke(); }
   if (ex.vein) { g.strokeStyle = '#e0302a'; g.lineWidth = r * 0.05; const vx = hx + r * 0.5, vy = hy - r * 0.62; for (const a of [0, 1.57, 3.14, 4.71]) { g.beginPath(); g.arc(vx + Math.cos(a) * r * 0.1, vy + Math.sin(a) * r * 0.1, r * 0.07, a + 2.4, a + 3.9); g.stroke(); } }
-  g.restore();
 }
 
 // ---------- hair ----------
@@ -140,6 +179,11 @@ function hairFront(g, c, hx, hy, r) {
   else if (['ponytail', 'long', 'bun'].includes(c.hair)) { g.fillStyle = col; g.beginPath(); g.arc(hx, hy - r * 0.05, r * 1.03, Math.PI * 1.02, Math.PI * 2.0); g.quadraticCurveTo(hx + r * 0.2, hy - r * 0.45, hx - r * 1.03, hy - r * 0.05); g.fill(); }
   if (c.cap) { g.fillStyle = c.cap; g.beginPath(); g.arc(hx, hy - r * 0.28, r * 1.0, Math.PI * 1.05, Math.PI * 1.95); g.closePath(); g.fill(); rr(g, hx - r * 0.2, hy - r * 0.42, r * 1.4, r * 0.18, r * 0.08); g.fill(); }
 }
+
+// soft round shading on the head (no hard half-face line): darker toward the lower back edge, a light glint top-front
+function softShade(g, x, y, r) { g.save(); g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.clip();
+  const gr = g.createRadialGradient(x + r * 0.25, y - r * 0.3, r * 0.2, x + r * 0.1, y - r * 0.1, r * 1.15); gr.addColorStop(0, 'rgba(255,255,255,0.10)'); gr.addColorStop(0.6, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(60,20,30,0.16)');
+  g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2); g.restore(); }
 
 // ---------- full body ----------
 export function drawToon(g, o) {
@@ -191,9 +235,9 @@ function body(g, o, c, p, sil, ink) {
   circle(g, head[0], head[1], HR + 3.5, ink); circle(g, head[0], head[1], HR, c.skin);
   // ear + subtle face shading
   circle(g, head[0] - HR * 0.82, head[1] + 4, 9, ink); circle(g, head[0] - HR * 0.82, head[1] + 4, 7, shade(c.skin, -0.05));
-  g.fillStyle = alpha('#000', 0.07); g.beginPath(); g.arc(head[0], head[1], HR, Math.PI * 0.55, Math.PI * 1.45); g.fill();
+  softShade(g, head[0], head[1], HR);
   hairFront(g, c, head[0], head[1], HR);
-  toonFace(g, head[0], head[1], HR, { cast: c, expr: o.expr, talk: o.talk, blink: o.blink, look: o.look });
+  toonFace(g, head[0], head[1], HR, { cast: c, expr: o.expr, talk: o.talk, blink: o.blink, look: o.look, face: o.face });
   if (o.prop === 'phone') { g.fillStyle = '#1b1d26'; rr(g, p.hF[0] - 9, p.hF[1] - 30, 22, 38, 5); g.fill(); g.fillStyle = '#8fd0ff'; g.fillRect(p.hF[0] - 6, p.hF[1] - 26, 16, 28); }
 }
 
@@ -209,8 +253,8 @@ export function bigToonFace(g, cx, cy, r, o = {}) {
   if (o.rimColor) { g.strokeStyle = o.rimColor; g.lineWidth = r * 0.06; g.beginPath(); g.arc(0, 0, r * 1.04, Math.PI * 1.1, Math.PI * 1.75); g.stroke(); }
   hairBack(g, c, 0, 0, r);
   circle(g, 0, 0, r * 1.035, ink); circle(g, 0, 0, r, c.skin);
-  g.fillStyle = alpha('#000', 0.08); g.beginPath(); g.arc(0, 0, r, Math.PI * 0.55, Math.PI * 1.45); g.fill();
+  softShade(g, 0, 0, r);
   hairFront(g, c, 0, 0, r);
-  toonFace(g, 0, 0, r, { cast: c, expr: o.expr, talk: o.talk, blink: o.blink, look: o.look, front: true });
+  toonFace(g, 0, 0, r, { cast: c, expr: o.expr, talk: o.talk, blink: o.blink, look: o.look, front: true, face: o.face });
   g.restore();
 }

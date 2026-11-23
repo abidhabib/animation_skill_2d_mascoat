@@ -74,6 +74,21 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Shot pattern: `registerShot(id, { kind: '3d', init: (T) => {const k = kitchen3d(T); k.st.spots = k.spots; return k.st;}, draw(st,t,info){cam3(...)}, overlay(g,t,info,st){ pin + drawToon + headNum } })`. Example: `example-test3d`.
 - 3D renders ~2x slower than 2D (computer time, not tokens).
 
+## OBJECT LIBRARY `engine/props3d.js` (user 2026-11-22: "objects more real, proper library for future reuse") - USE IT, don't hand-build props
+- Picture of everything: `docs/PROPS_3D.png`. Gallery project to re-check after changes: `example-lab-props` (copy to `projects/lab-props`, `node render.mjs --project projects/lab-props --sheet --scale 0.5`).
+- `import { P, put, leafPlant } from '/engine/props3d.js'`; `S.add(put(P.mug({ color }), [x, y, z], rotY, scale))`. Every prop: base on y = 0, front faces +z, real sizes in metres.
+- Small: mug, glass, bottle, phone (`setGlow`), laptop (`setOpen`), book, bookStack, bookRow, tableLamp (`setOn`), plant/leafPlant (kind leafy|tall|monstera|succulent|round), wallClock (`setTime(h,m,s)`), alarmClock, frame (art 0-2), sneaker(s), foldedClothes, clothesPile, pillow, kettle, backpack.
+- Furniture: bed (made 0..1), nightstand, desk, chair, officeChair, table (rect|round|coffee), sofa, bookshelf, wardrobe, tv, tvUnit, rug, door (`setOpen`), window (sky day|sunset|night|dawn, curtains), mirror (standing|wall, reflective gradient glass), fridge, counter (sink, hob), pendant, floorLamp, wallShelf.
+- Outdoor: bench (cast-iron), tree (lumpy two-tone crown), pine, bush, lampPost, fence, trashBin, bike (`spin`), car (`spin`).
+- Building blocks for new props: `blob` (lumpy organic: foliage, cloth, rocks), `puffy` (stuffed: pillows, cushions, duvets), `tube` (handles, frames, cables), `tex2` (cached canvas textures).
+- What made old objects look weird (avoid): spheres as leaves/clothes, plain white slabs as mirrors/screens, boxes as shoes/bags, missing handles/rims/seams. Real proportions + 2-3 small details (rim, handle, seam, label, sole) make an object read instantly.
+- New prop needed? Add it to props3d.js ONCE (same conventions), add it to the lab gallery, render the sheet, look, then commit + push. The 3D sets (bedroom/kitchen/park/train) already use the library.
+
+## CLEAN FACES (default since 2026-11-22, user: "make character minimal clear face") - `docs/FACES_CLEAN.png`
+- toonFace now draws dark glossy eyes (like `docs/ABID_CHARACTER.png`), soft short brows, light blush, thin curled moustache clear of the mouth, soft head shading (no hard half-face line).
+- Only shocked/surprised keep a white eye with a tiny pupil (so shock still reads). Features grow a little on small/far figures so faces stay readable.
+- Old white-eye face if ever needed: `drawToon(g, {..., face: 'classic'})` / `bigToonFace(..., {face: 'classic'})` or `cast.face = 'classic'`.
+
 - Mixing rule (Clip 24): 3D for real places (establishing, push/crane/orbit around characters), 2D for inserts (objects, stamps), giant faces and memories/flashbacks (warm `park(..., {memory:1})`). Fade 0.3-0.35 between them.
 - 3D framing: keep the number on the head IN FRAME: look target ~0.3-0.4 m above the seated head (y 1.35-1.4 for seated Dad at 2.7-3.2 m), never closer than ~2.3 m. Dolly zoom (Clip 25 h06): move the camera back while narrowing fov = 2*atan(halfWidth/d) for 'the distance grows'.
 - Expression fix (2026-11-21): sad/worried/nervous/cry brows now tilt UP at the middle (they read angry before). After any face change, check a big face on the sheet.

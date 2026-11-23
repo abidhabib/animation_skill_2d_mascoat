@@ -4,6 +4,7 @@
 //   spots: youSeat (left bench, sitting), aisle(z) -> [0,0,z], farEnd [0,0,-10.5], seatsL/seatsR arrays for passengers
 import * as THREE from 'three';
 import { toon, glowMat, rbox, lathe, ball, pill, disc, flat, tex, halo } from '/engine/three-toon.js';
+import { P, put, leafPlant, mirrorMat } from '/engine/props3d.js';   // the shared object library (2026-11-22)
 
 export function train3d(T, o = {}) {
   const st = T.stage({ mood: 'day', fog: [9, 22], fogColor: '#c8d8e0', fov: 40, keyPos: [4, 6, 4], keyColor: '#fff6e8', keyIntensity: 1.3, ambientSky: '#f4f4ff', ambient: 1.35, bloom: 0.35, bloomThreshold: 0.9, shadowSize: 8 });
@@ -41,7 +42,7 @@ export function train3d(T, o = {}) {
   for (const sx of [-1, 1]) { const s = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.03, L - 0.6), glowMat('#fffaf0', 1.6)); s.position.set(sx * 0.45, H - 0.03, z0 - L / 2); A(s); strips.push(s); }
   const pls = []; for (let i = 0; i < 4; i++) { const p = new THREE.PointLight('#fff4e4', 3.0, 6, 1.6); p.position.set(0, H - 0.2, z0 - 1 - i * 3.4); A(p); pls.push(p); }
   // a few bags / a newspaper on seats as clutter
-  A(rbox(0.3, 0.22, 0.4, '#5a3a2a', -(W / 2 - 0.35), 0.48, z0 - 7.3, 0.05)); A(rbox(0.32, 0.02, 0.24, '#f4f0e6', W / 2 - 0.35, 0.49, z0 - 4.2, 0.01, 0.004));
+  A(put(P.backpack({ color: '#5a3a2a' }), [-(W / 2 - 0.35), 0.48, z0 - 7.3], Math.PI / 2)); A(rbox(0.32, 0.02, 0.24, '#f4f0e6', W / 2 - 0.35, 0.49, z0 - 4.2, 0.01, 0.004));
   const setLights = (k) => { strips.forEach(s => s.material.color.set('#fffaf0').multiplyScalar(0.15 + 1.45 * k)); pls.forEach(p => { p.intensity = 3.0 * k; }); st.hemi.intensity = 0.5 + 0.85 * k; };
   const update = (t, speed = 1) => { city.offset.x = (t * 0.25 * speed) % 1; handles.forEach((h, i) => { h.rotation.x = Math.sin(t * 1.6 + i * 0.4) * 0.12; }); };
   update(0);

@@ -3,6 +3,7 @@
 //   spots: stove (Dad making tea), chairOld / chairNew (seated, feet), tableTop (y of the table top), door, window
 import * as THREE from 'three';
 import { toon, glowMat, rbox, lathe, ball, pill, disc, flat, tex, halo } from '/engine/three-toon.js';
+import { P, put, leafPlant, mirrorMat } from '/engine/props3d.js';   // the shared object library (2026-11-22)
 
 export function kitchen3d(T, o = {}) {
   const eve = (o.time || 'evening') === 'evening';
@@ -35,13 +36,12 @@ export function kitchen3d(T, o = {}) {
   A(rbox(3.8, 0.07, 0.68, '#f2ead8', 2.15, 0.86, -2.66, 0.03));
   A(rbox(3.0, 0.7, 0.36, cab, 2.45, 1.85, -2.8, 0.05)); for (let i = 0; i < 3; i++) A(pill(0.018, 0.1, '#d8c08a', 1.45 + i * 1.0, 1.98, -2.6, 0));
   A(rbox(0.7, 0.03, 0.55, '#2a2a30', 3.2, 0.93, -2.66, 0.01, 0));                               // hob
-  A(lathe([[0, 0], [0.16, 0], [0.19, 0.08], [0.18, 0.2], [0.12, 0.27], [0.05, 0.29], [0, 0.3]], '#d0563a', 3.1, 0.96, -2.62));   // kettle
-  A(pill(0.025, 0.12, '#1b1424', 3.1, 1.3, -2.62, 0)); const spout = pill(0.03, 0.12, '#d0563a', 3.28, 1.06, -2.62, 0.01); spout.rotation.z = -1; A(spout);
+  A(put(P.kettle({}), [3.1, 0.96, -2.62], 0, 1.3));   // kettle
   A(lathe([[0, 0], [0.09, 0], [0.1, 0.16], [0.07, 0.18], [0, 0.19]], '#f4f0e6', 1.0, 0.93, -2.6));                                 // sugar jar
   A(ball(0.04, '#c0563a', 1.0, 1.13, -2.6, 0));
-  A(lathe([[0, 0], [0.12, 0], [0.15, 0.2], [0, 0.2]], '#c4643a', 0.45, 0.93, -2.65)); for (const [dx, dy, r] of [[0, 0.3, 0.13], [-0.09, 0.25, 0.1], [0.09, 0.27, 0.1]]) A(ball(r, '#4f9a55', 0.45 + dx, 0.93 + dy, -2.65));
+  A(put(leafPlant({ kind: 'leafy', size: 1.1 }), [0.45, 0.93, -2.65]));
   // fridge (rounded, cream) left corner
-  A(rbox(0.82, 1.95, 0.72, '#eef0ea', -3.55, 0, -2.55, 0.12)); A(rbox(0.8, 0.02, 0.02, '#c8cac4', -3.55, 1.3, -2.18, 0.01, 0)); A(pill(0.025, 0.35, '#b8bab4', -3.25, 1.55, -2.16, 0));
+  A(put(P.fridge({ h: 1.95 }), [-3.55, 0, -2.55], 0, 1.05));
   // wall clock (mounted) above the counter
   const clockFace = tex(256, 256, (g, w, h) => { g.fillStyle = '#fbf6ea'; g.beginPath(); g.arc(w / 2, h / 2, w / 2, 0, 7); g.fill(); g.strokeStyle = '#1b1424'; g.lineWidth = 6; for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; g.beginPath(); g.moveTo(w / 2 + Math.cos(a) * 100, h / 2 + Math.sin(a) * 100); g.lineTo(w / 2 + Math.cos(a) * 115, h / 2 + Math.sin(a) * 115); g.stroke(); }
     g.lineWidth = 10; g.beginPath(); g.moveTo(w / 2, h / 2); g.lineTo(w / 2 + 60 * Math.cos(-Math.PI / 2 + 7 / 12 * 2 * Math.PI), h / 2 + 60 * Math.sin(-Math.PI / 2 + 7 / 12 * 2 * Math.PI)); g.stroke(); g.lineWidth = 7; g.beginPath(); g.moveTo(w / 2, h / 2); g.lineTo(w / 2, h / 2 - 90); g.stroke(); });
@@ -55,7 +55,7 @@ export function kitchen3d(T, o = {}) {
   function chair(x, z, rotY, col) { const g = new THREE.Group(); g.add(rbox(0.46, 0.06, 0.46, col, 0, 0.45, 0, 0.03)); g.add(rbox(0.46, 0.55, 0.06, col, 0, 0.5, -0.21, 0.03)); for (const [lx, lz] of [[-0.19, -0.19], [0.19, -0.19], [-0.19, 0.19], [0.19, 0.19]]) g.add(disc(0.025, 0.45, col, lx, 0, lz, 0.01)); g.position.set(x, 0, z); g.rotation.y = rotY; return g; }
   A(chair(tb[0] - 1.05, tb[2], Math.PI / 2, '#7a4e34'));   // the same old chair
   A(chair(tb[0] + 1.05, tb[2], -Math.PI / 2, '#a8784e'));
-  A(lathe([[0, 0], [0.045, 0], [0.05, 0.1], [0, 0.1]], '#f4f0e6', tb[0] - 0.2, 0.78, tb[2] + 0.1), lathe([[0, 0], [0.045, 0], [0.05, 0.1], [0, 0.1]], '#5a8ab8', tb[0] + 0.25, 0.78, tb[2] - 0.05));
+  A(put(P.mug({ color: '#f4f0e6' }), [tb[0] - 0.2, 0.78, tb[2] + 0.1], 0.5), put(P.mug({ color: '#5a8ab8' }), [tb[0] + 0.25, 0.78, tb[2] - 0.05], 2.6));
   const rug = disc(1.5, 0.01, '#9a4a3e', tb[0], 0.001, tb[2], 0); rug.scale.z = 0.7; A(rug);
   // pendant lamp over the table (warm light + glow)
   A(disc(0.012, 1.4, '#1b1424', tb[0], 1.95, tb[2], 0));
