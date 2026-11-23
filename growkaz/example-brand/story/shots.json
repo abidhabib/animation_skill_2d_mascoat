@@ -1,6 +1,6 @@
 {
  "title": "Brand",
- "duration": 4.0,
+ "duration": 6.0,
  "shots": [
   {
    "id": "logo",
@@ -23,6 +23,21 @@
    "end": 4.0,
    "line": "",
    "scene": "brand",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "thumb",
+   "start": 4.0,
+   "end": 6.0,
+   "line": "",
+   "scene": "thumb",
    "set": "lab",
    "bars": 0,
    "in": {

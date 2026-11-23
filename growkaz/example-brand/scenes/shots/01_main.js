@@ -16,3 +16,26 @@ registerShot('banner', { draw(g) { g.fillStyle = NAVY; g.fillRect(0, 0, E.W, E.H
   text(g, NAME, 1040, cy - 30, { size: 90, color: CREAM, spacing: 6, align: 'center' });
   g.fillStyle = GOLD; rr(g, 1040 - 40, cy + 22, 80, 6, 3); g.fill();
   text(g, TAG, 1040, cy + 70, { size: 30, color: SOFT, weight: 600 }); } });
+
+// THUMBNAIL for "What If You Could See How Much Everyone Trusts You?": you, shocked, bottom-left; your best friend smiling with a LOW 41 glowing over his head.
+import { bigToonFace, HERO, SAM } from '/engine/toon2d.js';
+import { headNum } from '/engine/storyfx.js';
+import { glow, alpha, seg } from '/engine/core.js';
+registerShot('thumb', { draw(g) {
+  const gr = g.createLinearGradient(0, 0, E.W, E.H); gr.addColorStop(0, '#2a1458'); gr.addColorStop(0.55, '#6a2a7a'); gr.addColorStop(1, '#ff7a4a'); g.fillStyle = gr; g.fillRect(0, 0, E.W, E.H);
+  for (let i = 0; i < 22; i++) { const x = (i * 337) % E.W, y = 120 + (i * 211) % 700, r = 30 + (i * 17) % 60; g.fillStyle = alpha(['#ffb070', '#c080ff', '#ff6a9a'][i % 3], 0.12); g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }
+  g.fillStyle = 'rgba(20,8,40,.55)'; for (let i = 0; i < 18; i++) { const w = 70 + (i * 37) % 60, h = 160 + (i * 97) % 260; g.fillRect(i * 110 - 20, E.H - h, w, h); }
+  // friend + the number (the reason to click)
+  glow(g, 1430, 330, 420, '#ff6a3a', 0.55);
+  bigToonFace(g, 1430, 760, 215, { cast: SAM, expr: 'smile', look: [-0.6, 0], rimColor: '#ffb070' });
+  text(g, '41', 1430, 300, { size: 330, color: '#ff4033', stroke: 30, strokeColor: '#1b1424', glow: 40, glowColor: 'rgba(255,80,50,.9)' }); g.fillStyle = '#ff4033'; g.strokeStyle = '#1b1424'; g.lineWidth = 10; g.beginPath(); g.moveTo(1660, 250); g.lineTo(1740, 250); g.lineTo(1700, 320); g.closePath(); g.fill(); g.stroke();
+  // you, shocked, big, bottom-left
+  glow(g, 470, 700, 500, '#8fd0ff', 0.25);
+  bigToonFace(g, 470, 800, 285, { cast: HERO, expr: 'shocked', look: [0.9, -0.5], rimColor: '#8fd0ff' });
+  // arrow from you to the number
+  g.lineCap = 'round'; g.strokeStyle = '#1b1424'; g.lineWidth = 34; g.beginPath(); g.moveTo(830, 520); g.quadraticCurveTo(1000, 330, 1180, 330); g.stroke(); g.strokeStyle = '#ffd84a'; g.lineWidth = 20; g.stroke();
+  g.fillStyle = '#ffd84a'; g.strokeStyle = '#1b1424'; g.lineWidth = 8; g.beginPath(); g.moveTo(1240, 330); g.lineTo(1170, 290); g.lineTo(1170, 370); g.closePath(); g.fill(); g.stroke();
+  // 2 words, top-left, white + yellow, heavy outline
+  text(g, 'BEST', 330, 150, { size: 170, color: '#ffffff', stroke: 26, strokeColor: '#1b1424', align: 'center' });
+  text(g, 'FRIEND?', 470, 300, { size: 170, color: '#ffd84a', stroke: 26, strokeColor: '#1b1424', align: 'center' });
+} });
