@@ -1,0 +1,174 @@
+{
+ "title": "V03 Clip 3",
+ "duration": 21.2,
+ "shots": [
+  {
+   "id": "b01",
+   "start": 0,
+   "end": 5.6,
+   "line": "But first, remember this question, because we're coming back to it: who is really paying for all these chips?",
+   "scene": "pile of glowing chips with a long receipt, PAID BY: ? pops",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 3.4,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 3.6,
+     "name": "stinger",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "b02",
+   "start": 5.6,
+   "end": 8.0,
+   "line": "That's where this gets uncomfortable.",
+   "scene": "2026-you giant nervous face, light dims, sweat drop",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.9,
+     "name": "heartbeat",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "b03",
+   "start": 8.0,
+   "end": 12.6,
+   "line": "Start with the two thousand version of you, because we already know how that story ends.",
+   "scene": "2000 trading floor: 2000-you at the CRT, camera push, ticker glows",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "whoosh",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "b04",
+   "start": 12.6,
+   "end": 16.2,
+   "line": "In the late nineties, every company on Earth had to get online.",
+   "scene": "globe, buildings around it light up and wire in",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.5,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 1.8,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 2.1,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 2.4,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 2.7,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "b05",
+   "start": 16.2,
+   "end": 21.2,
+   "line": "To get online, you needed routers and switches, and Cisco made the best ones.",
+   "scene": "router rack in the office, a gold star pops on 'best'",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.6,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 2.3,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 3.9,
+     "name": "shimmer",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 8.0,
+   "mood": "tension",
+   "intensity": 0.3
+  },
+  {
+   "start": 8.0,
+   "end": 21.2,
+   "mood": "wonder",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

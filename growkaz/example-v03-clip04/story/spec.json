@@ -1,0 +1,10 @@
+{"title": "V03 Clip 4", "dur": 28.0, "set": "mixed",
+ "music": [[0, 14.2, "playful", 0.3], [14.2, 28.0, "tension", 0.3]],
+ "shots": [
+  ["c01", 0, 6.3, "Therefore, every new website, every office network, every phone company upgrade meant another order for Cisco.", "website / office / phone tower pop and each fires an order box into a growing stack", "fade", [[1.15, "pop", -16], [1.5, "whoosh", -20], [2.5, "pop", -16], [2.85, "whoosh", -20], [4.0, "pop", -16], [4.35, "whoosh", -20], [5.3, "ding", -14]], null],
+  ["c02", 6.3, 9.3, "Sales were growing more than fifty percent a year.", "green bars climb, +50% a year", "fade", [[0.3, "riser", -20], [1.8, "pop", -14]], null],
+  ["c03", 9.3, 14.2, "From early nineteen ninety-five to the top, the stock rose about forty-four times.", "a tiny coin stack grows into a tower, 1995 -> 2000, 44x badge", "fade", [[0.5, "counter", -20], [3.8, "powerup", -14]], null],
+  ["c04", 14.2, 16.3, "But here's what you actually paid.", "2000-you at the CRT, the room dims, he leans in", "fade", [[0.3, "slowmo", -18]], ["murmur", -32]],
+  ["c05", 16.3, 20.8, "At the peak, Cisco's price was more than one hundred times its yearly profit.", "balance scale: huge price tag vs one coin of profit, slams down", "fade", [[2.4, "impact", -12]], null],
+  ["c06", 20.8, 28.0, "Think of it like this. If the profit never grew, you'd need more than a century of earnings just to earn back the price of one share.", "a coin jar fills one coin a year; years 1 -> 100+; you age beside it", "fade", [[2.1, "tick", -20], [3.7, "clock", -18], [6.2, "ding", -16]], null]
+ ]}

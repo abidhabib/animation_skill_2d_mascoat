@@ -1,0 +1,201 @@
+{
+ "title": "V03 Clip 4",
+ "duration": 28.0,
+ "shots": [
+  {
+   "id": "c01",
+   "start": 0,
+   "end": 6.3,
+   "line": "Therefore, every new website, every office network, every phone company upgrade meant another order for Cisco.",
+   "scene": "website / office / phone tower pop and each fires an order box into a growing stack",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.15,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 1.5,
+     "name": "whoosh",
+     "gain": -20
+    },
+    {
+     "at": 2.5,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 2.85,
+     "name": "whoosh",
+     "gain": -20
+    },
+    {
+     "at": 4.0,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 4.35,
+     "name": "whoosh",
+     "gain": -20
+    },
+    {
+     "at": 5.3,
+     "name": "ding",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "c02",
+   "start": 6.3,
+   "end": 9.3,
+   "line": "Sales were growing more than fifty percent a year.",
+   "scene": "green bars climb, +50% a year",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "riser",
+     "gain": -20
+    },
+    {
+     "at": 1.8,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "c03",
+   "start": 9.3,
+   "end": 14.2,
+   "line": "From early nineteen ninety-five to the top, the stock rose about forty-four times.",
+   "scene": "a tiny coin stack grows into a tower, 1995 -> 2000, 44x badge",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "counter",
+     "gain": -20
+    },
+    {
+     "at": 3.8,
+     "name": "powerup",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "c04",
+   "start": 14.2,
+   "end": 16.3,
+   "line": "But here's what you actually paid.",
+   "scene": "2000-you at the CRT, the room dims, he leans in",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "slowmo",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -32
+   }
+  },
+  {
+   "id": "c05",
+   "start": 16.3,
+   "end": 20.8,
+   "line": "At the peak, Cisco's price was more than one hundred times its yearly profit.",
+   "scene": "balance scale: huge price tag vs one coin of profit, slams down",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 2.4,
+     "name": "impact",
+     "gain": -12
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "c06",
+   "start": 20.8,
+   "end": 28.0,
+   "line": "Think of it like this. If the profit never grew, you'd need more than a century of earnings just to earn back the price of one share.",
+   "scene": "a coin jar fills one coin a year; years 1 -> 100+; you age beside it",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 2.1,
+     "name": "tick",
+     "gain": -20
+    },
+    {
+     "at": 3.7,
+     "name": "clock",
+     "gain": -18
+    },
+    {
+     "at": 6.2,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 14.2,
+   "mood": "playful",
+   "intensity": 0.3
+  },
+  {
+   "start": 14.2,
+   "end": 28.0,
+   "mood": "tension",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

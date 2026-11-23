@@ -1,0 +1,201 @@
+{
+ "title": "V03 Clip 2",
+ "duration": 23.9,
+ "shots": [
+  {
+   "id": "a01",
+   "start": 0,
+   "end": 4.9,
+   "line": "That you waited almost twenty-six years just to see ten thousand dollars again.",
+   "scene": "park bench: 2000-you waits, years tick 2000->2025, hair turns grey, $10,000 returns",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "clock",
+     "gain": -20
+    },
+    {
+     "at": 4.3,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -30
+   }
+  },
+  {
+   "id": "a02",
+   "start": 4.9,
+   "end": 7.55,
+   "line": "So, are you about to become the next Cisco holder?",
+   "scene": "2026-you giant face, worried, big ? beside",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "pop",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "a03",
+   "start": 7.55,
+   "end": 10.4,
+   "line": "And if you are, how many years would you wait?",
+   "scene": "small you under a giant spinning clock, ? YEARS",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "tick",
+     "gain": -18
+    },
+    {
+     "at": 1.2,
+     "name": "tick",
+     "gain": -18
+    },
+    {
+     "at": 1.9,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "a04",
+   "start": 10.4,
+   "end": 12.75,
+   "line": "Here's the deal. Two versions of you.",
+   "scene": "split screen slides in: 2000 face | 2026 face",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -16
+    },
+    {
+     "at": 1.2,
+     "name": "pop",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "a05",
+   "start": 12.75,
+   "end": 17.75,
+   "line": "Same ten thousand dollars, same reason, same kind of company, twenty-six years apart.",
+   "scene": "two yous full body, ticks pop on each 'same', 26 YEARS arrow",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 1.85,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 2.95,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 3.6,
+     "name": "whoosh",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "a06",
+   "start": 17.75,
+   "end": 23.9,
+   "line": "By the end, you'll know where the two stories match, the one place they don't, and the three signals I'd watch from here.",
+   "scene": "three numbered badges: match, difference, signals",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 2.25,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 3.45,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 4.35,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 4.9,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 10.4,
+   "mood": "sad",
+   "intensity": 0.28
+  },
+  {
+   "start": 10.4,
+   "end": 23.9,
+   "mood": "mystery",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

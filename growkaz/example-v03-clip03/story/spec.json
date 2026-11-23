@@ -1,0 +1,9 @@
+{"title": "V03 Clip 3", "dur": 21.2, "set": "mixed",
+ "music": [[0, 8.0, "tension", 0.3], [8.0, 21.2, "wonder", 0.3]],
+ "shots": [
+  ["b01", 0, 5.6, "But first, remember this question, because we're coming back to it: who is really paying for all these chips?", "pile of glowing chips with a long receipt, PAID BY: ? pops", "fade", [[0.3, "blip", -18], [3.4, "pop", -14], [3.6, "stinger", -18]], null],
+  ["b02", 5.6, 8.0, "That's where this gets uncomfortable.", "2026-you giant nervous face, light dims, sweat drop", "fade", [[0.9, "heartbeat", -16]], null],
+  ["b03", 8.0, 12.6, "Start with the two thousand version of you, because we already know how that story ends.", "2000 trading floor: 2000-you at the CRT, camera push, ticker glows", "fade", [[0.2, "whoosh", -18]], ["murmur", -28]],
+  ["b04", 12.6, 16.2, "In the late nineties, every company on Earth had to get online.", "globe, buildings around it light up and wire in", "fade", [[1.5, "blip", -18], [1.8, "blip", -18], [2.1, "blip", -18], [2.4, "blip", -18], [2.7, "ding", -16]], null],
+  ["b05", 16.2, 21.2, "To get online, you needed routers and switches, and Cisco made the best ones.", "router rack in the office, a gold star pops on 'best'", "fade", [[1.6, "pop", -16], [2.3, "pop", -16], [3.9, "shimmer", -14]], ["hum", -28]]
+ ]}

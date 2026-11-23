@@ -1,0 +1,10 @@
+{"title": "V03 Clip 2", "dur": 23.9, "set": "mixed",
+ "music": [[0, 10.4, "sad", 0.28], [10.4, 23.9, "mystery", 0.3]],
+ "shots": [
+  ["a01", 0, 4.9, "That you waited almost twenty-six years just to see ten thousand dollars again.", "park bench: 2000-you waits, years tick 2000->2025, hair turns grey, $10,000 returns", "fade", [[0.3, "clock", -20], [4.3, "ding", -16]], ["wind", -30]],
+  ["a02", 4.9, 7.55, "So, are you about to become the next Cisco holder?", "2026-you giant face, worried, big ? beside", "fade", [[0.2, "pop", -16]], null],
+  ["a03", 7.55, 10.4, "And if you are, how many years would you wait?", "small you under a giant spinning clock, ? YEARS", "fade", [[0.3, "tick", -18], [1.2, "tick", -18], [1.9, "pop", -14]], null],
+  ["a04", 10.4, 12.75, "Here's the deal. Two versions of you.", "split screen slides in: 2000 face | 2026 face", "fade", [[0.1, "whoosh", -16], [1.2, "pop", -16]], null],
+  ["a05", 12.75, 17.75, "Same ten thousand dollars, same reason, same kind of company, twenty-six years apart.", "two yous full body, ticks pop on each 'same', 26 YEARS arrow", "fade", [[0.5, "pop", -16], [1.85, "pop", -16], [2.95, "pop", -16], [3.6, "whoosh", -16]], null],
+  ["a06", 17.75, 23.9, "By the end, you'll know where the two stories match, the one place they don't, and the three signals I'd watch from here.", "three numbered badges: match, difference, signals", "fade", [[2.25, "pop", -14], [3.45, "pop", -14], [4.35, "pop", -14], [4.9, "shimmer", -18]], null]
+ ]}
