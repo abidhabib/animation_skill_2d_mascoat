@@ -1,0 +1,239 @@
+{
+ "title": "V03 Clip 16",
+ "duration": 30.4,
+ "shots": [
+  {
+   "id": "r01",
+   "start": 0,
+   "end": 3.7,
+   "line": "And the debt behind it? The Fed says the bonds from the big data-center builders",
+   "scene": "a printing press beside a data center spits out bonds; the Fed report slides in",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "hum",
+     "gain": -25.1
+    },
+    {
+     "at": 1.2,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 1.9,
+     "name": "pop",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "r02",
+   "start": 3.7,
+   "end": 7.9,
+   "line": "are held mainly by mutual funds, pension funds and insurance companies.",
+   "scene": "bonds fly into a fund tower, a pension hall, an insurer; each lights up as named",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.9,
+     "name": "ding",
+     "gain": -17.1
+    },
+    {
+     "at": 1.75,
+     "name": "ding",
+     "gain": -17.1
+    },
+    {
+     "at": 2.7,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "r03",
+   "start": 7.9,
+   "end": 12.9,
+   "line": "Therefore, you might own the shares through your retirement plan, and the loans through your bond fund.",
+   "scene": "you between two statements, both arrows point at the same AI data center",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.8,
+     "name": "pop",
+     "gain": -19.1
+    },
+    {
+     "at": 2.7,
+     "name": "pop",
+     "gain": -19.1
+    },
+    {
+     "at": 3.3,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "r04",
+   "start": 12.9,
+   "end": 17.7,
+   "line": "That's not diversification. That's the same bet, wearing two different labels.",
+   "scene": "two identical chip characters wearing STOCKS and BONDS tags; the tags flip",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.25,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 1.8,
+     "name": "hit",
+     "gain": -17.1
+    },
+    {
+     "at": 3.0,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 3.8,
+     "name": "swish",
+     "gain": -21.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "r05",
+   "start": 17.7,
+   "end": 21.4,
+   "line": "And here's what history says happens when that bet slows down.",
+   "scene": "2001 living room TV news: BUILD-OUT SLOWS",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "glitch",
+     "gain": -21.1
+    },
+    {
+     "at": 1.4,
+     "name": "stinger",
+     "gain": -19.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "r06",
+   "start": 21.4,
+   "end": 30.4,
+   "line": "Between two thousand and two thousand and two, North American telecom companies cut their building spending roughly in half. Half, gone in two years.",
+   "scene": "cranes pack up, spending bars halve 2000 to 2002, HALF GONE stamp",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.5,
+     "name": "carpass",
+     "gain": -25.1
+    },
+    {
+     "at": 3.5,
+     "name": "carpass",
+     "gain": -25.1
+    },
+    {
+     "at": 5.9,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 6.9,
+     "name": "hit",
+     "gain": -15.1
+    },
+    {
+     "at": 7.2,
+     "name": "heartbeat",
+     "gain": -19.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -32
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 12.9,
+   "mood": "mystery",
+   "intensity": 0.28
+  },
+  {
+   "start": 12.9,
+   "end": 21.4,
+   "mood": "dark",
+   "intensity": 0.3
+  },
+  {
+   "start": 21.4,
+   "end": 30.4,
+   "mood": "tension",
+   "intensity": 0.32
+  }
+ ],
+ "sfx": []
+}

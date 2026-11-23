@@ -250,3 +250,12 @@ FP.bankInterior = (g, t, o = {}) => { const gy = E.H * 0.8; const w = g.createLi
   rr(g, E.W / 2 - 150, 270, 300, 60, 10); F(g, '#1f3a5f'); S(g, INK, 5); T(g, o.sign || 'LOANS', E.W / 2, 300, 40, '#ffe28a', { align: 'center', w: 900 });
   g.fillStyle = '#e0d8c0'; g.fillRect(-E.W, gy, E.W * 3, E.H); for (let x = -E.W; x < E.W * 2; x += 120) for (let r = 0; r < 4; r++) if ((x / 120 + r) % 2) { g.fillStyle = 'rgba(0,0,0,.08)'; g.fillRect(x, gy + r * 60, 120, 60); }
   return { gy }; };
+
+// the AI chip as a worried little character with legs (V03). bottom-centre anchor, ~300w x 330h at s=1. o: {mood:'worried'|'happy', look}
+FP.chipChar = (g, x, y, s, t, o = {}) => { g.save(); g.translate(x, y); g.scale(s, s); const bob = Math.sin(t * 3) * 4;
+  for (const d of [-1, 1]) { seg(g, [[d * 50, -40 + bob], [d * 60, 30]], 24, INK); seg(g, [[d * 50, -40 + bob], [d * 60, 30]], 15, '#e0b05a'); rr(g, d * 60 - 26, 22, 52, 20, 8); F(g, '#3a3e48'); S(g, INK, 4); }
+  g.fillStyle = '#e0b05a'; for (let i = 0; i < 5; i++) { g.fillRect(-100 + i * 50 - 8, -262 + bob, 16, 34); g.fillRect(-142, -200 + i * 38 + bob, 34, 14); g.fillRect(108, -200 + i * 38 + bob, 34, 14); }
+  rr(g, -130, -232 + bob, 260, 200, 26); F(g, '#20262e'); S(g, INK, 7); rr(g, -104, -206 + bob, 208, 148, 16); F(g, '#2f3a44'); S(g, '#5affb0', 4); glow(g, 0, -132 + bob, 150, '#5affb0', 0.12);
+  T(g, o.label || 'AI', 0, -176 + bob, 34, '#d8ffee', { align: 'center', w: 900 }); for (const d of [-1, 1]) { circle(g, d * 44, -128 + bob, 24, '#ffffff'); S(g, INK, 4); circle(g, d * 44 + (o.look || 0) * 8, -126 + bob, 10, INK); }
+  g.strokeStyle = INK; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); if (o.mood === 'worried') { g.moveTo(-30, -78 + bob); g.quadraticCurveTo(0, -96 + bob, 30, -78 + bob); } else { g.moveTo(-30, -84 + bob); g.quadraticCurveTo(0, -66 + bob, 30, -84 + bob); } g.stroke();
+  if (o.mood === 'worried') { seg(g, [[-70, -164 + bob], [-20, -152 + bob]], 5, INK); seg(g, [[70, -164 + bob], [20, -152 + bob]], 5, INK); } g.restore(); };

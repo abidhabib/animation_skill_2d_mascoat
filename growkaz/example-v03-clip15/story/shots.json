@@ -1,0 +1,193 @@
+{
+ "title": "V03 Clip 15",
+ "duration": 25.6,
+ "shots": [
+  {
+   "id": "q01",
+   "start": 0,
+   "end": 4.5,
+   "line": "Now, you might be thinking, I don't even own Nvidia, so this isn't my problem.",
+   "scene": "family kitchen: you wave it off, thought bubble: I don't own Nvidia",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "pop",
+     "gain": -19.1
+    },
+    {
+     "at": 2.1,
+     "name": "blip",
+     "gain": -21.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "q02",
+   "start": 4.5,
+   "end": 11.3,
+   "line": "But if you have a retirement account or an S&P five hundred index fund, about six cents of every dollar is in Nvidia.",
+   "scene": "phone app donut with a 6% slice, 100-coin grid, six glow green",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.8,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 2.2,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 3.8,
+     "name": "blip",
+     "gain": -21.1
+    },
+    {
+     "at": 4.2,
+     "name": "blip",
+     "gain": -21.1
+    },
+    {
+     "at": 4.6,
+     "name": "blip",
+     "gain": -21.1
+    },
+    {
+     "at": 5.0,
+     "name": "blip",
+     "gain": -21.1
+    },
+    {
+     "at": 5.3,
+     "name": "blip",
+     "gain": -21.1
+    },
+    {
+     "at": 5.6,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "q03",
+   "start": 11.3,
+   "end": 19.2,
+   "line": "And just six tech giants, Nvidia, Microsoft, Apple, Amazon, Alphabet and Meta, make up about thirty percent of the whole index.",
+   "scene": "500 tiny index squares; six giant tiles drop in one per name; 30% badge",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.5,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 2.2,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 3.0,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 3.66,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 4.2,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 4.9,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 6.1,
+     "name": "hit",
+     "gain": -15.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "q04",
+   "start": 19.2,
+   "end": 25.6,
+   "line": "You bought five hundred companies to spread your risk. But almost a third of your money is riding on one industry.",
+   "scene": "egg basket of 500 colourful eggs, a third turn AI green",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "pop",
+     "gain": -19.1
+    },
+    {
+     "at": 3.0,
+     "name": "powerup",
+     "gain": -19.1
+    },
+    {
+     "at": 4.5,
+     "name": "stinger",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 11.3,
+   "mood": "playful",
+   "intensity": 0.28
+  },
+  {
+   "start": 11.3,
+   "end": 25.6,
+   "mood": "tension",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

@@ -1,0 +1,10 @@
+{"title": "V03 Clip 16", "dur": 30.4, "set": "mixed",
+ "music": [[0, 12.9, "mystery", 0.28], [12.9, 21.4, "dark", 0.3], [21.4, 30.4, "tension", 0.32]],
+ "shots": [
+  ["r01", 0, 3.7, "And the debt behind it? The Fed says the bonds from the big data-center builders", "a printing press beside a data center spits out bonds; the Fed report slides in", "fade", [[0.3, "hum", -22], [1.2, "swish", -18], [1.9, "pop", -14]], ["hum", -30]],
+  ["r02", 3.7, 7.9, "are held mainly by mutual funds, pension funds and insurance companies.", "bonds fly into a fund tower, a pension hall, an insurer; each lights up as named", "fade", [[0.9, "ding", -14], [1.75, "ding", -14], [2.7, "ding", -14]], null],
+  ["r03", 7.9, 12.9, "Therefore, you might own the shares through your retirement plan, and the loans through your bond fund.", "you between two statements, both arrows point at the same AI data center", "fade", [[0.8, "pop", -16], [2.7, "pop", -16], [3.3, "ding", -14]], ["roomtone", -30]],
+  ["r04", 12.9, 17.7, "That's not diversification. That's the same bet, wearing two different labels.", "two identical chip characters wearing STOCKS and BONDS tags; the tags flip", "fade", [[0.25, "impact", -12], [1.8, "hit", -14], [3.0, "swish", -18], [3.8, "swish", -18]], null],
+  ["r05", 17.7, 21.4, "And here's what history says happens when that bet slows down.", "2001 living room TV news: BUILD-OUT SLOWS", "fade", [[0.2, "glitch", -18], [1.4, "stinger", -16]], ["roomtone", -30]],
+  ["r06", 21.4, 30.4, "Between two thousand and two thousand and two, North American telecom companies cut their building spending roughly in half. Half, gone in two years.", "cranes pack up, spending bars halve 2000 to 2002, HALF GONE stamp", "fade", [[1.5, "carpass", -22], [3.5, "carpass", -22], [5.9, "impact", -12], [6.9, "hit", -12], [7.2, "heartbeat", -16]], ["wind", -32]]
+ ]}

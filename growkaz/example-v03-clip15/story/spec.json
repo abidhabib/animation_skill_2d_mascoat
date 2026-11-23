@@ -1,0 +1,8 @@
+{"title": "V03 Clip 15", "dur": 25.6, "set": "mixed",
+ "music": [[0, 11.3, "playful", 0.28], [11.3, 25.6, "tension", 0.3]],
+ "shots": [
+  ["q01", 0, 4.5, "Now, you might be thinking, I don't even own Nvidia, so this isn't my problem.", "family kitchen: you wave it off, thought bubble: I don't own Nvidia", "fade", [[0.3, "pop", -16], [2.1, "blip", -18]], ["roomtone", -30]],
+  ["q02", 4.5, 11.3, "But if you have a retirement account or an S&P five hundred index fund, about six cents of every dollar is in Nvidia.", "phone app donut with a 6% slice, 100-coin grid, six glow green", "fade", [[0.8, "swish", -18], [2.2, "pop", -14], [3.8, "blip", -18], [4.2, "blip", -18], [4.6, "blip", -18], [5.0, "blip", -18], [5.3, "blip", -18], [5.6, "ding", -14]], null],
+  ["q03", 11.3, 19.2, "And just six tech giants, Nvidia, Microsoft, Apple, Amazon, Alphabet and Meta, make up about thirty percent of the whole index.", "500 tiny index squares; six giant tiles drop in one per name; 30% badge", "fade", [[1.5, "pop", -14], [2.2, "pop", -14], [3.0, "pop", -14], [3.66, "pop", -14], [4.2, "pop", -14], [4.9, "pop", -14], [6.1, "hit", -12]], null],
+  ["q04", 19.2, 25.6, "You bought five hundred companies to spread your risk. But almost a third of your money is riding on one industry.", "egg basket of 500 colourful eggs, a third turn AI green", "fade", [[0.4, "pop", -16], [3.0, "powerup", -16], [4.5, "stinger", -14]], ["roomtone", -30]]
+ ]}

@@ -1,0 +1,229 @@
+{
+ "title": "V03 Clip 17",
+ "duration": 28.8,
+ "shots": [
+  {
+   "id": "s01",
+   "start": 0,
+   "end": 5.2,
+   "line": "But here's the twist. People were still using more phone and internet service every single year.",
+   "scene": "2001 internet cafe packed with people online, a phone queue, usage counter climbing",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "pop",
+     "gain": -19.1
+    },
+    {
+     "at": 1.6,
+     "name": "phonering",
+     "gain": -25.1
+    },
+    {
+     "at": 3.0,
+     "name": "counter",
+     "gain": -21.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "s02",
+   "start": 5.2,
+   "end": 9.2,
+   "line": "Demand for the service went up, while orders for the equipment crashed.",
+   "scene": "two glass charts: service demand climbs, equipment orders crash",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "riser",
+     "gain": -23.1
+    },
+    {
+     "at": 2.3,
+     "name": "impact",
+     "gain": -15.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s03",
+   "start": 9.2,
+   "end": 17.0,
+   "line": "Cisco's sales fell by a quarter, its profit nearly vanished, and it wrote off two point two billion dollars of gear nobody wanted.",
+   "scene": "Cisco warehouse of unsold routers, bars fall, dumpster, WRITTEN OFF $2.2B",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.0,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 2.4,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 4.4,
+     "name": "hit",
+     "gain": -15.1
+    },
+    {
+     "at": 4.8,
+     "name": "counter",
+     "gain": -19.1
+    },
+    {
+     "at": 6.0,
+     "name": "stinger",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "s04",
+   "start": 17.0,
+   "end": 20.2,
+   "line": "The internet didn't fail. The orders did.",
+   "scene": "split: a busy online crowd | a silent sales desk with a phone that never rings",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.9,
+     "name": "ding",
+     "gain": -17.1
+    },
+    {
+     "at": 1.7,
+     "name": "impact",
+     "gain": -15.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s05",
+   "start": 20.2,
+   "end": 24.8,
+   "line": "That's why the idea that everyone uses AI every day doesn't protect Nvidia.",
+   "scene": "2026: a crowd chatting with AI on phones, a big chat UI, users counter climbing",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 1.5,
+     "name": "blip",
+     "gain": -21.1
+    },
+    {
+     "at": 2.2,
+     "name": "blip",
+     "gain": -21.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "city",
+    "gain": -32
+   }
+  },
+  {
+   "id": "s06",
+   "start": 24.8,
+   "end": 28.8,
+   "line": "People can use more AI, while the buyers buy fewer chips.",
+   "scene": "AI usage line climbs while the chip-order bars shrink; the chip character waits at an empty dock",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "riser",
+     "gain": -23.1
+    },
+    {
+     "at": 2.0,
+     "name": "heartbeat",
+     "gain": -19.1
+    },
+    {
+     "at": 3.0,
+     "name": "stinger",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -32
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 9.2,
+   "mood": "wonder",
+   "intensity": 0.28
+  },
+  {
+   "start": 9.2,
+   "end": 20.2,
+   "mood": "sad",
+   "intensity": 0.3
+  },
+  {
+   "start": 20.2,
+   "end": 28.8,
+   "mood": "mystery",
+   "intensity": 0.32
+  }
+ ],
+ "sfx": []
+}
