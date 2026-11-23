@@ -1,0 +1,20 @@
+{"title": "V02 Short 2", "dur": 47.7, "set": "mixed",
+ "music": [[0, 9.25, "mystery", 0.3], [9.25, 19.95, "sad", 0.3], [19.95, 28.35, "tension", 0.3], [28.35, 33.45, "hopeful", 0.35], [33.45, 39.45, "dark", 0.3], [39.45, 47.7, "hopeful", 0.35]],
+ "shots": [
+  ["s01", 0, 3.3, "You wake up, and everyone has a number above their head.", "park, numbers pop on everyone", "cut", [[0.05, "pop", -10], [0.45, "pop", -12], [0.8, "pop", -12], [1.15, "pop", -12], [0.0, "stinger", -14]], ["city", -30]],
+  ["s02", 3.3, 5.2, "It's how much they trust you.", "push into a glowing number", "cut", [[0.05, "whoosh", -14], [0.2, "shimmer", -18]], null],
+  ["s03", 5.2, 7.1, "Your roommate, sixty-two.", "kitchen roommate 62", "cut", [[0.15, "pop", -12]], ["roomtone", -30]],
+  ["s04", 7.1, 9.25, "Your dad, one hundred.", "dad video call 100", "cut", [[0.2, "ding", -12]], null],
+  ["s05", 9.25, 12.3, "Your best friend of twelve years, forty-one.", "Sam smiles, 41 drops, cold", "cut", [[2.39, "impact", -10], [2.4, "freeze", -16]], null],
+  ["s06", 12.3, 16.5, "Four cancelled plans. Two hundred dollars you forgot to pay back.", "bubbles, cash flies", "cut", [[0.08, "blip", -14], [0.36, "blip", -14], [0.64, "blip", -14], [0.92, "blip", -14], [1.9, "whoosh", -14]], null],
+  ["s07", 16.5, 19.95, "Not betrayal. Just small things, piling up.", "letdowns pile up", "cut", [[0.3, "pop", -16], [0.9, "pop", -16], [1.5, "pop", -16], [2.1, "pop", -16], [2.7, "pop", -16]], null],
+  ["s08", 19.95, 23.8, "Then Dad asks how university is going. And you lie.", "dad's kitchen, you lie", "cut", [[3.1, "heartbeat", -14]], ["roomtone", -30]],
+  ["s09", 23.8, 28.35, "Every word, his number falls. Ninety-eight. Ninety-six.", "100 -> 98 -> 96", "cut", [[2.6, "glitch", -14], [3.64, "glitch", -12]], null],
+  ["s10", 28.35, 30.0, "So you tell him the truth.", "your face, determined", "cut", [[0.1, "swish", -18]], null],
+  ["s11", 30.0, 31.5, "Thank you for telling me.", "dad, warm", "cut", [[0.1, "shimmer", -18]], null],
+  ["s12", 31.5, 33.45, "And the number climbs back up.", "74 -> 91", "cut", [[0.15, "powerup", -14], [0.7, "ding", -16]], ["roomtone", -30]],
+  ["s13", 33.45, 37.2, "But the lowest number all week was the one above your own head.", "mirror, hand hides number", "cut", [[0.5, "heartbeat", -16], [2.0, "heartbeat", -14]], ["roomtone", -30]],
+  ["s14", 37.2, 39.45, "In the mirror, thirty-one.", "31 red", "cut", [[1.4, "impact", -10]], null],
+  ["s15", 39.45, 45.2, "So you make your bed. Thirty-two. One point, slow, but real.", "bed made, 32", "cut", [[0.2, "swish", -16], [1.95, "powerup", -14]], ["roomtone", -30]],
+  ["s16", 45.2, 47.7, "Whose number would you check first?", "three portraits", "cut", [[0.1, "pop", -14], [0.35, "pop", -14], [0.6, "pop", -14], [2.2, "riser", -16]], null]
+ ]}

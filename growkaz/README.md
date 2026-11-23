@@ -74,6 +74,12 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Shot pattern: `registerShot(id, { kind: '3d', init: (T) => {const k = kitchen3d(T); k.st.spots = k.spots; return k.st;}, draw(st,t,info){cam3(...)}, overlay(g,t,info,st){ pin + drawToon + headNum } })`. Example: `example-test3d`.
 - 3D renders ~2x slower than 2D (computer time, not tokens).
 
+## SHORTS / REELS 9:16 in this engine (V02 Short 2, 2026-11-22) - example `example-v02-short2`
+- Voice: Fish lines -> `fishjoin.py "Short N"` -> `bash new-clip.sh SN` (word timings, clip 90+N-1) -> `tools/new_project.py --aspect 9:16 --captions` + write_timeline (see example) -> spec.json + mkshots.py.
+- Frame is 1080x1920 (E.W/E.H). 2D faces centre at y 0.5H, numbers at 0.12-0.2H, captions at 0.76H (above the Shorts UI); 3D cameras need fov 46-52 (narrow width).
+- Use the example's OWN captions (`capt`, measured with the real font, 1-3 words, gold active word, dark pill; config captions:false): the engine's built-in captions run words together.
+- Reel structure that works: number pops in frame 1 (hook), one beat = one picture, emotional peak with a side voice, ends on a comment question that loops to the opening.
+
 ## OBJECT LIBRARY `engine/props3d.js` (user 2026-11-22: "objects more real, proper library for future reuse") - USE IT, don't hand-build props
 - Picture of everything: `docs/PROPS_3D.png`. Gallery project to re-check after changes: `example-lab-props` (copy to `projects/lab-props`, `node render.mjs --project projects/lab-props --sheet --scale 0.5`).
 - `import { P, put, leafPlant } from '/engine/props3d.js'`; `S.add(put(P.mug({ color }), [x, y, z], rotY, scale))`. Every prop: base on y = 0, front faces +z, real sizes in metres.
