@@ -1,0 +1,9 @@
+{"title": "V03 Clip 24", "dur": 23.7, "set": "semi3d",
+ "music": [[0, 18.0, "mystery", 0.28], [18.0, 23.7, "sad", 0.32]],
+ "shots": [
+  ["s01", 0, 2.2, "So here are the three signals I'd watch.", "semi-3D: data-center aisle, you point; three numbered signal chips pop in", "zoom", [[0.3, "pop", -16], [1.2, "pop", -16], [1.9, "pop", -16]], ["hum", -34]],
+  ["s02", 2.2, 8.2, "One, spending. When the big tech companies talk about next year, do they raise their plans, or pause?", "3D pad: the plans bar rises (RAISE) then stalls (PAUSE) under a glass panel", "zoom", [[0.6, "ding", -14], [3.9, "riser", -22], [5.4, "impact", -14]], ["hum", -34]],
+  ["s03", 8.2, 14.0, "Two, margins. Nvidia already expects to keep a little less of each dollar next quarter.", "3D balance scale: coins kept on the right pan shrink a little", "zoom", [[0.5, "ding", -14], [1.9, "blip", -18], [4.3, "tick", -20]], ["roomtone", -36]],
+  ["s04", 14.0, 18.0, "If that keeps slipping, prices or competition are starting to bite.", "the kept pile slips again; a red arrow and PRICES / COMPETITION tags", "zoom", [[0.4, "riser", -22], [2.0, "impact", -12], [2.6, "blip", -18]], ["roomtone", -36]],
+  ["s05", 18.0, 23.7, "Three, debt. The more of the buying that's borrowed, the closer this gets to Cisco.", "debt chain links Nvidia to Cisco, slowly growing; camera drifts from Nvidia to Cisco", "zoom", [[0.4, "ding", -14], [1.7, "stinger", -16], [4.0, "heartbeat", -16]], ["roomtone", -36]]
+ ]}
