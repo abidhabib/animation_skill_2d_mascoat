@@ -26,7 +26,7 @@ registerShot('b01', { draw(g, t, info) { const c = camEase(t, info.dur, { z0: 1.
     g.save(); g.beginPath(); g.rect(rx - 170, top, 340, len + 40); g.clip(); text(g, 'AI CHIPS', rx, top + 50, { size: 38, color: INK, stroke: 0 });
     for (let i = 0; i < 9; i++) { const y = top + 110 + i * 56; seg(g, [[rx - 140, y], [rx + 40, y]], 8, '#c8ccd4'); text(g, '$' + (90 + i * 37) + 'B', rx + 100, y + 2, { size: 28, color: '#4a4a5a', stroke: 0 }); }
     g.restore();
-    const s = pop(t, 3.35, 0.35); if (s > 0) { g.save(); g.translate(rx, top + len - 40); g.rotate(-0.12); g.scale(s, s); rr(g, -190, -60, 380, 120, 16); g.fillStyle = alpha('#e0302a', 0.12); g.fill(); g.strokeStyle = '#e0302a'; g.lineWidth = 8; g.stroke(); text(g, 'PAID BY: ?', 0, 4, { size: 58, color: '#e0302a', stroke: 0 }); g.restore(); } }); } });
+    const s = pop(t, 3.35, 0.35); if (s > 0) { g.save(); g.translate(rx, top + len - 40); g.rotate(-0.12); g.scale(s, s); rr(g, -230, -60, 460, 120, 16); g.fillStyle = alpha('#e0302a', 0.12); g.fill(); g.strokeStyle = '#e0302a'; g.lineWidth = 8; g.stroke(); text(g, 'PAID BY: ?', 0, 4, { size: 58, color: '#e0302a', stroke: 0 }); g.restore(); } }); } });
 
 // b02 "That's where this gets uncomfortable."  2026-you, giant nervous face; the light dims; a sweat drop
 registerShot('b02', { draw(g, t, info) { faceShot(g, t, info, HERO, '#9fc8ff', null, ['#1a2240', '#0a0d1c', ['#a0e0ff']], { expr: (t) => 'worried', look: [-0.3, 0.1],

@@ -1,0 +1,10 @@
+{"title": "V03 Clip 20", "dur": 25.3, "set": "mixed",
+ "music": [[0, 5.3, "tension", 0.28], [5.3, 18.4, "mystery", 0.3], [18.4, 25.3, "sad", 0.32]],
+ "shots": [
+  ["v01", 0, 5.2, "So, if the spending breaks, how long would you wait? Nobody can know that for Nvidia.", "a waiting room: NOW SERVING ???, a big clock, you hold a ticket", "zoom", [[0.4, "tick", -20], [1.2, "tick", -20], [3.2, "pop", -14]], ["roomtone", -30]],
+  ["v02", 5.2, 7.4, "But history gives you a ladder.", "camera pans up a tall ladder of four rungs", "zoom", [[0.2, "riser", -20], [1.4, "pop", -14]], ["wind", -32]],
+  ["v03", 7.4, 13.6, "If you bought the whole S&P five hundred at the two thousand top, you got back to even in about seven years.", "rung 1: S&P 500, years tick 2000 to 2007", "zoom", [[0.4, "pop", -14], [3.0, "clock", -20], [5.4, "ding", -14]], null],
+  ["v04", 13.6, 15.7, "The Nasdaq took fifteen.", "rung 2: Nasdaq, 15 years", "zoom", [[0.3, "pop", -14], [1.2, "ding", -14]], null],
+  ["v05", 15.7, 18.4, "Cisco, almost twenty-six.", "rung 3: Cisco, ~26 years, the holder is grey", "zoom", [[0.3, "pop", -14], [1.8, "ding", -14]], null],
+  ["v06", 18.4, 25.3, "And Nortel, another giant of the internet boom, went bankrupt in two thousand and nine. Its holders never got back at all.", "rung 4: Nortel, the rung is broken, BANKRUPT 2009, NEVER", "zoom", [[0.5, "pop", -14], [3.6, "impact", -12], [4.4, "stinger", -16], [5.6, "heartbeat", -16]], ["wind", -32]]
+ ]}

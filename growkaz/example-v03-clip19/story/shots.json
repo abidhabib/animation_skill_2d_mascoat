@@ -1,0 +1,165 @@
+{
+ "title": "V03 Clip 19",
+ "duration": 17.8,
+ "shots": [
+  {
+   "id": "u01",
+   "start": 0,
+   "end": 1.3,
+   "line": "It's now thirty times.",
+   "scene": "the chalkboard: 30x circled and shaking",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "impact",
+     "gain": -15.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "u02",
+   "start": 1.3,
+   "end": 5.7,
+   "line": "The stock looks twice as expensive, and the price didn't move a single cent.",
+   "scene": "valuation dial swings to 30x while the ticker shows CHANGE 0.00",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.8,
+     "name": "riser",
+     "gain": -23.1
+    },
+    {
+     "at": 2.2,
+     "name": "hit",
+     "gain": -17.1
+    },
+    {
+     "at": 3.4,
+     "name": "tick",
+     "gain": -21.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "u03",
+   "start": 5.7,
+   "end": 8.3,
+   "line": "And this industry does exactly that.",
+   "scene": "a chip-profit rollercoaster, the cart dives",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "whoosh",
+     "gain": -21.1
+    },
+    {
+     "at": 1.3,
+     "name": "stinger",
+     "gain": -19.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -32
+   }
+  },
+  {
+   "id": "u04",
+   "start": 8.3,
+   "end": 14.7,
+   "line": "In Nvidia's own twenty twenty-three fiscal year, sales were almost flat, and profit fell fifty-five percent.",
+   "scene": "FY bars: sales flat, profit falls 55%",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 1.0,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 3.9,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 4.4,
+     "name": "hit",
+     "gain": -15.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "u05",
+   "start": 14.7,
+   "end": 17.8,
+   "line": "Chip profits don't fade. They fall.",
+   "scene": "FADE (gentle, crossed out) vs FALL (the chip tumbles off a cliff)",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 1.9,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 2.3,
+     "name": "heartbeat",
+     "gain": -19.1
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 5.8,
+   "mood": "tension",
+   "intensity": 0.3
+  },
+  {
+   "start": 5.8,
+   "end": 17.8,
+   "mood": "dark",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

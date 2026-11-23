@@ -1,0 +1,12 @@
+{"title": "V03 Clip 18", "dur": 32.3, "set": "mixed",
+ "music": [[0, 7.0, "playful", 0.28], [7.0, 19.8, "mystery", 0.28], [19.8, 32.3, "tension", 0.3]],
+ "shots": [
+  ["t01", 0, 2.5, "But wait. Isn't Nvidia cheap now?", "boutique window: the chip on a pedestal with a -39% sale tag, shoppers peer in", "zoom", [[0.2, "pop", -16], [1.2, "ding", -14]], ["city", -32]],
+  ["t02", 2.5, 7.0, "This is the best argument the twenty twenty-six you has, and it's a good one.", "debate stage: 2026-you vs 2000-you, the crowd nods, BEST ARGUMENT lights up", "zoom", [[0.5, "swish", -18], [3.7, "applause", -24]], ["murmur", -28]],
+  ["t03", 7.0, 9.8, "Cisco cost more than one hundred times its profit.", "a tower grows to the sky with a 100x tag, a crowd looks up", "zoom", [[0.3, "riser", -20], [2.2, "hit", -12]], null],
+  ["t04", 9.8, 15.5, "Nvidia, after the drop, costs about fifteen times, its cheapest in more than ten years.", "a small cottage 15x beside the tower, P/E decade chart hits its lowest", "zoom", [[1.9, "pop", -14], [3.3, "ding", -14]], null],
+  ["t05", 15.5, 19.8, "That's a real difference. Cisco holders waited because they paid too much.", "REAL DIFFERENCE badge, then an old Cisco holder on a park bench with pages flipping", "zoom", [[0.3, "hit", -14], [1.6, "clock", -20]], ["wind", -32]],
+  ["t06", 19.8, 24.0, "But a low price tag only protects you if the profit stays.", "a price-tag shield stops arrows while the profit meter holds; it drops, the shield cracks", "zoom", [[0.8, "impact", -14], [1.1, "impact", -14], [3.0, "glitch", -18], [3.3, "impact", -12]], null],
+  ["t07", 24.0, 28.0, "Watch this. Nvidia trades at about fifteen times its profit.", "chalkboard: PRICE $150 / PROFIT $10 = 15x written in chalk, a professor points", "zoom", [[1.0, "blip", -20], [2.0, "blip", -20], [3.4, "ding", -14]], ["roomtone", -30]],
+  ["t08", 28.0, 32.3, "Now cut that profit in half, and leave the price exactly where it is.", "scissors cut the profit coin in half, a padlock pins the price, = ?", "zoom", [[0.5, "swish", -18], [1.0, "impact", -12], [2.6, "hit", -14], [3.5, "pop", -14]], ["roomtone", -30]]
+ ]}

@@ -1,0 +1,280 @@
+{
+ "title": "V03 Clip 18",
+ "duration": 32.3,
+ "shots": [
+  {
+   "id": "t01",
+   "start": 0,
+   "end": 2.5,
+   "line": "But wait. Isn't Nvidia cheap now?",
+   "scene": "boutique window: the chip on a pedestal with a -39% sale tag, shoppers peer in",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "pop",
+     "gain": -19.1
+    },
+    {
+     "at": 1.2,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "city",
+    "gain": -32
+   }
+  },
+  {
+   "id": "t02",
+   "start": 2.5,
+   "end": 7.0,
+   "line": "This is the best argument the twenty twenty-six you has, and it's a good one.",
+   "scene": "debate stage: 2026-you vs 2000-you, the crowd nods, BEST ARGUMENT lights up",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 3.7,
+     "name": "applause",
+     "gain": -27.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "t03",
+   "start": 7.0,
+   "end": 9.8,
+   "line": "Cisco cost more than one hundred times its profit.",
+   "scene": "a tower grows to the sky with a 100x tag, a crowd looks up",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "riser",
+     "gain": -23.1
+    },
+    {
+     "at": 2.2,
+     "name": "hit",
+     "gain": -15.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "t04",
+   "start": 9.8,
+   "end": 15.5,
+   "line": "Nvidia, after the drop, costs about fifteen times, its cheapest in more than ten years.",
+   "scene": "a small cottage 15x beside the tower, P/E decade chart hits its lowest",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 1.9,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 3.3,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "t05",
+   "start": 15.5,
+   "end": 19.8,
+   "line": "That's a real difference. Cisco holders waited because they paid too much.",
+   "scene": "REAL DIFFERENCE badge, then an old Cisco holder on a park bench with pages flipping",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "hit",
+     "gain": -17.1
+    },
+    {
+     "at": 1.6,
+     "name": "clock",
+     "gain": -23.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -32
+   }
+  },
+  {
+   "id": "t06",
+   "start": 19.8,
+   "end": 24.0,
+   "line": "But a low price tag only protects you if the profit stays.",
+   "scene": "a price-tag shield stops arrows while the profit meter holds; it drops, the shield cracks",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.8,
+     "name": "impact",
+     "gain": -17.1
+    },
+    {
+     "at": 1.1,
+     "name": "impact",
+     "gain": -17.1
+    },
+    {
+     "at": 3.0,
+     "name": "glitch",
+     "gain": -21.1
+    },
+    {
+     "at": 3.3,
+     "name": "impact",
+     "gain": -15.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "t07",
+   "start": 24.0,
+   "end": 28.0,
+   "line": "Watch this. Nvidia trades at about fifteen times its profit.",
+   "scene": "chalkboard: PRICE $150 / PROFIT $10 = 15x written in chalk, a professor points",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 1.0,
+     "name": "blip",
+     "gain": -23.1
+    },
+    {
+     "at": 2.0,
+     "name": "blip",
+     "gain": -23.1
+    },
+    {
+     "at": 3.4,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "t08",
+   "start": 28.0,
+   "end": 32.3,
+   "line": "Now cut that profit in half, and leave the price exactly where it is.",
+   "scene": "scissors cut the profit coin in half, a padlock pins the price, = ?",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 1.0,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 2.6,
+     "name": "hit",
+     "gain": -17.1
+    },
+    {
+     "at": 3.5,
+     "name": "pop",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 7.0,
+   "mood": "playful",
+   "intensity": 0.28
+  },
+  {
+   "start": 7.0,
+   "end": 19.8,
+   "mood": "mystery",
+   "intensity": 0.28
+  },
+  {
+   "start": 19.8,
+   "end": 32.3,
+   "mood": "tension",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

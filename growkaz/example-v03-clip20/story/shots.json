@@ -1,0 +1,215 @@
+{
+ "title": "V03 Clip 20",
+ "duration": 25.3,
+ "shots": [
+  {
+   "id": "v01",
+   "start": 0,
+   "end": 5.2,
+   "line": "So, if the spending breaks, how long would you wait? Nobody can know that for Nvidia.",
+   "scene": "a waiting room: NOW SERVING ???, a big clock, you hold a ticket",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "tick",
+     "gain": -23.1
+    },
+    {
+     "at": 1.2,
+     "name": "tick",
+     "gain": -23.1
+    },
+    {
+     "at": 3.2,
+     "name": "pop",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "v02",
+   "start": 5.2,
+   "end": 7.4,
+   "line": "But history gives you a ladder.",
+   "scene": "camera pans up a tall ladder of four rungs",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "riser",
+     "gain": -23.1
+    },
+    {
+     "at": 1.4,
+     "name": "pop",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -32
+   }
+  },
+  {
+   "id": "v03",
+   "start": 7.4,
+   "end": 13.6,
+   "line": "If you bought the whole S&P five hundred at the two thousand top, you got back to even in about seven years.",
+   "scene": "rung 1: S&P 500, years tick 2000 to 2007",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 3.0,
+     "name": "clock",
+     "gain": -23.1
+    },
+    {
+     "at": 5.4,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "v04",
+   "start": 13.6,
+   "end": 15.7,
+   "line": "The Nasdaq took fifteen.",
+   "scene": "rung 2: Nasdaq, 15 years",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 1.2,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "v05",
+   "start": 15.7,
+   "end": 18.4,
+   "line": "Cisco, almost twenty-six.",
+   "scene": "rung 3: Cisco, ~26 years, the holder is grey",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 1.8,
+     "name": "ding",
+     "gain": -17.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "v06",
+   "start": 18.4,
+   "end": 25.3,
+   "line": "And Nortel, another giant of the internet boom, went bankrupt in two thousand and nine. Its holders never got back at all.",
+   "scene": "rung 4: Nortel, the rung is broken, BANKRUPT 2009, NEVER",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "zoom",
+    "dur": 0.5
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 3.6,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 4.4,
+     "name": "stinger",
+     "gain": -19.1
+    },
+    {
+     "at": 5.6,
+     "name": "heartbeat",
+     "gain": -19.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -32
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 5.3,
+   "mood": "tension",
+   "intensity": 0.28
+  },
+  {
+   "start": 5.3,
+   "end": 18.4,
+   "mood": "mystery",
+   "intensity": 0.3
+  },
+  {
+   "start": 18.4,
+   "end": 25.3,
+   "mood": "sad",
+   "intensity": 0.32
+  }
+ ],
+ "sfx": []
+}

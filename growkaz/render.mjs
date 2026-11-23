@@ -2,6 +2,7 @@
 //   node render.mjs --project projects/my-video                      full video  -> build/video_silent.mp4
 //   node render.mjs --project P --from 30 --to 45 --scale 0.5         preview a range
 //   node render.mjs --project P --sheet                               one still per shot -> build/sheets/*.png
+//   node render.mjs --project P --overflow --scale 0.5               scan every shot for text that sticks out of its box (build/overflow.json)
 //   node render.mjs --project P --stills 3.5,12,40                    stills at times -> build/stills
 //   node render.mjs --project P --styles emerald,ember,arctic,sakura,retro --at 3.5,12,40   style comparison grid
 // Options: --workers N  --scale K  --style ID  --debug  --format png|jpeg  --crf 18  --gl auto|gpu|swiftshader  --out FILE
@@ -36,9 +37,10 @@ const FORMAT = args.format === 'jpeg' ? 'jpeg' : 'png';
 const CFG = JSON.parse(fs.readFileSync(path.join(PROJECT, 'config.json'), 'utf8'));
 const FPS = CFG.fps || 24;
 
-async function openPlayer(browser, style) {
+async function openPlayer(browser, style, patch) {
   const qs = new URLSearchParams(); if (args.scale) qs.set('scale', args.scale); if (style || args.style) qs.set('style', style || args.style); if (args.debug) qs.set('debug', '1');
   const page = await browser.newPage({ viewport: { width: 640, height: 360 } });
+  if (patch) await page.addInitScript(patch);
   page.on('pageerror', e => console.log('[pageerror]', e.message));
   page.on('console', m => { const t = m.text(); if (/ERROR|missing/i.test(t)) console.log('[page]', t); });
   await page.goto(`http://localhost:${PORT}/player.html?${qs}`);
@@ -85,6 +87,35 @@ async function contactSheet(browser, items, outFile, cols = 4, cellW = 480) {
   const html = `<html><body style="margin:0;background:#111;font:600 15px sans-serif;color:#eee"><div style="display:grid;grid-template-columns:repeat(${cols},${cellW}px);gap:12px;padding:12px">${items.map(it => `<div><img src="data:image/${FORMAT};base64,${it.img.toString('base64')}" style="width:${cellW}px;display:block;border-radius:4px"><div style="padding:5px 2px">${it.label.replace(/</g, '&lt;')}</div></div>`).join('')}</div></body></html>`;
   await page.setContent(html); await page.screenshot({ path: outFile, fullPage: true }); await page.close();
 }
+
+const OVF_PATCH = `(() => {
+  const P = CanvasRenderingContext2D.prototype; let path = null, shapes = [], hits = [], seen = new Set();
+  const add = (ctx, x, y) => { const m = ctx.getTransform(), X = m.a * x + m.c * y + m.e, Y = m.b * x + m.d * y + m.f; if (!path) path = { x0: X, y0: Y, x1: X, y1: Y }; else { path.x0 = Math.min(path.x0, X); path.y0 = Math.min(path.y0, Y); path.x1 = Math.max(path.x1, X); path.y1 = Math.max(path.y1, Y); } };
+  const wrap = (name, fn) => { const o = P[name]; P[name] = function (...a) { fn(this, ...a); return o.apply(this, a); }; };
+  wrap('beginPath', () => { path = null; }); wrap('moveTo', (c, x, y) => add(c, x, y)); wrap('lineTo', (c, x, y) => add(c, x, y)); wrap('arcTo', (c, x1, y1, x2, y2) => { add(c, x1, y1); add(c, x2, y2); });
+  wrap('quadraticCurveTo', (c, cx, cy, x, y) => { add(c, cx, cy); add(c, x, y); }); wrap('bezierCurveTo', (c, a, b, d, e, x, y) => { add(c, a, b); add(c, d, e); add(c, x, y); });
+  wrap('rect', (c, x, y, w, h) => { add(c, x, y); add(c, x + w, y + h); }); wrap('roundRect', (c, x, y, w, h) => { add(c, x, y); add(c, x + w, y + h); }); wrap('arc', (c, x, y, r) => { add(c, x - r, y - r); add(c, x + r, y + r); }); wrap('ellipse', (c, x, y, rx, ry) => { add(c, x - rx, y - ry); add(c, x + rx, y + ry); });
+  const alphaOf = (c) => { const f = c.fillStyle; if (typeof f !== 'string') return 1; const m = f.match(/rgba?\(([^)]+)\)/); if (m) { const p = m[1].split(','); return p.length > 3 ? parseFloat(p[3]) : 1; } return 1; };
+  const oFill = P.fill; P.fill = function (...a) { if (path && this.globalAlpha > 0.4 && alphaOf(this) > 0.4) { const w = path.x1 - path.x0, h = path.y1 - path.y0; if (w > 20 && h > 14) shapes.push({ ...path, w, h }); } return oFill.apply(this, a); };
+  const oFR = P.fillRect; P.fillRect = function (x, y, w, h) { if (this.globalAlpha > 0.4 && alphaOf(this) > 0.4 && Math.abs(w) > 20 && Math.abs(h) > 14) { const m = this.getTransform(), pts = [[x, y], [x + w, y + h]].map(([px, py]) => [m.a * px + m.c * py + m.e, m.b * px + m.d * py + m.f]); shapes.push({ x0: Math.min(pts[0][0], pts[1][0]), x1: Math.max(pts[0][0], pts[1][0]), y0: Math.min(pts[0][1], pts[1][1]), y1: Math.max(pts[0][1], pts[1][1]), w: Math.abs(pts[1][0] - pts[0][0]), h: Math.abs(pts[1][1] - pts[0][1]) }); } return oFR.call(this, x, y, w, h); };
+  const oSt = P.stroke; P.stroke = function (...a) { if (path && this.globalAlpha > 0.4 && this.lineWidth * Math.abs(this.getTransform().a) >= 2) { const w = path.x1 - path.x0, h = path.y1 - path.y0; if (w > 40 && h > 24) shapes.push({ ...path, w, h }); } return oSt.apply(this, a); };
+  const oFT = P.fillText; P.fillText = function (txt, x, y, mw) { try { if (this.globalAlpha > 0.4 && String(txt).trim() && alphaOf(this) > 0.4 && this.fillStyle !== 'rgba(0,0,0,0)') {
+      const m = this.measureText(String(txt)), L = m.actualBoundingBoxLeft, R = m.actualBoundingBoxRight, A = m.actualBoundingBoxAscent, D = m.actualBoundingBoxDescent, T = this.getTransform();
+      const pts = [[x - L, y - A], [x + R, y - A], [x - L, y + D], [x + R, y + D]].map(([px, py]) => [T.a * px + T.c * py + T.e, T.b * px + T.d * py + T.f]);
+      const tb = { x0: Math.min(...pts.map(p => p[0])), x1: Math.max(...pts.map(p => p[0])), y0: Math.min(...pts.map(p => p[1])), y1: Math.max(...pts.map(p => p[1])) }; const tw = tb.x1 - tb.x0, th = tb.y1 - tb.y0, cx = (tb.x0 + tb.x1) / 2, cy = (tb.y0 + tb.y1) / 2;
+      let best = null; for (const s of shapes) { if (cx >= s.x0 && cx <= s.x1 && cy >= s.y0 && cy <= s.y1 && s.h >= th * 0.9 && s.w >= tw * 0.5 && (s.w >= 1.25 * s.h || s.h >= 3 * th) && s.w * s.h < 0.3 * innerWidth * innerHeight && (!best || s.w * s.h < best.w * best.h)) best = s; }
+      if (best) { const tol = Math.max(6, th * 0.12), ox = Math.max(best.x0 - tb.x0, tb.x1 - best.x1), oy = Math.max(best.y0 - tb.y0, tb.y1 - best.y1); if (ox > tol || oy > th * 0.4) { const key = String(txt) + '|' + Math.round(cx / 20) + '|' + Math.round(cy / 20); if (!seen.has(key)) { seen.add(key); hits.push({ text: String(txt), textW: Math.round(tw), boxW: Math.round(best.w), boxH: Math.round(best.h), overX: Math.round(ox), overY: Math.round(oy), at: [Math.round(cx), Math.round(cy)] }); } } }
+    } } catch (e) {} return oFT.call(this, txt, x, y, mw); };
+  window.__ovfReset = () => { shapes = []; hits = []; seen = new Set(); path = null; }; window.__ovfGet = () => hits.slice();
+})();`;
+async function scanOverflow() {
+  const browser = await chromium.launch(LAUNCH); const page = await openPlayer(browser, null, OVF_PATCH);
+  const shots = await page.evaluate('window.SHOT_LIST'); const out = []; const KS = [0.2, 0.4, 0.6, 0.8, 0.96];
+  for (const s of shots) for (const k of KS) { const t = s.start + (s.end - s.start) * k; await page.evaluate(() => window.__ovfReset()); await page.evaluate(i => window.renderFrame(i), Math.round(t * FPS)); const r = await page.evaluate(() => window.__ovfGet()); r.forEach(x => out.push({ shot: s.id, t: +t.toFixed(2), ...x })); }
+  fs.mkdirSync(BUILD, { recursive: true }); fs.writeFileSync(path.join(BUILD, 'overflow.json'), JSON.stringify(out, null, 1));
+  const seenK = new Set(); out.forEach(o => { const key = o.shot + o.text; if (seenK.has(key)) return; seenK.add(key); console.log(`OVERFLOW ${o.shot} t=${o.t}s "${o.text}" text ${o.textW}px in box ${o.boxW}x${o.boxH} (out by ${o.overX}/${o.overY}) at ${o.at}`); });
+  console.log(`overflow scan done: ${seenK.size} suspect text(s)`); await browser.close();
+}
 async function renderStills() {
   const browser = await chromium.launch(LAUNCH); const styles = args.styles ? String(args.styles).split(',') : [args.style || null];
   const dir = path.join(BUILD, args.styles ? 'styles' : args.sheet ? 'sheets' : 'stills'); fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
@@ -101,6 +132,6 @@ async function renderStills() {
   else { const per = 24; for (let i = 0; i < all.length; i += per) await contactSheet(browser, all.slice(i, i + per), path.join(dir, `sheet_${String(i / per + 1).padStart(2, '0')}.png`), 4, 440); }
   await browser.close(); console.log(`Wrote ${all.length} stills + contact sheet(s) to ${dir}`);
 }
-try { if (args.sheet || args.stills || args.styles) await renderStills(); else await renderVideo(); }
+try { if (args.overflow) await scanOverflow(); else if (args.sheet || args.stills || args.styles) await renderStills(); else await renderVideo(); }
 catch (e) { console.error('RENDER FAILED:', e.message); process.exitCode = 1; }
 finally { server.close(); }

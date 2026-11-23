@@ -1,0 +1,9 @@
+{"title": "V03 Clip 19", "dur": 17.8, "set": "mixed",
+ "music": [[0, 5.8, "tension", 0.3], [5.8, 17.8, "dark", 0.3]],
+ "shots": [
+  ["u01", 0, 1.3, "It's now thirty times.", "the chalkboard: 30x circled and shaking", "zoom", [[0.3, "impact", -12]], null],
+  ["u02", 1.3, 5.7, "The stock looks twice as expensive, and the price didn't move a single cent.", "valuation dial swings to 30x while the ticker shows CHANGE 0.00", "zoom", [[0.8, "riser", -20], [2.2, "hit", -14], [3.4, "tick", -18]], null],
+  ["u03", 5.7, 8.3, "And this industry does exactly that.", "a chip-profit rollercoaster, the cart dives", "zoom", [[0.4, "whoosh", -18], [1.3, "stinger", -16]], ["wind", -32]],
+  ["u04", 8.3, 14.7, "In Nvidia's own twenty twenty-three fiscal year, sales were almost flat, and profit fell fifty-five percent.", "FY bars: sales flat, profit falls 55%", "zoom", [[1.0, "pop", -14], [3.9, "impact", -12], [4.4, "hit", -12]], null],
+  ["u05", 14.7, 17.8, "Chip profits don't fade. They fall.", "FADE (gentle, crossed out) vs FALL (the chip tumbles off a cliff)", "zoom", [[0.3, "swish", -18], [1.9, "impact", -12], [2.3, "heartbeat", -16]], null]
+ ]}

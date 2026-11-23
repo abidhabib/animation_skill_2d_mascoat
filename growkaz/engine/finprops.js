@@ -27,6 +27,8 @@ const INK = '#1b1424', F = (g, c) => { g.fillStyle = c; g.fill(); }, S = (g, c, 
 const T = (g, s, x, y, sz, col, o = {}) => { g.save(); g.font = `${o.w || 700} ${sz}px ${o.font || 'Inter, "Segoe UI", Arial, sans-serif'}`; g.fillStyle = col; g.textAlign = o.align || 'left'; g.textBaseline = 'middle'; g.fillText(s, x, y); g.restore(); };
 const rnd = (i) => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
 export const FP = {};
+// shrink a font size so the string fits maxW (user 2026-11-23: text must never stick out of its box)
+const fitSz = (g, str, maxW, size, w = 700, font) => { g.save(); g.font = `${w} ${size}px ${font || 'Inter, "Segoe UI", Arial, sans-serif'}`; const tw = g.measureText(String(str)).width; g.restore(); return tw > maxW ? Math.max(10, Math.floor(size * maxW / tw)) : size; };
 
 FP.glass = (g, x, y, w, h, o = {}) => { g.save(); g.shadowColor = 'rgba(0,0,0,.45)'; g.shadowBlur = 40; g.shadowOffsetY = 18; rr(g, x, y, w, h, o.r || 28); F(g, o.fill || 'rgba(18,22,34,0.82)'); g.restore();
   g.save(); rr(g, x, y, w, h, o.r || 28); g.clip(); const gr = g.createLinearGradient(0, y, 0, y + h); gr.addColorStop(0, 'rgba(255,255,255,.10)'); gr.addColorStop(0.25, 'rgba(255,255,255,.02)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(x, y, w, h); g.restore();
@@ -60,11 +62,11 @@ FP.newspaper = (g, x, y, s, o = {}) => { g.save(); g.translate(x, y); g.rotate(o
   g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 30; g.shadowOffsetY = 14; g.fillStyle = '#f4efe2'; g.fillRect(-W / 2, -H / 2, W, H); g.shadowColor = 'transparent';
   T(g, o.paper || 'The Daily Ledger', 0, -H / 2 + 56, 50, '#151515', { align: 'center', font: serif, w: 800 }); seg(g, [[-W / 2 + 24, -H / 2 + 92], [W / 2 - 24, -H / 2 + 92]], 3, '#151515');
   T(g, o.date || 'MONDAY, MARCH 27, 2000', -W / 2 + 24, -H / 2 + 110, 14, '#333', { font: serif }); T(g, '50 CENTS', W / 2 - 24, -H / 2 + 110, 14, '#333', { font: serif, align: 'right' }); seg(g, [[-W / 2 + 24, -H / 2 + 124], [W / 2 - 24, -H / 2 + 124]], 1.5, '#151515');
-  (o.head || ['THE INTERNET', 'CHANGES EVERYTHING']).forEach((l, i) => T(g, l, 0, -H / 2 + 176 + i * 58, 52, '#111', { align: 'center', font: serif, w: 900 }));
+  (o.head || ['THE INTERNET', 'CHANGES EVERYTHING']).forEach((l, i) => T(g, l, 0, -H / 2 + 176 + i * 58, fitSz(g, l, W - 56, 52, 900, serif), '#111', { align: 'center', font: serif, w: 900 }));
   const py = -H / 2 + 300; g.fillStyle = '#ddd6c4'; g.fillRect(-W / 2 + 24, py, W * 0.58, 230); if (o.photo) o.photo(g, -W / 2 + 24, py, W * 0.58, 230); g.strokeStyle = '#151515'; g.lineWidth = 2; g.strokeRect(-W / 2 + 24, py, W * 0.58, 230);
   for (let i = 0; i < 14; i++) { const yy = py + 6 + i * 16.5; g.fillStyle = '#9a958a'; g.fillRect(W * 0.08 + 14, yy, (W * 0.42 - 40) * (0.7 + rnd(i) * 0.3), 6); }
   for (let c = 0; c < 4; c++) for (let i = 0; i < 12; i++) { g.fillStyle = '#a8a395'; g.fillRect(-W / 2 + 24 + c * (W - 48) / 4, py + 260 + i * 16.5, ((W - 48) / 4 - 16) * (0.6 + rnd(c * 20 + i) * 0.4), 6); }
-  T(g, o.sub || 'Tech giant now worth more than any company on Earth', -W / 2 + 24, py + 246, 15, '#222', { font: serif, w: 700 }); g.restore(); };
+  T(g, o.sub || 'Tech giant now worth more than any company on Earth', -W / 2 + 24, py + 246, fitSz(g, o.sub || 'Tech giant now worth more than any company on Earth', W - 48, 15, 700, serif), '#222', { font: serif, w: 700 }); g.restore(); };
 
 FP.tv2000 = (g, x, y, s, screen, t) => { g.save(); g.translate(x, y); g.scale(s, s); const W = 640, H = 480;
   seg(g, [[-60, -H / 2 - 40], [-170, -H / 2 - 200]], 6, '#3a3a3a'); seg(g, [[60, -H / 2 - 40], [170, -H / 2 - 210]], 6, '#3a3a3a'); circle(g, -170, -H / 2 - 200, 8, '#5a5a5a'); circle(g, 170, -H / 2 - 210, 8, '#5a5a5a');
@@ -76,7 +78,7 @@ FP.tv2000 = (g, x, y, s, screen, t) => { g.save(); g.translate(x, y); g.scale(s,
   for (let i = 0; i < 2; i++) { circle(g, W / 2 + 70, -H / 2 + 60 + i * 80, 22, '#c8b090'); S(g, INK, 4); } for (let i = 0; i < 6; i++) { rr(g, W / 2 + 40, 40 + i * 22, 60, 10, 4); F(g, '#3a2a1a'); } g.restore(); };
 
 FP.newsBanner = (g, x, y, w, head, t, o = {}) => { rr(g, x, y, 190, 70, 6); F(g, '#d81e2a'); T(g, o.tag || 'LIVE', x + 95, y + 36, 32, '#ffffff', { align: 'center', w: 900 });
-  g.fillStyle = '#ffffff'; g.fillRect(x + 190, y, w - 190, 70); T(g, head, x + 214, y + 36, 34, '#111', { w: 900 }); g.fillStyle = '#101820'; g.fillRect(x, y + 70, w, 36);
+  g.fillStyle = '#ffffff'; g.fillRect(x + 190, y, w - 190, 70); T(g, head, x + 214, y + 36, fitSz(g, head, w - 190 - 44, 34, 900), '#111', { w: 900 }); g.fillStyle = '#101820'; g.fillRect(x, y + 70, w, 36);
   g.save(); g.beginPath(); g.rect(x, y + 70, w, 36); g.clip(); const s2 = o.ticker || 'NASDAQ 4,223 -6.2%   CSCO 57.13 -28.6%   DOW 10,560 -1.1%   ANALYSTS: "STILL THE BEST COMPANY IN THE WORLD"'; for (let k = 0; k < 3; k++) T(g, s2, x + 20 - (t * 140) % 1600 + k * 1600, y + 89, 20, '#ffd24a', { w: 700 }); g.restore(); };
 
 FP.phone = (g, x, y, s, screen, o = {}) => { g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s); const W = 360, H = 760;
@@ -88,7 +90,7 @@ FP.phone = (g, x, y, s, screen, o = {}) => { g.save(); g.translate(x, y); g.rota
 FP.post = (g, x, y, w, o = {}) => { const h = o.h || 210; FP.glass(g, x, y, w, h, { r: 22, fill: 'rgba(24,27,38,.95)' });
   g.save(); g.beginPath(); g.arc(x + 46, y + 46, 26, 0, 7); g.fillStyle = o.color || '#4a78b8'; g.fill(); g.clip(); bigToonFace(g, x + 46, y + 56, 15, { cast: o.cast || HERO, expr: o.expr || 'happy' }); g.restore();
   T(g, o.name || 'Alex', x + 86, y + 36, 21, '#ffffff', { w: 800 }); T(g, (o.handle || '@alex') + ' · ' + (o.ago || '2m'), x + 86, y + 60, 17, '#8a90a0', { w: 500 });
-  T(g, o.text || 'It’s a dip. Buy it.', x + 24, y + 110, o.size || 30, '#ffffff', { w: 800 }); if (o.emoji) T(g, o.emoji, x + w - 70, y + 110, 30, '#2fd67a', { w: 900 });
+  T(g, o.text || 'It’s a dip. Buy it.', x + 24, y + 110, fitSz(g, o.text || 'It’s a dip. Buy it.', w - 48 - (o.emoji ? 60 : 0), o.size || 30, 800), '#ffffff', { w: 800 }); if (o.emoji) T(g, o.emoji, x + w - 70, y + 110, 30, '#2fd67a', { w: 900 });
   for (const [i, ic] of ['♡', '↻', '↗'].entries()) T(g, ic + ' ' + (o.likes ? o.likes[i] : ['2.4K', '318', '']), x + 24 + i * 130, y + h - 32, 18, '#8a90a0', { w: 600 }); };
 
 FP.statement = (g, x, y, s, o = {}) => { g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s); const W = 620, H = 820;
@@ -115,7 +117,7 @@ FP.shelf = (g, x, y, w, o = {}) => { const prods = o.prods || [['MILK', '#f4f4f8
 FP.commentCard = (g, x, y, w, o = {}) => { FP.glass(g, x, y, w, 150, { r: 20, fill: 'rgba(20,22,30,.94)' });
   g.save(); g.beginPath(); g.arc(x + 44, y + 48, 24, 0, 7); g.fillStyle = o.color || '#e0562f'; g.fill(); g.clip(); bigToonFace(g, x + 44, y + 57, 14, { cast: o.cast || HERO, expr: o.expr || 'smile' }); g.restore();
   T(g, o.name || '@viewer', x + 84, y + 36, 19, '#ffffff', { w: 800 }); T(g, o.ago || '3 hours ago', x + 84 + Math.min(220, (o.name || '@viewer').length * 11 + 16), y + 36, 16, '#8a90a0', { w: 500 });
-  T(g, o.text || 'Held. Never sold.', x + 84, y + 76, 24, '#e8eaf0', { w: 600 }); T(g, '\u{1F44D} ' + (o.likes || '1.2K') + '      \u{1F44E}      Reply', x + 84, y + 118, 17, '#8a90a0', { w: 600 }); };
+  T(g, o.text || 'Held. Never sold.', x + 84, y + 76, fitSz(g, o.text || 'Held. Never sold.', w - 84 - 22, 24, 600), '#e8eaf0', { w: 600 }); T(g, '\u{1F44D} ' + (o.likes || '1.2K') + '      \u{1F44E}      Reply', x + 84, y + 118, 17, '#8a90a0', { w: 600 }); };
 
 FP.door = (g, x, y, s, label, open, o = {}) => { g.save(); g.translate(x, y); g.scale(s, s); const c = o.color || '#7a4e34';
   rr(g, -150, -440, 300, 440, 10); F(g, '#2a2230'); S(g, INK, 6); if (open > 0) { const lg = g.createLinearGradient(0, -440, 0, 0); lg.addColorStop(0, alpha(o.light || '#fff2c8', 0.9)); lg.addColorStop(1, alpha(o.light || '#fff2c8', 0.4)); g.fillStyle = lg; g.fillRect(-140, -430, 280, 430); }
@@ -209,8 +211,9 @@ FP.contract = (g, x, y, s, k = 0, o = {}) => { g.save(); g.translate(x, y); g.ro
   circle(g, W / 2 - 100, -H / 2 + 330, 0.1, '#000'); g.restore(); };
 
 // big rubber-stamp text slamming down. k = 0..1 progress of the slam; col = ink colour
-FP.stamp = (g, x, y, s, label, col, k, o = {}) => { if (k <= 0) return; const sc = 1 + (1 - ease.out(clamp(k * 3, 0, 1))) * 1.3; g.save(); g.translate(x, y); g.rotate(o.rot ?? -0.12); g.scale(s * sc, s * sc); g.globalAlpha = clamp(k * 4, 0, 1);
-  rr(g, -250, -76, 500, 152, 20); g.fillStyle = alpha(col, 0.1); g.fill(); g.strokeStyle = col; g.lineWidth = 11; g.stroke(); rr(g, -236, -62, 472, 124, 14); g.lineWidth = 3; g.stroke(); T(g, label, 0, 6, o.fs || 98, col, { align: 'center', w: 900 }); g.restore(); };
+FP.stamp = (g, x, y, s, label, col, k, o = {}) => { if (k <= 0) return; const fs = o.fs || 98; g.save(); g.font = `900 ${fs}px Inter, "Segoe UI", Arial, sans-serif`; const tw = g.measureText(label).width; g.restore(); const W = Math.max(380, tw + 120), H = fs * 1.5;   // the box always grows to fit the text (user 2026-11-23: text must never stick out)
+  const sc = 1 + (1 - ease.out(clamp(k * 3, 0, 1))) * 1.3; g.save(); g.translate(x, y); g.rotate(o.rot ?? -0.12); g.scale(s * sc, s * sc); g.globalAlpha = clamp(k * 4, 0, 1);
+  rr(g, -W / 2, -H / 2, W, H, 20); g.fillStyle = alpha(col, 0.1); g.fill(); g.strokeStyle = col; g.lineWidth = 11; g.stroke(); rr(g, -W / 2 + 14, -H / 2 + 14, W - 28, H - 28, 14); g.lineWidth = 3; g.stroke(); T(g, label, 0, 6, fs, col, { align: 'center', w: 900 }); g.restore(); };
 
 // cash register on a counter, bottom-centre ~300w x 250h. open = drawer 0..1; o.amount shown on the display
 FP.register = (g, x, y, s, open = 0, o = {}) => { g.save(); g.translate(x, y); g.scale(s, s);
@@ -221,15 +224,15 @@ FP.register = (g, x, y, s, open = 0, o = {}) => { g.save(); g.translate(x, y); g
 // cheque / loan note. o: {amount:'$250,000', pay:'THE BAKERY'}
 FP.cheque = (g, x, y, s, o = {}) => { g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s); const W = 560, H = 240;
   g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 22; g.shadowOffsetY = 10; rr(g, -W / 2, -H / 2, W, H, 10); F(g, '#e6f2e4'); g.shadowColor = 'transparent'; S(g, '#4a7a5a', 4);
-  for (let i = 0; i < 6; i++) seg(g, [[-W / 2 + 20, -H / 2 + 30 + i * 34], [W / 2 - 20, -H / 2 + 30 + i * 34 + 4]], 1.5, 'rgba(74,122,90,.18)'); T(g, o.bank || 'THE BANK', -W / 2 + 28, -H / 2 + 36, 24, '#1f5a3a', { w: 900 }); T(g, o.date || 'LOAN NOTE', W / 2 - 28, -H / 2 + 36, 18, '#4a7a5a', { align: 'right', w: 600 });
-  T(g, 'PAY', -W / 2 + 28, -14, 20, '#4a7a5a', { w: 700 }); T(g, o.pay || 'THE BAKERY', -W / 2 + 90, -14, 30, '#1a2a22', { w: 800, font: 'Georgia, serif' }); seg(g, [[-W / 2 + 84, 4], [W / 2 - 190, 4]], 2, '#1a2a22');
+  for (let i = 0; i < 6; i++) seg(g, [[-W / 2 + 20, -H / 2 + 30 + i * 34], [W / 2 - 20, -H / 2 + 30 + i * 34 + 4]], 1.5, 'rgba(74,122,90,.18)'); T(g, o.bank || 'THE BANK', -W / 2 + 28, -H / 2 + 36, fitSz(g, o.bank || 'THE BANK', 300, 24, 900), '#1f5a3a', { w: 900 }); T(g, o.date || 'LOAN NOTE', W / 2 - 28, -H / 2 + 36, 18, '#4a7a5a', { align: 'right', w: 600 });
+  T(g, 'PAY', -W / 2 + 28, -14, 20, '#4a7a5a', { w: 700 }); T(g, o.pay || 'THE BAKERY', -W / 2 + 90, -14, fitSz(g, o.pay || 'THE BAKERY', W - 90 - 28 - 190 - 10, 30, 800, 'Georgia, serif'), '#1a2a22', { w: 800, font: 'Georgia, serif' }); seg(g, [[-W / 2 + 84, 4], [W / 2 - 190, 4]], 2, '#1a2a22');
   rr(g, W / 2 - 180, -38, 156, 52, 8); F(g, '#ffffff'); S(g, '#1f5a3a', 3); T(g, o.amount || '$250,000', W / 2 - 102, -12, 28, '#1a2a22', { align: 'center', w: 900 }); seg(g, [[-W / 2 + 28, H / 2 - 36], [-W / 2 + 230, H / 2 - 36]], 2, '#1a2a22'); T(g, 'GUARANTEED BY YOU', -W / 2 + 28, H / 2 - 18, 15, '#a0302a', { w: 800 }); g.restore(); };
 
 // chain from (x0,y0) to (x1,y1) with a sag, links as ovals; draws an iron ball at the end if o.ball ('label')
 FP.chain = (g, x0, y0, x1, y1, o = {}) => { const n = o.links || 14, sag = o.sag ?? 50, col = o.col || '#9aa0ac';
   for (let i = 0; i <= n; i++) { const p = i / n, px = lerp(x0, x1, p), py = lerp(y0, y1, p) + Math.sin(p * Math.PI) * sag, q = (i + 1) / n, nx = lerp(x0, x1, q), ny = lerp(y0, y1, q) + Math.sin(q * Math.PI) * sag, a = Math.atan2(ny - py, nx - px);
     g.save(); g.translate(px, py); g.rotate(a + (i % 2 ? Math.PI / 2 : 0)); g.beginPath(); g.ellipse(0, 0, 17, 9, 0, 0, 7); g.strokeStyle = INK; g.lineWidth = 11; g.stroke(); g.strokeStyle = col; g.lineWidth = 6; g.stroke(); g.restore(); }
-  if (o.ball) { circle(g, x1, y1 + 46, 56, '#2a2e38'); S(g, INK, 6); g.fillStyle = 'rgba(255,255,255,.18)'; g.beginPath(); g.ellipse(x1 - 18, y1 + 26, 16, 10, -0.6, 0, 7); g.fill(); T(g, o.ball, x1, y1 + 50, 20, '#ffffff', { align: 'center', w: 900 }); } };
+  if (o.ball) { circle(g, x1, y1 + 46, 56, '#2a2e38'); S(g, INK, 6); g.fillStyle = 'rgba(255,255,255,.18)'; g.beginPath(); g.ellipse(x1 - 18, y1 + 26, 16, 10, -0.6, 0, 7); g.fill(); T(g, o.ball, x1, y1 + 50, fitSz(g, o.ball, 92, 20, 900), '#ffffff', { align: 'center', w: 900 }); } };
 
 // room backdrops for the oven-shop story. Both return {gy} (floor line). Figures are drawn by the scene on top.
 FP.ovenShop = (g, t, o = {}) => { const gy = E.H * 0.8, n = o.ovens ?? 5;

@@ -26,7 +26,7 @@ registerShot('q01', { draw(g, t, info) { const c = camEase(t, info.dur, { z0: 1.
     drawToon(g, { x: 700, y: gy + 40, s: 1.9, facing: 1, cast: HERO, pose: breathe(posesAt(t, [[0, 'stand'], [0.5, 'explain'], [2.0, 'shrug']]), t), expr: t > 2.0 ? 'smug' : 'smile', talk: t > 0.3 && t < 3.6, blink: blink(t), rim: RIM });
     drawToon(g, { x: 1290, y: gy + 40, s: 1.9, facing: -1, cast: MOM, pose: breathe(posesAt(t, [[0, 'stand'], [2.2, 'holdFront']]), t), expr: 'smile', blink: blink(t + 1), rim: RIM });
     drawToon(g, { x: 1000, y: gy + 20, s: 1.3, facing: -1, cast: KID, pose: breathe(POSES.stand, t), expr: 'happy', blink: blink(t + 2), rim: RIM });
-    const k = pop(t, 1.1, 0.4); if (k > 0) { g.save(); g.translate(690, 130); g.scale(k, k); D.thought(g, 0, 0, 1, { text: '' }); chipMini(g, 0, 0, 1.4); seg(g, [[-52, -52], [52, 52]], 12, '#e0302a'); seg(g, [[52, -52], [-52, 52]], 12, '#e0302a'); text(g, "I don't own Nvidia", 0, 70, { size: 32, color: INK, stroke: 0 }); g.restore(); } }); } });
+    const k = pop(t, 1.1, 0.4); if (k > 0) { g.save(); g.translate(690, 130); g.scale(k, k); D.thought(g, 0, 0, 1, { text: '' }); chipMini(g, 0, -22, 1.1); seg(g, [[-42, -64], [42, 20]], 10, '#e0302a'); seg(g, [[42, -64], [-42, 20]], 10, '#e0302a'); text(g, "I don't own Nvidia", 0, 52, { size: 24, color: INK, stroke: 0 }); g.restore(); } }); } });
 
 // q02 "But if you have a retirement account or an S&P five hundred index fund, about six cents of every dollar is in Nvidia."
 //   a phone shows the retirement app: a donut with a 6% slice; a grid of 100 coins; six glow green with a chip
