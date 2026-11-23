@@ -19,6 +19,7 @@
 //   hourglass    glass hourglass; k = sand fallen 0..1
 //   report       report cover (title lines, seal, barcode)
 //   vault        bank vault door with wheel handle (open 0..1)
+//   oven, bank, contract(+signature), stamp, register, cheque, chain(+ball), ovenShop(bg), bankInterior(bg)  (V03 clips 12-14)
 import { E, ease, prog, clamp, lerp, rr, seg, circle, glow, alpha, text } from '/engine/core.js';
 import { bigToonFace, HERO } from '/engine/toon2d.js';
 
@@ -176,3 +177,76 @@ FP.vault = (g, x, y, s, open, o = {}) => { g.save(); g.translate(x, y); g.scale(
   if (open > 0) { const lg = g.createRadialGradient(0, 0, 20, 0, 0, 200); lg.addColorStop(0, alpha(o.light || '#ffe28a', 0.95)); lg.addColorStop(1, alpha(o.light || '#ffe28a', 0.15)); g.fillStyle = lg; g.beginPath(); g.arc(0, 0, 190, 0, 7); g.fill(); }
   g.save(); g.scale(1 - 0.85 * ease.inOut(open), 1); circle(g, 0, 0, 190, '#7a8494'); S(g, INK, 8); circle(g, 0, 0, 160, '#9aa4b4'); S(g, INK, 4); for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; circle(g, Math.cos(a) * 172, Math.sin(a) * 172, 9, '#5a6474'); }
   g.save(); g.rotate(open * 4.0 + (o.spin || 0)); circle(g, 0, 0, 40, '#b8c0cc'); S(g, INK, 5); for (let i = 0; i < 4; i++) { g.rotate(Math.PI / 2); seg(g, [[0, 0], [0, -110]], 16, INK); seg(g, [[0, 0], [0, -110]], 9, '#c8d0dc'); circle(g, 0, -118, 14, '#c8d0dc'); S(g, INK, 4); } g.restore(); g.restore(); g.restore(); };
+
+// ---- V03 clips 12-14: the oven-shop analogy + guarantees ----
+// stainless commercial oven, bottom-centre anchor, ~200w x 240h. o: {glow, bread, tag:'$4k', on}
+FP.oven = (g, x, y, s, o = {}) => { g.save(); g.translate(x, y); g.scale(s, s); const W = 200, H = 240;
+  for (const d of [-1, 1]) { rr(g, d * 78 - 10, -22, 20, 22, 4); F(g, '#4a4e58'); S(g, INK, 3); }
+  rr(g, -W / 2, -H, W, H - 20, 14); const gr = g.createLinearGradient(-W / 2, 0, W / 2, 0); gr.addColorStop(0, '#b8c0cc'); gr.addColorStop(0.5, '#f0f4fa'); gr.addColorStop(1, '#9aa4b2'); g.fillStyle = gr; g.fill(); S(g, INK, 6);
+  rr(g, -W / 2 + 10, -H + 10, W - 20, 40, 8); F(g, '#3a3e48'); for (let i = 0; i < 3; i++) { circle(g, -50 + i * 50, -H + 30, 11, '#e8ecf4'); seg(g, [[-50 + i * 50, -H + 30], [-50 + i * 50 + 6, -H + 22]], 3, INK); } circle(g, 74, -H + 30, 7, o.on ? '#ff5a3a' : '#5a3a3a');
+  rr(g, -W / 2 + 16, -H + 62, W - 32, H - 112, 10); F(g, '#2a2e38'); S(g, INK, 5); rr(g, -W / 2 + 30, -H + 76, W - 60, H - 142, 6); F(g, o.glow ? '#ffb050' : '#3a3e48');
+  if (o.glow) glow(g, 0, -H / 2 - 10, 130, '#ff9a30', 0.3); if (o.bread) for (let i = 0; i < 3; i++) { g.fillStyle = '#8a4a1a'; g.beginPath(); g.ellipse(-38 + i * 38, -H + 150, 17, 10, 0, 0, 7); g.fill(); }
+  seg(g, [[-60, -H + 66], [60, -H + 66]], 7, '#c8ced8'); g.fillStyle = 'rgba(255,255,255,.22)'; g.fillRect(-W / 2 + 34, -H + 80, 10, H - 150);
+  if (o.tag) { seg(g, [[W / 2 - 22, -H + 60], [W / 2 - 8, -H + 26]], 3, INK); rr(g, W / 2 - 44, -H + 20, 72, 38, 6); F(g, '#ffe24a'); S(g, INK, 3); T(g, o.tag, W / 2 - 8, -H + 40, 20, INK, { align: 'center', w: 900 }); }
+  g.restore(); };
+
+// generic bank facade: pediment, columns, steps, sign. bottom-centre, ~560w x 420h
+FP.bank = (g, x, y, s, o = {}) => { g.save(); g.translate(x, y); g.scale(s, s);
+  for (let i = 0; i < 3; i++) { rr(g, -300 + i * 20, -30 + i * 10 - 10, 600 - i * 40, 20, 3); F(g, ['#c8c2b4', '#d8d2c4', '#e8e2d4'][i]); S(g, INK, 3); }
+  rr(g, -250, -260, 500, 230, 4); F(g, '#efe8d8'); S(g, INK, 5); for (let i = 0; i < 5; i++) { const cx = -200 + i * 100; rr(g, cx - 22, -250, 44, 215, 6); const cg = g.createLinearGradient(cx - 22, 0, cx + 22, 0); cg.addColorStop(0, '#d8d0bc'); cg.addColorStop(0.5, '#fffaf0'); cg.addColorStop(1, '#c8c0aa'); g.fillStyle = cg; g.fill(); S(g, INK, 4); }
+  g.beginPath(); g.moveTo(-280, -260); g.lineTo(0, -380); g.lineTo(280, -260); g.closePath(); F(g, '#e0d8c4'); S(g, INK, 6); rr(g, -130, -330, 260, 56, 8); F(g, '#1f3a5f'); S(g, INK, 4); T(g, o.name || 'THE BANK', 0, -301, 36, '#ffe28a', { align: 'center', w: 900 });
+  rr(g, -52, -150, 104, 118, 6); F(g, '#5a3a22'); S(g, INK, 4); circle(g, 30, -92, 6, '#ffc83a'); g.restore(); };
+
+// contract page with a signature that draws itself: k = signature progress 0..1. o: {title, lines:[...], pen:true}
+const SIG = [[-210, 6], [-180, -34], [-160, 18], [-124, -44], [-96, 12], [-66, -22], [-28, 14], [26, -34], [78, 8], [136, -14], [196, 6]];
+FP.contract = (g, x, y, s, k = 0, o = {}) => { g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s); const W = 560, H = 720;
+  g.shadowColor = 'rgba(0,0,0,.4)'; g.shadowBlur = 30; g.shadowOffsetY = 14; rr(g, -W / 2, -H / 2, W, H, 6); F(g, '#fbfaf4'); g.shadowColor = 'transparent';
+  T(g, o.title || 'GUARANTEE', 0, -H / 2 + 76, 58, '#1f3a5f', { align: 'center', w: 900, font: 'Georgia, serif' }); seg(g, [[-W / 2 + 50, -H / 2 + 120], [W / 2 - 50, -H / 2 + 120]], 4, '#1f3a5f');
+  (o.lines || ['If the borrower fails to pay,', 'the guarantor will cover the', 'full amount, up to the limit.']).forEach((l, i) => T(g, l, -W / 2 + 56, -H / 2 + 180 + i * 46, 29, '#33363e', { w: 600, font: 'Georgia, serif' }));
+  for (let i = 0; i < 6; i++) { g.fillStyle = '#d4d6dc'; g.fillRect(-W / 2 + 56, -H / 2 + 345 + i * 28, (W - 112) * (0.55 + ((i * 7) % 4) * 0.1), 8); }
+  T(g, 'Guarantor', -W / 2 + 56, H / 2 - 92, 22, '#6a6e7a', { w: 700 }); seg(g, [[-W / 2 + 56, H / 2 - 120], [W / 2 - 56, H / 2 - 120]], 3, '#1a1a22');
+  if (k > 0) { g.beginPath(); const n = Math.max(1, Math.floor((SIG.length - 1) * k)); SIG.forEach(([px, py], i) => { if (i > n) return; const f = i === n ? ((SIG.length - 1) * k - n) : 1; const [qx, qy] = i ? SIG[i - 1] : SIG[0]; const ex = i ? qx + (px - qx) * f : px, ey = i ? qy + (py - qy) * f : py; i ? g.lineTo(ex, ey + H / 2 - 150) : g.moveTo(px, py + H / 2 - 150); }); g.strokeStyle = '#1a3aa0'; g.lineWidth = 6; g.lineCap = 'round'; g.lineJoin = 'round'; g.stroke(); }
+  circle(g, W / 2 - 100, -H / 2 + 330, 0.1, '#000'); g.restore(); };
+
+// big rubber-stamp text slamming down. k = 0..1 progress of the slam; col = ink colour
+FP.stamp = (g, x, y, s, label, col, k, o = {}) => { if (k <= 0) return; const sc = 1 + (1 - ease.out(clamp(k * 3, 0, 1))) * 1.3; g.save(); g.translate(x, y); g.rotate(o.rot ?? -0.12); g.scale(s * sc, s * sc); g.globalAlpha = clamp(k * 4, 0, 1);
+  rr(g, -250, -76, 500, 152, 20); g.fillStyle = alpha(col, 0.1); g.fill(); g.strokeStyle = col; g.lineWidth = 11; g.stroke(); rr(g, -236, -62, 472, 124, 14); g.lineWidth = 3; g.stroke(); T(g, label, 0, 6, o.fs || 98, col, { align: 'center', w: 900 }); g.restore(); };
+
+// cash register on a counter, bottom-centre ~300w x 250h. open = drawer 0..1; o.amount shown on the display
+FP.register = (g, x, y, s, open = 0, o = {}) => { g.save(); g.translate(x, y); g.scale(s, s);
+  rr(g, -140 + open * 6, -70 + open * 0, 280, 60 + open * 40, 10); F(g, '#7a4e2e'); S(g, INK, 5); if (open > 0) { rr(g, -126, -54 + open * 34, 252, 34, 6); F(g, '#2a2e38'); for (let i = 0; i < 4; i++) { g.fillStyle = '#7fd08a'; g.fillRect(-110 + i * 56, -54 + open * 34 + 4, 44, 24); } }
+  rr(g, -150, -180, 300, 120, 16); F(g, '#c8ced8'); S(g, INK, 6); rr(g, -112, -168, 224, 56, 8); F(g, '#0e2a1a'); S(g, INK, 4); T(g, o.amount || '$0.00', 100, -140, 40, '#5aff8a', { align: 'right', font: '"Courier New", monospace' });
+  for (let r = 0; r < 2; r++) for (let c = 0; c < 6; c++) { rr(g, -124 + c * 42, -100 + r * 26, 34, 20, 4); F(g, c === 5 ? '#e0562f' : '#e8ecf4'); S(g, INK, 2); } seg(g, [[-100, -190], [-100, -250]], 8, '#8a8e98'); g.restore(); };
+
+// cheque / loan note. o: {amount:'$250,000', pay:'THE BAKERY'}
+FP.cheque = (g, x, y, s, o = {}) => { g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s); const W = 560, H = 240;
+  g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 22; g.shadowOffsetY = 10; rr(g, -W / 2, -H / 2, W, H, 10); F(g, '#e6f2e4'); g.shadowColor = 'transparent'; S(g, '#4a7a5a', 4);
+  for (let i = 0; i < 6; i++) seg(g, [[-W / 2 + 20, -H / 2 + 30 + i * 34], [W / 2 - 20, -H / 2 + 30 + i * 34 + 4]], 1.5, 'rgba(74,122,90,.18)'); T(g, o.bank || 'THE BANK', -W / 2 + 28, -H / 2 + 36, 24, '#1f5a3a', { w: 900 }); T(g, o.date || 'LOAN NOTE', W / 2 - 28, -H / 2 + 36, 18, '#4a7a5a', { align: 'right', w: 600 });
+  T(g, 'PAY', -W / 2 + 28, -14, 20, '#4a7a5a', { w: 700 }); T(g, o.pay || 'THE BAKERY', -W / 2 + 90, -14, 30, '#1a2a22', { w: 800, font: 'Georgia, serif' }); seg(g, [[-W / 2 + 84, 4], [W / 2 - 190, 4]], 2, '#1a2a22');
+  rr(g, W / 2 - 180, -38, 156, 52, 8); F(g, '#ffffff'); S(g, '#1f5a3a', 3); T(g, o.amount || '$250,000', W / 2 - 102, -12, 28, '#1a2a22', { align: 'center', w: 900 }); seg(g, [[-W / 2 + 28, H / 2 - 36], [-W / 2 + 230, H / 2 - 36]], 2, '#1a2a22'); T(g, 'GUARANTEED BY YOU', -W / 2 + 28, H / 2 - 18, 15, '#a0302a', { w: 800 }); g.restore(); };
+
+// chain from (x0,y0) to (x1,y1) with a sag, links as ovals; draws an iron ball at the end if o.ball ('label')
+FP.chain = (g, x0, y0, x1, y1, o = {}) => { const n = o.links || 14, sag = o.sag ?? 50, col = o.col || '#9aa0ac';
+  for (let i = 0; i <= n; i++) { const p = i / n, px = lerp(x0, x1, p), py = lerp(y0, y1, p) + Math.sin(p * Math.PI) * sag, q = (i + 1) / n, nx = lerp(x0, x1, q), ny = lerp(y0, y1, q) + Math.sin(q * Math.PI) * sag, a = Math.atan2(ny - py, nx - px);
+    g.save(); g.translate(px, py); g.rotate(a + (i % 2 ? Math.PI / 2 : 0)); g.beginPath(); g.ellipse(0, 0, 17, 9, 0, 0, 7); g.strokeStyle = INK; g.lineWidth = 11; g.stroke(); g.strokeStyle = col; g.lineWidth = 6; g.stroke(); g.restore(); }
+  if (o.ball) { circle(g, x1, y1 + 46, 56, '#2a2e38'); S(g, INK, 6); g.fillStyle = 'rgba(255,255,255,.18)'; g.beginPath(); g.ellipse(x1 - 18, y1 + 26, 16, 10, -0.6, 0, 7); g.fill(); T(g, o.ball, x1, y1 + 50, 20, '#ffffff', { align: 'center', w: 900 }); } };
+
+// room backdrops for the oven-shop story. Both return {gy} (floor line). Figures are drawn by the scene on top.
+FP.ovenShop = (g, t, o = {}) => { const gy = E.H * 0.8, n = o.ovens ?? 5;
+  const w = g.createLinearGradient(0, 0, 0, gy); w.addColorStop(0, '#34767f'); w.addColorStop(1, '#245a64'); g.fillStyle = w; g.fillRect(-E.W, -E.H, E.W * 3, gy + E.H);
+  g.strokeStyle = 'rgba(255,255,255,.07)'; g.lineWidth = 2; for (let y = 60; y < gy; y += 70) { g.beginPath(); g.moveTo(-E.W, y); g.lineTo(E.W * 2, y); g.stroke(); for (let x = (y / 70 % 2) * 60 - E.W; x < E.W * 2; x += 120) { g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + 70); g.stroke(); } }
+  rr(g, 90, 110, 430, 470, 16); F(g, '#bfe4f4'); S(g, '#e8dcc4', 14); seg(g, [[305, 110], [305, 580]], 10, '#e8dcc4'); seg(g, [[90, 345], [520, 345]], 10, '#e8dcc4'); glow(g, 305, 340, 300, '#ffffff', 0.15);
+  g.save(); rr(g, 120, 140, 370, 410, 8); g.clip(); g.fillStyle = '#8ac8e8'; g.fillRect(120, 140, 370, 410); for (let i = 0; i < 6; i++) { g.fillStyle = '#6aa8c8'; g.fillRect(130 + i * 62, 380 - (i * 53) % 120, 44, 170 + (i * 53) % 120); } g.restore();
+  const fl = 0.75 + 0.25 * Math.sin(t * 7); rr(g, 130, 36, 360, 62, 14); F(g, '#12161e'); S(g, INK, 4); T(g, 'OVENS', 310, 68, 46, `rgba(255,140,90,${fl})`, { align: 'center', w: 900 }); glow(g, 310, 68, 220, '#ff7a3a', 0.2 * fl);
+  for (const y of [300, 470]) { rr(g, 1380, y, 480, 18, 4); F(g, '#7a4e2e'); S(g, INK, 4); for (let i = 0; i < 5; i++) { g.fillStyle = ['#c8844a', '#d8984a', '#b87438'][i % 3]; g.beginPath(); g.ellipse(1430 + i * 92, y - 20, 38, 22, 0, 0, 7); g.fill(); g.strokeStyle = INK; g.lineWidth = 3; g.stroke(); for (let s = 0; s < 3; s++) seg(g, [[1412 + i * 92 + s * 16, y - 30], [1420 + i * 92 + s * 16, y - 10]], 3, '#8a5428'); } }
+  g.fillStyle = '#e8dcc4'; g.fillRect(-E.W, gy, E.W * 3, E.H); for (let x = -E.W; x < E.W * 2; x += 140) for (let r = 0; r < 4; r++) { if ((x / 140 + r) % 2) { g.fillStyle = 'rgba(0,0,0,.06)'; g.fillRect(x, gy + r * 70, 140, 70); } }
+  g.fillStyle = '#3a2a1c'; g.fillRect(-E.W, gy - 6, E.W * 3, 12);
+  for (let i = 0; i < n; i++) FP.oven(g, 640 + i * 190, gy + 6, 0.95, { glow: o.glow, bread: o.glow, tag: o.tags ? o.tags[i] : null, on: o.glow });
+  return { gy }; };
+FP.bankInterior = (g, t, o = {}) => { const gy = E.H * 0.8; const w = g.createLinearGradient(0, 0, 0, gy); w.addColorStop(0, '#e8dfc8'); w.addColorStop(1, '#d4c8a8'); g.fillStyle = w; g.fillRect(-E.W, -E.H, E.W * 3, gy + E.H);
+  g.fillStyle = '#7a5a38'; g.fillRect(-E.W, gy - 220, E.W * 3, 220); g.fillStyle = 'rgba(0,0,0,.12)'; for (let x = -E.W; x < E.W * 2; x += 150) { rr(g, x + 10, gy - 200, 130, 170, 6); g.fill(); }
+  g.fillStyle = '#c8c0a8'; g.fillRect(-E.W, gy - 226, E.W * 3, 12); circle(g, E.W / 2, 150, 90, '#fbf6ea'); S(g, INK, 8); for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; seg(g, [[E.W / 2 + Math.sin(a) * 74, 150 - Math.cos(a) * 74], [E.W / 2 + Math.sin(a) * 84, 150 - Math.cos(a) * 84]], 4, INK); }
+  const tt = (o.h ?? 10) + t / 40; seg(g, [[E.W / 2, 150], [E.W / 2 + Math.sin(tt * Math.PI / 6) * 40, 150 - Math.cos(tt * Math.PI / 6) * 40]], 8, INK); seg(g, [[E.W / 2, 150], [E.W / 2 + Math.sin(t * 0.3) * 62, 150 - Math.cos(t * 0.3) * 62]], 5, INK);
+  rr(g, E.W / 2 - 150, 270, 300, 60, 10); F(g, '#1f3a5f'); S(g, INK, 5); T(g, o.sign || 'LOANS', E.W / 2, 300, 40, '#ffe28a', { align: 'center', w: 900 });
+  g.fillStyle = '#e0d8c0'; g.fillRect(-E.W, gy, E.W * 3, E.H); for (let x = -E.W; x < E.W * 2; x += 120) for (let r = 0; r < 4; r++) if ((x / 120 + r) % 2) { g.fillStyle = 'rgba(0,0,0,.08)'; g.fillRect(x, gy + r * 60, 120, 60); }
+  return { gy }; };

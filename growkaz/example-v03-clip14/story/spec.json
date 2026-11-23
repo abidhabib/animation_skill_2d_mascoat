@@ -1,0 +1,11 @@
+{"title": "V03 Clip 14", "dur": 26.0, "set": "mixed",
+ "music": [[0, 6.9, "hopeful", 0.28], [6.9, 17.3, "dark", 0.3], [17.3, 26.0, "mystery", 0.32]],
+ "shots": [
+  ["p01", 0, 3.9, "To be fair, Nvidia says it hasn't paid a single dollar on these so far,", "accounts desk: ledger, stamp PAID: $0, clerk ticks a green zero", "fade", [[1.4, "pop", -16], [3.0, "ding", -14]], ["roomtone", -30]],
+  ["p02", 3.9, 6.9, "and most of them only start once the buildings are finished.", "three buildings at different stages, a flag marks GUARANTEE STARTS WHEN FINISHED", "fade", [[0.5, "swish", -18], [2.0, "ding", -14]], ["city", -32]],
+  ["p03", 6.9, 8.8, "But Cisco did a version of this too.", "flashback: 2000 trading floor, a Cisco rep walks in with a briefcase", "fade", [[0.1, "glitch", -18], [0.4, "whoosh", -18]], ["murmur", -30]],
+  ["p04", 8.8, 13.3, "In two thousand, it lent money to young network companies so they could buy Cisco gear.", "startup garage: rep hands a loan cheque to the founders, they carry router boxes in", "fade", [[1.3, "pop", -16], [2.2, "ding", -14], [3.3, "pop", -16]], ["roomtone", -30]],
+  ["p05", 13.3, 17.3, "When many of those companies went broke, those sales went with them.", "garages turn FOR LEASE, doors shut, routers dumped, the sales line drops", "fade", [[0.8, "impact", -12], [1.6, "impact", -12], [2.4, "impact", -12], [3.0, "stinger", -14]], ["wind", -30]],
+  ["p06", 17.3, 22.9, "So, are Nvidia's record sales real demand, or partly demand it helped pay for?", "record sales bar split: solid real demand vs hatched helped-pay, a magnifier scans, ?", "fade", [[0.4, "riser", -20], [2.9, "pop", -14], [3.9, "pop", -14]], null],
+  ["p07", 22.9, 26.0, "Honestly, it's both. And that's the risk.", "balance scale level with both weights, hairline crack, RISK stamp", "fade", [[0.6, "ding", -16], [1.7, "impact", -12], [1.9, "heartbeat", -16]], ["hum", -30]]
+ ]}

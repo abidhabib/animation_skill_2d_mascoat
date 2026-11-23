@@ -1,0 +1,314 @@
+{
+ "title": "V03 Clip 13",
+ "duration": 30.3,
+ "shots": [
+  {
+   "id": "n01",
+   "start": 0,
+   "end": 3.6,
+   "line": "So you tell the bank, if the bakery fails, I'll cover it.",
+   "scene": "bank interior: you and the banker at the desk, the guarantee signs itself",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 2.0,
+     "name": "tick",
+     "gain": -21.1
+    },
+    {
+     "at": 3.1,
+     "name": "pop",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "n02",
+   "start": 3.6,
+   "end": 6.1,
+   "line": "The bank lends, the bakery buys your ovens,",
+   "scene": "APPROVED stamp, cheque to the baker, ten ovens loaded onto a truck",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "impact",
+     "gain": -17.1
+    },
+    {
+     "at": 1.2,
+     "name": "ding",
+     "gain": -19.1
+    },
+    {
+     "at": 1.8,
+     "name": "carpass",
+     "gain": -25.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "n03",
+   "start": 6.1,
+   "end": 8.3,
+   "line": "and your sales look amazing.",
+   "scene": "oven shop: register pops, sales chart surges on the wall, confetti, customers cheer",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "ding",
+     "gain": -17.1
+    },
+    {
+     "at": 0.6,
+     "name": "ding",
+     "gain": -17.1
+    },
+    {
+     "at": 1.0,
+     "name": "cheer",
+     "gain": -27.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "n04",
+   "start": 8.3,
+   "end": 12.0,
+   "line": "But you're not just the seller anymore. You're the co-signer.",
+   "scene": "you stand in the shop, a chain and iron ball GUARANTEE clamps to your ankle from the bakery contract",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 2.2,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 2.4,
+     "name": "stinger",
+     "gain": -19.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  },
+  {
+   "id": "n05",
+   "start": 12.0,
+   "end": 14.3,
+   "line": "That's roughly what Nvidia has done.",
+   "scene": "chip campus: a giant AI chip wearing the same chain and ball",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "whoosh",
+     "gain": -21.1
+    },
+    {
+     "at": 1.5,
+     "name": "impact",
+     "gain": -15.1
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "n06",
+   "start": 14.3,
+   "end": 20.7,
+   "line": "As of late October, it reported guarantees of up to one hundred and eighteen billion dollars for customers and partners.",
+   "scene": "hub-and-spoke: chip at the centre, chains to customer and partner buildings, counter to $118B",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.2,
+     "name": "pop",
+     "gain": -21.1
+    },
+    {
+     "at": 1.5,
+     "name": "pop",
+     "gain": -21.1
+    },
+    {
+     "at": 1.8,
+     "name": "pop",
+     "gain": -21.1
+    },
+    {
+     "at": 2.1,
+     "name": "pop",
+     "gain": -21.1
+    },
+    {
+     "at": 2.6,
+     "name": "counter",
+     "gain": -19.1
+    },
+    {
+     "at": 4.3,
+     "name": "ding",
+     "gain": -15.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "n07",
+   "start": 20.7,
+   "end": 26.0,
+   "line": "About one hundred and five billion of that is tied to data centers in Ohio leased to OpenAI.",
+   "scene": "aerial Ohio campus of nine buildings, lease stamped, counter to $105B",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "swish",
+     "gain": -21.1
+    },
+    {
+     "at": 1.0,
+     "name": "pop",
+     "gain": -17.1
+    },
+    {
+     "at": 3.0,
+     "name": "counter",
+     "gain": -19.1
+    },
+    {
+     "at": 4.0,
+     "name": "hit",
+     "gain": -15.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -32
+   }
+  },
+  {
+   "id": "n08",
+   "start": 26.0,
+   "end": 30.3,
+   "line": "If the tenant can't pay, Nvidia can be on the hook, up to that limit.",
+   "scene": "tenant shrugs with empty pockets, a hook lifts the chip by its chain, limit line",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.7,
+     "name": "blip",
+     "gain": -21.1
+    },
+    {
+     "at": 2.4,
+     "name": "impact",
+     "gain": -15.1
+    },
+    {
+     "at": 2.6,
+     "name": "heartbeat",
+     "gain": -19.1
+    },
+    {
+     "at": 3.4,
+     "name": "stinger",
+     "gain": -17.1
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 8.3,
+   "mood": "playful",
+   "intensity": 0.28
+  },
+  {
+   "start": 8.3,
+   "end": 14.3,
+   "mood": "tension",
+   "intensity": 0.3
+  },
+  {
+   "start": 14.3,
+   "end": 30.3,
+   "mood": "mystery",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

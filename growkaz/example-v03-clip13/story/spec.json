@@ -1,0 +1,12 @@
+{"title": "V03 Clip 13", "dur": 30.3, "set": "mixed",
+ "music": [[0, 8.3, "playful", 0.28], [8.3, 14.3, "tension", 0.3], [14.3, 30.3, "mystery", 0.3]],
+ "shots": [
+  ["n01", 0, 3.6, "So you tell the bank, if the bakery fails, I'll cover it.", "bank interior: you and the banker at the desk, the guarantee signs itself", "fade", [[0.3, "swish", -18], [2.0, "tick", -18], [3.1, "pop", -14]], ["roomtone", -30]],
+  ["n02", 3.6, 6.1, "The bank lends, the bakery buys your ovens,", "APPROVED stamp, cheque to the baker, ten ovens loaded onto a truck", "fade", [[0.5, "impact", -14], [1.2, "ding", -16], [1.8, "carpass", -22]], null],
+  ["n03", 6.1, 8.3, "and your sales look amazing.", "oven shop: register pops, sales chart surges on the wall, confetti, customers cheer", "fade", [[0.3, "ding", -14], [0.6, "ding", -14], [1.0, "cheer", -24]], ["roomtone", -30]],
+  ["n04", 8.3, 12.0, "But you're not just the seller anymore. You're the co-signer.", "you stand in the shop, a chain and iron ball GUARANTEE clamps to your ankle from the bakery contract", "fade", [[2.2, "impact", -12], [2.4, "stinger", -16]], ["hum", -32]],
+  ["n05", 12.0, 14.3, "That's roughly what Nvidia has done.", "chip campus: a giant AI chip wearing the same chain and ball", "fade", [[0.3, "whoosh", -18], [1.5, "impact", -12]], null],
+  ["n06", 14.3, 20.7, "As of late October, it reported guarantees of up to one hundred and eighteen billion dollars for customers and partners.", "hub-and-spoke: chip at the centre, chains to customer and partner buildings, counter to $118B", "fade", [[1.2, "pop", -18], [1.5, "pop", -18], [1.8, "pop", -18], [2.1, "pop", -18], [2.6, "counter", -16], [4.3, "ding", -12]], ["hum", -30]],
+  ["n07", 20.7, 26.0, "About one hundred and five billion of that is tied to data centers in Ohio leased to OpenAI.", "aerial Ohio campus of nine buildings, lease stamped, counter to $105B", "fade", [[0.5, "swish", -18], [1.0, "pop", -14], [3.0, "counter", -16], [4.0, "hit", -12]], ["wind", -32]],
+  ["n08", 26.0, 30.3, "If the tenant can't pay, Nvidia can be on the hook, up to that limit.", "tenant shrugs with empty pockets, a hook lifts the chip by its chain, limit line", "fade", [[0.7, "blip", -18], [2.4, "impact", -12], [2.6, "heartbeat", -16], [3.4, "stinger", -14]], ["hum", -30]]
+ ]}

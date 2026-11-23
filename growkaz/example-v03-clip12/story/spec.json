@@ -1,0 +1,10 @@
+{"title": "V03 Clip 12", "dur": 22.3, "set": "mixed",
+ "music": [[0, 13.0, "tension", 0.28], [13.0, 22.3, "playful", 0.28]],
+ "shots": [
+  ["m01", 0, 1.76, "And some buyers are stretched.", "a wallet strapped with a rubber band stretched to its limit, cash spilling, cranes behind", "fade", [[0.1, "whoosh", -18], [1.2, "tick", -16]], null],
+  ["m02", 1.76, 6.96, "Amazon now plans to spend about two hundred and twenty billion dollars this year on buildings and equipment,", "mega construction site: many cranes, trucks of server racks, counter to $220B", "fade", [[0.4, "carpass", -22], [1.7, "counter", -18], [3.0, "ding", -14]], ["city", -32]],
+  ["m03", 6.96, 13.0, "and its free cash flow has turned negative. It's spending more than its business brings in as cash.", "control room: small green inflow pipe, huge red outflow, tank drains below zero, alarms", "fade", [[1.7, "buzz", -22], [3.2, "heartbeat", -18], [4.2, "stinger", -16]], ["hum", -30]],
+  ["m04", 13.0, 16.9, "But this is the part that made me stop. Imagine you sell ovens.", "the oven shop: you behind the counter, ovens glowing, bread, a customer bell", "fade", [[0.2, "swish", -18], [2.4, "ding", -14]], ["roomtone", -30]],
+  ["m05", 16.9, 20.3, "A new bakery wants ten of your best ones, but it can't afford them,", "a baker points at ten ovens, tries to pay: empty wallet, moths", "fade", [[0.3, "pop", -16], [2.2, "blip", -18], [2.6, "blip", -18]], ["roomtone", -30]],
+  ["m06", 20.3, 22.3, "and no bank will lend to it.", "bank facade, banker shakes head, DENIED stamp", "fade", [[0.3, "swish", -18], [1.0, "impact", -12]], null]
+ ]}
