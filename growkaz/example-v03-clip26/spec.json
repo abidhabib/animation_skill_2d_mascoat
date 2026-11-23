@@ -1,6 +1,8 @@
-{"title": "V03 Clip 26", "dur": 6.6, "set": "semi3d",
- "music": [[0, 6.6, "hopeful", 0.3]],
+{"title": "V03 Clip 26", "dur": 30.0, "set": "semi3d",
+ "music": [[0, 30.0, "hopeful", 0.34]],
  "shots": [
-  ["z01", 0, 2.7, "If this helped you see past the headlines, subscribe.", "3D road at sunset, you wave; a SUBSCRIBE button pops and is pressed", "zoom", [[0.3, "pop", -16], [2.0, "ding", -12]], ["wind", -34]],
-  ["z02", 2.7, 6.6, "It's free, and it really helps. And watch this one next.", "camera drifts up the road; a NEXT VIDEO card slot glows", "zoom", [[0.4, "blip", -18], [2.0, "whoosh", -22]], ["wind", -34]]
+  ["z01", 0, 5.0, "If this helped you see past the headlines, subscribe. It's free, and it really helps.", "3D road at sunset, you wave; a SUBSCRIBE button pops and is pressed", "zoom", [[0.3, "pop", -16], [2.0, "ding", -12]], ["wind", -34]],
+  ["z02", 5.0, 13.0, "(outro recap, music only)", "verdict stage orbit: three recap lines: same seat, not the same price, the 3 signals", "zoom", [[0.8, "pop", -18], [3.4, "pop", -18], [6.0, "pop", -18]], ["roomtone", -38]],
+  ["z03", 13.0, 22.0, "(outro, music only)", "calm tracking walk along the road of years: THE WAIT IS THE DAMAGE", "zoom", [[0.6, "whoosh", -24], [4.5, "ding", -16]], ["wind", -34]],
+  ["z04", 22.0, 30.0, "(outro, music only)", "back on the verdict stage: HOLD / SELL / BUY MORE? tell me below, slow pull back", "zoom", [[0.8, "pop", -18], [2.0, "pop", -18], [3.2, "pop", -18]], ["roomtone", -38]]
  ]}
