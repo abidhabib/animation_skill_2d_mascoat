@@ -1,0 +1,8 @@
+{"title": "V03 Clip 21", "dur": 17.3, "set": "3d",
+ "music": [[0, 7.2, "hopeful", 0.28], [7.2, 13.5, "mystery", 0.3], [13.5, 17.3, "sad", 0.34]],
+ "shots": [
+  ["w01", 0, 1.9, "Now put your own age on it.", "3D road of years: you at the NOW arch, AGE 34 glows, camera orbits in", "zoom", [[0.2, "pop", -16], [0.9, "shimmer", -20]], ["wind", -34]],
+  ["w02", 1.9, 7.2, "If you're thirty-four today and it's a Cisco-sized wait, you're sixty when you see your money again.", "3D tracking shot: you walk the road from age 34 to 60, signposts pass, hair greys, money comes back", "zoom", [[0.4, "footstep", -22], [1.0, "footstep", -22], [1.8, "footstep", -22], [2.6, "footstep", -22], [3.4, "footstep", -22], [4.2, "footstep", -22], [4.9, "ding", -14]], ["wind", -34]],
+  ["w03", 7.2, 13.5, "If you're fifty-five and planning to retire at sixty-five, even the Nasdaq's fifteen years doesn't fit.", "3D dolly: green tape reaches the RETIRE arch at 65, the red tape runs 5 years past it", "zoom", [[1.9, "pop", -14], [3.0, "ding", -14], [4.2, "riser", -20], [5.1, "impact", -12]], ["wind", -34]],
+  ["w04", 13.5, 17.3, "The crash is the headline. The waiting is the damage.", "3D crane up over the whole road, you tiny on a bench, headline then damage", "zoom", [[0.2, "stinger", -16], [1.7, "heartbeat", -16]], ["wind", -34]]
+ ]}

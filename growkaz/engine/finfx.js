@@ -48,3 +48,14 @@ export function coinStack(g, x, y, n, s = 1) { for (let i = 0; i < n; i++) { con
 // smooth camera sway for a shot: even shots push in while drifting right, odd shots pull out while drifting left (user 2026-11-23: slight zoom in/out, left/right, scenes flowing into each other).
 // use with camEase: camEase(t, info.dur, sway(i)); pair with the "zoom" transition in the spec so each shot pushes through into the next.
 export const sway = (i, o = {}) => { const p = o.pan ?? 50, z = o.z ?? 0; return i % 2 === 0 ? { z0: 1.0, z1: 1.12 + z, x0: -p, x1: p, y0: 8, y1: -8 } : { z0: 1.12 + z, z1: 1.02, x0: p, x1: -p, y0: -8, y1: 8 }; };
+
+// proper cartoon clouds (replaces the smeared FX.clouds ellipses; user 2026-11-23): fluffy cluster of round puffs, flat soft-shaded bottom, a little highlight, slow drift.
+//   clouds(g, { seed, count, y, h, a, t })   a = opacity (0.5 default), t = time for the drift
+export function clouds(g, o = {}) { const { seed = 10, count = 6, y = E.H * 0.2, h = 120, a = 0.9, t = 0 } = o; let s = seed * 9301 + 49297; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280; const al = Math.min(1, 0.55 + a * 0.6);
+  for (let i = 0; i < count; i++) { const w = 170 + r() * 190, cx = (((r() * (E.W + 400)) + t * (6 + (i % 3) * 3)) % (E.W + 400)) - 200, cy = y + r() * h, u = w / 2;
+    const puffs = [[-0.62, 0.1, 0.34], [-0.28, -0.14, 0.46], [0.12, -0.26, 0.5], [0.5, -0.08, 0.4], [0.78, 0.12, 0.3]];
+    g.save(); g.globalAlpha = al; g.translate(cx, cy);
+    g.fillStyle = '#c7d6ea'; for (const [px, py, pr] of puffs) { g.beginPath(); g.arc(px * u + 5, py * u + 12, pr * u, 0, Math.PI * 2); g.fill(); } g.beginPath(); g.roundRect ? g.roundRect(-0.9 * u + 5, 0 * u + 12, 1.95 * u, 0.42 * u, 0.2 * u) : g.rect(-0.9 * u + 5, 12, 1.95 * u, 0.42 * u); g.fill();
+    g.fillStyle = '#ffffff'; for (const [px, py, pr] of puffs) { g.beginPath(); g.arc(px * u, py * u, pr * u, 0, Math.PI * 2); g.fill(); } g.beginPath(); g.roundRect ? g.roundRect(-0.9 * u, 0, 1.95 * u, 0.4 * u, 0.2 * u) : g.rect(-0.9 * u, 0, 1.95 * u, 0.4 * u); g.fill();
+    g.fillStyle = 'rgba(210,225,245,.55)'; g.beginPath(); g.ellipse(0.05 * u, 0.3 * u, 0.85 * u, 0.12 * u, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = 'rgba(255,255,255,.9)'; g.beginPath(); g.arc(0.02 * u, -0.34 * u, 0.12 * u, 0, Math.PI * 2); g.fill(); g.restore(); } }
