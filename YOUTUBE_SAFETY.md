@@ -15,7 +15,7 @@ Strengths: original scripts and analogies (oven shop, two-yous), numbers fact-ch
 ## Rules for every video (add to the pre-publish check)
 1. **Original insight in every video**: at least one idea/analogy/device that exists nowhere else (V03: the two-yous mirror, oven-shop co-signer, "the orders did"). Never paraphrase one competitor video line by line; use several sources and our own angle.
 2. **Vary the format between videos**: different set pieces, props, palette, camera language, pacing, hook type and ending. Do not reuse a finished video's shot list with new nouns. Keep the kit; change the look per topic.
-3. **Show the work on screen**: a short "sources" card near the end + sources in the description (fact-check table lives in the plan file). Label illustrative numbers "illustrative".
+3. **Sources / "illustrative" labels: NOT used (user decision 2026-11-23).** No sources card on screen, no sources list required in the description, no "illustrative" tags on invented numbers in new clips. Keep the fact-check table internal (it is the evidence folder). Still avoid presenting invented numbers as official data when a real figure is easy to use.
 4. **Human signals**: the user's name/face or hands somewhere (About page, a short real-voice intro or outro, community posts, replies to comments, pinned comment in the user's own words). The thumbnail is made by a human or visibly hand-art-directed.
 5. **Metadata is unique per video**: own title, own description (3-5 original lines + chapters + sources), own tags. No copy-paste descriptions.
 6. **Pace the uploads**: while the channel is new, do not dump many similar videos in a week. Quality over volume; alternate topics/formats.
@@ -25,6 +25,5 @@ Strengths: original scripts and analogies (oven shop, two-yous), numbers fact-ch
 10. **If demonetized**: do not rage; file the appeal with the evidence folder, ask kindly for a human review, and publish the "how this is made" explainer (the friend's approach); keep the tone calm.
 
 ## Cheap upgrades we can build into the studio
-- End card "Sources" shot (title + 3 source names, no logos) in every video.
 - A recurring human element: the user's own short outro (real voice) or a photo/hand-drawn signature frame.
 - Per-video look sheet: choose 1 new palette + 1 new set piece + 1 new transition style before drawing (kept in the plan file).
