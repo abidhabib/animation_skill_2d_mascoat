@@ -61,7 +61,7 @@ export function toonFace(g, hx, hy, r, o = {}) {
   // o.face === 'classic' (or cast.face) keeps the old white-eye face.
   if ((o.face || c.face) !== 'classic') {
     const T = g.getTransform(), px = r * Math.hypot(T.a, T.b), boost = px < 34 ? Math.min(1.35, Math.pow(34 / Math.max(px, 6), 0.4)) : 1;
-    g.fillStyle = alpha('#ff8a8a', 0.22 + 0.3 * (ex.blush || 0)); for (const dx of [-0.5, 0.52]) { g.beginPath(); g.ellipse(fx + dx * r, hy + r * 0.24, r * 0.15, r * 0.085, 0, 0, Math.PI * 2); g.fill(); }
+    g.fillStyle = alpha('#ff8a8a', 0.13 + 0.3 * (ex.blush || 0)); for (const dx of [-0.5, 0.52]) { g.beginPath(); g.ellipse(fx + dx * r, hy + r * 0.24, r * 0.15, r * 0.085, 0, 0, Math.PI * 2); g.fill(); }
     if (ex.red) { g.fillStyle = alpha('#ff3a3a', ex.red * 0.3); g.beginPath(); g.ellipse(hx, hy - r * 0.2, r * 0.85, r * 0.45, 0, 0, Math.PI * 2); g.fill(); }
     const ey = hy - r * 0.04, exs = [fx - r * 0.3, fx + r * 0.3], sc0 = boost * (ex.eye ? Math.max(0.85, Math.min(1.2, ex.eye)) : 1);
     const ew = r * 0.125 * sc0, eh = r * 0.168 * sc0, lw = Math.max(r * 0.05, 1.2 / Math.hypot(T.a, T.b));
@@ -185,6 +185,12 @@ function softShade(g, x, y, r) { g.save(); g.beginPath(); g.arc(x, y, r, 0, Math
   const gr = g.createRadialGradient(x + r * 0.25, y - r * 0.3, r * 0.2, x + r * 0.1, y - r * 0.1, r * 1.15); gr.addColorStop(0, 'rgba(255,255,255,0.10)'); gr.addColorStop(0.6, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(60,20,30,0.16)');
   g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2); g.restore(); }
 
+// head width (user 2026-11-22: "not fat face"): heads are a slim oval, not a full circle. cast.headW overrides (1 = old round head).
+export const HEAD_W = 0.84;
+// egg head: round crown and cheekbones, the jaw tapers to a softer, narrower chin
+function headShape(g, x, y, r, fill) { g.fillStyle = fill; g.beginPath(); g.moveTo(x - r, y); g.arc(x, y, r, Math.PI, 0); g.bezierCurveTo(x + r, y + r * 0.62, x + r * 0.55, y + r * 1.06, x, y + r * 1.06); g.bezierCurveTo(x - r * 0.55, y + r * 1.06, x - r, y + r * 0.62, x - r, y); g.fill(); }
+function slim(g, head, c, fn) { const k = c.headW || HEAD_W; g.save(); g.translate(head[0], head[1]); g.scale(k, 1); g.translate(-head[0], -head[1]); fn(); g.restore(); }
+
 // ---------- full body ----------
 export function drawToon(g, o) {
   const c = o.cast || HERO, p = o.pose || POSES.stand, s = o.s ?? 1, f = o.facing ?? 1, ink = '#1b1424';
@@ -206,7 +212,7 @@ function body(g, o, c, p, sil, ink) {
   limb(g, [p.sh, p.eB], 15, far(top), ink, sil); limb(g, [p.eB, p.hB], 12, far(skin), ink, sil);
   if (!sil) circle(g, p.hB[0], p.hB[1], 8, far(skin));
   // back hair
-  if (!sil) hairBack(g, c, head[0], head[1], HR);
+  if (!sil) slim(g, head, c, () => hairBack(g, c, head[0], head[1], HR));
   // torso: rounded shirt
   const sh = p.sh, hip = p.hip, w1 = 30, w2 = 26;
   g.beginPath(); g.moveTo(sh[0] - w1, sh[1] + 4); g.quadraticCurveTo(sh[0], sh[1] - 10, sh[0] + w1, sh[1] + 4);
@@ -230,14 +236,14 @@ function body(g, o, c, p, sil, ink) {
   limb(g, [p.eF, p.hF], 12.5, skin, ink, sil);
   if (!sil) { circle(g, p.hF[0], p.hF[1], 9.5, ink); circle(g, p.hF[0], p.hF[1], 7.5, skin); }
   // head
-  if (sil) { circle(g, head[0], head[1], HR + 3, sil); return; }
+  if (sil) { slim(g, head, c, () => circle(g, head[0], head[1], HR + 3, sil)); return; }
   seg(g, [[sh[0], sh[1] - 4], [head[0], head[1] + HR * 0.7]], 13, skin);
-  circle(g, head[0], head[1], HR + 3.5, ink); circle(g, head[0], head[1], HR, c.skin);
+  slim(g, head, c, () => { headShape(g, head[0], head[1], HR + 3.5, ink); headShape(g, head[0], head[1], HR, c.skin);
   // ear + subtle face shading
   circle(g, head[0] - HR * 0.82, head[1] + 4, 9, ink); circle(g, head[0] - HR * 0.82, head[1] + 4, 7, shade(c.skin, -0.05));
   softShade(g, head[0], head[1], HR);
   hairFront(g, c, head[0], head[1], HR);
-  toonFace(g, head[0], head[1], HR, { cast: c, expr: o.expr, talk: o.talk, blink: o.blink, look: o.look, face: o.face });
+  toonFace(g, head[0], head[1], HR, { cast: c, expr: o.expr, talk: o.talk, blink: o.blink, look: o.look, face: o.face }); });
   if (o.prop === 'phone') { g.fillStyle = '#1b1d26'; rr(g, p.hF[0] - 9, p.hF[1] - 30, 22, 38, 5); g.fill(); g.fillStyle = '#8fd0ff'; g.fillRect(p.hF[0] - 6, p.hF[1] - 26, 16, 28); }
 }
 
@@ -251,10 +257,10 @@ export function bigToonFace(g, cx, cy, r, o = {}) {
   if (!c.apron) { g.fillStyle = c.collar || c.topDark; g.beginPath(); g.moveTo(-r * 0.36, r * 0.86); g.lineTo(0, r * 1.25); g.lineTo(r * 0.36, r * 0.86); g.lineTo(r * 0.12, r * 0.78); g.lineTo(-r * 0.12, r * 0.78); g.closePath(); g.fill(); }
   seg(g, [[0, r * 0.6], [0, r * 0.95]], r * 0.36, c.skin);
   if (o.rimColor) { g.strokeStyle = o.rimColor; g.lineWidth = r * 0.06; g.beginPath(); g.arc(0, 0, r * 1.04, Math.PI * 1.1, Math.PI * 1.75); g.stroke(); }
-  hairBack(g, c, 0, 0, r);
-  circle(g, 0, 0, r * 1.035, ink); circle(g, 0, 0, r, c.skin);
+  g.save(); g.scale(c.headW || HEAD_W, 1); hairBack(g, c, 0, 0, r);
+  headShape(g, 0, 0, r * 1.035, ink); headShape(g, 0, 0, r, c.skin);
   softShade(g, 0, 0, r);
   hairFront(g, c, 0, 0, r);
   toonFace(g, 0, 0, r, { cast: c, expr: o.expr, talk: o.talk, blink: o.blink, look: o.look, front: true, face: o.face });
-  g.restore();
+  g.restore(); g.restore();
 }

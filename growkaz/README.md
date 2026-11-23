@@ -87,6 +87,7 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 ## CLEAN FACES (default since 2026-11-22, user: "make character minimal clear face") - `docs/FACES_CLEAN.png`
 - toonFace now draws dark glossy eyes (like `docs/ABID_CHARACTER.png`), soft short brows, light blush, thin curled moustache clear of the mouth, soft head shading (no hard half-face line).
 - Only shocked/surprised keep a white eye with a tiny pupil (so shock still reads). Features grow a little on small/far figures so faces stay readable.
+- Heads are a slim egg (user 2026-11-22 "not fat face"): `HEAD_W = 0.84` width + tapered chin (`headShape`). Per character: `cast.headW` (1 = old round head).
 - Old white-eye face if ever needed: `drawToon(g, {..., face: 'classic'})` / `bigToonFace(..., {face: 'classic'})` or `cast.face = 'classic'`.
 
 - Mixing rule (Clip 24): 3D for real places (establishing, push/crane/orbit around characters), 2D for inserts (objects, stamps), giant faces and memories/flashbacks (warm `park(..., {memory:1})`). Fade 0.3-0.35 between them.
