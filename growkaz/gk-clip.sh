@@ -26,7 +26,7 @@ from common import sentences_from_words, write_timeline
 w = json.load(open(sys.argv[1], encoding="utf-8")); proj = sys.argv[2]
 words = [{"word": x["w"], "start": round(x["s"], 3), "end": round(x["e"], 3)} for x in w]
 write_timeline(proj + "/timeline", words, sentences_from_words(words), "parakeet (studio kit)")
-c = json.load(open(proj + "/config.json")); c.update(style="cozy", bars=None); c["music"]["gainDb"] = -22
+c = json.load(open(proj + "/config.json")); c.update(style="cozy", bars="none"); c["music"]["gainDb"] = -22
 json.dump(c, open(proj + "/config.json", "w"), indent=1)
 PY
     printf "// cast lives in /engine/toon2d.js (HERO, CASHIER, STRANGER, SAM, SHOPPER(i))\nexport const CAST = [];\n" > "projects/$SLUG/scenes/cast.js"

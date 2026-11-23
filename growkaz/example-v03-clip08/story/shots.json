@@ -1,0 +1,250 @@
+{
+ "title": "V03 Clip 8",
+ "duration": 30.2,
+ "shots": [
+  {
+   "id": "h01",
+   "start": 0,
+   "end": 1.6,
+   "line": "Now the twenty twenty-six you.",
+   "scene": "2026 city at night, people with phones, big 2026",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "city",
+    "gain": -28
+   }
+  },
+  {
+   "id": "h02",
+   "start": 1.6,
+   "end": 4.2,
+   "line": "Nvidia started with chips for video games.",
+   "scene": "2000s gamer bedroom: kids on bean bags racing on a CRT, a GPU box on the desk",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "blip",
+     "gain": -18
+    },
+    {
+     "at": 1.2,
+     "name": "pop",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h03",
+   "start": 4.2,
+   "end": 7.7,
+   "line": "But those same chips turned out to be perfect for training AI.",
+   "scene": "the GPU turns in the dark, fans spin, a glowing neural network grows out of it, training progress card",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "powerup",
+     "gain": -16
+    },
+    {
+     "at": 1.8,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "h04",
+   "start": 7.7,
+   "end": 14.9,
+   "line": "Therefore, when the AI race started, every big tech company on Earth needed as many as it could get, and Nvidia makes the best ones.",
+   "scene": "loading dock: a queue of buyers with briefcases, trucks, GPU crates; SOLD OUT",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "murmur",
+     "gain": -22
+    },
+    {
+     "at": 3.0,
+     "name": "carpass",
+     "gain": -20
+    },
+    {
+     "at": 6.3,
+     "name": "ding",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "h05",
+   "start": 14.9,
+   "end": 18.4,
+   "line": "Swap routers for AI chips, and it's the same seat.",
+   "scene": "museum case: the 2000 router spins, flash, now a GPU; visitors; spotlight",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.25,
+     "name": "flash",
+     "gain": -14
+    },
+    {
+     "at": 2.6,
+     "name": "shimmer",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h06",
+   "start": 18.4,
+   "end": 20.6,
+   "line": "The rise looks the same too.",
+   "scene": "glass chart: Cisco 95-00 and Nvidia 20-26 lines rise and lock together",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "riser",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "h07",
+   "start": 20.6,
+   "end": 27.0,
+   "line": "From the COVID low in March twenty twenty to the peak this October, Nvidia went up about forty-nine times.",
+   "scene": "a 2026 trading floor wall screen: candles climb, counter 1x to 49x, traders watch",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "counter",
+     "gain": -20
+    },
+    {
+     "at": 5.1,
+     "name": "powerup",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -30
+   }
+  },
+  {
+   "id": "h08",
+   "start": 27.0,
+   "end": 30.2,
+   "line": "Cisco did forty-four, in about five years.",
+   "scene": "the two charts side by side: 49x in 6.5 years vs 44x in 5 years",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 1.3,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 7.7,
+   "mood": "wonder",
+   "intensity": 0.28
+  },
+  {
+   "start": 7.7,
+   "end": 18.4,
+   "mood": "action",
+   "intensity": 0.3
+  },
+  {
+   "start": 18.4,
+   "end": 30.2,
+   "mood": "tension",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

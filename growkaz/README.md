@@ -25,7 +25,7 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 5. `gk-clip.sh render NN` -> full render (1080p, 30 fps) + generated music/SFX mix -> `renders/V02 - Clip NN.mp4` + `Final Clips/Clip NN.mp4`.
 
 ## Look rules (keep every clip identical in style)
-- **Style `cozy`** (natural colours, gentle warm cast, light vignette/grain). Never emerald/ember etc. `bars: null` (no letterbox) unless asked.
+- **Style `cozy`** (natural colours, gentle warm cast, light vignette/grain). Never emerald/ember etc. `bars: "none"` (NOT null: null falls back to the 60 px "wide" letterbox, fixed 2026-11-22) unless asked.
 - **Characters = `drawToon(g, {x, y, s, facing, cast, pose, expr, talk, blink, look, rim})`** and close-ups `bigToonFace(g, cx, cy, r, {...})`
   from `/engine/toon2d.js`. Cast presets: `HERO` (the user: curly hair, curled moustache, goatee, denim shirt, beige chinos), `SAM`, `CASHIER`,
   `STRANGER`, `SHOPPER(i)`; make new ones as plain objects (skin, hair: curly|short|swoop|ponytail|long|bun, hairColor, top, topDark, legs, shoes, apron, cap, glasses, lashes).

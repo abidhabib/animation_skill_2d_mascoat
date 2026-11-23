@@ -114,3 +114,17 @@ FP.door = (g, x, y, s, label, open, o = {}) => { g.save(); g.translate(x, y); g.
   rr(g, -150, -440, 300, 440, 10); F(g, '#2a2230'); S(g, INK, 6); if (open > 0) { const lg = g.createLinearGradient(0, -440, 0, 0); lg.addColorStop(0, alpha(o.light || '#fff2c8', 0.9)); lg.addColorStop(1, alpha(o.light || '#fff2c8', 0.4)); g.fillStyle = lg; g.fillRect(-140, -430, 280, 430); }
   g.save(); g.translate(-140, 0); g.scale(1 - 0.75 * ease.inOut(open), 1); rr(g, 0, -430, 280, 430, 8); F(g, c); S(g, INK, 5); for (const yy of [-400, -200]) { rr(g, 30, yy, 220, 160, 10); S(g, 'rgba(0,0,0,.25)', 5); } circle(g, 240, -210, 14, '#e0b05a'); g.restore();
   rr(g, -110, -520, 220, 64, 12); F(g, o.plate || '#f4f0e6'); S(g, INK, 5); T(g, label, 0, -487, 36, o.plateText || INK, { align: 'center', w: 900 }); g.restore(); };
+
+// graphics card (GPU) 3/4 view: PCB, shroud, two spinning fans, heat-pipes, PCIe gold fingers, glowing edge strip. ~520 wide at s=1. o: {t, glow, color}
+FP.gpu = (g, x, y, s, o = {}) => { const t = o.t || 0; g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s);
+  g.shadowColor = 'rgba(0,0,0,.45)'; g.shadowBlur = 40; g.shadowOffsetY = 20; rr(g, -260, -110, 520, 220, 18); F(g, '#1e2a22'); g.shadowColor = 'transparent'; S(g, INK, 6);
+  for (let i = 0; i < 26; i++) { g.fillStyle = '#d8b04a'; g.fillRect(-200 + i * 12, 108, 8, 22); } rr(g, -210, 104, 320, 10, 3); F(g, '#2a3a2e');
+  rr(g, -250, -100, 500, 196, 22); F(g, o.color || '#2a2d36'); S(g, '#4a4f5c', 3); const sg = g.createLinearGradient(0, -100, 0, 96); sg.addColorStop(0, 'rgba(255,255,255,.12)'); sg.addColorStop(1, 'rgba(0,0,0,.2)'); g.fillStyle = sg; rr(g, -250, -100, 500, 196, 22); g.fill();
+  for (const fx of [-120, 120]) { circle(g, fx, -2, 84, '#101216'); g.save(); g.translate(fx, -2); g.rotate(t * 14); for (let b = 0; b < 9; b++) { g.rotate(Math.PI * 2 / 9); g.beginPath(); g.moveTo(14, 0); g.quadraticCurveTo(50, -24, 78, -6); g.lineTo(74, 10); g.quadraticCurveTo(46, -6, 14, 8); g.closePath(); g.fillStyle = '#3a3e48'; g.fill(); } circle(g, 0, 0, 22, '#5a5f6c'); g.restore(); g.strokeStyle = '#5a5f6c'; g.lineWidth = 5; g.beginPath(); g.arc(fx, -2, 84, 0, 7); g.stroke(); }
+  const gl = o.glow ?? 1; seg(g, [[-230, -96], [230, -96]], 6, alpha('#76ff5a', 0.5 + 0.5 * gl)); if (gl > 0) glow(g, 0, -96, 260, '#76ff5a', 0.25 * gl);
+  for (let i = 0; i < 4; i++) seg(g, [[250, -60 + i * 30], [280, -60 + i * 30]], 10, '#c87a3a'); g.restore(); };
+// 2000-era network router/switch box: beige/grey 1U chassis, port rows, blinking LEDs, antenna-less. ~520 wide. o: {t}
+FP.router = (g, x, y, s, o = {}) => { const t = o.t || 0; g.save(); g.translate(x, y); g.scale(s, s);
+  g.shadowColor = 'rgba(0,0,0,.4)'; g.shadowBlur = 30; g.shadowOffsetY = 16; rr(g, -260, -70, 520, 140, 14); F(g, '#5a6472'); g.shadowColor = 'transparent'; S(g, INK, 6); rr(g, -250, -60, 500, 40, 8); F(g, '#6c7686');
+  for (let r = 0; r < 2; r++) for (let i = 0; i < 12; i++) { rr(g, -170 + i * 30, -4 + r * 34, 24, 22, 3); F(g, '#1a1c22'); circle(g, -158 + i * 30, -10 + r * 34, 3.5, Math.sin(t * 9 + i * 1.7 + r * 3) > -0.2 ? ['#5aff8a', '#ffb43a'][(i + r) % 2] : '#2a2c30'); }
+  rr(g, -240, 0, 50, 50, 6); F(g, '#2a2c34'); circle(g, -215, 25, 10, '#5aff8a'); g.restore(); };
