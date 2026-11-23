@@ -1,6 +1,6 @@
 {
  "title": "Lab props",
- "duration": 16.0,
+ "duration": 24.0,
  "shots": [
   {
    "id": "L01",
@@ -111,6 +111,66 @@
    "id": "L08",
    "start": 14.0,
    "end": 16.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L09",
+   "start": 16.0,
+   "end": 18.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L10",
+   "start": 18.0,
+   "end": 20.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L11",
+   "start": 20.0,
+   "end": 22.0,
+   "line": "",
+   "scene": "gallery",
+   "set": "lab",
+   "bars": null,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "L12",
+   "start": 22.0,
+   "end": 24.0,
    "line": "",
    "scene": "gallery",
    "set": "lab",

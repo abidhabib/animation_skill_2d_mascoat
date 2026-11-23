@@ -84,6 +84,14 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - What made old objects look weird (avoid): spheres as leaves/clothes, plain white slabs as mirrors/screens, boxes as shoes/bags, missing handles/rims/seams. Real proportions + 2-3 small details (rim, handle, seam, label, sole) make an object read instantly.
 - New prop needed? Add it to props3d.js ONCE (same conventions), add it to the lab gallery, render the sheet, look, then commit + push. The 3D sets (bedroom/kitchen/park/train) already use the library.
 
+## 2D PROP LIBRARY `engine/props2d.js` (user 2026-11-22) - picture `docs/PROPS_2D.png` (+ PROPS_2D_L09..L12.png full size)
+- `import { D } from '/engine/props2d.js'`; `D.<name>(g, x, y, s, o)`; options `rot, flip, t (time), a (alpha)`. Anchor: objects = bottom centre, icons/UI = centre.
+- Screens/UI: phone (screen lock|home|chat|call|dead|off|fn; note, name, cast, msgs, typing), handPhone, chatBubble (side, typing), comment, toast, sendButton; `screen()` and `avatar(g,x,y,r,cast)` exported.
+- Icons: heart, thumbsUp, tick, cross, battery (level, charging), bell (ring, count), envelope (open), calendar, clock (h,m | spin), pin, coin (spin), cash, gift (open), trophy, star, bulb (on), wand (k sparkle), paperPlane (trail), key, padlock (open), mark (? or !), plusBlock (+1).
+- Info: routeMap (n, at, label), progressBar (k), thought (text), arrow (len, bend), sign (text), priceTag, receipt, notebook (k writing).
+- Objects: mug (steam), glass (fill), bottle, book (title), bookStack, laptop, tv, alarmClock (ring), plant (leafy|tall|round), deskLamp (on), backpack, sneaker, shoeBox, briefcase, bag, car (spin), house (lit), bike, cup, umbrella.
+- Never hand-draw these inside a clip again; add missing props here once (same look: flat colour + one shade band + one shine + 5 px ink), add to lab gallery L09-L12, check the sheet, push.
+
 ## CLEAN FACES (default since 2026-11-22, user: "make character minimal clear face") - `docs/FACES_CLEAN.png`
 - toonFace now draws dark glossy eyes (like `docs/ABID_CHARACTER.png`), soft short brows, light blush, thin curled moustache clear of the mouth, soft head shading (no hard half-face line).
 - Only shocked/surprised keep a white eye with a tiny pupil (so shock still reads). Features grow a little on small/far figures so faces stay readable.

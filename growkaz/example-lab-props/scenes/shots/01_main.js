@@ -38,3 +38,27 @@ registerShot('L07', { draw(g, t) { g.fillStyle = '#efe6da'; g.fillRect(0, 0, E.W
 registerShot('L08', { draw(g, t) { g.fillStyle = '#d8cfc0'; g.fillRect(0, 0, E.W, E.H);
   CASTS.forEach(([n, c], i) => { const x = 150 + i * 300; drawToon(g, { x, y: 520, s: 1.3, cast: c, pose: breathe(POSES.stand, t), expr: ['smile', 'happy', 'neutral', 'worried', 'surprised', 'smile'][i] }); text(g, n, x, 570, { size: 28, color: '#1b1424' });
     drawToon(g, { x: x - 60, y: 980, s: 0.55, cast: c, pose: POSES.stand, expr: 'smile' }); drawToon(g, { x: x + 60, y: 980, s: 0.35, cast: c, pose: POSES.stand, expr: 'sad' }); }); } });
+
+// ---------- 2D props library (props2d.js) ----------
+import { D } from '/engine/props2d.js';
+const grid2 = (id, cols, rows, cells, bg = '#efe6da') => registerShot(id, { draw(g, t) { g.fillStyle = bg; g.fillRect(0, 0, E.W, E.H);
+  const cw = E.W / cols, ch = (E.H - 150) / rows;
+  cells.forEach(([name, o, s, anchor, label], i) => { const cx = cw * (i % cols + 0.5), cy = 75 + ch * (Math.floor(i / cols) + 0.5);
+    g.fillStyle = 'rgba(255,255,255,.35)'; rr(g, cx - cw / 2 + 8, cy - ch / 2 + 8, cw - 16, ch - 16, 18); g.fill();
+    D[name](g, cx, anchor === 'b' ? cy + ch * 0.3 : cy - 14, s, { t: 1.3, ...(o || {}) }); text(g, label || name, cx, cy + ch / 2 - 22, { size: 22, color: '#1b1424' }); }); } });
+grid2('L09', 6, 2, [
+  ['phone', { screen: 'lock', note: 'Dad: call me?' }, 0.95, 'c', 'phone lock'], ['phone', { screen: 'chat', name: 'Sam', cast: SAM, msgs: [['them', 'You up?'], ['me', 'Yes!']], typing: true }, 0.95, 'c', 'phone chat'],
+  ['phone', { screen: 'call', name: 'Dad', cast: DAD }, 0.95, 'c', 'phone call'], ['phone', { screen: 'dead' }, 0.95, 'c', 'phone dead'], ['phone', { screen: 'home' }, 0.95, 'c', 'phone home'], ['handPhone', { screen: 'chat', name: 'Mom', cast: MOM, msgs: [['them', 'Dinner?'], ['me', 'Coming']] }, 0.42, 'c', 'handPhone'],
+  ['chatBubble', { text: 'This is you.' }, 0.9, 'c', 'chatBubble'], ['chatBubble', { text: 'Thanks!', side: 'right' }, 0.9, 'c', 'chatBubble right'], ['chatBubble', { typing: true }, 0.9, 'c', 'typing'],
+  ['comment', { name: '@sam', text: 'My dad, for sure', cast: SAM, liked: true }, 0.52, 'c', 'comment'], ['toast', {}, 0.5, 'c', 'toast'], ['sendButton', {}, 1, 'c', 'sendButton']]);
+grid2('L10', 8, 3, [
+  ['heart', {}, 0.7], ['thumbsUp', {}, 0.7], ['tick', {}, 0.85], ['cross', {}, 0.85], ['battery', { level: 0.08 }, 0.6, 'c', 'battery low'], ['battery', { level: 0.9, charging: true }, 0.6, 'c', 'battery full'], ['bell', { count: 3 }, 0.8], ['envelope', { open: 0.6 }, 0.6],
+  ['calendar', { day: 11, month: 'NOV' }, 0.65], ['clock', { h: 7, m: 0 }, 0.75], ['pin', {}, 0.8], ['coin', {}, 0.9], ['cash', {}, 0.6], ['gift', { open: 0.3 }, 0.6], ['trophy', {}, 0.65], ['star', {}, 0.7],
+  ['bulb', {}, 0.6], ['wand', { k: 0.6 }, 0.5, 'b'], ['paperPlane', {}, 0.6], ['key', {}, 0.6], ['padlock', {}, 0.6], ['mark', { ch: '?' }, 0.7], ['mark', { ch: '!' }, 0.7, 'c', 'mark !'], ['plusBlock', {}, 0.8]]);
+grid2('L11', 4, 2, [
+  ['routeMap', { n: 11, at: 6.4 }, 0.36], ['progressBar', { k: 0.65 }, 0.6], ['thought', { text: 'Can I trust them?' }, 0.75], ['arrow', {}, 0.6],
+  ['sign', { text: 'CENTRAL' }, 0.62, 'b'], ['priceTag', {}, 1], ['receipt', {}, 0.9], ['notebook', {}, 0.85]]);
+grid2('L12', 8, 3, [
+  ['mug', { steam: 1 }, 1, 'b'], ['glass', {}, 0.9, 'b'], ['bottle', {}, 0.65, 'b'], ['book', { title: 'TRUST' }, 0.8, 'b'], ['bookStack', {}, 0.8, 'b'], ['laptop', {}, 0.6, 'b'], ['tv', {}, 0.42, 'b'], ['alarmClock', { ring: true }, 0.7, 'b'],
+  ['plant', {}, 0.65, 'b', 'plant leafy'], ['plant', { kind: 'tall' }, 0.55, 'b', 'plant tall'], ['plant', { kind: 'round' }, 0.65, 'b', 'plant round'], ['deskLamp', {}, 0.6, 'b'], ['backpack', {}, 0.65, 'b'], ['sneaker', {}, 0.7, 'b'], ['shoeBox', {}, 0.6, 'b'], ['briefcase', {}, 0.6, 'b'],
+  ['bag', {}, 0.6, 'b'], ['car', {}, 0.45, 'b'], ['house', {}, 0.48, 'b'], ['bike', {}, 0.85, 'b'], ['cup', { steam: 1 }, 1.1, 'b'], ['umbrella', {}, 0.65, 'b'], ['house', { lit: true, color: '#c8d8f0', roof: '#4a5a7a' }, 0.48, 'b', 'house lit'], ['mug', { color: '#4a78b8' }, 1, 'b', 'mug blue']]);
