@@ -1,0 +1,8 @@
+{"title": "V03 Clip 23", "dur": 12.1, "set": "3d",
+ "music": [[0, 12.1, "hopeful", 0.3]],
+ "shots": [
+  ["x01", 0, 2.4, "And right now, the customers are still paying.", "3D flight down a data-center aisle of blinking server racks, you walking ahead", "zoom", [[0.2, "whoosh", -20], [1.8, "ding", -14]], ["hum", -34]],
+  ["x02", 2.4, 5.4, "Data-center sales were up one hundred and ten percent last quarter,", "two 3D revenue bars on the pad, the new one rises past double: +110%", "zoom", [[0.6, "riser", -22], [2.1, "ding", -12]], ["hum", -34]],
+  ["x03", 5.4, 9.9, "and Nvidia expects about one hundred and thirty billion dollars in sales next quarter.", "camera sweeps up: a $130B target glows over a growing pile of GPU order crates", "zoom", [[0.8, "counter", -18], [3.4, "impact", -14]], ["hum", -34]],
+  ["x04", 9.9, 12.1, "So far, the orders are real.", "crates stacked, REAL stamp, camera pulls back down the aisle", "zoom", [[0.7, "impact", -12], [1.0, "ding", -14]], ["hum", -34]]
+ ]}

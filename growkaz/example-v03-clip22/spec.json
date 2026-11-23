@@ -1,0 +1,8 @@
+{"title": "V03 Clip 22", "dur": 20.9, "set": "3d",
+ "music": [[0, 9.0, "mystery", 0.28], [9.0, 13.0, "tense", 0.3], [13.0, 20.9, "sad", 0.32]],
+ "shots": [
+  ["w01", 0, 1.9, "So, is Nvidia the next Cisco?", "3D verdict stage: you face the CISCO and NVIDIA pedestals, camera pushes in", "zoom", [[0.3, "pop", -16], [1.1, "shimmer", -20]], ["roomtone", -36]],
+  ["w02", 1.9, 9.0, "In its seat, yes. It's the main supplier of a historic build-out, more and more paid for with debt, and partly backed by its own guarantees.", "chain links the two cubes: SAME SEAT yes, DEBT tag, GUARANTEES tag", "zoom", [[1.0, "riser", -22], [1.2, "ding", -14], [4.7, "blip", -18], [6.4, "blip", -18]], ["roomtone", -36]],
+  ["w03", 9.0, 13.0, "In its price, no. You're not paying one hundred times profit.", "the balance scale tips: Cisco's pan heavy with a 100x price, Nvidia's light; NO stamp", "zoom", [[0.4, "impact", -12], [1.0, "whoosh", -22], [2.6, "ding", -16]], ["roomtone", -36]],
+  ["w04", 13.0, 20.9, "But here's the twist. Cisco holders waited because of what they paid. Nvidia holders would wait because of what the customers could no longer pay.", "hourglass over Cisco: waited because of PRICE; camera slides to Nvidia: coins drain, customers can't pay", "zoom", [[0.3, "stinger", -16], [1.5, "tick", -20], [3.4, "whoosh", -22], [5.4, "heartbeat", -16]], ["roomtone", -36]]
+ ]}
