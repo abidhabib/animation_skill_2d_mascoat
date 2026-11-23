@@ -1,0 +1,11 @@
+{"title": "V03 Clip 5", "dur": 33.5, "set": "mixed",
+ "music": [[0, 8.4, "triumph", 0.28], [8.4, 17.7, "tension", 0.3], [17.7, 25.3, "playful", 0.28], [25.3, 33.5, "dark", 0.32]],
+ "shots": [
+  ["e01", 0, 5.0, "Nobody cared, because the story was true. The internet really did change everything.", "2000 trading floor celebrating, confetti, crane up past the crowd to the ticker", "fade", [[0.2, "cheer", -20], [1.5, "applause", -24]], ["murmur", -26]],
+  ["e02", 5.0, 8.4, "The story was right. The price was wrong.", "breakfast table: newspaper THE INTERNET CHANGES EVERYTHING gets a tick; a red 100x PROFIT sticker slaps on", "fade", [[1.0, "ding", -16], [2.7, "hit", -12]], ["roomtone", -30]],
+  ["e03", 8.4, 13.6, "Then the first drop came. In about five weeks, Cisco fell roughly thirty percent.", "over-the-shoulder: two traders watch the amber terminal; candles turn red; -30%", "fade", [[1.0, "glitch", -18], [4.2, "impact", -12]], ["murmur", -30]],
+  ["e04", 13.6, 17.7, "And people said exactly what you're hearing today. It's a dip. Buy it.", "2000 living room TV news BUY THE DIP | 2026 phone feed posts It's a dip. Buy it.", "fade", [[0.3, "swish", -18], [2.75, "pop", -14], [3.3, "pop", -14]], null],
+  ["e05", 17.7, 23.0, "Even better, it bounced. Three months after the peak, Cisco was down less than twenty percent.", "terminal: candles bounce green, glass card -16% from peak, traders lean in", "fade", [[1.1, "powerup", -16], [4.5, "ding", -16]], ["murmur", -30]],
+  ["e06", 23.0, 27.2, "The dip buyers felt like geniuses. But that bounce was a trap.", "floor celebrates, high fives, then lights flicker red", "fade", [[0.4, "cheer", -20], [3.55, "stinger", -14], [3.6, "buzz", -18]], ["murmur", -28]],
+  ["e07", 27.2, 33.5, "Traders call it a sucker's rally, a rise that pulls people back in right before the real damage starts.", "mousetrap baited with a glowing green arrow, little investors walk in, SNAP", "fade", [[1.3, "pop", -18], [2.6, "footstep", -22], [3.2, "footstep", -22], [5.0, "impact", -10], [5.05, "glitch", -16]], null]
+ ]}

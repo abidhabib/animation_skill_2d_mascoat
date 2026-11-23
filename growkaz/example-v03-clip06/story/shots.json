@@ -1,0 +1,218 @@
+{
+ "title": "V03 Clip 6",
+ "duration": 28.1,
+ "shots": [
+  {
+   "id": "f01",
+   "start": 0,
+   "end": 3.8,
+   "line": "One year after the peak, Cisco was down about eighty percent.",
+   "scene": "2001 floor, red screens, people packing boxes, -80%",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "slowmo",
+     "gain": -18
+    },
+    {
+     "at": 2.8,
+     "name": "impact",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "f02",
+   "start": 3.8,
+   "end": 9.9,
+   "line": "By October two thousand and two, your ten thousand dollars was worth around one thousand one hundred.",
+   "scene": "kitchen table 2002: envelope opens, brokerage statement slides out, total circled",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.6,
+     "name": "swish",
+     "gain": -18
+    },
+    {
+     "at": 4.2,
+     "name": "hit",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "f03",
+   "start": 9.9,
+   "end": 14.8,
+   "line": "So, be honest. At one thousand one hundred dollars, would you have sold, or held on?",
+   "scene": "hallway with two lit doors SELL and HOLD, people choosing, 2000-you in the middle",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 3.4,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 4.0,
+     "name": "pop",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "f04",
+   "start": 14.8,
+   "end": 17.9,
+   "line": "Tell me in the comments. Because holding meant this.",
+   "scene": "phone with comment cards sliding in",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "blip",
+     "gain": -16
+    },
+    {
+     "at": 0.7,
+     "name": "blip",
+     "gain": -16
+    },
+    {
+     "at": 1.0,
+     "name": "blip",
+     "gain": -16
+    },
+    {
+     "at": 2.4,
+     "name": "whoosh",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "f05",
+   "start": 17.9,
+   "end": 22.3,
+   "line": "Cisco didn't go bankrupt. By twenty ten, its sales had more than doubled.",
+   "scene": "a busy campus HQ at day, glass revenue card 18.9B -> 40.0B",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.1,
+     "name": "ding",
+     "gain": -16
+    },
+    {
+     "at": 3.7,
+     "name": "powerup",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "city",
+    "gain": -30
+   }
+  },
+  {
+   "id": "f06",
+   "start": 22.3,
+   "end": 28.1,
+   "line": "The business won. And you still waited almost twenty-six years to get back to ten thousand dollars.",
+   "scene": "park: life passes by (joggers, a bike, couples), 2000-you on the bench greying, years tick, $10,000",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.9,
+     "name": "shimmer",
+     "gain": -18
+    },
+    {
+     "at": 2.8,
+     "name": "clock",
+     "gain": -20
+    },
+    {
+     "at": 5.0,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 9.9,
+   "mood": "sad",
+   "intensity": 0.3
+  },
+  {
+   "start": 9.9,
+   "end": 17.9,
+   "mood": "mystery",
+   "intensity": 0.28
+  },
+  {
+   "start": 17.9,
+   "end": 28.1,
+   "mood": "hopeful",
+   "intensity": 0.28
+  }
+ ],
+ "sfx": []
+}

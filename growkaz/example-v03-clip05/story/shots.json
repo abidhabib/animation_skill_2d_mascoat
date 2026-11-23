@@ -1,0 +1,260 @@
+{
+ "title": "V03 Clip 5",
+ "duration": 33.5,
+ "shots": [
+  {
+   "id": "e01",
+   "start": 0,
+   "end": 5.0,
+   "line": "Nobody cared, because the story was true. The internet really did change everything.",
+   "scene": "2000 trading floor celebrating, confetti, crane up past the crowd to the ticker",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "cheer",
+     "gain": -20
+    },
+    {
+     "at": 1.5,
+     "name": "applause",
+     "gain": -24
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -26
+   }
+  },
+  {
+   "id": "e02",
+   "start": 5.0,
+   "end": 8.4,
+   "line": "The story was right. The price was wrong.",
+   "scene": "breakfast table: newspaper THE INTERNET CHANGES EVERYTHING gets a tick; a red 100x PROFIT sticker slaps on",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.0,
+     "name": "ding",
+     "gain": -16
+    },
+    {
+     "at": 2.7,
+     "name": "hit",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "e03",
+   "start": 8.4,
+   "end": 13.6,
+   "line": "Then the first drop came. In about five weeks, Cisco fell roughly thirty percent.",
+   "scene": "over-the-shoulder: two traders watch the amber terminal; candles turn red; -30%",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.0,
+     "name": "glitch",
+     "gain": -18
+    },
+    {
+     "at": 4.2,
+     "name": "impact",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -30
+   }
+  },
+  {
+   "id": "e04",
+   "start": 13.6,
+   "end": 17.7,
+   "line": "And people said exactly what you're hearing today. It's a dip. Buy it.",
+   "scene": "2000 living room TV news BUY THE DIP | 2026 phone feed posts It's a dip. Buy it.",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "swish",
+     "gain": -18
+    },
+    {
+     "at": 2.75,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 3.3,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "e05",
+   "start": 17.7,
+   "end": 23.0,
+   "line": "Even better, it bounced. Three months after the peak, Cisco was down less than twenty percent.",
+   "scene": "terminal: candles bounce green, glass card -16% from peak, traders lean in",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.1,
+     "name": "powerup",
+     "gain": -16
+    },
+    {
+     "at": 4.5,
+     "name": "ding",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -30
+   }
+  },
+  {
+   "id": "e06",
+   "start": 23.0,
+   "end": 27.2,
+   "line": "The dip buyers felt like geniuses. But that bounce was a trap.",
+   "scene": "floor celebrates, high fives, then lights flicker red",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "cheer",
+     "gain": -20
+    },
+    {
+     "at": 3.55,
+     "name": "stinger",
+     "gain": -14
+    },
+    {
+     "at": 3.6,
+     "name": "buzz",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "e07",
+   "start": 27.2,
+   "end": 33.5,
+   "line": "Traders call it a sucker's rally, a rise that pulls people back in right before the real damage starts.",
+   "scene": "mousetrap baited with a glowing green arrow, little investors walk in, SNAP",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.3,
+     "name": "pop",
+     "gain": -18
+    },
+    {
+     "at": 2.6,
+     "name": "footstep",
+     "gain": -22
+    },
+    {
+     "at": 3.2,
+     "name": "footstep",
+     "gain": -22
+    },
+    {
+     "at": 5.0,
+     "name": "impact",
+     "gain": -10
+    },
+    {
+     "at": 5.05,
+     "name": "glitch",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 8.4,
+   "mood": "triumph",
+   "intensity": 0.28
+  },
+  {
+   "start": 8.4,
+   "end": 17.7,
+   "mood": "tension",
+   "intensity": 0.3
+  },
+  {
+   "start": 17.7,
+   "end": 25.3,
+   "mood": "playful",
+   "intensity": 0.28
+  },
+  {
+   "start": 25.3,
+   "end": 33.5,
+   "mood": "dark",
+   "intensity": 0.32
+  }
+ ],
+ "sfx": []
+}

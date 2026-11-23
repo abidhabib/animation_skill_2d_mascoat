@@ -1,0 +1,10 @@
+{"title": "V03 Clip 6", "dur": 28.1, "set": "mixed",
+ "music": [[0, 9.9, "sad", 0.3], [9.9, 17.9, "mystery", 0.28], [17.9, 28.1, "hopeful", 0.28]],
+ "shots": [
+  ["f01", 0, 3.8, "One year after the peak, Cisco was down about eighty percent.", "2001 floor, red screens, people packing boxes, -80%", "fade", [[0.3, "slowmo", -18], [2.8, "impact", -12]], ["hum", -28]],
+  ["f02", 3.8, 9.9, "By October two thousand and two, your ten thousand dollars was worth around one thousand one hundred.", "kitchen table 2002: envelope opens, brokerage statement slides out, total circled", "fade", [[0.6, "swish", -18], [4.2, "hit", -14]], ["roomtone", -30]],
+  ["f03", 9.9, 14.8, "So, be honest. At one thousand one hundred dollars, would you have sold, or held on?", "hallway with two lit doors SELL and HOLD, people choosing, 2000-you in the middle", "fade", [[3.4, "pop", -16], [4.0, "pop", -16]], ["roomtone", -30]],
+  ["f04", 14.8, 17.9, "Tell me in the comments. Because holding meant this.", "phone with comment cards sliding in", "fade", [[0.4, "blip", -16], [0.7, "blip", -16], [1.0, "blip", -16], [2.4, "whoosh", -18]], null],
+  ["f05", 17.9, 22.3, "Cisco didn't go bankrupt. By twenty ten, its sales had more than doubled.", "a busy campus HQ at day, glass revenue card 18.9B -> 40.0B", "fade", [[1.1, "ding", -16], [3.7, "powerup", -16]], ["city", -30]],
+  ["f06", 22.3, 28.1, "The business won. And you still waited almost twenty-six years to get back to ten thousand dollars.", "park: life passes by (joggers, a bike, couples), 2000-you on the bench greying, years tick, $10,000", "fade", [[0.9, "shimmer", -18], [2.8, "clock", -20], [5.0, "ding", -16]], ["wind", -30]]
+ ]}
