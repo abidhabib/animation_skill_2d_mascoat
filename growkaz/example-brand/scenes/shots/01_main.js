@@ -45,3 +45,32 @@ registerShot('thumb', { draw(g) {
   text(g, '12', 230, 160, { size: 190, color: '#ffffff', stroke: 28, strokeColor: '#1b1424', align: 'center' });
   text(g, 'YEARS.', 470, 320, { size: 180, color: '#ffd84a', stroke: 28, strokeColor: '#1b1424', align: 'center' });
 } });
+
+// BACKGROUND PLATE for the thumbnail (no characters, no text): Sam's front door at dusk. Cold blue street on the left,
+// warm light spilling from the open doorway on the right, soft depth. Left 55% kept calm for faces + number.
+import { drawToon } from '/engine/toon2d.js';
+registerShot('bg', { draw(g) {
+  const gr = g.createLinearGradient(0, 0, E.W, 0); gr.addColorStop(0, '#141a3a'); gr.addColorStop(0.55, '#2a2350'); gr.addColorStop(1, '#4a2a40'); g.fillStyle = gr; g.fillRect(0, 0, E.W, E.H);
+  // brick wall texture (very soft)
+  for (let y = 0; y < E.H; y += 46) for (let x = (y / 46) % 2 ? -60 : 0; x < E.W; x += 120) { g.fillStyle = 'rgba(255,255,255,0.025)'; g.fillRect(x + 4, y + 4, 112, 38); }
+  // doorway on the right, warm interior light
+  const dx = 1500, dw = 380, dh = 820, dy = E.H - dh;
+  glow(g, dx, E.H * 0.55, 900, '#ffb25a', 0.45);
+  g.fillStyle = '#ffcf8a'; g.fillRect(dx - dw / 2, dy, dw, dh); const ig = g.createLinearGradient(0, dy, 0, E.H); ig.addColorStop(0, 'rgba(255,240,200,.9)'); ig.addColorStop(1, 'rgba(255,150,80,.6)'); g.fillStyle = ig; g.fillRect(dx - dw / 2, dy, dw, dh);
+  g.fillStyle = '#2a1a22'; g.fillRect(dx - dw / 2 - 40, dy - 40, 40, dh + 40); g.fillRect(dx + dw / 2, dy - 40, 40, dh + 40); g.fillRect(dx - dw / 2 - 40, dy - 40, dw + 80, 40);
+  // open door panel (angled), light spill on the floor
+  g.fillStyle = '#5a3a2e'; g.beginPath(); g.moveTo(dx + dw / 2, dy); g.lineTo(dx + dw / 2 + 150, dy + 60); g.lineTo(dx + dw / 2 + 150, E.H + 40); g.lineTo(dx + dw / 2, E.H); g.closePath(); g.fill();
+  g.save(); g.globalCompositeOperation = 'lighter'; g.fillStyle = 'rgba(255,190,110,.18)'; g.beginPath(); g.moveTo(dx - dw / 2, E.H); g.lineTo(dx + dw / 2, E.H); g.lineTo(dx - 200, E.H + 10); g.lineTo(dx - 900, E.H); g.closePath(); g.fill(); g.restore();
+  // wall lamp + house number plate (no text) + a plant by the door
+  glow(g, dx - dw / 2 - 120, dy + 120, 220, '#ffd08a', 0.6); circle(g, dx - dw / 2 - 120, dy + 120, 26, '#fff0c0');
+  // cold street light from the left
+  glow(g, 120, 160, 700, '#5a8aff', 0.25);
+  // soft floor
+  g.fillStyle = 'rgba(10,8,24,.55)'; g.fillRect(0, E.H - 120, E.W, 120);
+  // vignette
+  const v = g.createRadialGradient(E.W * 0.55, E.H * 0.5, 300, E.W * 0.55, E.H * 0.5, 1250); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.55)'); g.fillStyle = v; g.fillRect(0, 0, E.W, E.H);
+} });
+// CHARACTER REFERENCE SHEET (for ChatGPT to copy the look): YOU and SAM, face + full body
+registerShot('refs', { draw(g) { g.fillStyle = '#f4efe6'; g.fillRect(0, 0, E.W, E.H);
+  const P = (c, x, label, ex1, ex2) => { bigToonFace(g, x - 200, 330, 150, { cast: c, expr: ex1 }); bigToonFace(g, x + 200, 330, 150, { cast: c, expr: ex2 }); drawToon(g, { x, y: 1050, s: 1.15, cast: c, expr: 'smile' }); text(g, label, x, 620, { size: 54, color: '#1b1424' }); };
+  P(HERO, 480, 'YOU (main character)', 'smile', 'shocked'); P(SAM, 1440, 'SAM (best friend)', 'smile', 'happy'); seg(g, [[960, 60], [960, 1020]], 4, 'rgba(27,20,36,.25)'); } });
