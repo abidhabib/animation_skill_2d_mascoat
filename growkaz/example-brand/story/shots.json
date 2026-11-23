@@ -1,0 +1,36 @@
+{
+ "title": "Brand",
+ "duration": 4.0,
+ "shots": [
+  {
+   "id": "logo",
+   "start": 0.0,
+   "end": 2.0,
+   "line": "",
+   "scene": "brand",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "banner",
+   "start": 2.0,
+   "end": 4.0,
+   "line": "",
+   "scene": "brand",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  }
+ ]
+}
