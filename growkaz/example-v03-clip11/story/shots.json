@@ -1,0 +1,182 @@
+{
+ "title": "V03 Clip 11",
+ "duration": 23.3,
+ "shots": [
+  {
+   "id": "k01",
+   "start": 0,
+   "end": 5.1,
+   "line": "So what could make it stop? To answer that, you have to follow the money back to the buyer.",
+   "scene": "coins flow along the road from big tech to the data center to the chip factory; pan upstream",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "whoosh",
+     "gain": -18
+    },
+    {
+     "at": 2.4,
+     "name": "carpass",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "wind",
+    "gain": -30
+   }
+  },
+  {
+   "id": "k02",
+   "start": 5.1,
+   "end": 7.3,
+   "line": "Here's the part most people skip.",
+   "scene": "magnifier over fine print reveals FUNDED BY DEBT",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "swish",
+     "gain": -18
+    },
+    {
+     "at": 1.5,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "k03",
+   "start": 7.3,
+   "end": 12.2,
+   "line": "At first, the big tech companies paid for their AI data centers out of their own profits.",
+   "scene": "vault opens, cash flies to a data center construction site, crane swinging",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "impact",
+     "gain": -14
+    },
+    {
+     "at": 0.9,
+     "name": "ding",
+     "gain": -16
+    },
+    {
+     "at": 2.0,
+     "name": "whoosh",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "city",
+    "gain": -32
+   }
+  },
+  {
+   "id": "k04",
+   "start": 12.2,
+   "end": 20.3,
+   "line": "But that's changing. The Federal Reserve estimates companies issued more than six hundred and eighty billion dollars of AI-related debt this year, through October.",
+   "scene": "sign flips OWN PROFITS to BORROWED, report cover slides in, counter climbs to $680B",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "swish",
+     "gain": -18
+    },
+    {
+     "at": 1.05,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 3.7,
+     "name": "counter",
+     "gain": -16
+    },
+    {
+     "at": 5.0,
+     "name": "impact",
+     "gain": -12
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "k05",
+   "start": 20.3,
+   "end": 23.3,
+   "line": "That's about five times all of twenty twenty-three.",
+   "scene": "bars 2023 vs 2026, people gaze up, 5x badge",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "riser",
+     "gain": -18
+    },
+    {
+     "at": 1.85,
+     "name": "hit",
+     "gain": -12
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 12.2,
+   "mood": "mystery",
+   "intensity": 0.28
+  },
+  {
+   "start": 12.2,
+   "end": 23.3,
+   "mood": "dark",
+   "intensity": 0.32
+  }
+ ],
+ "sfx": []
+}

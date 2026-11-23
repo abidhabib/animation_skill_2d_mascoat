@@ -1,0 +1,197 @@
+{
+ "title": "V03 Clip 9",
+ "duration": 26.2,
+ "shots": [
+  {
+   "id": "i01",
+   "start": 0,
+   "end": 5.2,
+   "line": "Line the two charts up at the top, and the first weeks after the peak almost sit on top of each other.",
+   "scene": "desk: tracing-paper Nvidia chart slides over the printed Cisco chart, peaks align",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "swish",
+     "gain": -16
+    },
+    {
+     "at": 2.6,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 3.4,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i02",
+   "start": 5.2,
+   "end": 12.9,
+   "line": "Then, on November twelfth, Nvidia's founder, the face of the company for more than thirty years, resigned, effective immediately.",
+   "scene": "keynote stage: empty podium in the spotlight, audience phones buzz with BREAKING",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "whoosh",
+     "gain": -18
+    },
+    {
+     "at": 2.3,
+     "name": "phonebuzz",
+     "gain": -16
+    },
+    {
+     "at": 2.6,
+     "name": "phonebuzz",
+     "gain": -16
+    },
+    {
+     "at": 2.9,
+     "name": "phonebuzz",
+     "gain": -16
+    },
+    {
+     "at": 5.2,
+     "name": "stinger",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "i03",
+   "start": 12.9,
+   "end": 17.3,
+   "line": "So the easy story became, it's just the CEO news. It'll pass.",
+   "scene": "talk-show studio: three pundits wave it off, banner JUST THE CEO NEWS",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "swish",
+     "gain": -18
+    },
+    {
+     "at": 2.6,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 3.3,
+     "name": "pop",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i04",
+   "start": 17.3,
+   "end": 22.0,
+   "line": "But look at the timing. More than half of the fall had already happened before that announcement.",
+   "scene": "falling candles, dashed line at NOV 12, the part before it highlighted",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.8,
+     "name": "tick",
+     "gain": -16
+    },
+    {
+     "at": 1.4,
+     "name": "whoosh",
+     "gain": -20
+    },
+    {
+     "at": 3.4,
+     "name": "hit",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "i05",
+   "start": 22.0,
+   "end": 26.2,
+   "line": "AI stocks were already sliding. This wasn't about one man.",
+   "scene": "heat-map of AI stocks, all red; NOT ONE MAN stamp",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "flash",
+     "gain": -16
+    },
+    {
+     "at": 2.4,
+     "name": "impact",
+     "gain": -12
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 12.9,
+   "mood": "mystery",
+   "intensity": 0.28
+  },
+  {
+   "start": 12.9,
+   "end": 26.2,
+   "mood": "tension",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

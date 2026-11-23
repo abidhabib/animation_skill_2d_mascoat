@@ -1,0 +1,9 @@
+{"title": "V03 Clip 9", "dur": 26.2, "set": "mixed",
+ "music": [[0, 12.9, "mystery", 0.28], [12.9, 26.2, "tension", 0.3]],
+ "shots": [
+  ["i01", 0, 5.2, "Line the two charts up at the top, and the first weeks after the peak almost sit on top of each other.", "desk: tracing-paper Nvidia chart slides over the printed Cisco chart, peaks align", "fade", [[0.3, "swish", -16], [2.6, "pop", -14], [3.4, "pop", -14]], ["roomtone", -30]],
+  ["i02", 5.2, 12.9, "Then, on November twelfth, Nvidia's founder, the face of the company for more than thirty years, resigned, effective immediately.", "keynote stage: empty podium in the spotlight, audience phones buzz with BREAKING", "fade", [[0.3, "whoosh", -18], [2.3, "phonebuzz", -16], [2.6, "phonebuzz", -16], [2.9, "phonebuzz", -16], [5.2, "stinger", -14]], ["murmur", -28]],
+  ["i03", 12.9, 17.3, "So the easy story became, it's just the CEO news. It'll pass.", "talk-show studio: three pundits wave it off, banner JUST THE CEO NEWS", "fade", [[0.2, "swish", -18], [2.6, "pop", -14], [3.3, "pop", -14]], ["roomtone", -30]],
+  ["i04", 17.3, 22.0, "But look at the timing. More than half of the fall had already happened before that announcement.", "falling candles, dashed line at NOV 12, the part before it highlighted", "fade", [[0.8, "tick", -16], [1.4, "whoosh", -20], [3.4, "hit", -14]], ["hum", -30]],
+  ["i05", 22.0, 26.2, "AI stocks were already sliding. This wasn't about one man.", "heat-map of AI stocks, all red; NOT ONE MAN stamp", "fade", [[0.2, "flash", -16], [2.4, "impact", -12]], null]
+ ]}

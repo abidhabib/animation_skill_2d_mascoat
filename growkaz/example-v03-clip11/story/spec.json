@@ -1,0 +1,9 @@
+{"title": "V03 Clip 11", "dur": 23.3, "set": "mixed",
+ "music": [[0, 12.2, "mystery", 0.28], [12.2, 23.3, "dark", 0.32]],
+ "shots": [
+  ["k01", 0, 5.1, "So what could make it stop? To answer that, you have to follow the money back to the buyer.", "coins flow along the road from big tech to the data center to the chip factory; pan upstream", "fade", [[0.4, "whoosh", -18], [2.4, "carpass", -20]], ["wind", -30]],
+  ["k02", 5.1, 7.3, "Here's the part most people skip.", "magnifier over fine print reveals FUNDED BY DEBT", "fade", [[0.2, "swish", -18], [1.5, "pop", -14]], ["roomtone", -30]],
+  ["k03", 7.3, 12.2, "At first, the big tech companies paid for their AI data centers out of their own profits.", "vault opens, cash flies to a data center construction site, crane swinging", "fade", [[0.5, "impact", -14], [0.9, "ding", -16], [2.0, "whoosh", -20]], ["city", -32]],
+  ["k04", 12.2, 20.3, "But that's changing. The Federal Reserve estimates companies issued more than six hundred and eighty billion dollars of AI-related debt this year, through October.", "sign flips OWN PROFITS to BORROWED, report cover slides in, counter climbs to $680B", "fade", [[0.2, "swish", -18], [1.05, "pop", -14], [3.7, "counter", -16], [5.0, "impact", -12]], ["hum", -30]],
+  ["k05", 20.3, 23.3, "That's about five times all of twenty twenty-three.", "bars 2023 vs 2026, people gaze up, 5x badge", "fade", [[0.3, "riser", -18], [1.85, "hit", -12]], null]
+ ]}

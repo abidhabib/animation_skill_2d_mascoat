@@ -1,0 +1,10 @@
+{"title": "V03 Clip 10", "dur": 28.4, "set": "mixed",
+ "music": [[0, 14.5, "hopeful", 0.28], [14.5, 28.4, "mystery", 0.3]],
+ "shots": [
+  ["j01", 0, 6.4, "Then something even stranger happened. On November seventeenth, Nvidia reported revenue more than double the year before.", "earnings call boardroom: wall screen revenue bars double, speakerphone glows", "fade", [[0.3, "whoosh", -18], [3.8, "counter", -18], [5.8, "ding", -14]], ["murmur", -30]],
+  ["j02", 6.4, 10.1, "It beat forecasts, and it said next quarter would be even bigger.", "boardroom cheers, glass cards BEAT and NEXT QUARTER slide in", "fade", [[0.3, "pop", -14], [1.5, "pop", -14], [2.4, "applause", -22]], ["murmur", -30]],
+  ["j03", 10.1, 14.5, "Normally, that means a higher price target. That's how the math is supposed to work.", "gear machine: PROFIT up goes in, PRICE TARGET up comes out", "fade", [[0.3, "hum", -24], [1.6, "ding", -14], [2.4, "powerup", -18]], ["hum", -30]],
+  ["j04", 14.5, 19.1, "But in those same days, more than twenty analysts cut what they think the stock is worth.", "analyst floor of 21, price-target notes flip down in red, counter 20+", "fade", [[1.4, "tick", -18], [2.0, "tick", -18], [2.6, "tick", -18], [3.2, "tick", -18], [3.9, "impact", -14]], ["murmur", -28]],
+  ["j05", 19.1, 22.7, "Earn more. Worth less. In the same spreadsheet.", "spreadsheet: EARNINGS up green, TARGET down red, pull back to the baffled analyst", "fade", [[0.1, "pop", -14], [1.1, "hit", -14], [2.1, "swish", -18]], ["roomtone", -30]],
+  ["j06", 22.7, 28.4, "That only makes sense if the worry isn't today's profit. The worry is how long that profit lasts.", "hourglass drains beside a steady pile of profit; HOW LONG?", "fade", [[0.5, "tick", -22], [1.5, "tick", -22], [3.7, "heartbeat", -16], [4.4, "clock", -20]], ["hum", -30]]
+ ]}

@@ -1,0 +1,246 @@
+{
+ "title": "V03 Clip 10",
+ "duration": 28.4,
+ "shots": [
+  {
+   "id": "j01",
+   "start": 0,
+   "end": 6.4,
+   "line": "Then something even stranger happened. On November seventeenth, Nvidia reported revenue more than double the year before.",
+   "scene": "earnings call boardroom: wall screen revenue bars double, speakerphone glows",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "whoosh",
+     "gain": -18
+    },
+    {
+     "at": 3.8,
+     "name": "counter",
+     "gain": -18
+    },
+    {
+     "at": 5.8,
+     "name": "ding",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j02",
+   "start": 6.4,
+   "end": 10.1,
+   "line": "It beat forecasts, and it said next quarter would be even bigger.",
+   "scene": "boardroom cheers, glass cards BEAT and NEXT QUARTER slide in",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 1.5,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 2.4,
+     "name": "applause",
+     "gain": -22
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j03",
+   "start": 10.1,
+   "end": 14.5,
+   "line": "Normally, that means a higher price target. That's how the math is supposed to work.",
+   "scene": "gear machine: PROFIT up goes in, PRICE TARGET up comes out",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "hum",
+     "gain": -24
+    },
+    {
+     "at": 1.6,
+     "name": "ding",
+     "gain": -14
+    },
+    {
+     "at": 2.4,
+     "name": "powerup",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j04",
+   "start": 14.5,
+   "end": 19.1,
+   "line": "But in those same days, more than twenty analysts cut what they think the stock is worth.",
+   "scene": "analyst floor of 21, price-target notes flip down in red, counter 20+",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.4,
+     "name": "tick",
+     "gain": -18
+    },
+    {
+     "at": 2.0,
+     "name": "tick",
+     "gain": -18
+    },
+    {
+     "at": 2.6,
+     "name": "tick",
+     "gain": -18
+    },
+    {
+     "at": 3.2,
+     "name": "tick",
+     "gain": -18
+    },
+    {
+     "at": 3.9,
+     "name": "impact",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "j05",
+   "start": 19.1,
+   "end": 22.7,
+   "line": "Earn more. Worth less. In the same spreadsheet.",
+   "scene": "spreadsheet: EARNINGS up green, TARGET down red, pull back to the baffled analyst",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "pop",
+     "gain": -14
+    },
+    {
+     "at": 1.1,
+     "name": "hit",
+     "gain": -14
+    },
+    {
+     "at": 2.1,
+     "name": "swish",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "roomtone",
+    "gain": -30
+   }
+  },
+  {
+   "id": "j06",
+   "start": 22.7,
+   "end": 28.4,
+   "line": "That only makes sense if the worry isn't today's profit. The worry is how long that profit lasts.",
+   "scene": "hourglass drains beside a steady pile of profit; HOW LONG?",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.5,
+     "name": "tick",
+     "gain": -22
+    },
+    {
+     "at": 1.5,
+     "name": "tick",
+     "gain": -22
+    },
+    {
+     "at": 3.7,
+     "name": "heartbeat",
+     "gain": -16
+    },
+    {
+     "at": 4.4,
+     "name": "clock",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 14.5,
+   "mood": "hopeful",
+   "intensity": 0.28
+  },
+  {
+   "start": 14.5,
+   "end": 28.4,
+   "mood": "mystery",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}

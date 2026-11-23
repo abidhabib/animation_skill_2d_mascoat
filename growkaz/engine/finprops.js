@@ -13,6 +13,12 @@
 //   shelf        supermarket shelf with real-looking products + price labels (o.prices = [..], o.mult)
 //   commentCard  modern dark comment card (avatar, name, time, text, like + reply)
 //   door         interior door with frame, sign plate, light spill (open 0..1)
+//   gpu, router  graphics card (spinning fans), 2000-era network box (blinking LEDs)
+//   heatmap      market heat-map treemap (tickers, red/green %); k = reveal 0..1
+//   sheet        modern spreadsheet card (column letters, header row, highlighted cells)
+//   hourglass    glass hourglass; k = sand fallen 0..1
+//   report       report cover (title lines, seal, barcode)
+//   vault        bank vault door with wheel handle (open 0..1)
 import { E, ease, prog, clamp, lerp, rr, seg, circle, glow, alpha, text } from '/engine/core.js';
 import { bigToonFace, HERO } from '/engine/toon2d.js';
 
@@ -128,3 +134,45 @@ FP.router = (g, x, y, s, o = {}) => { const t = o.t || 0; g.save(); g.translate(
   g.shadowColor = 'rgba(0,0,0,.4)'; g.shadowBlur = 30; g.shadowOffsetY = 16; rr(g, -260, -70, 520, 140, 14); F(g, '#5a6472'); g.shadowColor = 'transparent'; S(g, INK, 6); rr(g, -250, -60, 500, 40, 8); F(g, '#6c7686');
   for (let r = 0; r < 2; r++) for (let i = 0; i < 12; i++) { rr(g, -170 + i * 30, -4 + r * 34, 24, 22, 3); F(g, '#1a1c22'); circle(g, -158 + i * 30, -10 + r * 34, 3.5, Math.sin(t * 9 + i * 1.7 + r * 3) > -0.2 ? ['#5aff8a', '#ffb43a'][(i + r) % 2] : '#2a2c30'); }
   rr(g, -240, 0, 50, 50, 6); F(g, '#2a2c34'); circle(g, -215, 25, 10, '#5aff8a'); g.restore(); };
+
+// market heat-map: tiles = [[label, weight, pct], ...]; k = reveal 0..1; slice-and-dice treemap
+FP.heatmap = (g, x, y, w, h, tiles, k = 1, o = {}) => { const items = tiles.slice().sort((a, b) => b[1] - a[1]); let idx = 0;
+  const col = (p) => { const a = clamp(Math.abs(p) / (o.max || 6), 0.15, 1); return p < 0 ? `rgb(${Math.round(60 + 170 * a)},${Math.round(36 - 12 * a)},${Math.round(46 - 10 * a)})` : `rgb(${Math.round(30 - 8 * a)},${Math.round(70 + 120 * a)},${Math.round(60 + 20 * a)})`; };
+  const draw = (arr, X, Y, W, H) => { if (!arr.length) return; if (arr.length === 1) { const [lab, wt, p] = arr[0], i = idx++, rk = ease.outBack(clamp(k * (items.length + 3) - i, 0, 1)); if (rk <= 0) return; const cx = X + W / 2, cy = Y + H / 2;
+        g.save(); g.translate(cx, cy); g.scale(rk, rk); rr(g, -W / 2 + 3, -H / 2 + 3, W - 6, H - 6, 8); F(g, col(p)); S(g, 'rgba(0,0,0,.35)', 2); const fs = clamp(Math.min(W, H) * 0.3, 14, 54);
+        T(g, lab, 0, -fs * 0.35, fs, '#ffffff', { align: 'center', w: 900 }); T(g, (p > 0 ? '+' : '') + p.toFixed(1) + '%', 0, fs * 0.65, fs * 0.55, 'rgba(255,255,255,.85)', { align: 'center', w: 700 }); g.restore(); return; }
+      const tot = arr.reduce((a, b) => a + b[1], 0); let acc = 0, cut = 1; for (let i = 0; i < arr.length - 1; i++) { acc += arr[i][1]; cut = i + 1; if (acc >= tot / 2) break; }
+      const A = arr.slice(0, cut), B = arr.slice(cut), fa = A.reduce((a, b) => a + b[1], 0) / tot;
+      if (W >= H) { draw(A, X, Y, W * fa, H); draw(B, X + W * fa, Y, W * (1 - fa), H); } else { draw(A, X, Y, W, H * fa); draw(B, X, Y + H * fa, W, H * (1 - fa)); } };
+  draw(items, x, y, w, h); };
+
+// modern spreadsheet card. cells = array of rows (strings); o: {colW, rowH, hi:[[r,c,fill,textColor]], title, fs}
+FP.sheet = (g, x, y, w, cells, o = {}) => { const rows = cells.length, cols = cells[0].length, rh = o.rowH || 76, hh = 56, cw = o.colW || (w - 70) / cols, h = hh + 44 + rows * rh + 20;
+  g.save(); g.shadowColor = 'rgba(0,0,0,.4)'; g.shadowBlur = 40; g.shadowOffsetY = 18; rr(g, x, y, w, h, 18); F(g, '#fbfcfe'); g.restore(); rr(g, x, y, w, h, 18); S(g, 'rgba(0,0,0,.12)', 2);
+  g.save(); rr(g, x, y, w, h, 18); g.clip(); g.fillStyle = '#1f7a4a'; g.fillRect(x, y, w, hh); T(g, o.title || 'Analyst model — v7_FINAL.xlsx', x + 24, y + hh / 2, 24, '#ffffff', { w: 700 }); for (let i = 0; i < 3; i++) circle(g, x + w - 30 - i * 26, y + hh / 2, 7, 'rgba(255,255,255,.7)');
+  g.fillStyle = '#eef1f5'; g.fillRect(x, y + hh, w, 44); g.fillRect(x, y + hh, 70, h); for (let c = 0; c < cols; c++) T(g, String.fromCharCode(65 + c), x + 70 + c * cw + cw / 2, y + hh + 22, 20, '#6a7280', { align: 'center', w: 700 });
+  for (let r = 0; r < rows; r++) { const yy = y + hh + 44 + r * rh; T(g, String(r + 1), x + 35, yy + rh / 2, 20, '#6a7280', { align: 'center', w: 600 }); seg(g, [[x, yy + rh], [x + w, yy + rh]], 1.5, '#dfe3ea');
+    for (let c = 0; c < cols; c++) { const cx = x + 70 + c * cw, hi = (o.hi || []).find(q => q[0] === r && q[1] === c); if (hi) { g.fillStyle = hi[2]; g.fillRect(cx, yy, cw, rh); }
+      seg(g, [[cx, yy], [cx, yy + rh]], 1.5, '#dfe3ea'); const v = cells[r][c]; if (v != null) T(g, String(v), cx + (c ? cw / 2 : 18), yy + rh / 2, o.fs || 30, hi && hi[3] ? hi[3] : (r === 0 ? '#1a2230' : '#2a3140'), { align: c ? 'center' : 'left', w: r === 0 ? 800 : 600 }); } }
+  g.restore(); };
+
+// hourglass: k = sand fallen 0..1; centre anchor; ~260 tall at s = 1
+FP.hourglass = (g, x, y, s, k, o = {}) => { g.save(); g.translate(x, y); g.scale(s, s); const gl = () => { g.beginPath(); g.moveTo(-90, -130); g.lineTo(90, -130); g.lineTo(90, -112); g.quadraticCurveTo(90, -40, 14, -6); g.lineTo(14, 6); g.quadraticCurveTo(90, 40, 90, 112); g.lineTo(90, 130); g.lineTo(-90, 130); g.lineTo(-90, 112); g.quadraticCurveTo(-90, 40, -14, 6); g.lineTo(-14, -6); g.quadraticCurveTo(-90, -40, -90, -112); g.closePath(); };
+  gl(); g.fillStyle = 'rgba(200,230,255,.14)'; g.fill(); g.save(); gl(); g.clip(); const top = 1 - k, sandC = o.sand || '#f0b020';
+  g.fillStyle = sandC; g.beginPath(); g.moveTo(-90, -130 + 110 * k); g.lineTo(90, -130 + 110 * k); g.lineTo(90, -40); g.lineTo(0, 0); g.lineTo(-90, -40); g.closePath(); if (top > 0.02) g.fill(); const pile = 110 * k; g.beginPath(); g.moveTo(-90, 130); g.lineTo(-90, 122); g.quadraticCurveTo(0, 130 - pile * 1.1, 90, 122); g.lineTo(90, 130); g.closePath(); if (k > 0.02) g.fill();
+  if (k > 0 && k < 0.99) seg(g, [[0, -4], [0, 128 - pile]], 5, sandC); g.restore(); gl(); S(g, INK, 7); gl(); S(g, 'rgba(255,255,255,.5)', 3);
+  for (const yy of [-146, 130]) { rr(g, -110, yy, 220, 18, 8); F(g, '#7a4e2e'); S(g, INK, 5); } seg(g, [[-96, -130], [-96, 130]], 8, '#7a4e2e'); seg(g, [[96, -130], [96, 130]], 8, '#7a4e2e'); g.restore(); };
+
+// report / document cover. o: {title:[..], sub, seal, kicker}
+FP.report = (g, x, y, s, o = {}) => { g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s); const W = 520, H = 700;
+  g.shadowColor = 'rgba(0,0,0,.4)'; g.shadowBlur = 36; g.shadowOffsetY = 16; rr(g, -W / 2, -H / 2, W, H, 8); F(g, '#f6f3ea'); g.shadowColor = 'transparent'; rr(g, -W / 2, -H / 2, 24, H, 4); F(g, '#1f3a5f');
+  T(g, o.kicker || 'NOVEMBER 2026', -W / 2 + 60, -H / 2 + 60, 20, '#6a6a6a', { w: 700 }); (o.title || ['Financial', 'Stability', 'Report']).forEach((l, i) => T(g, l, -W / 2 + 60, -H / 2 + 150 + i * 70, 62, '#1f3a5f', { w: 900, font: 'Georgia, serif' }));
+  seg(g, [[-W / 2 + 60, -H / 2 + 330], [W / 2 - 60, -H / 2 + 330]], 4, '#c8202a'); T(g, o.sub || 'AI investment and debt', -W / 2 + 60, -H / 2 + 372, 28, '#444', { w: 600, font: 'Georgia, serif' });
+  circle(g, W / 2 - 120, H / 2 - 150, 70, '#1f3a5f'); circle(g, W / 2 - 120, H / 2 - 150, 58, '#f6f3ea'); circle(g, W / 2 - 120, H / 2 - 150, 48, '#1f3a5f'); T(g, o.seal || 'FSR', W / 2 - 120, H / 2 - 150, 30, '#f6f3ea', { align: 'center', w: 900 });
+  for (let i = 0; i < 28; i++) { g.fillStyle = '#333'; g.fillRect(-W / 2 + 60 + i * 6, H / 2 - 90, 2 + (i * 7) % 4, 40); } g.restore(); };
+
+// bank vault door: wheel handle + bolts; open 0..1 (door swings, light spills)
+FP.vault = (g, x, y, s, open, o = {}) => { g.save(); g.translate(x, y); g.scale(s, s); rr(g, -230, -230, 460, 460, 40); F(g, '#2a2e38'); S(g, INK, 8);
+  if (open > 0) { const lg = g.createRadialGradient(0, 0, 20, 0, 0, 200); lg.addColorStop(0, alpha(o.light || '#ffe28a', 0.95)); lg.addColorStop(1, alpha(o.light || '#ffe28a', 0.15)); g.fillStyle = lg; g.beginPath(); g.arc(0, 0, 190, 0, 7); g.fill(); }
+  g.save(); g.scale(1 - 0.85 * ease.inOut(open), 1); circle(g, 0, 0, 190, '#7a8494'); S(g, INK, 8); circle(g, 0, 0, 160, '#9aa4b4'); S(g, INK, 4); for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; circle(g, Math.cos(a) * 172, Math.sin(a) * 172, 9, '#5a6474'); }
+  g.save(); g.rotate(open * 4.0 + (o.spin || 0)); circle(g, 0, 0, 40, '#b8c0cc'); S(g, INK, 5); for (let i = 0; i < 4; i++) { g.rotate(Math.PI / 2); seg(g, [[0, 0], [0, -110]], 16, INK); seg(g, [[0, 0], [0, -110]], 9, '#c8d0dc'); circle(g, 0, -118, 14, '#c8d0dc'); S(g, INK, 4); } g.restore(); g.restore(); g.restore(); };
