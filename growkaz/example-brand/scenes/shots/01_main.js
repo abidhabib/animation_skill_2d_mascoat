@@ -74,3 +74,28 @@ registerShot('bg', { draw(g) {
 registerShot('refs', { draw(g) { g.fillStyle = '#f4efe6'; g.fillRect(0, 0, E.W, E.H);
   const P = (c, x, label, ex1, ex2) => { bigToonFace(g, x - 200, 330, 150, { cast: c, expr: ex1 }); bigToonFace(g, x + 200, 330, 150, { cast: c, expr: ex2 }); drawToon(g, { x, y: 1050, s: 1.15, cast: c, expr: 'smile' }); text(g, label, x, 620, { size: 54, color: '#1b1424' }); };
   P(HERO, 480, 'YOU (main character)', 'smile', 'shocked'); P(SAM, 1440, 'SAM (best friend)', 'smile', 'happy'); seg(g, [[960, 60], [960, 1020]], 4, 'rgba(27,20,36,.25)'); } });
+
+// ---------- A/B test variants (title: "What If Your Best Friend Only Trusted You 41%?") ----------
+import { getShot } from '/engine/core.js';
+import { DAD } from '/engine/toon2d.js';
+const big41 = (g, x, y, s = 1, str = '41%', col = '#ff4033') => { glow(g, x, y, 360 * s, col, 0.5);
+  text(g, str, x, y, { size: 270 * s, color: col, stroke: 28 * s, strokeColor: '#1b1424', glow: 40, glowColor: 'rgba(255,70,50,.9)' }); };
+const tri = (g, x, y, s = 1, col = '#ff4033') => { g.fillStyle = col; g.strokeStyle = '#1b1424'; g.lineWidth = 10 * s; g.beginPath(); g.moveTo(x - 42 * s, y - 30 * s); g.lineTo(x + 42 * s, y - 30 * s); g.lineTo(x, y + 40 * s); g.closePath(); g.fill(); g.stroke(); };
+// B "THE HUG": Sam (eyes closed, happy) hugs you at his glowing door; you face the viewer in shock; red 41% over Sam. No words.
+registerShot('thumbB', { draw(g) { getShot('bg').draw(g, 0, {});
+  bigToonFace(g, 1240, 760, 250, { cast: SAM, expr: 'joy', tilt: -0.12 });
+  // Sam's arm goes BEHIND your head, his hand lands on your far shoulder
+  g.lineCap = 'round'; seg(g, [[1060, 1000], [800, 930], [480, 1010]], 96, '#1b1424'); seg(g, [[1060, 1000], [800, 930], [500, 1010]], 82, SAM.top);
+  bigToonFace(g, 700, 790, 270, { cast: HERO, expr: 'shocked', look: [0.1, 0.1], tilt: 0.08 });
+  circle(g, 440, 1030, 54, '#1b1424'); circle(g, 440, 1030, 46, SAM.skin);
+  big41(g, 1280, 250, 1.05); tri(g, 1560, 230, 1); } });
+// C "DAD vs BEST FRIEND": warm left (Dad 100%) vs cold right (Sam 41%), hard split. No words.
+registerShot('thumbC', { draw(g) {
+  const L = g.createLinearGradient(0, 0, 0, E.H); L.addColorStop(0, '#ffcf7a'); L.addColorStop(1, '#ff8a4a'); g.fillStyle = L; g.fillRect(0, 0, E.W / 2, E.H);
+  const R = g.createLinearGradient(0, 0, 0, E.H); R.addColorStop(0, '#1a2250'); R.addColorStop(1, '#0c1030'); g.fillStyle = R; g.fillRect(E.W / 2, 0, E.W / 2, E.H);
+  glow(g, 480, 420, 600, '#fff2c0', 0.5); glow(g, 1440, 260, 520, '#ff3a3a', 0.35);
+  bigToonFace(g, 480, 820, 250, { cast: DAD, expr: 'happy' });
+  bigToonFace(g, 1440, 820, 250, { cast: SAM, expr: 'smile', look: [-0.4, 0] });
+  text(g, '100%', 480, 270, { size: 230, color: '#5fe08a', stroke: 26, strokeColor: '#1b1424' });
+  big41(g, 1440, 270, 0.95); tri(g, 1720, 250, 0.9);
+  g.fillStyle = '#1b1424'; g.fillRect(E.W / 2 - 10, 0, 20, E.H); } });
