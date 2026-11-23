@@ -1,8 +1,10 @@
-{"title": "V03 Clip 26", "dur": 30.0, "set": "semi3d",
- "music": [[0, 30.0, "hopeful", 0.34]],
+{"title": "V03 Clip 26", "dur": 31.7, "set": "semi3d",
+ "music": [[0, 5.0, "hopeful", 0.3], [5.0, 21.2, "mystery", 0.26], [21.2, 31.7, "hopeful", 0.32]],
  "shots": [
-  ["z01", 0, 5.0, "If this helped you see past the headlines, subscribe. It's free, and it really helps.", "3D road at sunset, you wave; a SUBSCRIBE button pops and is pressed", "zoom", [[0.3, "pop", -16], [2.0, "ding", -12]], ["wind", -34]],
-  ["z02", 5.0, 13.0, "(outro recap, music only)", "verdict stage orbit: three recap lines: same seat, not the same price, the 3 signals", "zoom", [[0.8, "pop", -18], [3.4, "pop", -18], [6.0, "pop", -18]], ["roomtone", -38]],
-  ["z03", 13.0, 22.0, "(outro, music only)", "calm tracking walk along the road of years: THE WAIT IS THE DAMAGE", "zoom", [[0.6, "whoosh", -24], [4.5, "ding", -16]], ["wind", -34]],
-  ["z04", 22.0, 30.0, "(outro, music only)", "back on the verdict stage: HOLD / SELL / BUY MORE? tell me below, slow pull back", "zoom", [[0.8, "pop", -18], [2.0, "pop", -18], [3.2, "pop", -18]], ["roomtone", -38]]
+  ["z01", 0, 5.0, "If this helped you see past the headlines, subscribe. It's free, and it really helps.", "3D road at sunset, you wave; SUBSCRIBE pressed", "zoom", [[0.3, "pop", -16], [2.2, "ding", -12]], ["wind", -34]],
+  ["z02", 5.0, 13.2, "Here's the whole story, fast. Cisco didn't fail. Its sales doubled. Holders still waited almost twenty-six years.", "calm walk on the road of years: DIDN'T FAIL, SALES DOUBLED, 26 YEARS", "zoom", [[0.6, "whoosh", -24], [2.5, "ding", -14], [3.9, "ding", -14], [5.4, "impact", -14]], ["wind", -34]],
+  ["z03", 13.2, 17.3, "Nvidia isn't priced like Cisco was, but it sits in the same seat.", "verdict stage: NOT PRICED LIKE CISCO, the chain links the same seat", "zoom", [[0.4, "blip", -18], [2.0, "ding", -14]], ["roomtone", -38]],
+  ["z04", 17.3, 21.2, "So watch three things: spending, margins, and debt.", "data-center aisle flight: SPENDING, MARGINS, DEBT chips", "zoom", [[0.3, "whoosh", -22], [1.5, "pop", -16], [2.2, "pop", -16], [3.1, "pop", -16]], ["hum", -34]],
+  ["z05", 21.2, 25.4, "Remember, the crash is the headline, the waiting is the damage.", "road of years again, grey walk: the crash is the headline / the waiting is the damage", "zoom", [[0.4, "riser", -22], [1.5, "impact", -14], [3.2, "heartbeat", -16]], ["wind", -34]],
+  ["z06", 25.4, 31.7, "Now, if you held Nvidia today, would you hold, sell, or buy more? Tell me why, below.", "closing question on the verdict stage: HOLD / SELL / BUY MORE, tell me why below", "zoom", [[0.4, "ding", -14], [2.4, "pop", -16], [2.9, "pop", -16], [3.6, "pop", -16], [4.6, "ding", -14]], ["roomtone", -38]]
  ]}
