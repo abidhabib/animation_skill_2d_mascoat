@@ -210,6 +210,32 @@ P.officeChair = (o = {}) => { const c = o.color || '#2a2a33', g = G();
   g.add(pos(cyl(0.025, 0.03, 0.36, '#8a8a96', 0.004), 0, 0.08, 0)); g.add(pos(puffy(0.48, 0.08, 0.46, c, { k: 0.4 }), 0, 0.44, 0));
   g.add(pos(puffy(0.44, 0.06, 0.52, c, { k: 0.4 }), 0, 0.82, -0.23, Math.PI / 2 - 0.12)); g.add(pos(rbox(0.05, 0.3, 0.03, '#3a3a44', 0, 0.48, -0.22, 0.01, 0.004)));
   for (const x of [-0.25, 0.25]) { g.add(pos(rbox(0.04, 0.18, 0.03, '#3a3a44', x, 0.47, 0, 0.01, 0.004))); g.add(pos(rbox(0.06, 0.03, 0.26, '#3a3a44', x, 0.65, 0, 0.012, 0.004))); } return g; };
+// CRT monitor (late-90s beige box) + keyboard. Front +z, sits on a desk (base y = 0). o: {screen: 'chart'|'up'|'down'|'blue', color}
+//   crt.setGlow(k) brightens the screen. 2026-11-22 (V03: the 2000 trading floor).
+P.crt = (o = {}) => { const c = o.color || '#d8d0bc', g = G(), kind = o.screen || 'chart';
+  g.add(rbox(0.26, 0.03, 0.22, dk(c, 0.1), 0, 0, -0.02, 0.012, 0.004)); g.add(pos(cyl(0.05, 0.07, 0.05, dk(c, 0.15), 0.004), 0, 0.03, -0.02));
+  g.add(rbox(0.44, 0.38, 0.3, c, 0, 0.08, 0.0, 0.04, 0.008)); g.add(rbox(0.32, 0.28, 0.22, dk(c, 0.06), 0, 0.12, -0.22, 0.05, 0.006));
+  g.add(rbox(0.4, 0.33, 0.02, lt(c, 0.08), 0, 0.105, 0.15, 0.02, 0.004)); g.add(pos(ball(0.008, '#4adf6a', 0), 0.16, 0.115, 0.165));
+  const scrTex = tex2('crt_' + kind, 256, 200, (q, w, h) => { const bg = kind === 'blue' ? '#1a3a9a' : '#06180e'; q.fillStyle = bg; q.fillRect(0, 0, w, h);
+    q.strokeStyle = 'rgba(80,255,140,.12)'; q.lineWidth = 1; for (let i = 0; i < 8; i++) { q.beginPath(); q.moveTo(0, i * 25); q.lineTo(w, i * 25); q.stroke(); }
+    if (kind !== 'blue') { const up = kind !== 'down'; q.strokeStyle = up ? '#5aff8a' : '#ff5a5a'; q.lineWidth = 6; q.beginPath(); for (let i = 0; i <= 20; i++) { const x = 14 + i * 11.4, y = up ? 170 - i * 7 + Math.sin(i * 1.7) * 10 : 40 + i * 6.5 + Math.sin(i * 1.7) * 10; i ? q.lineTo(x, y) : q.moveTo(x, y); } q.stroke(); }
+    q.fillStyle = 'rgba(120,255,170,.55)'; q.fillRect(14, 12, 70, 7); q.fillRect(14, 24, 44, 5);
+    const v = q.createRadialGradient(w / 2, h / 2, 20, w / 2, h / 2, w * 0.7); v.addColorStop(0, 'rgba(255,255,255,0.05)'); v.addColorStop(1, 'rgba(0,0,0,0.55)'); q.fillStyle = v; q.fillRect(0, 0, w, h); });
+  const mat = new THREE.MeshBasicMaterial({ map: scrTex, toneMapped: false }); const scr = glowPlane(0.33, 0.26, mat); scr.position.set(0, 0.275, 0.162); g.add(scr);
+  const kb = rbox(0.42, 0.025, 0.15, c, 0, 0, 0.36, 0.01, 0.004); g.add(kb); for (let r = 0; r < 3; r++) g.add(rbox(0.36, 0.008, 0.03, dk(c, 0.18), 0, 0.025, 0.31 + r * 0.04, 0.004, 0));
+  g.setGlow = (k) => { mat.color.setScalar(0.4 + 0.9 * k); }; g.setGlow(1); return g; };
+// network router rack ("the boxes the internet runs on"): black rack of 1U/2U units with blinking LEDs + cable bundles. Front +z.
+//   rack.update(t) blinks the LEDs. o: {units, h}
+P.routerRack = (o = {}) => { const H = o.h || 1.9, n = o.units || 8, g = G(), leds = [];
+  g.add(rbox(0.62, H, 0.75, '#1e2028', 0, 0, 0, 0.02, 0.008)); for (const x of [-0.29, 0.29]) g.add(rbox(0.04, H - 0.06, 0.04, '#3a3d48', x, 0.03, 0.4, 0.008, 0.003));
+  const ledM = ['#4aff7a', '#ffb43a', '#4aff7a', '#5ab4ff'].map(cl => glowMat(cl, 2.2));
+  for (let i = 0; i < n; i++) { const y = 0.12 + i * (H - 0.24) / n, uh = (H - 0.24) / n - 0.025;
+    g.add(rbox(0.54, uh, 0.06, i % 3 === 0 ? '#3a4a6a' : '#4a5260', 0, y, 0.39, 0.01, 0.004));
+    g.add(rbox(0.12, uh * 0.5, 0.01, '#20242c', -0.17, y + uh * 0.25, 0.426, 0.004, 0));
+    for (let j = 0; j < 12; j++) { const m = new THREE.Mesh(new THREE.PlaneGeometry(0.014, 0.014), ledM[(i + j) % 4]); m.position.set(-0.06 + j * 0.026, y + uh * 0.62, 0.427); g.add(m); leds.push([m, i * 7.3 + j * 3.1]); }
+    for (let j = 0; j < 8; j++) { const pt = rbox(0.018, 0.014, 0.01, '#101218', -0.06 + j * 0.03, y + uh * 0.2, 0.426, 0.002, 0); g.add(pt); } }
+  for (let k = 0; k < 5; k++) { const cab = pill(0.012, H * 0.7, ['#3a7ad8', '#e0b03a', '#3ad87a', '#d84a4a', '#7a7a8a'][k], 0.003); cab.position.set(0.24 - k * 0.02, H * 0.5, 0.47 + k * 0.012); cab.rotation.z = 0.05 * (k - 2); g.add(cab); }
+  g.update = (t) => { for (const [m, ph] of leds) m.visible = Math.sin(t * 9 + ph) + Math.sin(t * 23 + ph * 2.1) > -0.6; }; g.update(0); return g; };
 // table: o.shape 'round' | 'rect' | 'coffee'
 P.table = (o = {}) => { const c = o.color || '#a8724a', g = G(), sh2 = o.shape || 'rect';
   if (sh2 === 'round') { const r = o.r || 0.6; g.add(disc(r, 0.05, c, 0, 0.7, 0, 0.008)); g.add(pos(lathe([[0, 0], [0.3, 0], [0.28, 0.04], [0.06, 0.08], [0.05, 0.7], [0, 0.7]], dk(c, 0.25), 0, 0, 0, 0.006))); return g; }

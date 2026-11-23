@@ -118,3 +118,8 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - park3d: sunrise park, path along X (runFrom/runTo), trees, benches, lamps, fence, hills, skyline, flowers; track runners with the camera moving along X.
 - train3d: commuter car, aisle along Z; `update(t)` scrolls the city past the windows + sways handles, `setLights(k)` dims/flickers; seatsL/seatsR for passengers (keep seats near the camera empty), youSeat, farEnd.
 - Eerie stranger: grey skin + 'tired' stare + red rim + glowing number (example-v02-clip30). End-card subscribe pill: small, bottom-right, generic (no logos).
+
+## V03 finance (2026-11-22): example-v03-clip01
+- New props: `P.crt({screen:'chart'|'up'|'down'|'blue'})` (late-90s beige monitor + keyboard), `P.routerRack({units})` (`rack.update(t)` blinks LEDs).
+- New set `sets3d/office2000.js`: March-2000 trading floor (rows of desks + CRTs + chairs, scrolling green ticker board, MAR 27 2000 calendar, router rack). `office2000(T)` -> {st, spots{heroChair, heroDesk, rack, ticker, deskSeats}, update(t)}; call `st.upd(t)` in draw.
+- Finance clips: one narrator only; money numbers glow ON heads like trust numbers (`$10,000` green -> `$6,000` red + `-40%` floater). In 3D, only draw extra people at seats with z < 0 when the camera is near the front rows.

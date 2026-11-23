@@ -1,0 +1,16 @@
+{"title": "V03 Clip 1", "dur": 30.45, "set": "mixed",
+ "music": [[0, 13.25, "mystery", 0.28], [13.25, 17.4, "sad", 0.3], [17.4, 21.6, "tension", 0.32], [21.6, 30.45, "wonder", 0.3]],
+ "shots": [
+  ["s01", 0, 2.0, "October sixth, twenty twenty-six.", "night bedroom 3D, push to you at the glowing laptop, calendar OCT 6", "fade", [[0.1, "whoosh", -20], [0.9, "pop", -16]], ["hum", -30]],
+  ["s02", 2.0, 4.6, "You put ten thousand dollars into Nvidia.", "laptop screen: green chart, BUY pressed, cash flies in, $10,000", "fade", [[1.55, "blip", -14], [1.75, "ding", -14], [1.9, "swish", -18]], null],
+  ["s03", 4.6, 7.1, "It's the most valuable company on Earth,", "globe + #1 trophy rises with stars", "fade", [[0.3, "riser", -18], [1.3, "shimmer", -16]], null],
+  ["s04", 7.1, 9.4, "it sells the chips the whole AI boom runs on,", "giant chip, traces light up a city of server racks", "fade", [[0.2, "powerup", -16], [1.2, "shimmer", -20]], null],
+  ["s05", 9.4, 11.5, "and everyone you know says the same thing.", "friends with green up-arrow bubbles", "fade", [[0.3, "pop", -16], [0.6, "pop", -16], [0.9, "pop", -16]], ["murmur", -30]],
+  ["s06", 11.5, 13.25, "You can't lose.", "giant smug face, laptop glow, $10,000 glows", "cut", [[0.15, "hit", -14]], null],
+  ["s07", 13.25, 17.4, "Six weeks later, your ten thousand dollars is worth about six thousand.", "same room darker, calendar NOV, number drains to $6,000", "fade", [[0.2, "clock", -20], [3.15, "impact", -12], [3.3, "heartbeat", -16]], ["hum", -32]],
+  ["s08", 17.4, 21.6, "Now rewind twenty-six years. March twenty-seventh, two thousand.", "rewind: year counter 2026 to 2000, clock spins back, lands on MAR 27 2000", "fade", [[0.1, "whoosh", -14], [0.4, "glitch", -18], [3.3, "ding", -14]], null],
+  ["s09", 21.6, 24.6, "A different you puts ten thousand dollars into Cisco.", "2000 trading floor, 2000-you at a beige CRT, $10,000 above head", "fade", [[2.3, "blip", -14], [2.45, "ding", -14]], ["murmur", -28]],
+  ["s10", 24.6, 26.75, "Most valuable company on Earth.", "crane up to the glowing ticker board, office cheering", "fade", [[0.4, "cheer", -20], [1.0, "shimmer", -18]], ["murmur", -28]],
+  ["s11", 26.75, 28.9, "Sells the boxes the internet runs on.", "router rack with blinking lights, cables", "fade", [[0.3, "buzz", -24], [1.0, "blip", -20]], ["hum", -28]],
+  ["s12", 28.9, 30.45, "You can't lose.", "giant smug face of 2000-you, green CRT glow", "cut", [[0.1, "hit", -14]], null]
+ ]}

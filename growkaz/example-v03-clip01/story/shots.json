@@ -1,0 +1,377 @@
+{
+ "title": "V03 Clip 1",
+ "duration": 30.45,
+ "shots": [
+  {
+   "id": "s01",
+   "start": 0,
+   "end": 2.0,
+   "line": "October sixth, twenty twenty-six.",
+   "scene": "night bedroom 3D, push to you at the glowing laptop, calendar OCT 6",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -20
+    },
+    {
+     "at": 0.9,
+     "name": "pop",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -30
+   }
+  },
+  {
+   "id": "s02",
+   "start": 2.0,
+   "end": 4.6,
+   "line": "You put ten thousand dollars into Nvidia.",
+   "scene": "laptop screen: green chart, BUY pressed, cash flies in, $10,000",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 1.55,
+     "name": "blip",
+     "gain": -14
+    },
+    {
+     "at": 1.75,
+     "name": "ding",
+     "gain": -14
+    },
+    {
+     "at": 1.9,
+     "name": "swish",
+     "gain": -18
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s03",
+   "start": 4.6,
+   "end": 7.1,
+   "line": "It's the most valuable company on Earth,",
+   "scene": "globe + #1 trophy rises with stars",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "riser",
+     "gain": -18
+    },
+    {
+     "at": 1.3,
+     "name": "shimmer",
+     "gain": -16
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s04",
+   "start": 7.1,
+   "end": 9.4,
+   "line": "it sells the chips the whole AI boom runs on,",
+   "scene": "giant chip, traces light up a city of server racks",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "powerup",
+     "gain": -16
+    },
+    {
+     "at": 1.2,
+     "name": "shimmer",
+     "gain": -20
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s05",
+   "start": 9.4,
+   "end": 11.5,
+   "line": "and everyone you know says the same thing.",
+   "scene": "friends with green up-arrow bubbles",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 0.6,
+     "name": "pop",
+     "gain": -16
+    },
+    {
+     "at": 0.9,
+     "name": "pop",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -30
+   }
+  },
+  {
+   "id": "s06",
+   "start": 11.5,
+   "end": 13.25,
+   "line": "You can't lose.",
+   "scene": "giant smug face, laptop glow, $10,000 glows",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.15,
+     "name": "hit",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s07",
+   "start": 13.25,
+   "end": 17.4,
+   "line": "Six weeks later, your ten thousand dollars is worth about six thousand.",
+   "scene": "same room darker, calendar NOV, number drains to $6,000",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.2,
+     "name": "clock",
+     "gain": -20
+    },
+    {
+     "at": 3.15,
+     "name": "impact",
+     "gain": -12
+    },
+    {
+     "at": 3.3,
+     "name": "heartbeat",
+     "gain": -16
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -32
+   }
+  },
+  {
+   "id": "s08",
+   "start": 17.4,
+   "end": 21.6,
+   "line": "Now rewind twenty-six years. March twenty-seventh, two thousand.",
+   "scene": "rewind: year counter 2026 to 2000, clock spins back, lands on MAR 27 2000",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "whoosh",
+     "gain": -14
+    },
+    {
+     "at": 0.4,
+     "name": "glitch",
+     "gain": -18
+    },
+    {
+     "at": 3.3,
+     "name": "ding",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  },
+  {
+   "id": "s09",
+   "start": 21.6,
+   "end": 24.6,
+   "line": "A different you puts ten thousand dollars into Cisco.",
+   "scene": "2000 trading floor, 2000-you at a beige CRT, $10,000 above head",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 2.3,
+     "name": "blip",
+     "gain": -14
+    },
+    {
+     "at": 2.45,
+     "name": "ding",
+     "gain": -14
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "s10",
+   "start": 24.6,
+   "end": 26.75,
+   "line": "Most valuable company on Earth.",
+   "scene": "crane up to the glowing ticker board, office cheering",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.4,
+     "name": "cheer",
+     "gain": -20
+    },
+    {
+     "at": 1.0,
+     "name": "shimmer",
+     "gain": -18
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "murmur",
+    "gain": -28
+   }
+  },
+  {
+   "id": "s11",
+   "start": 26.75,
+   "end": 28.9,
+   "line": "Sells the boxes the internet runs on.",
+   "scene": "router rack with blinking lights, cables",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "fade",
+    "dur": 0.25
+   },
+   "sfx": [
+    {
+     "at": 0.3,
+     "name": "buzz",
+     "gain": -24
+    },
+    {
+     "at": 1.0,
+     "name": "blip",
+     "gain": -20
+    }
+   ],
+   "notes": "",
+   "amb": {
+    "name": "hum",
+    "gain": -28
+   }
+  },
+  {
+   "id": "s12",
+   "start": 28.9,
+   "end": 30.45,
+   "line": "You can't lose.",
+   "scene": "giant smug face of 2000-you, green CRT glow",
+   "set": "mixed",
+   "bars": null,
+   "in": {
+    "type": "cut"
+   },
+   "sfx": [
+    {
+     "at": 0.1,
+     "name": "hit",
+     "gain": -14
+    }
+   ],
+   "notes": ""
+  }
+ ],
+ "music": [
+  {
+   "start": 0,
+   "end": 13.25,
+   "mood": "mystery",
+   "intensity": 0.28
+  },
+  {
+   "start": 13.25,
+   "end": 17.4,
+   "mood": "sad",
+   "intensity": 0.3
+  },
+  {
+   "start": 17.4,
+   "end": 21.6,
+   "mood": "tension",
+   "intensity": 0.32
+  },
+  {
+   "start": 21.6,
+   "end": 30.45,
+   "mood": "wonder",
+   "intensity": 0.3
+  }
+ ],
+ "sfx": []
+}
