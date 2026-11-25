@@ -5,24 +5,29 @@
 //   drawToon(g, {x, y, s, facing, pose, look:[x,y], expr, talk, blink, cast, rim:{color, dir}, alpha, shadow})
 //   bigToonFace(g, cx, cy, r, {cast, expr, talk, blink, look, rimColor, tilt})
 //   TOON_EXPR names: neutral smile happy joy laugh smug fake awkward angry furious sad cry worried nervous shocked surprised thinking confused determined tired
-import { S, seg, circle, rr, shade, alpha, mix } from '/engine/core.js';
+import { E, S, seg, circle, rr, shade, alpha, mix } from '/engine/core.js';
 import { POSES } from '/engine/rig2d.js';
+import { draw19, face19 } from '/engine/char19.js';
+export { ACTIONS, EMOTION_NAMES } from '/engine/char19.js';
+// 2026-11-25: Character 19 rig is the default cast. The old round-head look stays available:
+//   per call { rig: 'classic' }, per cast { rig: 'classic' }, or per project config.json "cast": "classic".
+const classic = (o, c) => (o.rig || c.rig || E.cfg.cast) === 'classic';
 
 // ---------- cast presets ----------
-export const HERO = { skin: '#f6d6bd', hair: 'curly', hairColor: '#3a2418', top: '#4a78b8', topDark: '#33598f', collar: '#2f5286', sleeves: 'rolled',
+export const HERO = { c19: ['lead', 'original'], skin: '#f6d6bd', hair: 'curly', hairColor: '#3a2418', top: '#4a78b8', topDark: '#33598f', collar: '#2f5286', sleeves: 'rolled',
                       legs: '#b8a07a', shoes: '#f4f4f4', stache: 'curl', beard: 'goatee', eyes: 'dark', belt: '#2a2033' };
-export const CASHIER = { skin: '#d6a074', hair: 'ponytail', hairColor: '#2a1d18', top: '#e8e2d0', topDark: '#c8c0a8', apron: '#2f8a57', cap: '#2f8a57', legs: '#3a3f52', shoes: '#2a2a33', eyes: 'dark', lashes: true };
-export const STRANGER = { skin: '#f1c8a0', hair: 'swoop', hairColor: '#7a4a2a', top: '#8a5cc8', topDark: '#6a42a0', legs: '#2e3344', shoes: '#e8e8f0', eyes: 'dark' };
-export const SAM = { skin: '#b9825a', hair: 'curly', hairColor: '#1d1410', top: '#4fb286', topDark: '#2f7a5a', legs: '#3a4a6a', shoes: '#f4f4f4', eyes: 'dark' };
-export const ROOMMATE = { skin: '#f3cfae', hair: 'swoop', hairColor: '#c0602a', top: '#e0743a', topDark: '#b0522a', legs: '#3a3f52', shoes: '#e8e8f0', eyes: 'dark' };
-export const MOM = { skin: '#e8b892', hair: 'long', hairColor: '#4a2a1c', top: '#c96f8a', topDark: '#9d4a64', legs: '#4a3f6e', shoes: '#2a2a33', eyes: 'dark', lashes: true };
-export const DAD = { skin: '#e4b48c', hair: 'short', hairColor: '#8d8a96', top: '#6b7f5a', topDark: '#46573a', legs: '#3a3a44', shoes: '#2a2a33', eyes: 'dark', glasses: true, stache: 'curl' };
-export const KID = { ...HERO, stache: null, beard: null, top: '#e0562f', topDark: '#b0402a', collar: '#b0402a', sleeves: null, legs: '#4a78b8', belt: null };   // young Abid (flashbacks)
-export const YOUNG_DAD = { ...DAD, hairColor: '#4a3020' };                                                                                   // Dad, 20 years younger
-export const SHOPPER = (i) => [{ skin: '#f5d6b8', hair: 'bun', hairColor: '#5a3825', top: '#c96f8a', topDark: '#8d4a60', legs: '#4a3f6e', eyes: 'dark', lashes: true },
+export const CASHIER = { c19: ['tess', 'uniform'], skin: '#d6a074', hair: 'ponytail', hairColor: '#2a1d18', top: '#e8e2d0', topDark: '#c8c0a8', apron: '#2f8a57', cap: '#2f8a57', legs: '#3a3f52', shoes: '#2a2a33', eyes: 'dark', lashes: true };
+export const STRANGER = { c19: ['ines', 'blazer'], skin: '#f1c8a0', hair: 'swoop', hairColor: '#7a4a2a', top: '#8a5cc8', topDark: '#6a42a0', legs: '#2e3344', shoes: '#e8e8f0', eyes: 'dark' };
+export const SAM = { c19: ['sam', 'workwear'], skin: '#b9825a', hair: 'curly', hairColor: '#1d1410', top: '#4fb286', topDark: '#2f7a5a', legs: '#3a4a6a', shoes: '#f4f4f4', eyes: 'dark' };
+export const ROOMMATE = { c19: ['ivo', 'marine'], skin: '#f3cfae', hair: 'swoop', hairColor: '#c0602a', top: '#e0743a', topDark: '#b0522a', legs: '#3a3f52', shoes: '#e8e8f0', eyes: 'dark' };
+export const MOM = { c19: ['mom', 'cardigan'], skin: '#e8b892', hair: 'long', hairColor: '#4a2a1c', top: '#c96f8a', topDark: '#9d4a64', legs: '#4a3f6e', shoes: '#2a2a33', eyes: 'dark', lashes: true };
+export const DAD = { c19: ['dad', 'cardigan'], skin: '#e4b48c', hair: 'short', hairColor: '#8d8a96', top: '#6b7f5a', topDark: '#46573a', legs: '#3a3a44', shoes: '#2a2a33', eyes: 'dark', glasses: true, stache: 'curl' };
+export const KID = { ...HERO, c19: ['kid', 'marine'], stache: null, beard: null, top: '#e0562f', topDark: '#b0402a', collar: '#b0402a', sleeves: null, legs: '#4a78b8', belt: null };   // young Abid (flashbacks)
+export const YOUNG_DAD = { ...DAD, c19: ['youngdad', 'uniform'], hairColor: '#4a3020' };                                                                                   // Dad, 20 years younger
+export const SHOPPER = (i) => ({ c19: [['mara', 'cardigan'], ['omar', 'workwear'], ['june', 'workwear'], ['ines', 'marine']][i % 4], ...[{ skin: '#f5d6b8', hair: 'bun', hairColor: '#5a3825', top: '#c96f8a', topDark: '#8d4a60', legs: '#4a3f6e', eyes: 'dark', lashes: true },
   { skin: '#a8714a', hair: 'short', hairColor: '#1d1410', top: '#e0a24a', topDark: '#b07a2a', legs: '#2e3344', eyes: 'dark' },
   { skin: '#e8c4a0', hair: 'short', hairColor: '#8d8a96', top: '#6b7f5a', topDark: '#46573a', legs: '#3a3a44', eyes: 'dark', glasses: true },
-  { skin: '#d6a074', hair: 'long', hairColor: '#2a1d18', top: '#3fa7f5', topDark: '#2a78b8', legs: '#2e3344', eyes: 'dark', lashes: true }][i % 4];
+  { skin: '#d6a074', hair: 'long', hairColor: '#2a1d18', top: '#3fa7f5', topDark: '#2a78b8', legs: '#2e3344', eyes: 'dark', lashes: true }][i % 4] });
 
 // ---------- expressions: eyes, lids, brows, mouth, extras ----------
 export const TOON_EXPR = {
@@ -193,6 +198,7 @@ function slim(g, head, c, fn) { const k = c.headW || HEAD_W; g.save(); g.transla
 
 // ---------- full body ----------
 export function drawToon(g, o) {
+  if (!classic(o, o.cast || HERO)) return draw19(g, { ...o, cast: o.cast || HERO });
   const c = o.cast || HERO, p = o.pose || POSES.stand, s = o.s ?? 1, f = o.facing ?? 1, ink = '#1b1424';
   const rim = o.rim === false ? null : { dir: [-0.8, -0.5], color: '#ffd2a0', w: 3.2, ...(o.rim || {}) };
   g.save(); if (o.alpha != null) g.globalAlpha *= o.alpha;
@@ -249,6 +255,7 @@ function body(g, o, c, p, sil, ink) {
 
 // ---------- giant face close-up ----------
 export function bigToonFace(g, cx, cy, r, o = {}) {
+  if (!classic(o, o.cast || HERO)) return face19(g, cx, cy, r, { ...o, cast: o.cast || HERO });
   const c = o.cast || HERO, ink = '#1b1424';
   g.save(); g.translate(cx, cy); if (o.tilt) g.rotate(o.tilt);
   // shoulders

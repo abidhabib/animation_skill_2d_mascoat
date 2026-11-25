@@ -74,6 +74,14 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Shot pattern: `registerShot(id, { kind: '3d', init: (T) => {const k = kitchen3d(T); k.st.spots = k.spots; return k.st;}, draw(st,t,info){cam3(...)}, overlay(g,t,info,st){ pin + drawToon + headNum } })`. Example: `example-test3d`.
 - 3D renders ~2x slower than 2D (computer time, not tokens).
 
+## THE CAST: Character 19 rig (default since 2026-11-25) - pictures `docs/CAST19_*.png`
+- Source: the user's reference kit `Documents/ChatGPT/YouTube-Ordinary Rules/Characters/Character 19`; `engine/cast19/rig.js` is the latest copy from `.../Trust Numbers/rig.js` (arm corrections, + conceal), `cast19/cast.js` verbatim; their notes in `cast19/SOURCE_NOTES.md`. Re-copy those two files to update; put our changes in `engine/char19.js` only.
+- Same calls as before (`drawToon`, `bigToonFace`, avatar); old pose objects and expression names are translated. NEW: `drawToon(g, { cast, action: 'makeBed', t, expr: 'teasing', yaw, facing, phoneme, talk })`; 43 actions in `ACTIONS`, 46 emotions in `EMOTION_NAMES`. Pass `t` (seconds) with `action` so it moves.
+- Cast ids: HERO=lead, SAM=sam, DAD=dad, YOUNG_DAD=youngdad, MOM=mom, KID=kid, ROOMMATE=ivo, STRANGER=ines, CASHIER=tess, SHOPPER(i). Others: niko, omar, mara, leon, june, alma. Outfits: original, workwear, blazer, cardigan, marine, uniform.
+- Old per-cast colours (top, skin...) and `rim` are ignored by the new rig. `bigToonFace` shows the body below the head; pass `clip: true` for small portraits.
+- Old round-head cast on request: `rig: 'classic'` (call or cast) or `"cast": "classic"` in config.json (use it when re-rendering a finished old video so characters stay consistent).
+- QC gallery: `example-lab-cast`. Riverside world from the reference kit is NOT ported.
+
 ## SHORTS / REELS 9:16 in this engine (V02 Short 2, 2026-11-22) - example `example-v02-short2`
 - Voice: Fish lines -> `fishjoin.py "Short N"` -> `bash new-clip.sh SN` (word timings, clip 90+N-1) -> `tools/new_project.py --aspect 9:16 --captions` + write_timeline (see example) -> spec.json + mkshots.py.
 - Frame is 1080x1920 (E.W/E.H). 2D faces centre at y 0.5H, numbers at 0.12-0.2H, captions at 0.76H (above the Shorts UI); 3D cameras need fov 46-52 (narrow width).

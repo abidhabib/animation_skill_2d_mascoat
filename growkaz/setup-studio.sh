@@ -19,6 +19,7 @@ if [ ! -f "$STUDIO/render.mjs" ]; then
   mkdir -p "$STUDIO"; cp -r "$SKILL_KIT/." "$STUDIO/"; echo "studio copied from the plugin kit"
 fi
 cp -f "$HERE/engine/"*.js "$STUDIO/engine/"            # toon2d.js, storyfx.js, styles.js (+ any new engine helpers)
+mkdir -p "$STUDIO/engine/cast19"; cp -f "$HERE/engine/cast19/"* "$STUDIO/engine/cast19/"   # Character 19 rig + cast (2026-11-25)
 cp -f "$HERE/render.mjs" "$STUDIO/render.mjs"
 mkdir -p "$STUDIO/engine/sets"; cp -f "$HERE/sets/"*.js "$STUDIO/engine/sets/" 2>/dev/null || true
 mkdir -p "$STUDIO/engine/sets3d"; cp -f "$HERE/sets3d/"*.js "$STUDIO/engine/sets3d/" 2>/dev/null || true   # soft cartoon 3D sets (three-toon.js)
