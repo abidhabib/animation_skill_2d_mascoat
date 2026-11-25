@@ -10,12 +10,15 @@ function icon(g, x, y, r, fill = CREAM, ink = NAVY) {
   circle(g, x - r * 0.95, y + r * 1.0, r * 0.2, fill); circle(g, x - r * 1.28, y + r * 1.35, r * 0.11, fill);
   text(g, '?', x + r * 0.02, y + r * 0.02, { size: r * 1.25, color: ink, weight: 700 }); circle(g, x + r * 1.05, y - r * 0.72, r * 0.12, GOLD);
 }
-registerShot('logo', { draw(g) { g.fillStyle = NAVY; g.fillRect(0, 0, E.W, E.H); icon(g, E.W / 2 + 30, E.H / 2 - 20, 270); } });
-registerShot('banner', { draw(g) { g.fillStyle = NAVY; g.fillRect(0, 0, E.W, E.H);
-  const cy = E.H / 2; icon(g, 545, cy - 6, 56);
-  text(g, NAME, 1040, cy - 30, { size: 90, color: CREAM, spacing: 6, align: 'center' });
-  g.fillStyle = GOLD; rr(g, 1040 - 40, cy + 22, 80, 6, 3); g.fill();
-  text(g, TAG, 1040, cy + 70, { size: 30, color: SOFT, weight: 600 }); } });
+registerShot('logo', { draw(g) { g.fillStyle = NAVY; g.fillRect(0, 0, E.W, E.H); const cx = E.W / 2;
+  circle(g, cx, 540, 520, '#2a2750'); circle(g, cx + 285, 215, 62, GOLD); text(g, '?', cx + 287, 218, { size: 92, color: NAVY });
+  mooch(g, cx - 25, 600, 270, { cast: HERO, expr: 'curious', look: [0.5, -0.4] }); } });
+registerShot('banner', { draw(g) { g.fillStyle = NAVY; g.fillRect(0, 0, E.W, E.H); const cy = E.H / 2;
+  g.save(); g.beginPath(); g.arc(560, cy, 125, 0, 7); g.clip(); g.fillStyle = '#2a2750'; g.fillRect(400, cy - 150, 320, 300); mooch(g, 560, cy + 12, 66, { cast: HERO, expr: 'curious', look: [0.5, -0.4] }); g.restore();
+  text(g, 'THINKLE', 1060, cy - 30, { size: 118, color: CREAM, spacing: 14 });
+  g.fillStyle = GOLD; rr(g, 1020, cy + 36, 80, 6, 3); g.fill();
+  text(g, 'Every video starts with one question.', 1060, cy + 86, { size: 32, color: SOFT, weight: 600 }); } });
+import { bigToonFace as mooch } from '/engine/toon2d.js';
 
 // THUMBNAIL for "What If You Could See How Much Everyone Trusts You?": you, shocked, bottom-left; your best friend smiling with a LOW 41 glowing over his head.
 import { bigToonFace, HERO, SAM } from '/engine/toon2d.js';
@@ -83,11 +86,11 @@ const big41 = (g, x, y, s = 1, str = '41%', col = '#ff4033') => { glow(g, x, y, 
 const tri = (g, x, y, s = 1, col = '#ff4033') => { g.fillStyle = col; g.strokeStyle = '#1b1424'; g.lineWidth = 10 * s; g.beginPath(); g.moveTo(x - 42 * s, y - 30 * s); g.lineTo(x + 42 * s, y - 30 * s); g.lineTo(x, y + 40 * s); g.closePath(); g.fill(); g.stroke(); };
 // B "THE HUG": Sam (eyes closed, happy) hugs you at his glowing door; you face the viewer in shock; red 41% over Sam. No words.
 registerShot('thumbB', { draw(g) { getShot('bg').draw(g, 0, {});
-  bigToonFace(g, 1240, 760, 250, { cast: SAM, expr: 'joy', tilt: -0.12 });
+  bigToonFace(g, 1240, 760, 250, { cast: SAM, expr: 'laugh', tilt: -0.12 });
   // Sam's arm goes BEHIND your head, his hand lands on your far shoulder
-  g.lineCap = 'round'; seg(g, [[1060, 1000], [800, 930], [480, 1010]], 96, '#1b1424'); seg(g, [[1060, 1000], [800, 930], [500, 1010]], 82, SAM.top);
+  g.lineCap = 'round'; seg(g, [[1060, 1000], [800, 930], [480, 1010]], 96, '#1b1424'); seg(g, [[1060, 1000], [800, 930], [500, 1010]], 82, '#ead0a3');
   bigToonFace(g, 700, 790, 270, { cast: HERO, expr: 'shocked', look: [0.1, 0.1], tilt: 0.08 });
-  circle(g, 440, 1030, 54, '#1b1424'); circle(g, 440, 1030, 46, SAM.skin);
+  circle(g, 440, 1030, 54, '#1b1424'); circle(g, 440, 1030, 46, '#ae704e');
   big41(g, 1280, 250, 1.05); tri(g, 1560, 230, 1); } });
 // C "DAD vs BEST FRIEND": warm left (Dad 100%) vs cold right (Sam 41%), hard split. No words.
 registerShot('thumbC', { draw(g) {

@@ -44,7 +44,7 @@ export function posesAt(t, keys, blend = 0.35) {
   for (let i = 1; i < keys.length; i++) {
     const [ti, pi] = keys[i];
     if (t < ti) break;
-    const k = clamp((t - ti) / blend); cur = k >= 1 ? pi : blendPose(cur, pi, k);
+    const k = clamp((t - ti) / Math.max(blend, 0.5)); cur = k >= 1 ? pi : { ...blendPose(cur, pi, k), _from: typeof cur === 'string' ? pose(cur) : cur, _to: typeof pi === 'string' ? pose(pi) : pi, _k: k };
     if (k < 1) return cur;
   }
   return typeof cur === 'string' ? pose(cur) : cur;

@@ -81,6 +81,7 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Old per-cast colours (top, skin...) and `rim` are ignored by the new rig. `bigToonFace` shows the body below the head; pass `clip: true` for small portraits.
 - Old round-head cast on request: `rig: 'classic'` (call or cast) or `"cast": "classic"` in config.json (use it when re-rendering a finished old video so characters stay consistent).
 - **Hero face = MOOCH (user picked it 2026-11-25)**: HERO uses `c19: ['lead_mooch','original']`; the moustache acts with the mood. Other meme faces kept as options: `engine/memefaces.js`, use `{ ...HERO, c19: ['lead_mooch' | 'lead_popbrow' | 'lead_gaptooth', 'original'] }`; they use the same 46 emotions. Needs the one-line `look.face` hook in `cast19/rig.js` (re-add it after re-copying rig.js). Pictures `docs/HERO_FACES_*.png`.
+- SMOOTH ARMS (2026-11-26, user: "not robotic"): action changes swing bones on eased arcs with the forearm following (`posed()` in cast19/rig.js), rounded elbows (`softArm`), softer wave/talk/clap loops. Animate with `actions: [[0,'idle'],[1.2,'wave'],[3,'think']], t` (0.55 s eased changes) or `posesAt`; never swap `action` abruptly. These are kit patches inside rig.js (search "kit"): re-apply them (and the `look.face` hook) if rig.js is ever re-copied.
 - QC gallery: `example-lab-cast`. Riverside world from the reference kit is NOT ported.
 
 ## SHORTS / REELS 9:16 in this engine (V02 Short 2, 2026-11-22) - example `example-v02-short2`

@@ -42,6 +42,7 @@ const timed = (rig, action, t, yaw) => rig.motion(action, t, yaw === undefined ?
 const viewYaw = (action) => (['walk', 'run', 'sneak', 'tiptoe', 'sadWalk', 'climb'].includes(action) ? 1.45 : action === 'sit' || action === 'standUp' ? 0.95 : 0.45);
 
 function fromLegacy(rig, p, t, yaw) {
+  if (p._from) { const A = fromLegacy(rig, p._from, t, yaw), B = fromLegacy(rig, p._to, t, yaw); return { pose: rig.blendPose(A.pose, B.pose, p._k), name: p._k < 0.5 ? A.name : B.name }; }
   if (p._walk !== undefined) { const act = p._run ? 'run' : 'walk'; return { pose: timed(rig, act, Math.max(0, p._walk / (Math.PI * 2 * (p._run ? 1.65 : 0.95)) + 4), yaw ?? viewYaw(act)), name: act }; }
   const ranked = Object.keys(LEGACY).filter(n => POSES[n]).map(n => [dist(p, POSES[n]), n]).sort((a, b) => a[0] - b[0]);
   const [d1, n1] = ranked[0]; const other = ranked.find(([, n]) => LEGACY[n] !== LEGACY[n1]);
@@ -51,10 +52,20 @@ function fromLegacy(rig, p, t, yaw) {
   return { pose, name: n1 };
 }
 
+// actions: [[0, 'idle'], [1.2, 'wave'], [3, 'think']] (seconds): each change is eased over ~0.5 s
+function sequence(rig, keys, t, yaw, blend = 0.55) {
+  let i = 0; while (i + 1 < keys.length && t >= keys[i + 1][0]) i++;
+  const [at, name] = keys[i], make = (n, since) => timed(rig, n, Math.max(0, since), yaw ?? viewYaw(n));
+  const cur = make(name, STILL[name] ?? t - at + (i ? 0 : 0.6));
+  if (i === 0 || t - at >= blend) return { pose: cur, name };
+  const prev = keys[i - 1]; return { pose: rig.blendPose(make(prev[1], STILL[prev[1]] ?? t - prev[0]), cur, (t - at) / blend), name };
+}
+
 export function draw19(g, o) {
   const cast = o.cast, rig = rigFor(cast), s = (o.s ?? 1) * FIT, f = o.facing ?? 1, t = o.t ?? o.pose?._t ?? 0.8;
   let pose, name = o.action;
-  if (o.action) pose = timed(rig, o.action, t, o.yaw ?? viewYaw(o.action));
+  if (o.actions) ({ pose, name } = sequence(rig, o.actions, t, o.yaw));
+  else if (o.action) pose = timed(rig, o.action, t, o.yaw ?? viewYaw(o.action));
   else if (o.pose && o.pose.footL) pose = o.pose;                       // already a rig pose
   else ({ pose, name } = fromLegacy(rig, o.pose || POSES.stand, t, o.yaw));
   const lie = name === 'lie';

@@ -124,7 +124,7 @@
     switch(name) {
       case 'stop': apply({lean:-.12*(1-smooth(t)),handL:[-120,-325],handR:[120,-330],footL:[-65,-24],footR:[52,-24]});break;
       case 'turn':p.yaw=Math.sin(t*.8)*Math.PI;break;
-      case 'wave':p.handR=[142+Math.sin(t*9)*18,-594];p.gestureR='open';p.headTilt=-.035;break;
+      case 'wave':p.handR=[142+Math.sin(t*5.4)*18,-594];p.gestureR='open';p.headTilt=-.035;break;
       case 'point':p.handR=[272,-465];p.gestureR='point';p.lean=.035;break;
       case 'pointUp':p.handR=[177,-686];p.gestureR='point';p.headTilt=-.06;break;
       case 'explain':p.handL=[-183,-445+Math.sin(t*3)*7];p.handR=[181,-425-Math.sin(t*3)*9];p.gestureL='open';p.gestureR='open';break;
@@ -168,7 +168,7 @@
       case 'openDoor':p.handR=[lerp(244,130,smooth((t%2)/1.2)),-432];p.lean=-.05*smooth(t);p.gestureR='fist';break;
       case 'pressButton':p.handR=[lerp(166,245,smooth((t%2)/.5)),-475];p.gestureR='point';break;
       case 'salute':p.handR=[70,-637];p.gestureR='open';break;
-      case 'clap':{const x=28+Math.abs(Math.sin(t*6))*65;p.handL=[-x,-464];p.handR=[x,-464];p.gestureL='open';p.gestureR='open';break;}
+      case 'clap':{const x=28+(.5-.5*Math.cos(t*9))*65;p.handL=[-x,-464];p.handR=[x,-464];p.gestureL='open';p.gestureR='open';break;}
       case 'phone':p.handR=[82,-584];p.headTilt=-.04;break;
       case 'sadWalk':break;
       case 'talk':p.handR=[151,-418+Math.sin(t*3)*13];p.handL=[-110,-315];p.headNod=Math.sin(t*3.2)*.04;p.gestureR='open';break;
@@ -185,6 +185,7 @@
       else if(typeof a[key]==='number')out[key]=lerp(a[key],b[key],k);
       else out[key]=k<.5?a[key]:b[key];
     }
+    out.mix={a,b,k:clamp(t)};   // kit: smooth arcs (see posed)
     return out;
   }
 
@@ -211,7 +212,7 @@
     const sign=side==='L'?-1:1;
     const relax=[[sign*.13,-.10,.98],[sign*.04,.20,.98]];
     const phase=p.actingTime||0;
-    const settle=Math.sin(phase*2.6)*.045;
+    const settle=Math.sin(phase*2.3)*.05+Math.sin(phase*3.9+1.3)*.028;
     switch(p.action){
       case 'conceal':
         return side==='R'?[[-.5,.1,-.86],[-.30,.30,-.90]]:relax;
@@ -233,7 +234,7 @@
       case 'pointUp':
         return side==='R'?[[.78,.16,-.57],[.18,.10,-.98]]:relax;
       case 'wave':
-        return side==='R'?[[.84,.16,.51],[.13+.27*Math.sin(phase*7),.16,-.98]]:relax;
+        return side==='R'?[[.84,.16,.51],[.13+.27*Math.sin(phase*5.4)+.05*Math.sin(phase*2.2),.16,-.98]]:relax;
       case 'sit':
       case 'standUp':{
         const standing=p.action==='sit'?0:clamp((-p.hip[1]-180)/133);
@@ -288,6 +289,32 @@
     return out;
   }
 
+  // kit 2026-11-26: a blend between two actions swings every bone on an arc (angle + length), forearm following
+  // a beat behind the upper arm, instead of switching the whole arm style half way.
+  const ease5=v=>{v=clamp(v);return v*v*v*(v*(v*6-15)+10);};
+  function posed(p){
+    if(!p.mix)return projectPose(p,skeleton(p));
+    const {a,b,k}=p.mix,A=posed(a),B=posed(b),K=ease5(k),K2=ease5((k-.12)/.88);
+    const mixP=(u,v,t)=>[lerp(u[0],v[0],t),lerp(u[1],v[1],t)];
+    const swing=(from,A0,A1,B0,B1,t,out)=>{
+      const ax=A1[0]-A0[0],ay=A1[1]-A0[1],bx=B1[0]-B0[0],by=B1[1]-B0[1],qa=Math.atan2(ay,ax),qb=Math.atan2(by,bx);
+      let d=Math.atan2(Math.sin(qb-qa),Math.cos(qb-qa));
+      if(Math.abs(d)>2.5&&Math.cos(qa+d/2)*out<0)d-=Math.sign(d)*TAU;      // big raises go round the outside, not through the chest
+      const q=qa+d*t,len=lerp(Math.hypot(ax,ay),Math.hypot(bx,by),t);return [from[0]+Math.cos(q)*len,from[1]+Math.sin(q)*len];
+    };
+    const sk={...B,hip:mixP(A.hip,B.hip,K),head:mixP(A.head,B.head,K)};
+    for(const key of ['armL','armR','legL','legR']){
+      const x=A[key],y=B[key],arm=key[0]==='a',out=key.endsWith('L')?-1:1,start=mixP(x.a,y.a,K);
+      const mid=swing(start,x.a,x.b,y.a,y.b,K,out),end=swing(mid,x.b,x.c,y.b,y.c,arm?K2:K,out);
+      sk[key]={a:start,b:mid,c:arm?end:mixP(x.c,y.c,K)};
+    }
+    return sk;
+  }
+  function softArm(g,l,width,color,shadow){      // kit: rounded elbow (no hinge look)
+    const q=(u,v,t)=>[lerp(u[0],v[0],t),lerp(u[1],v[1],t)],i=q(l.a,l.b,.68),o=q(l.b,l.c,.34);
+    const draw=(w,c)=>{g.beginPath();g.moveTo(...l.a);g.lineTo(...i);g.quadraticCurveTo(...l.b,...o);g.lineTo(...l.c);g.lineWidth=w;g.strokeStyle=c;g.lineCap='round';g.lineJoin='round';g.stroke();};
+    draw(width+3,COLORS.seam);draw(width*.92,color);line(g,[q(l.b,l.c,.4),q(l.b,l.c,.9)],width*.14,shadow);
+  }
   function line(g,points,width,color) {
     g.beginPath();g.moveTo(...points[0]);points.slice(1).forEach(p=>g.lineTo(...p));
     g.lineWidth=width;g.strokeStyle=color;g.lineCap='round';g.lineJoin='round';g.stroke();
@@ -374,7 +401,7 @@
   }
   function shirtArm(g,arm,gesture,handedness){
     const long=look.cut==='jacket'||look.cut==='cardigan';
-    limb(g,arm,long?32:23,long?COLORS.tee:COLORS.skin,long?COLORS.seam:COLORS.skinShadow);
+    softArm(g,arm,long?32:23,long?COLORS.tee:COLORS.skin,long?COLORS.seam:COLORS.skinShadow);
     const a=arm.a,b=arm.b,angle=Math.atan2(b[1]-a[1],b[0]-a[0]);
     g.save();g.translate(...a);g.rotate(angle);
     g.scale(Math.min(1,Math.hypot(b[0]-a[0],b[1]-a[1])/122),1);
@@ -474,7 +501,7 @@
   function draw(g,options={}) {
     const t=options.time||0;
     const p=options.pose||motion(options.action||'idle',t,options);
-    const world=skeleton(p),sk=projectPose(p,world),back=Math.cos(p.yaw)<-.25;
+    const world=skeleton(p),sk=posed(p),back=Math.cos(p.yaw)<-.25;
     let e=typeof options.emotion==='object'?{...baseEmotion,...options.emotion}:emotion(options.emotion||'neutral');
     if(options.transition)e=blendEmotion(options.transition.from,options.transition.to,options.transition.progress);
     if(options.look)e={...e,lookX:options.look[0],lookY:options.look[1]};
@@ -489,7 +516,7 @@
     if(!back&&['sit','think','standUp','shrug','recoil'].includes(p.action)){
       const fore=sk.armL,long=look.cut==='jacket'||look.cut==='cardigan';
 
-      line(g,[fore.b,fore.c],long?26:17,long?COLORS.tee:COLORS.skin);
+      line(g,[[lerp(fore.b[0],fore.c[0],.3),lerp(fore.b[1],fore.c[1],.3)],fore.c],long?26:17,long?COLORS.tee:COLORS.skin);
       hand(g,fore.c,fore.b,p.gestureL,-1);
     }
     shirtArm(g,sk.armR,p.gestureR,1);
