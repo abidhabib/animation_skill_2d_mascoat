@@ -487,7 +487,7 @@
     if(open>.065){
       g.beginPath();g.moveTo(mx-width,my);g.quadraticCurveTo(mx,my+e.curve*25,mx+width,my-e.asym*25);
       g.quadraticCurveTo(mx,my+open*45,mx-width,my);g.closePath();g.fillStyle='#523331';g.fill();
-      if(open>.18){line(g,[[mx-width*.63,my+2],[mx+width*.65,my+1]],3.5,COLORS.eye);ellipse(g,mx,my+open*29,width*.43,open*8,'#bb786a');}
+      if(open>.18){g.save();g.clip();line(g,[[mx-width*.63,my+2],[mx+width*.65,my+1]],3.5,COLORS.eye);ellipse(g,mx,my+open*24,width*.4,open*6,'#bb786a');g.restore();}   // kit: tongue stays inside the mouth
     }else{
       g.beginPath();g.moveTo(mx-width,my);g.quadraticCurveTo(mx,my+e.curve*37,mx+width,my-e.asym*22);
       g.strokeStyle='#6d4738';g.lineWidth=2;g.stroke();

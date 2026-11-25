@@ -13,11 +13,11 @@ function extras(g, c, y = 4) {
   if (e.sweat) path(g, 'M -40 -22 q -9 13 0 17 q 9 -4 0 -17 Z', '#9fdcf0', 1.6);
 }
 function mouthShape(g, x, y, w, open, curve, asym, teeth) {
-  if (open > 0.06) {
-    const h = 6 + open * 42;
-    const d = `M ${x - w} ${y - curve * 8} Q ${x} ${y + curve * 10 - 3} ${x + w} ${y - curve * 8 - asym * 18} Q ${x + w * 0.7} ${y + h} ${x} ${y + h} Q ${x - w * 0.8} ${y + h * 0.85} ${x - w} ${y - curve * 8} Z`;
-    path(g, d, '#4a1c24', 0); g.save(); g.clip(new Path2D(d)); if (teeth) teeth(h); oval(g, x + 2, y + h, w * 0.62, h * 0.36, '#e0766a', 0); g.restore(); path(g, d, null, 2.8);
-  } else path(g, `M ${x - w} ${y + asym * 4} Q ${x} ${y + curve * 46} ${x + w} ${y - asym * 22}`, null, 3);
+  if (open > 0.06) {      // 2026-11-26: the open mouth stays inside the chin (the old one hung below it and read as a tongue sticking out)
+    const h = Math.min(13, 3 + open * 21), ww = w * (open > 0.4 ? 0.82 : 0.9);
+    const d = `M ${x - ww} ${y - curve * 4} Q ${x} ${y - 2 + curve * 5} ${x + ww} ${y - curve * 4 - asym * 8} Q ${x + ww * 0.75} ${y + h} ${x} ${y + h} Q ${x - ww * 0.75} ${y + h} ${x - ww} ${y - curve * 4} Z`;
+    path(g, d, '#4a1c24', 0); g.save(); g.clip(new Path2D(d)); if (teeth) teeth(h); if (h > 9) oval(g, x, y + h + 3.5, ww * 0.5, 5.5, '#a04c52', 0); g.restore(); path(g, d, null, 2.4);
+  } else path(g, `M ${x - w} ${y + asym * 4} Q ${x} ${y + curve * 40} ${x + w} ${y - asym * 18}`, null, 3);
 }
 
 // A "MOOCH": the moustache is the star: it curls up when happy, droops when sad, bristles when angry. Lopsided eyes.
@@ -33,7 +33,7 @@ export function mooch(g, c) {
   eye(a, 11.5, e.eyeL); eye(b, 14.5, e.eyeR);
   for (const [x, ang, lift] of [[a, e.browL, e.browYL], [b, e.browR, e.browYR]]) if (x !== null) path(g, `M ${x - 13} ${-24 + lift * 55 - ang * 28} Q ${x} ${-30 + lift * 55} ${x + 13} ${-24 + lift * 55 + ang * 28}`, null, 6.5, c.hair);
   const mx = c.inProfile ? 30 : c.shift * 0.7, angry = e.browL - e.browR > 0.3, tip = Math.max(-1, Math.min(1, e.curve * 3.2)) * 11;
-  mouthShape(g, mx, 31, c.inProfile ? 8 : 6 + e.width * 22, c.open * 1.15, e.curve, e.asym, () => { g.fillStyle = '#fffdf6'; g.fillRect(mx - 24, 24, 48, 10); });
+  mouthShape(g, mx, 30, c.inProfile ? 8 : 5 + e.width * 22, c.open, e.curve, e.asym, () => { g.fillStyle = '#fffdf6'; g.fillRect(mx - 24, 22, 48, 10.5); });
   g.save(); g.translate(mx, 17); g.scale(0.82, 0.8); g.translate(-mx, -17);
   for (const d of c.inProfile ? [1] : [-1, 1]) {
     const t = tip + (d > 0 ? e.asym * 14 : 0);

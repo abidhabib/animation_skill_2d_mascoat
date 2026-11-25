@@ -88,6 +88,13 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Voices (user picks): narrator ea236949cd944d4f817eaf17410b2427 (atempo 1.08), main = facty f8fb3d11726f44849b9ebc07f499abe6, teen sister = Tails 39749e8bafd840b18ccf9af8c37549d4, middle age = WrestleAddictX 1428515a637f4915872df4a9d7101498.
 - Quiet mix: music gainDb -24, sfx gainDb -9, ambience -30..-38. New: `D.parcel` (props2d), `MIA` (sister), cinematic `cam()` (eased zoom + sway), parallax houses/doorway helpers in the example.
 
+## DIALOGUE-FIRST REEL PIPELINE (2026-11-26, user's voice brief) - example `example-v05-short1`
+- Casting kept per video in `voices.json` (model, take ids, speed, tag). Narrator never tagged; character lines may use short Fish directions in [brackets] (user brief 2026-11-26).
+- `audio-edit/takes.py`: downloads BOTH takes, transcribes (faster-whisper small.en, numpy input), rejects wrong words / spoken tags / abrupt endings. Originals stay in `raw/`.
+- `audio-edit/edit.py`: trim, narrator atempo 1.08, equal loudness, meaning-sized pauses -> voice-over + `lines.json` (speaker windows) + `words.json`. Edit dialogue BEFORE animating.
+- Animation: `engine/cine.js` `speaker(lines)` gives phonemes only to the speaking character (mouths closed in pauses); gestures via `actions`; footsteps placed on footfalls.
+- Mouth fix: the meme face's open mouth stays inside the chin (no more hanging tongue).
+
 ## SHORTS / REELS 9:16 in this engine (V02 Short 2, 2026-11-22) - example `example-v02-short2`
 - Voice: Fish lines -> `fishjoin.py "Short N"` -> `bash new-clip.sh SN` (word timings, clip 90+N-1) -> `tools/new_project.py --aspect 9:16 --captions` + write_timeline (see example) -> spec.json + mkshots.py.
 - Frame is 1080x1920 (E.W/E.H). 2D faces centre at y 0.5H, numbers at 0.12-0.2H, captions at 0.76H (above the Shorts UI); 3D cameras need fov 46-52 (narrow width).
