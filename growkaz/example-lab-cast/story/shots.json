@@ -1,6 +1,6 @@
 {
  "title": "Lab cast",
- "duration": 10.0,
+ "duration": 18.0,
  "shots": [
   {
    "id": "C1",
@@ -66,6 +66,66 @@
    "id": "C5",
    "start": 8.0,
    "end": 10.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "F1",
+   "start": 10.0,
+   "end": 12.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "F2",
+   "start": 12.0,
+   "end": 14.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "F3",
+   "start": 14.0,
+   "end": 16.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "F4",
+   "start": 16.0,
+   "end": 18.0,
    "line": "",
    "scene": "lab",
    "set": "lab",

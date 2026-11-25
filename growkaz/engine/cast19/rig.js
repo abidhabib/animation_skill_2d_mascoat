@@ -436,6 +436,7 @@
       }
       g.restore();return;
     }
+    if(look.face){look.face(g,{e,shift,inProfile,options,hair:COLORS.hair,skin:COLORS.skin,open:PHONEMES[options.phoneme]?.open??Math.max(e.open,clamp(options.talk||0)*.48)});g.restore();return;}   // kit hook: custom face (engine/memefaces.js)
     if(look.stubble!==false)for(let i=-5;i<=5;i++){const sx=i*3.8,sy=43-i*i*.12;line(g,[[sx,sy],[sx+1,sy-2]],.85,'#715548');}
     const blink=options.blink===true||(options.autoBlink!==false&&((options.time||0)%3.7)>3.55);
     const eyeScale=blink?.08:1;

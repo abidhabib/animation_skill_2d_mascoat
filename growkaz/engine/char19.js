@@ -6,6 +6,7 @@
 import './cast19/rig.js';
 import './cast19/cast.js';
 import { POSES } from '/engine/rig2d.js';
+import { MEME_FACES } from '/engine/memefaces.js';
 
 const R = window.Character19, Cast = window.Cast;
 // our story's own people, added on top of the reference cast (cast.js stays verbatim)
@@ -16,6 +17,9 @@ Object.assign(Cast.people, {
   youngdad: ['Dad · younger', 'uniform', { skin: '#eebd98', shade: '#c4906f', hair: '#4a3020', hairStyle: 'crop', glasses: true, faceWidth: 1.04, build: 1.04 }],
   kid: ['Young lead', 'marine', { skin: '#ffdab9', shade: '#deaa88', hair: '#302326', hairStyle: 'curls', stubble: false, faceWidth: 1.05, height: .9, build: .9 }],
 });
+
+// hero with an original meme face: cast.c19 = ['lead_mooch' | 'lead_popbrow' | 'lead_gaptooth', outfit]
+for (const [k, face] of Object.entries(MEME_FACES)) Cast.people['lead_' + k] = ['Main character, ' + k, 'original', { face }];
 
 export const ACTIONS = [...R.POSE_NAMES, 'conceal'];
 export const EMOTION_NAMES = Object.keys(R.EMOTIONS);
