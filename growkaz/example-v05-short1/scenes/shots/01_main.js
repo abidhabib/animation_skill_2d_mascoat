@@ -63,7 +63,7 @@ reg('s06', { draw(g, t, info) { grad(g, [[0, '#7a2a30'], [0.6, '#46182a'], [1, '
 reg('s07', { draw(g, t, info) { const td = at(info, 'drawer', 1.8), tdad = at(info, 'dad', 2.6);
   if (t < tdad) { grad(g, [[0, '#3a2248'], [1, '#160c1e']]); glow(g, W() / 2, H() * 0.2, 700, '#ffc890', 0.3);
     cam(g, t, tdad, [1.0, 0.5, 0.5], [1.15, 0.5, 0.48], () => { const open = 1 - ease.inOut(prog(t, td - 0.1, td + 0.45)); drawer(g, W() / 2, H() * 0.5, open, 'lock', t);
-      const hy = t < td ? H() * 0.38 : lerp(H() * 0.44, H() * 0.52, ease.out(prog(t, td, td + 0.4))); for (const x of [-240, 240]) { circle(g, W() / 2 + x, hy + (open * 120), 58, '#ffdab9'); g.strokeStyle = INK; g.lineWidth = 6; g.stroke(); } }); }
+      const hy = t < td ? H() * 0.38 : lerp(H() * 0.44, H() * 0.52, ease.out(prog(t, td, td + 0.4))); const ha = prog(t, 0.1, 0.4) * (1 - prog(t, td + 0.45, td + 0.65)); if (ha > 0) { g.save(); g.globalAlpha = ha; for (const x of [-240, 240]) { rr(g, W() / 2 + x - 55, hy + open * 120 - 40, 110, 80, 40); g.fillStyle = '#ffdab9'; g.fill(); g.strokeStyle = INK; g.lineWidth = 6; g.stroke(); rr(g, W() / 2 + x * 1.55 - 45, hy + open * 120 + 20, 90, 420, 40); g.fillStyle = '#303950'; g.globalAlpha = 0; g.fill(); g.globalAlpha = ha; for (let i = 1; i < 4; i++) seg(g, [[W() / 2 + x - 55 + i * 27, hy + open * 120 - 34], [W() / 2 + x - 55 + i * 27, hy + open * 120 + 2]], 5, alpha(INK, 0.6)); } g.restore(); } }); }
   else { cam(g, t - tdad, info.dur - tdad, [1.22, 0.62, 0.52], [1.04, 0.5, 0.52], () => { room(g, 'eve', t);
       drawToon(g, { x: W() * 0.25, y: H() * 0.73, s: 2.4, cast: HERO, action: 'idle', t, facing: 1, yaw: 0.6, expr: 'curious' });
       drawToon(g, { x: lerp(W() * 1.1, W() * 0.74, ease.out(prog(t, tdad, tdad + 0.7))), y: H() * 0.73, s: 2.45, cast: DAD, actions: [[tdad, 'walk'], [tdad + 0.75, 'wave']], t, facing: -1, yaw: 0.65, expr: 'friendly' }); }); }
@@ -95,7 +95,7 @@ reg('s12', { draw(g, t, info) { const td = at(info, 'drawer', 1.4), tn = at(info
   cam(g, t, info.dur, [1.0, 0.5, 0.52], [1.16, 0.5, 0.46], () => { const open = ease.inOut(prog(t, td - 0.25, td + 0.5)); drawer(g, W() / 2, H() * 0.55, open, (g2, x, y, w, h) => { g2.fillStyle = '#0c1a14'; g2.fillRect(x, y, w, h); }, t); if (open > 0.3) glow(g, W() / 2, H() * 0.52, 600, '#6dff9a', 0.35 * open); wallClock(g, W() * 0.5, H() * 0.13, 105, 12); });
   const p = prog(t, tn, tn + 0.7); if (t >= tn - 0.05) counter(g, H() * 0.29, '$' + Math.round(240 * ease.out(p)), '#6dff9a', t, p); vig(g, 0.5); } });
 // N8 four hours: the clock runs from 8 to 12 while you two sit at the table
-reg('s13', { kind: '3d', init: initK, draw(st, t, info) { cam3(st, t, info.dur, { from: { pos: [-0.4, 1.7, 5.0], look: [-0.4, 1.05, 0.3], fov: 50 }, to: { pos: [-0.5, 1.5, 4.2], look: [-0.45, 1.05, 0.3], fov: 47 } }); },
+reg('s13', { kind: '3d', init: initK, draw(st, t, info) { cam3(st, t, info.dur, { from: { pos: [-0.4, 1.75, 5.9], look: [-0.4, 1.05, 0.3], fov: 51 }, to: { pos: [-0.4, 1.62, 5.35], look: [-0.4, 1.05, 0.3], fov: 50 } }); },
   overlay(g, t, info, st) { for (const [spot, cast, facing, expr, act] of [['chairOld', DAD, 1, 'laugh', 'sit'], ['chairNew', HERO, -1, 'joy', 'sit']]) person(g, st, st.spots[spot], { cast, action: act, t: t + (facing > 0 ? 0 : 1), facing, expr });
     wallClock(g, W() / 2, H() * 0.17, 150, 8 + 4 * ease.inOut(prog(t, 0.15, info.dur - 0.5))); motes(g, t, '#ffd8a0', 18); vig(g, 0.4); } });
 // N9 game over... you put the phone away anyway
