@@ -208,5 +208,17 @@ def('house', (g, o) => { const c = o.color || '#f4d0a0', rf = o.roof || '#c0563a
 D.bike = (g, x, y, s = 1, o = {}) => bike(g, x, y, s, o);
 D.cup = (g, x, y, s = 1, o = {}) => cup(g, x, y, s, o.steam || 0, o.t || 0);
 D.umbrella = (g, x, y, s = 1, o = {}) => umbrella(g, x, y, s, o.color, o.tilt || 0);
+// delivery parcel ~300 wide (bottom centre). o: {w, h, color, glow 0..1 (light from the seams), label (text lines), open 0..1 (flaps), crack 0..1}
+def('parcel', (g, o, t) => { const w = o.w || 300, h = o.h || 240, c = o.color || '#c88a55', gl = o.glow || 0, op = o.open || 0, top = -h;
+  g.fillStyle = 'rgba(20,10,30,.28)'; g.beginPath(); g.ellipse(0, 4, w * 0.66, 22, 0, 0, 7); g.fill();
+  if (gl > 0) glow(g, 0, top + h * 0.35, w * 0.95, '#ffd98a', 0.45 * gl);
+  PATH(g, [[w / 2, top], [w / 2 + w * 0.16, top - h * 0.1], [w / 2 + w * 0.16, -h * 0.1], [w / 2, 0]], shade(c, -0.28)); 
+  if (op < 0.05) PATH(g, [[-w / 2, top], [-w / 2 + w * 0.16, top - h * 0.1], [w / 2 + w * 0.16, top - h * 0.1], [w / 2, top]], shade(c, 0.18));
+  else { g.fillStyle = '#4a2a18'; g.beginPath(); g.moveTo(-w / 2, top); g.lineTo(-w / 2 + w * 0.16, top - h * 0.1); g.lineTo(w / 2 + w * 0.16, top - h * 0.1); g.lineTo(w / 2, top); g.closePath(); fs(g, '#4a2a18');
+    for (const d of [-1, 1]) { const x = d * w / 2 + (d > 0 ? 0 : 0); PATH(g, [[x, top], [x + d * w * 0.34 * op, top - h * 0.3 * Math.sin(op * 1.9)], [x + d * w * 0.34 * op + w * 0.16, top - h * 0.1 - h * 0.3 * Math.sin(op * 1.9)], [x + w * 0.16, top - h * 0.1]], shade(c, 0.1)); } }
+  R(g, -w / 2, top, w, h, 8, c); band(g, () => rr(g, -w / 2, top, w, h, 8), -w / 2, -h * 0.28, w, h * 0.28, 0.1);
+  g.fillStyle = shade(c, 0.34); g.fillRect(-w * 0.07, top + 4, w * 0.14, h - 8); if (gl > 0) { g.save(); g.globalCompositeOperation = 'lighter'; g.fillStyle = alpha('#ffe9a8', 0.75 * gl); g.fillRect(-4, top + 6, 8, h - 12); g.fillRect(-w / 2 + 6, top + 4, w - 12, 6); g.restore(); }
+  if (o.label) { const lw = w * 0.62, lh = Math.min(h * 0.42, 40 + o.label.length * w * 0.11); R(g, -lw / 2, top + h * 0.3, lw, lh, 8, '#fff6e4', 4); o.label.forEach((s2, i) => T(g, s2, 0, top + h * 0.3 + lh * (i + 0.5) / o.label.length, Math.min(lh / o.label.length * 0.7, lw / Math.max(6, s2.length) * 1.7), INK)); }
+  if (o.crack > 0) { g.save(); g.globalCompositeOperation = 'lighter'; for (let i = 0; i < 7; i++) { const a = i * 0.9 + 0.2, k = Math.min(1, o.crack * 1.4); const pts = [[0, -h / 2]]; for (let j = 1; j <= 4; j++) pts.push([Math.cos(a) * w * 0.17 * j * k + (j % 2 ? 16 : -12), -h / 2 + Math.sin(a) * h * 0.16 * j * k + (j % 2 ? -14 : 14)]); seg(g, pts, 7, alpha('#fff3b8', 0.95)); } g.restore(); } });
 export { D };
 export const PROP2D_NAMES = () => Object.keys(D);

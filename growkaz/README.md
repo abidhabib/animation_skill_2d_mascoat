@@ -84,6 +84,10 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - SMOOTH ARMS (2026-11-26, user: "not robotic"): action changes swing bones on eased arcs with the forearm following (`posed()` in cast19/rig.js), rounded elbows (`softArm`), softer wave/talk/clap loops. Animate with `actions: [[0,'idle'],[1.2,'wave'],[3,'think']], t` (0.55 s eased changes) or `posesAt`; never swap `action` abruptly. These are kit patches inside rig.js (search "kit"): re-apply them (and the `look.face` hook) if rig.js is ever re-copied.
 - QC gallery: `example-lab-cast`. Riverside world from the reference kit is NOT ported.
 
+## Thinkle reel, multi-voice (V04 Short 1, 2026-11-26) - example `example-v04-short1`
+- Voices (user picks): narrator ea236949cd944d4f817eaf17410b2427 (atempo 1.08), main = facty f8fb3d11726f44849b9ebc07f499abe6, teen sister = Tails 39749e8bafd840b18ccf9af8c37549d4, middle age = WrestleAddictX 1428515a637f4915872df4a9d7101498.
+- Quiet mix: music gainDb -24, sfx gainDb -9, ambience -30..-38. New: `D.parcel` (props2d), `MIA` (sister), cinematic `cam()` (eased zoom + sway), parallax houses/doorway helpers in the example.
+
 ## SHORTS / REELS 9:16 in this engine (V02 Short 2, 2026-11-22) - example `example-v02-short2`
 - Voice: Fish lines -> `fishjoin.py "Short N"` -> `bash new-clip.sh SN` (word timings, clip 90+N-1) -> `tools/new_project.py --aspect 9:16 --captions` + write_timeline (see example) -> spec.json + mkshots.py.
 - Frame is 1080x1920 (E.W/E.H). 2D faces centre at y 0.5H, numbers at 0.12-0.2H, captions at 0.76H (above the Shorts UI); 3D cameras need fov 46-52 (narrow width).

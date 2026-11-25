@@ -1,0 +1,23 @@
+{
+ "title": "V04 Short 1",
+ "aspect": "9:16",
+ "resolution": "1080p",
+ "fps": 30,
+ "style": "cozy",
+ "voiceover": "input/voiceover.mp3",
+ "script": "input/script.txt",
+ "duration": 45.929,
+ "captions": false,
+ "bars": null,
+ "fadeIn": 0.15,
+ "fadeOut": 0.2,
+ "music": {
+  "enabled": true,
+  "gainDb": -24
+ },
+ "sfx": {
+  "enabled": true,
+  "gainDb": -9
+ },
+ "loudness": -14
+}

@@ -15,6 +15,7 @@ Object.assign(Cast.people, {
   sam: ['Sam · best friend', 'workwear', { skin: '#ae704e', shade: '#85523e', hair: '#1f1718', hairStyle: 'curls', stubble: false, faceWidth: .95, height: 1.03, build: .98 }],
   dad: ['Dad', 'cardigan', { skin: '#eebd98', shade: '#c4906f', hair: '#b9b2ad', hairStyle: 'crop', glasses: true, aged: true, faceWidth: 1.06, build: 1.08 }],
   youngdad: ['Dad · younger', 'uniform', { skin: '#eebd98', shade: '#c4906f', hair: '#4a3020', hairStyle: 'crop', glasses: true, faceWidth: 1.04, build: 1.04 }],
+  mia: ['Mia · little sister', 'blazer', { skin: '#f2c09a', shade: '#c9936f', hair: '#33201f', hairStyle: 'bun', stubble: false, faceWidth: .99, faceHeight: .94, height: .88, build: .9 }],
   kid: ['Young lead', 'marine', { skin: '#ffdab9', shade: '#deaa88', hair: '#302326', hairStyle: 'curls', stubble: false, faceWidth: 1.05, height: .9, build: .9 }],
 });
 
