@@ -14,7 +14,7 @@ export { ACTIONS, EMOTION_NAMES } from '/engine/char19.js';
 const classic = (o, c) => (o.rig || c.rig || E.cfg.cast) === 'classic';
 
 // ---------- cast presets ----------
-export const HERO = { c19: ['lead', 'original'], skin: '#f6d6bd', hair: 'curly', hairColor: '#3a2418', top: '#4a78b8', topDark: '#33598f', collar: '#2f5286', sleeves: 'rolled',
+export const HERO = { c19: ['lead_mooch', 'original'], skin: '#f6d6bd', hair: 'curly', hairColor: '#3a2418', top: '#4a78b8', topDark: '#33598f', collar: '#2f5286', sleeves: 'rolled',
                       legs: '#b8a07a', shoes: '#f4f4f4', stache: 'curl', beard: 'goatee', eyes: 'dark', belt: '#2a2033' };
 export const CASHIER = { c19: ['tess', 'uniform'], skin: '#d6a074', hair: 'ponytail', hairColor: '#2a1d18', top: '#e8e2d0', topDark: '#c8c0a8', apron: '#2f8a57', cap: '#2f8a57', legs: '#3a3f52', shoes: '#2a2a33', eyes: 'dark', lashes: true };
 export const STRANGER = { c19: ['ines', 'blazer'], skin: '#f1c8a0', hair: 'swoop', hairColor: '#7a4a2a', top: '#8a5cc8', topDark: '#6a42a0', legs: '#2e3344', shoes: '#e8e8f0', eyes: 'dark' };

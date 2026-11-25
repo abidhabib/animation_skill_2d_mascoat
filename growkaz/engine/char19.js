@@ -24,7 +24,7 @@ for (const [k, face] of Object.entries(MEME_FACES)) Cast.people['lead_' + k] = [
 export const ACTIONS = [...R.POSE_NAMES, 'conceal'];
 export const EMOTION_NAMES = Object.keys(R.EMOTIONS);
 export const PEOPLE = Cast.people, OUTFITS = Cast.outfits;
-export const rigFor = (cast) => { const [person, outfit] = cast?.c19 || ['lead', 'original']; return Cast.rig(person, outfit); };
+export const rigFor = (cast) => { const [person, outfit] = cast?.c19 || ['lead_mooch', 'original']; return Cast.rig(person, outfit); };
 
 const FIT = 0.365;                       // rig units -> our figure units (a standing figure is ~270 tall at s = 1)
 const FACE_R = 88, HEAD_Y = 636;         // rig head radius and head height above the ground

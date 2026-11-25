@@ -80,7 +80,7 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Cast ids: HERO=lead, SAM=sam, DAD=dad, YOUNG_DAD=youngdad, MOM=mom, KID=kid, ROOMMATE=ivo, STRANGER=ines, CASHIER=tess, SHOPPER(i). Others: niko, omar, mara, leon, june, alma. Outfits: original, workwear, blazer, cardigan, marine, uniform.
 - Old per-cast colours (top, skin...) and `rim` are ignored by the new rig. `bigToonFace` shows the body below the head; pass `clip: true` for small portraits.
 - Old round-head cast on request: `rig: 'classic'` (call or cast) or `"cast": "classic"` in config.json (use it when re-rendering a finished old video so characters stay consistent).
-- Hero meme faces (2026-11-25, original designs, NOT default until the user picks): `engine/memefaces.js`, use `{ ...HERO, c19: ['lead_mooch' | 'lead_popbrow' | 'lead_gaptooth', 'original'] }`; they use the same 46 emotions. Needs the one-line `look.face` hook in `cast19/rig.js` (re-add it after re-copying rig.js). Pictures `docs/HERO_FACES_*.png`.
+- **Hero face = MOOCH (user picked it 2026-11-25)**: HERO uses `c19: ['lead_mooch','original']`; the moustache acts with the mood. Other meme faces kept as options: `engine/memefaces.js`, use `{ ...HERO, c19: ['lead_mooch' | 'lead_popbrow' | 'lead_gaptooth', 'original'] }`; they use the same 46 emotions. Needs the one-line `look.face` hook in `cast19/rig.js` (re-add it after re-copying rig.js). Pictures `docs/HERO_FACES_*.png`.
 - QC gallery: `example-lab-cast`. Riverside world from the reference kit is NOT ported.
 
 ## SHORTS / REELS 9:16 in this engine (V02 Short 2, 2026-11-22) - example `example-v02-short2`
