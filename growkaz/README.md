@@ -4,6 +4,9 @@ From **V02 Clip 19 on**, every clip is made with the GrowKaz Stickman Studio eng
 frame by frame in the user's Chrome) **but with the user's own cartoon characters** (`engine/toon2d.js`), not stick figures.
 Clips 1-18 of V02 stay as they are (old HyperFrames kit). Reference build: `example-v02-clip19/` -> `V02 - Trust Numbers/Final Clips/Clip 19.mp4`.
 
+## Channels
+Two channels share this kit: read `../channels/THINKLE_SHOW.md` or `../channels/ORDINARY_MIND.md` before any clip.
+
 ## Setup (any new session / model / machine)
 ```bash
 cd "YouTube Content"

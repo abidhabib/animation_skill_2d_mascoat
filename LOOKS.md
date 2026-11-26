@@ -1,5 +1,7 @@
 # Look ledger: every video gets its own look (user 2026-11-26: "gonna keep the background same? repetition again and again?")
 
+Channels: Thinkle Show = V02, V04, V05; Ordinary Mind = V03. Compare a new video with rows of the SAME channel, and keep the two channels visibly different.
+
 Before building a video, fill ONE new row. Compare with the rows above and change at least: places, look/palette, time or weather, opening type, camera idea. Keep the same: hero, voices, storytelling quality.
 
 | Video | Places | Look / palette | Time, weather | Opening | Camera idea | Caption style |
