@@ -9,7 +9,7 @@ SR = 44100
 SPEED = {"narrator": 1.08, "you": 1.0, "dad": 1.0}
 # pause AFTER each line (s)
 GAP = dict(N1=0.35, Y1=0.3, N2=0.35, N3=0.45, N4=0.3, Y2=0.55, N5=0.3, D1=0.35, N6=0.5, D2=0.65, Y3=0.7, N7=0.4, N8=0.55, N9=0.35, D3=0.35, Y4=0.65, N10=0.7)
-LEAD = 0.15
+LEAD = 0.0   # first word at 0 s (SHORTS_PLAYBOOK.md)
 TRIM = "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse"
 def pcm(path, af, sr=SR):
     return np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-af", af, "-f", "f32le", "-ac", "1", "-ar", str(sr), "-"], capture_output=True, check=True).stdout, np.float32)

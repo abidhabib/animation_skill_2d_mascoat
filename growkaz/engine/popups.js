@@ -151,3 +151,17 @@ export function capt2(g, gt, o = {}) {
     g.restore(); x += wd[j] + gap; });
   g.restore();
 }
+
+// HOOK TITLE for Shorts (SHORTS_PLAYBOOK.md): visible from frame 1, 2 lines, centre-top safe area, 2 words coloured.
+//   hook(g, globalT, ['PAID TO IGNORE', 'YOUR PHONE?'], { keys: ['PAID', 'PHONE'], colors: ['#ffd84a', '#2fe0c4'], out: 2.8 })
+export function hook(g, t, lines, o = {}) {
+  const out = o.out ?? 2.8, gone = ease.in(prog(t, out, out + 0.25)); if (gone >= 1) return;
+  const keys = (o.keys || []).map((k) => k.toUpperCase()), colors = o.colors || ['#ffd84a', '#2fe0c4'], y = E.H * (o.y ?? 0.2), size = o.size || 118, settle = 1 + 0.07 * Math.exp(-t * 9);
+  g.save(); g.translate(E.W / 2, y - gone * 220); g.scale(settle, settle); g.globalAlpha *= 1 - gone;
+  lines.slice(0, 2).forEach((line, i) => { const ws = line.toUpperCase().split(' '); font(g, size); const gap = size * 0.34, wd = ws.map((w) => g.measureText(w).width), tot = wd.reduce((a, b) => a + b, 0) + gap * (ws.length - 1), k = Math.min(1, (E.W - 130) / tot);
+    g.save(); g.translate(0, (i - 0.5) * size * 1.18); g.rotate(i ? 0.012 : -0.022); g.scale(k, k); let x = -tot / 2;
+    ws.forEach((w, j) => { const ki = keys.indexOf(w.replace(/[^A-Z0-9$%']/g, '')), col = ki >= 0 ? colors[ki % colors.length] : '#fffaf0';
+      font(g, size); g.textAlign = 'left'; g.textBaseline = 'middle'; g.lineJoin = 'round'; g.lineWidth = 26; g.strokeStyle = 'rgba(12,5,20,.9)'; g.strokeText(w, x + 6, 12); g.strokeStyle = INK; g.strokeText(w, x, 0); g.fillStyle = col; g.fillText(w, x, 0); x += wd[j] + gap; });
+    g.restore(); });
+  g.restore();
+}

@@ -1,6 +1,6 @@
 {
  "title": "Lab popups",
- "duration": 8.0,
+ "duration": 10.0,
  "shots": [
   {
    "id": "U1",
@@ -51,6 +51,21 @@
    "id": "U4",
    "start": 6.0,
    "end": 8.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "U5",
+   "start": 8.0,
+   "end": 10.0,
    "line": "",
    "scene": "lab",
    "set": "lab",

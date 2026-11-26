@@ -29,6 +29,9 @@ The earlier narrator (Narrative Storytelling Voice, ea236949cd944d4f817eaf17410b
 - Music: playful / wonder / hopeful; quiet effects tied to visible actions.
 
 ## Format and packaging
-- Shorts/reels 9:16, 40-60 s, complete story (rule said first, last line closes it); long videos 16:9.
+- Shorts/reels 9:16, 38-55 s, complete story (rule said first, last line closes it); long videos 16:9.
 - Titles: "What If ..." style, unique (search first). Thumbnails: Mooch face, one number or object, 0-2 words.
 - Brand art: `Channel Branding/Thinkle/` (banner currently reads "THINKLE"; update to "Thinkle Show" if the user asks).
+
+## Shorts
+Follow `../SHORTS_PLAYBOOK.md` and run `growkaz/shortcheck.py`.

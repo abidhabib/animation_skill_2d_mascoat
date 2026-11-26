@@ -34,3 +34,6 @@ Narrator **facty! fact attack adventures** `f8fb3d11726f44849b9ebc07f499abe6`, 1
 - Titles are plain finance titles, never "What If": subject names first, hard fact + question, under about 60 characters.
 - Thumbnails: the two subjects or one object, a 2-word text, editorial look.
 - Brand art: not made yet.
+
+## Shorts
+Follow `../SHORTS_PLAYBOOK.md` and run `growkaz/shortcheck.py`.

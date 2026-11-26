@@ -6,7 +6,7 @@ if not os.path.exists(P):
 sys.path.insert(0, "tools"); from common import sentences_from_words, write_timeline
 words = json.load(open(os.path.join(A, "words.json"), encoding="utf-8")); lines = json.load(open(os.path.join(A, "lines.json"), encoding="utf-8"))
 write_timeline(P + "/timeline", words, sentences_from_words(words), "dialogue edit (whisper, script spelling)")
-c = json.load(open(P + "/config.json")); c.update(style="cozy", bars=None, captions=False, fadeIn=0.12, fadeOut=0.3); c["music"]["gainDb"] = -25; c["sfx"]["gainDb"] = -9; json.dump(c, open(P + "/config.json", "w"), indent=1)
+c = json.load(open(P + "/config.json")); c.update(style="cozy", bars=None, captions=False, fadeIn=0.0, fadeOut=0.3); c["music"]["gainDb"] = -25; c["sfx"]["gainDb"] = -9; json.dump(c, open(P + "/config.json", "w"), indent=1)
 os.makedirs(P + "/scenes/shots", exist_ok=True)
 if os.path.exists("projects/v05-main.js"): shutil.move("projects/v05-main.js", P + "/scenes/shots/01_main.js")
 open(P + "/scenes/shots/00_lines.js", "w", encoding="utf-8").write("export const LINES = " + json.dumps(lines) + ";\n")
