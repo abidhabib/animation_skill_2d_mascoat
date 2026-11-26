@@ -24,7 +24,7 @@ export const MOM = { c19: ['mom', 'cardigan'], skin: '#e8b892', hair: 'long', ha
 export const DAD = { c19: ['dad', 'cardigan'], skin: '#e4b48c', hair: 'short', hairColor: '#8d8a96', top: '#6b7f5a', topDark: '#46573a', legs: '#3a3a44', shoes: '#2a2a33', eyes: 'dark', glasses: true, stache: 'curl' };
 export const KID = { ...HERO, c19: ['kid', 'marine'], stache: null, beard: null, top: '#e0562f', topDark: '#b0402a', collar: '#b0402a', sleeves: null, legs: '#4a78b8', belt: null };   // young Abid (flashbacks)
 export const YOUNG_DAD = { ...DAD, c19: ['youngdad', 'uniform'], hairColor: '#4a3020' };                                                                                   // Dad, 20 years younger
-export const OM_HERO = { ...HERO, c19: ['om_specs', 'rebel'] };   // Ordinary Mind channel: formal glasses, cool smirk, dark jacket (user 2026-11-26)
+export const OM_HERO = { ...HERO, c19: ['om_strategist', 'rebel'] };   // Ordinary Mind channel: THE STRATEGIST (user pick 2026-11-26)
 export const MIA = { c19: ['mia', 'marine'] };
 export const SHOPPER = (i) => ({ c19: [['mara', 'cardigan'], ['omar', 'workwear'], ['june', 'workwear'], ['ines', 'marine']][i % 4], ...[{ skin: '#f5d6b8', hair: 'bun', hairColor: '#5a3825', top: '#c96f8a', topDark: '#8d4a60', legs: '#4a3f6e', eyes: 'dark', lashes: true },
   { skin: '#a8714a', hair: 'short', hairColor: '#1d1410', top: '#e0a24a', topDark: '#b07a2a', legs: '#2e3344', eyes: 'dark' },

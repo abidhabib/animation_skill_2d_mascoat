@@ -7,7 +7,7 @@ Finance / tech news / business explainers: a real question, checked facts, one e
 ## Cast
 - One narrator voice, no side-character voices.
 - On screen: "you" plus supporting people and crowds. Never a lone hero on a gradient.
-- Hero (user picked 2026-11-26): `OM_HERO` from `/engine/toon2d.js` = slim FORMAL GLASSES, cool one-brow smirk, dark jacket over yellow tee (`engine/coolfaces.js` specs). Slightly naughty, never boring. Never use `HERO` (Mooch) on this channel. Picture: `docs/OM_HERO.png`. Other options on request: om_shades, om_smirk, om_wink.
+- Hero (user picked 2026-11-26): `OM_HERO` from `/engine/toon2d.js` = **THE STRATEGIST** (`engine/newheads.js`): narrow V jaw, brown side-swept wave, thin half-rim glasses, light stubble, green eyes, sly smirk, dark jacket over yellow tee. A completely different face from Thinkle Show; never use `HERO` (Mooch) here. Picture: `docs/OM_HERO.png`. Other options only on request: om_closer, om_boss, om_specs.
 
 ## Voice (user rule 2026-11-22)
 Narrator "Abid's Fav" `4de5245b355c4974a0c71baf01775d48` at 1.1x, CTA 1.0x, NO tags, one speaker only, 1st (older) generation.
