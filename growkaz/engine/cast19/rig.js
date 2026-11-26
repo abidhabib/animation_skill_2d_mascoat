@@ -426,6 +426,7 @@
     const shift=Math.sin(yaw)*12;
     g.save();g.translate(x,y);g.rotate(p.headTilt+p.headNod);
     g.scale(1.68*(1-profile*.23)*(look.faceWidth||1),1.60*(look.faceHeight||1));
+    if(look.head){look.head(g,{e,shift,back,inProfile:profile>.91&&!back,options,skin:COLORS.skin,open:PHONEMES[options.phoneme]?.open??Math.max(e.open,clamp(options.talk||0)*.48)});g.restore();return;}   // kit hook: whole custom head (engine/newheads.js)
     ellipse(g,0,-9,52,55,COLORS.hair);
     shape(g,'M -46 -18 C -44 -51 38 -53 46 -18 C 58 19 37 43 8 46 C -22 51 -53 31 -46 -18 Z',COLORS.skin);
     ellipse(g,-44,6,8,11,COLORS.skin);ellipse(g,44,6,8,11,COLORS.skin);
