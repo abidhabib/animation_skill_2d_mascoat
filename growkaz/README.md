@@ -19,7 +19,7 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 **Never edit the studio copy only: change the file here, then re-run setup-studio.sh** (so a new session gets identical output).
 
 ## Per clip (from inside the video folder)
-1. Voice: Fish browser workflow (VOICES.md): narrator "Abid's Fav" 1.0x, side characters bookmarked voices, one sentence/group per take,
+1. Voice: Fish browser workflow (VOICES.md): narrator facty (channel profile; Abid's Fav retired), side characters bookmarked voices, one sentence/group per take,
    1st take (pick script in VOICES.md), join with `NOSLOW=1 python3 "../_Studio Kit/fishjoin.py" "Clip NN" "<text>" part::text gap=.. ...`.
 2. `bash "../_Studio Kit/growkaz/gk-clip.sh" init NN`  -> word timings + studio project `growkaz-stickman-studio/projects/v02-clipNN`.
 3. Write `story/shots.json` (shot ids, start/end from the printed word times, `in` transitions, sfx cues, music sections) and

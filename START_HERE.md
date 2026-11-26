@@ -10,7 +10,7 @@ Last updated 2026-11-19. If this file and the code disagree, trust the code and 
 ## 0a. NEW DEFAULT ENGINE (user 2026-11-21) - READ FIRST
 From V02 Clip 19 on, clips are made with the **GrowKaz engine + our own cast** (expressive faces, rim light, cinematic sets, generated music/SFX):
 read `growkaz/README.md` and run `bash "_Studio Kit/growkaz/setup-studio.sh"` once per session/machine. Per clip: Fish voice -> `growkaz/gk-clip.sh init N` -> write shots -> `gk-clip.sh sheet N` -> `gk-clip.sh render N`.
-Main voice "Abid's Fav" 1.0x, side characters bookmarked voices; style `cozy`; smooth eased camera; numbers glow on heads. The HyperFrames kit below stays for older clips and Shorts.
+Main narrator facty (see channels/*.md; Abid's Fav retired), side characters bookmarked voices; style `cozy`; smooth eased camera; numbers glow on heads. The HyperFrames kit below stays for older clips and Shorts.
 
 ## 0b. CURRENT DEFAULTS (approved by the user 2026-11-19 after Short 1, "perfect") - follow these for every new video and Short
 - **Animation = KIT V2** (LIBRARY.md "KIT V2", "Cinematic shots, not slides", "User rules from Short 1 review"): the user's own hero (`role:"abid"`, automatic for a char named hero), cast `role`s, camera `shots`, zoom-through transitions, every narration beat shows its own picture, varied places, no random weather, 9:16 safe zone. Reference build: `specs/short1_v2.json` -> `renders/Short 1.mp4`.
