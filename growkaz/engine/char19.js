@@ -6,6 +6,7 @@
 import './cast19/rig.js';
 import './cast19/cast.js';
 import { POSES } from '/engine/rig2d.js';
+import { COOL_FACES } from '/engine/coolfaces.js';
 import { MEME_FACES } from '/engine/memefaces.js';
 
 const R = window.Character19, Cast = window.Cast;
@@ -21,6 +22,10 @@ Object.assign(Cast.people, {
 
 // hero with an original meme face: cast.c19 = ['lead_mooch' | 'lead_popbrow' | 'lead_gaptooth', outfit]
 for (const [k, face] of Object.entries(MEME_FACES)) Cast.people['lead_' + k] = ['Main character, ' + k, 'original', { face }];
+
+// Ordinary Mind looks: black jacket + cheeky face, cast.c19 = ['om_shades' | 'om_smirk' | 'om_wink', 'rebel']
+Cast.outfits.rebel = ['Black jacket', 'jacket', '#3a3747', '#2b2f3d', '#f2b530'];
+for (const [k, face] of Object.entries(COOL_FACES)) Cast.people['om_' + k] = ['Ordinary Mind, ' + k, 'rebel', { face }];
 
 export const ACTIONS = [...R.POSE_NAMES, 'conceal'];
 export const EMOTION_NAMES = Object.keys(R.EMOTIONS);
