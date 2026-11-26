@@ -1,0 +1,66 @@
+{
+ "title": "Lab popups",
+ "duration": 8.0,
+ "shots": [
+  {
+   "id": "U1",
+   "start": 0.0,
+   "end": 2.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "U2",
+   "start": 2.0,
+   "end": 4.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "U3",
+   "start": 4.0,
+   "end": 6.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "U4",
+   "start": 6.0,
+   "end": 8.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  }
+ ]
+}

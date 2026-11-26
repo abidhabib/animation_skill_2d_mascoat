@@ -19,3 +19,5 @@ Openings: sound on black, object macro, mid-action, top-down map, a question wri
 Camera: one long follow shot, top-down, over-the-shoulder, point of view, split screen, slow pull-out only at the end.
 Captions: top third with white box, yellow outline without box, speech bubble next to the speaker.
 Need another place? Add it to `places.js` once, add a gallery frame, list it here.
+
+Pop-ups and captions: also note the pop-up trio and caption style per video (see `DESIGN_TASTE.md`). Used so far: generic capsule counter + dark pill (retired).

@@ -99,6 +99,10 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Before every video fill a row in `_Studio Kit/LOOKS.md` (new places, palette, weather, opening, camera, captions). New reusable places: `engine/places.js` (`place(g, name, t, {look})`, `floorY(name)`, `fg()`), gallery `example-lab-places`, picture `docs/PLACES_LOOKS.png`.
 - ARMS: no hand above the shoulder, talking = arms at rest, one small low gesture only when it points at / handles something. Built into `actingArm` in cast19/rig.js (kit patch). Do not stack gestures on a speaking character.
 
+## POP-UPS AND CAPTIONS HAVE A DESIGN SYSTEM (user 2026-11-26) - read `_Studio Kit/DESIGN_TASTE.md`
+- `engine/popups.js`: `POP.flap|odometer|receipt|tag|sticker|stamp|tape|neon|chalk|jar|burst|note|dial(g, x, y, t, o)`, `capt2(g, gt, {style})`; picture `docs/POPUPS.png`, gallery `example-lab-popups`.
+- Never draw glowing capsules or dark caption pills in a clip. `cine.capt` now uses these caption styles.
+
 ## SHORTS / REELS 9:16 in this engine (V02 Short 2, 2026-11-22) - example `example-v02-short2`
 - Voice: Fish lines -> `fishjoin.py "Short N"` -> `bash new-clip.sh SN` (word timings, clip 90+N-1) -> `tools/new_project.py --aspect 9:16 --captions` + write_timeline (see example) -> spec.json + mkshots.py.
 - Frame is 1080x1920 (E.W/E.H). 2D faces centre at y 0.5H, numbers at 0.12-0.2H, captions at 0.76H (above the Shorts UI); 3D cameras need fov 46-52 (narrow width).
