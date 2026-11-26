@@ -15,8 +15,9 @@ function extras(g, c, y = 4) {
 function mouthShape(g, x, y, w, open, curve, asym, teeth) {
   if (open > 0.06) {      // 2026-11-26: the open mouth stays inside the chin (the old one hung below it and read as a tongue sticking out)
     const h = Math.min(13, 3 + open * 21), ww = w * (open > 0.4 ? 0.82 : 0.9);
-    const d = `M ${x - ww} ${y - curve * 4} Q ${x} ${y - 2 + curve * 5} ${x + ww} ${y - curve * 4 - asym * 8} Q ${x + ww * 0.75} ${y + h} ${x} ${y + h} Q ${x - ww * 0.75} ${y + h} ${x - ww} ${y - curve * 4} Z`;
-    path(g, d, '#4a1c24', 0); g.save(); g.clip(new Path2D(d)); if (teeth) teeth(h); if (h > 9) oval(g, x, y + h + 3.5, ww * 0.5, 5.5, '#a04c52', 0); g.restore(); path(g, d, null, 2.4);
+    const l = y - curve * 4, r = l - asym * 8;      // round bowl bottom, never a point (user 2026-11-26)
+    const d = `M ${x - ww} ${l} Q ${x} ${y - 2 + curve * 5} ${x + ww} ${r} C ${x + ww * 0.96} ${y + h * 0.7} ${x + ww * 0.55} ${y + h} ${x} ${y + h} C ${x - ww * 0.55} ${y + h} ${x - ww * 0.96} ${y + h * 0.7} ${x - ww} ${l} Z`;
+    path(g, d, '#4a1c24', 0); g.save(); g.clip(new Path2D(d)); if (teeth) teeth(h); if (h > 7) oval(g, x, y + h + 0.5, ww * 0.5, Math.min(5, h * 0.4), '#e0747a', 0); g.restore(); path(g, d, null, 2.4);   // tongue: small rounded dome
   } else path(g, `M ${x - w} ${y + asym * 4} Q ${x} ${y + curve * 40} ${x + w} ${y - asym * 18}`, null, 3);
 }
 
