@@ -7,8 +7,7 @@ Finance / tech news / business explainers: a real question, checked facts, one e
 ## Cast
 - One narrator voice, no side-character voices.
 - On screen: "you" plus supporting people and crowds. Never a lone hero on a gradient.
-- Hero look (proposed, confirm with the user at the first new video): clean Character 19 lead without the meme face:
-  `const OM_HERO = { ...HERO, c19: ['lead', 'blazer'] };` so the channel does not look like Thinkle Show.
+- Hero (user approved 2026-11-26): `OM_HERO` from `/engine/toon2d.js` = Character 19 lead in the plum blazer, no meme face. Never use `HERO` (Mooch) on this channel. Picture: `docs/CHANNEL_HEROES.png`.
 
 ## Voice (user rule 2026-11-22)
 Narrator "Abid's Fav" `4de5245b355c4974a0c71baf01775d48` at 1.1x, CTA 1.0x, NO tags, one speaker only, 1st (older) generation.

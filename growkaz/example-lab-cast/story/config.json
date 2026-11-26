@@ -6,7 +6,7 @@
  "style": "cozy",
  "voiceover": "input/voiceover.mp3",
  "script": "input/script.txt",
- "duration": 24.0,
+ "duration": 26.0,
  "captions": false,
  "bars": 0,
  "fadeIn": 0.5,
