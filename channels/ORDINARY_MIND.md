@@ -9,8 +9,8 @@ Finance / tech news / business explainers: a real question, checked facts, one e
 - On screen: "you" plus supporting people and crowds. Never a lone hero on a gradient.
 - Hero (user picked 2026-11-26): `OM_HERO` from `/engine/toon2d.js` = **THE STRATEGIST** (`engine/newheads.js`): narrow V jaw, brown side-swept wave, thin half-rim glasses, light stubble, green eyes, sly smirk, dark jacket over yellow tee. A completely different face from Thinkle Show; never use `HERO` (Mooch) here. Picture: `docs/OM_HERO.png`. Other options only on request: om_closer, om_boss, om_specs.
 
-## Voice (user rule 2026-11-22)
-Narrator "Abid's Fav" `4de5245b355c4974a0c71baf01775d48` at 1.1x, CTA 1.0x, NO tags, one speaker only, 1st (older) generation.
+## Voice (user 2026-11-26: Abid's Fav is retired, never use it)
+Narrator **facty! fact attack adventures** `f8fb3d11726f44849b9ebc07f499abe6`, 1.0x (adjust only after listening), NO tags, one speaker only, 1st (older) generation.
 
 ## World and objects
 - Places: `sets3d/office2000.js`, `dataCenter3d.js`, `lifeRoad3d.js`, `verdict3d.js`; `finprops.js` (candles, terminals, newspaper, statement, report, vault, bank, contract, GPU, router, heatmap, sheet, chain...), `finfx.js`.

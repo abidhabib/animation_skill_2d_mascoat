@@ -1,5 +1,9 @@
 # Voices (Fish Audio)
 
+## NEWEST RULE (user 2026-11-26, wins over everything below)
+- **"Abid's Fav" is retired. Never use it.**
+- Main narrator on BOTH channels: **facty! fact attack adventures** `f8fb3d11726f44849b9ebc07f499abe6`. Full casting per channel: `channels/THINKLE_SHOW.md`, `channels/ORDINARY_MIND.md`.
+
 ## CURRENT MAIN VOICE + HARD RULES (user, 2026-11-20 - this block wins over anything older below)
 - **FINANCE CHANNEL (user 2026-11-22): ONE voice only.** Narrator "Abid's Fav" `4de5245b355c4974a0c71baf01775d48` at 1.1x (CTA 1.0x), no tags, no other speakers or character lines at all. First: `V03 - Nvidia Next Cisco/`.
 - **MAIN VOICE CHANGED (user 2026-11-20, later): "Abid's Fav"** Fish id `4de5245b355c4974a0c71baf01775d48` (https://fish.audio/app/m/4de5245b355c4974a0c71baf01775d48/), Speed 1.1x, same rules below (no tags, 1st generation, commas). Elliot is retired as the main voice.
