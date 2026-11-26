@@ -51,4 +51,14 @@ export function wink(g, c) { const [a, b] = xs(c), e = c.e, playful = e.curve >=
   eye(g, c, b, e.eyeR, 1, { lid: 0.2 }); nose(g, c); stubble(g, c); mouth(g, c, { asym: 0.32, tooth: true }); extras(g, c);
   if (!c.inProfile) { oval(g, 45, 17, 3.4, 3.4, '#ffd23a', 1.4); } }
 
-export const COOL_FACES = { shades, smirk, wink };
+// SPECS (user pick 2026-11-26: "formal glasses"): slim formal rectangular frames worn properly, cool cheeky face behind them
+export function specs(g, c) { const [a, b] = xs(c), shock = c.e.eyeL > 1.25, gy = -3 + (shock ? 5 : 0); brows(g, c, [0, -4.5], -18);
+  eye(g, c, a, c.e.eyeL, -1, { lid: 0.3, r: 10.5 }); eye(g, c, b, c.e.eyeR, 1, { lid: 0.2, r: 10.5 });
+  nose(g, c); stubble(g, c); mouth(g, c, { asym: 0.3 }); extras(g, c);
+  for (const x of [a, b]) if (x !== null) { const d = `M ${x - 15.5} ${gy - 9} Q ${x} ${gy - 11.5} ${x + 15.5} ${gy - 9} Q ${x + 16.5} ${gy + 11.5} ${x + 8} ${gy + 12.5} L ${x - 8} ${gy + 12.5} Q ${x - 16.5} ${gy + 11.5} ${x - 15.5} ${gy - 9} Z`;
+    g.save(); g.globalAlpha *= 0.13; path(g, d, '#bfe6ff', 0); g.restore(); g.save(); g.clip(new Path2D(d)); g.fillStyle = 'rgba(255,255,255,.42)'; g.beginPath(); g.moveTo(x - 10, gy - 14); g.lineTo(x - 5, gy - 14); g.lineTo(x - 15, gy + 4); g.lineTo(x - 19, gy + 4); g.fill(); g.restore();
+    path(g, d, null, 2.6, '#16121c'); path(g, `M ${x - 15} ${gy - 8.6} Q ${x} ${gy - 11.4} ${x + 15} ${gy - 8.6}`, null, 4.2, '#16121c'); }
+  if (a !== null) { path(g, `M ${a + 15.5} ${gy - 4} Q ${(a + b) / 2} ${gy - 10} ${b - 15.5} ${gy - 4}`, null, 2.6, '#16121c'); path(g, `M ${a - 15.5} ${gy - 6} L ${a - 24} ${gy - 4}`, null, 2.6, '#16121c'); }
+  path(g, `M ${b + 15.5} ${gy - 6} L ${b + 26} ${gy - 3}`, null, 2.6, '#16121c'); }
+
+export const COOL_FACES = { specs, shades, smirk, wink };

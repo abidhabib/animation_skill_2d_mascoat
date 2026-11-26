@@ -1,6 +1,6 @@
 {
  "title": "Lab cast",
- "duration": 30.0,
+ "duration": 32.0,
  "shots": [
   {
    "id": "C1",
@@ -216,6 +216,21 @@
    "id": "K2",
    "start": 28.0,
    "end": 30.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "S1",
+   "start": 30.0,
+   "end": 32.0,
    "line": "",
    "scene": "lab",
    "set": "lab",
