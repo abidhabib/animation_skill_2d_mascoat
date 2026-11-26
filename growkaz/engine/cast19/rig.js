@@ -209,38 +209,41 @@
   // Directions in performer space: lateral, forward, down. Both links keep
   // their length before camera projection, even when the elbow points at us.
   function actingArm(p, side) {
-    const sign=side==='L'?-1:1;
-    const relax=[[sign*.13,-.10,.98],[sign*.04,.20,.98]];
-    const phase=p.actingTime||0;
-    const settle=Math.sin(phase*2.3)*.05+Math.sin(phase*3.9+1.3)*.028;
+    // kit 2026-11-26 (user: "arms look weird, don't take them up, less movement while talking"):
+    // CALM ARMS. The upper arm always hangs mostly down and no hand rises above the shoulder. Talking = arms at rest.
+    // Only a real gesture with a purpose (point, wave, hold, press...) moves one arm, low and small.
+    const sign=side==='L'?-1:1,R=side==='R';
+    const relax=[[sign*.13,-.04,.99],[sign*.07,.16,.98]];
+    const phase=p.actingTime||0,soft=Math.sin(phase*1.7+sign)*.025;
+    const rest=[relax[0],[sign*.07,.17+soft,.98]];
+    const low=(u,f)=>[[sign*u[0],u[1],u[2]],[sign*f[0],f[1],f[2]]];
     switch(p.action){
-      case 'conceal':
-        return side==='R'?[[-.5,.1,-.86],[-.30,.30,-.90]]:relax;
-
-      case 'talk':
-        return side==='R'?[[.33,.08,.94],[.47,.48,-.73+settle]]:relax;
-
-      case 'hug':
-        return [[sign*.20,.65,.73],[-sign*.30,.87,-.39]];
-      case 'makeBed':
-        return [[sign*.18,.51,.84],[-sign*.13,.97,-.20]];
-
-      case 'shrug':
-        return [[sign*.47,-.08,.88],[sign*.72,.43,-.65+settle]];
-      case 'recoil':
-        return [[sign*.41,-.15,.90],[sign*.04,.67,-.75+settle]];
-      case 'think':
-        return side==='R'?[[.47,.12,.88],[-.72,.10,-.76]]:[[-.19,.05,.98],[.76,.54,-.30]];
-      case 'pointUp':
-        return side==='R'?[[.78,.16,-.57],[.18,.10,-.98]]:relax;
-      case 'wave':
-        return side==='R'?[[.84,.16,.51],[.13+.27*Math.sin(phase*5.4)+.05*Math.sin(phase*2.2),.16,-.98]]:relax;
+      case 'idle': case 'talk': case 'turn': case 'stop': case 'land': return rest;
+      case 'explain': return R?low([.16,.10,.98],[.18,.62,.72+soft]):rest;
+      case 'shrug': return low([.22,0,.97],[.42,.40,.80]);
+      case 'think': case 'conceal': return R?low([.14,.26,.95],[-.45,.72,.05]):low([.12,.16,.98],[-.55,.60,.55]);
+      case 'facepalm': case 'salute': return R?low([.14,.30,.94],[-.30,.80,-.20]):rest;
+      case 'phone': return R?low([.14,.28,.95],[-.20,.92,.10]):rest;
+      case 'point': case 'pressButton': case 'openDoor': return R?low([.20,.34,.92],[.14,.98,.12]):rest;
+      case 'reach': case 'pointUp': return R?low([.24,.40,.88],[.16,.95,-.12]):rest;
+      case 'thumbsUp': return R?low([.18,.28,.94],[.10,.80,.02]):rest;
+      case 'wave': return R?low([.34,.14,.93],[.30+.14*Math.sin(phase*5),.40,-.34]):rest;
+      case 'celebrate': return low([.24,.18,.95],[-.04,.78,-.08]);
+      case 'recoil': return low([.26,.06,.96],[.10,.82,.16]);
+      case 'hug': return low([.20,.62,.76],[-.30,.92,.05]);
+      case 'makeBed': case 'carry': case 'push': case 'pull': case 'pickUp': return low([.16,.42,.89],[-.12,.94,.24]);
+      case 'crossArms': return low([.14,.20,.97],[-.85,.45,.10]);
+      case 'handsHips': return low([.42,-.10,.90],[-.60,.10,.76]);
+      case 'handsPockets': return low([.12,.02,.99],[-.20,.22,.95]);
+      case 'clap': return low([.18,.30,.94],[-.45-.18*Math.cos(phase*8),.82,-.05]);
+      case 'bow': return rest;
       case 'sit':
       case 'standUp':{
         const standing=p.action==='sit'?0:clamp((-p.hip[1]-180)/133);
         const lap=[[sign*.29,-.16,.94],[-sign*.73,.56,.41]];
         return lap.map((dir,i)=>dir.map((v,j)=>lerp(v,relax[i][j],standing)));
       }
+      case 'jump': return low([.22,.12,.97],[.14,.55,.82]);
       default:return null;
     }
   }

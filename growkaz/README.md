@@ -95,6 +95,10 @@ Our patches live HERE and are copied over the studio: `engine/toon2d.js`, `engin
 - Animation: `engine/cine.js` `speaker(lines)` gives phonemes only to the speaking character (mouths closed in pauses); gestures via `actions`; footsteps placed on footfalls.
 - Mouth fix: the meme face's open mouth stays inside the chin (no more hanging tongue).
 
+## NEVER REPEAT THE LOOK + CALM ARMS (user 2026-11-26)
+- Before every video fill a row in `_Studio Kit/LOOKS.md` (new places, palette, weather, opening, camera, captions). New reusable places: `engine/places.js` (`place(g, name, t, {look})`, `floorY(name)`, `fg()`), gallery `example-lab-places`, picture `docs/PLACES_LOOKS.png`.
+- ARMS: no hand above the shoulder, talking = arms at rest, one small low gesture only when it points at / handles something. Built into `actingArm` in cast19/rig.js (kit patch). Do not stack gestures on a speaking character.
+
 ## SHORTS / REELS 9:16 in this engine (V02 Short 2, 2026-11-22) - example `example-v02-short2`
 - Voice: Fish lines -> `fishjoin.py "Short N"` -> `bash new-clip.sh SN` (word timings, clip 90+N-1) -> `tools/new_project.py --aspect 9:16 --captions` + write_timeline (see example) -> spec.json + mkshots.py.
 - Frame is 1080x1920 (E.W/E.H). 2D faces centre at y 0.5H, numbers at 0.12-0.2H, captions at 0.76H (above the Shorts UI); 3D cameras need fov 46-52 (narrow width).

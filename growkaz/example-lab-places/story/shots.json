@@ -1,0 +1,126 @@
+{
+ "title": "Lab places",
+ "duration": 16.0,
+ "shots": [
+  {
+   "id": "G1",
+   "start": 0.0,
+   "end": 2.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "G2",
+   "start": 2.0,
+   "end": 4.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "G3",
+   "start": 4.0,
+   "end": 6.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "G4",
+   "start": 6.0,
+   "end": 8.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "G5",
+   "start": 8.0,
+   "end": 10.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "G6",
+   "start": 10.0,
+   "end": 12.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "G7",
+   "start": 12.0,
+   "end": 14.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  },
+  {
+   "id": "G8",
+   "start": 14.0,
+   "end": 16.0,
+   "line": "",
+   "scene": "lab",
+   "set": "lab",
+   "bars": 0,
+   "in": {
+    "type": "cut",
+    "dur": 0
+   },
+   "sfx": [],
+   "notes": ""
+  }
+ ]
+}
