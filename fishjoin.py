@@ -81,6 +81,33 @@ def even_pauses(w, ptxt=""):
     a = new(); run("-i", w, "-af", f"atrim={pos},asetpts=PTS-STARTPTS", a); segs.append(a)
     lst = new("txt"); open(lst, "w").write("".join(f"file '{p}'\n" for p in segs)); out = new(); run("-f", "concat", "-safe", "0", "-i", lst, out); return out
 
+# NATURAL JOIN (default since 2026-11-26, user: "joining should not ruin the pace, flow and naturality"):
+# takes are never cut inside, never time-stretched, never compressed. Only silent edges are trimmed gently, one constant
+# volume change per take evens the loudness, and takes are placed with a short breath between them. TIGHT=1 = old behaviour.
+def natural(src):
+    if src.startswith("http"):
+        f = new("mp3"); subprocess.run(["curl", "-s", "-f", "-o", f, src], check=True); src = f
+    edge = "silenceremove=start_periods=1:start_threshold=-50dB:start_silence=0.05"
+    w = new(); run("-i", src, "-af", f"{edge},areverse,{edge},areverse", "-ar", "44100", "-ac", "1", w)
+    err = subprocess.run(["ffmpeg", "-i", w, "-af", "volumedetect", "-f", "null", "-"], capture_output=True, text=True).stderr
+    mean, peak = float(re.search(r"mean_volume: (-?[\d.]+)", err)[1]), float(re.search(r"max_volume: (-?[\d.]+)", err)[1])
+    gain = min(-19.0 - mean, -1.0 - peak); d = dur(w); s = new()
+    run("-i", w, "-af", f"volume={gain:.2f}dB,afade=t=in:d=0.008,afade=t=out:st={max(0, d - 0.03):.3f}:d=0.03", "-ar", "44100", "-ac", "1", s); return s
+if not os.environ.get("TIGHT"):
+    seq, g = [tone(0.1)], None
+    for a in args:
+        if a.startswith("gap="): g = float(a[4:]); continue
+        srcs = a.partition("::")[0].split("|"); w = natural(srcs[0])
+        if len(seq) > 1: seq.append(tone(g if g is not None else 0.35))
+        seq.append(w); g = None
+    seq.append(tone(0.4))
+    lst = new("txt"); open(lst, "w").write("".join(f"file '{p}'\n" for p in seq))
+    os.makedirs(os.path.join(video, "Voice-overs Chunks"), exist_ok=True); os.makedirs(os.path.join(video, "Transcript Chunks"), exist_ok=True)
+    out = os.path.join(video, "Voice-overs Chunks", f"{name} - Voice-over.mp3")
+    run("-f", "concat", "-safe", "0", "-i", lst, "-ar", "44100", "-b:a", "192k", out)
+    open(os.path.join(video, "Transcript Chunks", f"{name} - Transcript.txt"), "w", encoding="utf-8").write(text.strip() + "\n")
+    print("voice-over (natural):", out, f"({dur(out):.1f} s)"); sys.exit(0)
+
 parts, gap = [], 0.3
 for a in args:
     if a.startswith("gap="): gap = float(a[4:]); continue
