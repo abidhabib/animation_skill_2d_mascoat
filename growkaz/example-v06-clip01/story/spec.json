@@ -1,0 +1,14 @@
+{"title":"V06 Clip 1","dur":36.938,"set":"notewall",
+"music":[[0,24.4,"mystery",0.25],[24.4,33.2,"playful",0.25],[33.2,36.938,"tension",0.28]],
+"shots":[
+["a",0,2.45,"Imagine waking up","hook","cut",[[0.55,"impact",-14],[0.55,"swish",-18]],["roomtone",-34]],
+["b",2.45,5.65,"your bedroom wall has given you a job","bed","cut",[[1.1,"shimmer",-24]],["roomtone",-34]],
+["c",5.65,10.7,"One yellow note","wall","fade",[[0.15,"pop",-18],[1.4,"pop",-18],[3.15,"tick",-20],[3.4,"tick",-20],[3.65,"tick",-20]],["roomtone",-34]],
+["d",10.7,13.15,"You pull it off. Another appears.","wall","cut",[[0.3,"swish",-18],[1.3,"impact",-17]],["roomtone",-34]],
+["e",13.15,15.75,"You tear that one in half. It's back.","wall","cut",[[0.4,"swish",-14],[1.7,"impact",-16]],["roomtone",-34]],
+["f",15.75,19.2,"Perfectly straight. Completely blank.","wall","cut",[[0.1,"tick",-22],[1.62,"blip",-22]],["roomtone",-34]],
+["g",19.2,24.4,"Four words appear underneath","words","fade",[[2.4,"tick",-16],[2.96,"tick",-16],[3.52,"tick",-16],[4.16,"hit",-18]],["roomtone",-36]],
+["h",24.4,28.7,"At first this might be the best thing","face","flash",[[0.05,"shimmer",-20],[1.8,"ding",-20]],null],
+["i",28.7,33.25,"Twelve days later","jar","whipR",[[0.3,"tick",-22],[0.8,"tick",-22],[1.3,"tick",-22],[1.8,"tick",-22],[2.3,"tick",-22],[2.9,"ding",-20]],["roomtone",-36]],
+["j",33.25,36.938,"But on day thirteen","write","cut",[[1.07,"hit",-16],[1.75,"swish",-22],[2.9,"impact",-16]],["roomtone",-34]]
+]}

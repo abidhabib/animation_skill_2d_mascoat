@@ -10,6 +10,7 @@ Before building a video, fill ONE new row. Compare with the rows above and chang
 | V02 Short 2 | park, kitchen3d, bedroom | warm + purple | day, night | numbers pop on crowd | portraits | dark pill, gold word, y 0.76 |
 | V04 Unsaid Boxes | street porches (custom), kitchen3d, phone | dawn / sunset purple | dawn, sunset | doorbells, boxes drop | tilt, travel | same pill |
 | V05 Paid To Ignore | living room, drawer, kitchen3d, window | indigo / amber | day to night | phone + counter | close-ups | same pill |
+| V06 One Note A Day | note wall (new, `engine/notewall.js`), supermarket, rooftop gold-teal, night bus, repair shop, rain street | deep teal + butter yellow | midnight, rain | paper slap in the dark | slow push-ins, object macro | none |
 | next | | | | | | CHANGE IT |
 
 ## Used up (avoid for the next 3 videos)
