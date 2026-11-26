@@ -65,3 +65,11 @@ export function hand(g, x, y, from = [0, 400], o = {}) {
 
 // "SLAP" impact ticks around a point, p = 0..1
 export function slapLines(g, x, y, p, r = 260) { if (p <= 0 || p >= 1) return; for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2 + 0.2, r0 = r * (0.75 + 0.35 * ease.out(p)), r1 = r0 + 70 * (1 - p); seg(g, [[x + Math.cos(a) * r0, y + Math.sin(a) * r0], [x + Math.cos(a) * r1, y + Math.sin(a) * r1]], 10 * (1 - p) + 2, '#fff4d0'); } }
+
+// ---- supporting props (user 2026-11-26: frames must not feel empty, but never cluttered) ----
+export function frameArt(g, x, y, w = 170, h = 210, kind = 0) { box(g, x - w / 2 + 8, y - h / 2 + 12, w, h, 'rgba(0,0,0,.26)', 10, 0); box(g, x - w / 2, y - h / 2, w, h, '#f4e6c8', 10);
+  const c = ['#4a8ab0', '#e8785a', '#5aa07a'][kind % 3]; box(g, x - w / 2 + 18, y - h / 2 + 18, w - 36, h - 36, c, 6, 4); circle(g, x + w * 0.14, y - h * 0.14, w * 0.11, '#ffe27a'); poly(g, [[x - w / 2 + 20, y + h / 2 - 20], [x - w * 0.1, y], [x + w / 2 - 20, y + h / 2 - 20]]); g.fillStyle = '#2f4a4a'; g.fill(); }
+export function shelfBoard(g, x, y, w = 360) { box(g, x - w / 2, y, w, 26, '#9a6240', 10); for (const d of [-1, 1]) seg(g, [[x + d * w * 0.38, y + 26], [x + d * w * 0.3, y + 70]], 12, INK); }
+export function sideTable(g, x, y, w = 340, h = 190) { box(g, x - w / 2, y - h, w, 36, '#a8704a', 12); for (const d of [-1, 1]) box(g, x + d * (w / 2 - 44) - 12, y - h + 36, 24, h - 36, '#7a4a30', 8); }
+export function rug(g, x, y, rx = 520, col = '#c8604a') { g.beginPath(); g.ellipse(x, y, rx, rx * 0.11, 0, 0, 7); g.fillStyle = col; g.fill(); g.strokeStyle = INK; g.lineWidth = 6; g.stroke(); g.beginPath(); g.ellipse(x, y, rx * 0.72, rx * 0.07, 0, 0, 7); g.strokeStyle = '#ffd98a'; g.lineWidth = 8; g.stroke(); }
+export function fairyLights(g, t, y = 90, col = '#ffd98a') { g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.moveTo(-20, y); g.quadraticCurveTo(W() / 2, y + 110, W() + 20, y - 10); g.stroke(); for (let i = 1; i < 14; i++) { const u = i / 14, x = -20 + u * (W() + 40), yy = (1 - u) * (1 - u) * y + 2 * (1 - u) * u * (y + 110) + u * u * (y - 10) + 18; circle(g, x, yy, 11, col); glow(g, x, yy, 60, col, 0.35 + 0.15 * Math.sin(t * 2.4 + i)); } }
