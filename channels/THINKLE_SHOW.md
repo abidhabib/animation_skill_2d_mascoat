@@ -11,11 +11,12 @@ Cartoon "what if" stories about everyday life: one clear rule, a cost, an emotio
 ## Voices (Fish, user approved the V05 sound)
 | Role | Voice | id |
 |---|---|---|
-| Narrator | Narrative Storytelling Voice (1.0x, then x1.08 in edit, no tags) | ea236949cd944d4f817eaf17410b2427 |
-| Main character | facty | f8fb3d11726f44849b9ebc07f499abe6 |
+| MAIN NARRATOR + main character (user 2026-11-26) | facty! fact attack adventures (narration without tags; short [directions] only on spoken character lines) | f8fb3d11726f44849b9ebc07f499abe6 |
 | Middle age / Dad | WrestleAddictX | 1428515a637f4915872df4a9d7101498 |
 | Teen female (only if asked; named after a game character, rights risk) | Tails | 39749e8bafd840b18ccf9af8c37549d4 |
 Short [directions] on character lines are fine. Pipeline: `example-v05-short1`.
+
+The earlier narrator (Narrative Storytelling Voice, ea236949cd944d4f817eaf17410b2427) is retired; V05 still uses it.
 
 ## World and objects
 - Places: `places.js` (street, classroom, busNight, supermarket, rooftop; looks noon, mint, snow, rain, neon, sunset), 3D bedroom/kitchen/park/train, `props3d.js`, `props2d.js`.
