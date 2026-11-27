@@ -31,7 +31,7 @@ The earlier narrator (Narrative Storytelling Voice, ea236949cd944d4f817eaf17410b
 ## Format and packaging
 - Shorts/reels 9:16, 38-55 s, complete story (rule said first, last line closes it); long videos 16:9.
 - Titles: "What If ..." style, unique (search first). Thumbnails: Mooch face, one number or object, 0-2 words.
-- Brand art: `Channel Branding/Thinkle/` (banner currently reads "THINKLE"; update to "Thinkle Show" if the user asks).
+- Brand art (YELLOW identity, 2026-11-27): `Channel Branding/Thinkle/Thinkle Show Logo (yellow) 800x800.png` and `... Banner (yellow) 2560x1440.png`; drawn by `engine/thinkle.js` (`badge`) + `growkaz/example-thinkle-brand`. Use the yellow end card for Short call-to-actions. The older navy art is kept but replaced.
 
 ## Shorts
 Follow `../SHORTS_PLAYBOOK.md` and run `growkaz/shortcheck.py`.
